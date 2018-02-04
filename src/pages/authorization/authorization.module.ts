@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AuthorizationComponent } from './authorization.component';
+import { Authorization } from '@pages/authorization/authorization';
 
 @NgModule({
-  imports: [
-    IonicPageModule.forChild(AuthorizationComponent)
-  ],
   declarations: [
-    AuthorizationComponent
-  ]
+    Authorization
+  ],
+  imports: [
+    IonicPageModule.forChild(Authorization)
+  ],
+  exports: [ Authorization ]
 })
 export class AuthorizationModule {}

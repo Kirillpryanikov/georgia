@@ -1,13 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HomeModule } from './home/home.module';
 
-// import { AuthorizationModule } from './authorization/authorization.module';
-
-const IMPORTS = [ HomeModule ];
+const IMPORTS = [];
 
 @NgModule({
   imports: [...IMPORTS ],
-  declarations: []
+  declarations: [],
+  exports: [ ...IMPORTS ]
 })
 export class PagesModule {
   static forRoot(): ModuleWithProviders {

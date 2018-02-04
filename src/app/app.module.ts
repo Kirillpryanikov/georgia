@@ -7,8 +7,6 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { PagesModule } from '@pages/pages.module'
 import { MyApp } from './app.component';
-import { HomeComponent } from '@pages/home/home.component';
-import { AuthorizationComponent } from '@pages/authorization/authorization.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +17,7 @@ import { AuthorizationComponent } from '@pages/authorization/authorization.compo
     CoreModule.forRoot(),
     SharedModule.forRoot(),
     PagesModule.forRoot(),
-    IonicModule.forRoot(MyApp, {}, {
-      links: [
-        { component: HomeComponent, name: 'home-page'},
-        // { component: AuthorizationComponent, name: 'auth-page'}
-      ]
-    }),
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
