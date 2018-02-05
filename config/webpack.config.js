@@ -22,11 +22,6 @@ if (env === 'prod' || env === 'dev') {
   };
 }
 
-// useDefaultConfig[env].optimizedProdLoaders =  {
-//   test: /\.css$/,
-//   use: [ 'style-loader', 'css-loader' ]
-// };
-
 module.exports = function () {
   return useDefaultConfig;
 };

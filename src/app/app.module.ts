@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,6 +15,7 @@ import { MyApp } from './app.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule.forRoot(),
     SharedModule.forRoot(),
     PagesModule.forRoot(),

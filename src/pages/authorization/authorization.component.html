@@ -22,22 +22,22 @@
       </svg>
     </div>
 
-    <form action="" class="sign sign--in">
+    <form (ngSubmit)="submit()" [formGroup]="form" class="sign sign--in">
 
       <div class="u2g-form-group__field-group">
         <label class="u2g-form-group__label"><span>Email</span></label>
-        <input type="email" class="u2g-form-group__field" id="email" name="email" data-rule-required="true">
+        <input type="email" class="u2g-form-group__field" id="email" name="email" formControlName="email" data-rule-required="true">
       </div>
 
       <div class="u2g-form-group__field-group">
         <label class="u2g-form-group__label"><span>Password</span></label>
-        <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
+        <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="password">
       </div>
 
       <div class="u2g-form-group__field-group js-organization">
         <label class="u2g-form-group__label"><span>Keep logged in</span></label>
         <label #jsSwitch class="u2g-switch js-switch">
-          <input type="checkbox">
+          <input type="checkbox" formControlName="checkbox">
           <span></span>
         </label>
       </div>

@@ -1,5 +1,7 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { ScriptRegisterService } from '@core/script.data/script.register.service';
 
 @IonicPage({
   name: 'authorization-page'
@@ -11,20 +13,31 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class Authorization implements OnInit {
   @ViewChild('jsSwitch') jsSwitch: ElementRef;
+  protected form: FormGroup;
 
   constructor(private navCtrl: NavController,
-              private render: Renderer2) {}
+              private fb: FormBuilder,
+              private registerService: ScriptRegisterService ) {}
 
   ngOnInit() {
-    this.init();
+    this.initForm();
+    this.initCheckout();
   }
 
-  init() {
-    this.render.listen(this.jsSwitch.nativeElement, 'click', (event) => {
-      let checkbox = this.jsSwitch.nativeElement.querySelectorAll('input')[0];
-      event.preventDefault();
-      console.log('      console  :::: ', checkbox.is(':not(:checked)'))
+  initCheckout() {
+    this.registerService.checkbox();
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      email: '',
+      password: '',
+      checkbox: false
     })
+  }
+
+  submit(){
+    console.log('Submit');
   }
 
   goToRegisterPage() {

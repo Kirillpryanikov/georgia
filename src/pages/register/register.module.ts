@@ -11,8 +11,5 @@ import { RegisterPage } from './register';
   ],
 })
 export class RegisterPageModule {
-  constructor() {
-
-  }
-
+  constructor() {}
 }
