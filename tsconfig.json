@@ -17,7 +17,8 @@
       "@core/*": [ "@core/*" ],
       "@shared/*": [ "@shared/*" ],
       "@pages/*": [ "pages/*" ],
-      "@env/*": [ "environments/*" ]
+      "@env/*": [ "environments/*" ],
+      "@theme/*": ["theme/*"]
     }
   },
   "include": [

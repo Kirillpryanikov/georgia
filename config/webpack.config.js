@@ -8,7 +8,8 @@ if (env === 'prod' || env === 'dev') {
     "@core": path.resolve('./src/@core/'),
     "@shared": path.resolve('./src/@shared/'),
     "@pages": path.resolve('./src/pages/'),
-    "@env": path.resolve('./src/environments/')
+    "@env": path.resolve('./src/environments/'),
+    "@theme": path.resolve('./src/theme/')
   };
 } else {
   useDefaultConfig[env] = useDefaultConfig.dev;
@@ -16,9 +17,15 @@ if (env === 'prod' || env === 'dev') {
     "@core": path.resolve('./src/@core/'),
     "@shared": path.resolve('./src/@shared/'),
     "@pages": path.resolve('./src/pages/'),
-    "@env": path.resolve('./src/environments/')
+    "@env": path.resolve('./src/environments/'),
+    "@theme": path.resolve('./src/theme/')
   };
 }
+
+// useDefaultConfig[env].optimizedProdLoaders =  {
+//   test: /\.css$/,
+//   use: [ 'style-loader', 'css-loader' ]
+// };
 
 module.exports = function () {
   return useDefaultConfig;
