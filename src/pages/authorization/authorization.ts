@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
 
 @IonicPage({
@@ -12,7 +12,7 @@ import { ScriptRegisterService } from '@core/script.data/script.register.service
   styleUrls: ['/authorization.scss']
 })
 export class Authorization implements OnInit, OnDestroy {
-  @ViewChild('jsSwitch') jsSwitch: ElementRef;
+  @ViewChild('jsorganization') jsOrganization: ElementRef;
   protected form: FormGroup;
 
   constructor(private navCtrl: NavController,
@@ -26,25 +26,23 @@ export class Authorization implements OnInit, OnDestroy {
   }
 
   initCheckout() {
-    this.render.listen(this.jsSwitch.nativeElement, 'click', (event) => {
-      this.registerService.checkbox(event);
-    })
+    this.registerService.checkbox();
   }
 
   initForm() {
     this.form = this.fb.group({
-      email: '',
-      password: '',
-      checkbox: false
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      organization: new FormControl('')
     })
   }
 
-  submit(){
-    console.log('Submit');
+  submit() {
+    const organization = this.jsOrganization.nativeElement.querySelector('.organization_field_c');
+    this.form.get('organization').patchValue(organization ? organization.value : '');
   }
 
   goToRegisterPage() {
-    console.log('Remove Listener !!!');
     this.navCtrl.push('register-page');
   }
 

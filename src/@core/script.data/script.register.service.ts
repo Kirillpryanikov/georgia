@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as $ from 'jquery'
 
-const organizationField = '<input type="text" class="u2g-form-group__field" name="organization" data-rule-required="true">';
+const organizationField = '<input type="text" class="u2g-form-group__field organization_field_c" name="organization">';
 const idNumber = $('.js-id-number');
 const nonGeorgian = $('.js-non-georgian');
 
@@ -9,7 +9,8 @@ const nonGeorgian = $('.js-non-georgian');
 export class ScriptRegisterService {
   constructor(){}
 
-  checkbox(event) {
+  checkbox() {
+    $(document).on('click', '.js-switch', function(event) {
       var checkbox = $(this).find('input[type="checkbox"]');
       event.preventDefault();
       if(checkbox.is(':not(:checked)')) {
@@ -46,6 +47,7 @@ export class ScriptRegisterService {
         }
         checkbox.prop('checked', false);
       }
+    });
   }
 
   dropdown() {
