@@ -3181,8 +3181,8 @@ body, ion-content#content {
   .u2g-page-wrapper--right {
     left: 270px;
     max-width: 100%;
-    max-height: -webkit-calc(100% - 270px);
-    max-height: calc(100% - 270px);
+    //max-height: -webkit-calc(100% - 270px);
+    //max-height: calc(100% - 270px);
     -webkit-transition-delay: .15s;
             transition-delay: .15s;
     overflow: hidden; }
