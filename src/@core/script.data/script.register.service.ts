@@ -49,6 +49,7 @@ export class ScriptRegisterService {
   }
 
   dropdown() {
+    const that = this;
     $(document).on('click', '[data-show-element]', function () {
       $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
@@ -65,7 +66,7 @@ export class ScriptRegisterService {
           return;
         }
         if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          this.hideDropdown();
+          that.hideDropdown();
         }
       }
     });

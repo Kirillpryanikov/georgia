@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 /**
  * Generated class for the DepositePage page.
@@ -15,13 +16,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-deposite',
   templateUrl: 'deposite.html',
 })
-export class DepositePage {
+export class DepositePage implements OnInit, OnDestroy{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public registerService: ScriptMainService) {
+  }
+
+  ngOnInit() {
+    this.initDropdown();
+  }
+
+  initDropdown() {
+    this.registerService.dropdown();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositePage');
+  }
+
+  ngOnDestroy(){
+
   }
 
 }
