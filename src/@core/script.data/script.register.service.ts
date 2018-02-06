@@ -9,10 +9,9 @@ const nonGeorgian = $('.js-non-georgian');
 export class ScriptRegisterService {
   constructor(){}
 
-  checkbox() {
-    $(document).on('click', '.js-switch', function(event) {
-      var checkbox = $(this).find('input[type="checkbox"]'); ///
-      event.preventDefault(); ///
+  checkbox(event) {
+      var checkbox = $(this).find('input[type="checkbox"]');
+      event.preventDefault();
       if(checkbox.is(':not(:checked)')) {
 
         if($(this).closest('.js-organization').length) {
@@ -47,6 +46,42 @@ export class ScriptRegisterService {
         }
         checkbox.prop('checked', false);
       }
+  }
+
+  dropdown() {
+    $(document).on('click', '[data-show-element]', function () {
+      $('.' + $(this).data('show-element')).toggleClass('u2g-show');
+
+      $(this).addClass('u2g-showed');
     });
+
+    $(document).on('mouseup', function (e) {
+
+      var showItem = $('.u2g-show');
+
+      if(showItem.length > 0) {
+
+        if($(e.target).hasClass('u2g-showed')) {
+          return;
+        }
+        if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
+          this.hideDropdown();
+        }
+      }
+    });
+  }
+
+  private hideDropdown() {
+    $('.u2g-show').removeClass('u2g-show');
+
+    $('.u2g-showed').removeClass('u2g-showed');
+
+    $('.u2g-overlay').css({'display' : 'none'});
+
+    $('.u2g-page-wrapper--right').removeClass('u2g-page-wrapper--right');
+
+    $('body').removeClass('overflow');
+
+    $('.u2g-menu-toggle').removeClass('u2g-menu-toggle--open');
   }
 }
