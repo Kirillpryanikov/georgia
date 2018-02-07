@@ -12,7 +12,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'authorization.component.html',
   styleUrls: ['/authorization.scss']
 })
-
 export class Authorization implements OnInit {
   @ViewChild('jsorganization') jsOrganization: ElementRef;
   protected form: FormGroup;
@@ -43,13 +42,17 @@ export class Authorization implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-
       email: ['', Validators.required],
       password: ['', Validators.required],
       organization: new FormControl(''),
       checkbox: false
     })
   }
+  changeLanguage(language: string) {
+    this.lang = language;
+    this.translate.use(language)
+  }
+
   changeLanguage(language: string) {
     this.lang = language;
     this.translate.use(language)
