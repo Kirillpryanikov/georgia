@@ -40,7 +40,7 @@ export class ScriptMainService {
     });
   }
 
-  private hideDropdown() {
+  hideDropdown() {
     $('.u2g-show').removeClass('u2g-show');
 
     $('.u2g-showed').removeClass('u2g-showed');
