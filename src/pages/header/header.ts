@@ -1,17 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ScriptMainService} from "../../@core/script.data/script.main.service";
+import { ScriptMainService } from "@core/script.data/script.main.service";
 
 /**
- * Generated class for the SidebarComponent component.
+ * Generated class for the HeaderComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'sidebar-component',
-  templateUrl: 'sidebar.html'
+  selector: 'header-page',
+  templateUrl: 'header.html'
 })
-export class SidebarComponent implements OnInit, OnDestroy{
+export class HeaderPage implements OnInit, OnDestroy{
+
+  notification: number = 2;
+  unpaid_invoice: number = 8;
+  undeclared_tracking: number = 4;
 
   constructor(public mainService: ScriptMainService) {}
 
@@ -26,4 +30,5 @@ export class SidebarComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
 
   }
+
 }

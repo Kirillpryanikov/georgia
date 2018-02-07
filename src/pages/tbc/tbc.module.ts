@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TbcPage } from '@pages/tbc/tbc';
-import {ComponentsModule} from "../../components/components.module";
+import {HeaderPageModule} from "@pages/header/header.module";
+import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
 
 @NgModule({
   declarations: [
     TbcPage,
   ],
   imports: [
-    ComponentsModule,
+    HeaderPageModule,
+    SidebarPageModule,
     IonicPageModule.forChild(TbcPage),
   ],
   exports: [ TbcPage ]
