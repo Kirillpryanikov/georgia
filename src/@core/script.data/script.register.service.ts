@@ -40,6 +40,7 @@ export class ScriptRegisterService {
       }
     });
   }
+
   offClick() {
     $(document).off('click', '.js-switch');
   }

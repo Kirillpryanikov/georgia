@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/co
 import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage({
   name: 'authorization-page'
@@ -14,13 +15,15 @@ import { ScriptRegisterService } from '@core/script.data/script.register.service
 export class Authorization implements OnInit {
   @ViewChild('jsorganization') jsOrganization: ElementRef;
   protected form: FormGroup;
-
+  private lang: string;
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               private render: Renderer2,
+              private translate: TranslateService,
               private registerService: ScriptRegisterService ) {}
 
   ngOnInit() {
+    this.lang = this.translate.currentLang || 'en';
   }
 
   ionViewCanEnter(){
@@ -44,6 +47,11 @@ export class Authorization implements OnInit {
       organization: new FormControl(''),
       checkbox: false
     })
+  }
+
+  changeLanguage(language: string) {
+    this.lang = language;
+    this.translate.use(language)
   }
 
   submit() {
