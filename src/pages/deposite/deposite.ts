@@ -31,6 +31,16 @@ export class DepositePage implements OnInit, OnDestroy{
     this.mainService.dropdown();
   }
 
+  payment_tbc(e) {
+    e.preventDefault();
+    this.navCtrl.push('tbc-page');
+  }
+
+  payment_cartu(e) {
+    e.preventDefault();
+    this.navCtrl.push('cartu-page');
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositePage');
   }

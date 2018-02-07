@@ -13,6 +13,10 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy{
 
+  notification: number = 2;
+  unpaid_invoice: number = 8;
+  undeclared_tracking: number = 4;
+
   constructor(public mainService: ScriptMainService) {}
 
   ngOnInit() {
