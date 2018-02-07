@@ -7,8 +7,6 @@ const nonGeorgian = $('.js-non-georgian');
 
 @Injectable()
 export class ScriptRegisterService {
-  private checkboxClick = null;
-
   constructor(){}
 
   checkbox() {
@@ -69,7 +67,7 @@ export class ScriptRegisterService {
     });
   }
 
-  private hideDropdown() {
+  hideDropdown() {
     $('.u2g-show').removeClass('u2g-show');
 
     $('.u2g-showed').removeClass('u2g-showed');

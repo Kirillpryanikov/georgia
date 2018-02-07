@@ -9,7 +9,7 @@ import { Globalization } from '@ionic-native/globalization';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:string = 'authorization-page';
+  rootPage:string = 'page-awaiting-tracking';
 
   constructor(private platform: Platform,
               private statusBar: StatusBar,

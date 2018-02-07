@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/co
 import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
+import { ScriptMainService } from '@core/script.data/script.main.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage({
@@ -50,6 +51,7 @@ export class Authorization implements OnInit {
   }
 
   changeLanguage(language: string) {
+    this.registerService.hideDropdown();
     this.lang = language;
     this.translate.use(language)
   }
