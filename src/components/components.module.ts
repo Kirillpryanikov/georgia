@@ -5,7 +5,8 @@ import { SidebarComponent } from './sidebar/sidebar';
 	declarations: [HeaderComponent,
     SidebarComponent],
 	imports: [],
-	exports: [HeaderComponent,
-    SidebarComponent]
+	exports: [
+	  HeaderComponent,
+      SidebarComponent]
 })
 export class ComponentsModule {}
