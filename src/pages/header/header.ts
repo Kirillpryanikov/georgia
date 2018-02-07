@@ -9,10 +9,10 @@ import { NavController } from "ionic-angular";
  * Components.
  */
 @Component({
-  selector: 'header-component',
+  selector: 'header-page',
   templateUrl: 'header.html'
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderPage implements OnInit, OnDestroy{
 
   notification: number = 2;
   unpaid_invoice: number = 8;

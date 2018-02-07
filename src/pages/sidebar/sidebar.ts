@@ -8,10 +8,10 @@ import {ScriptMainService} from "../../@core/script.data/script.main.service";
  * Components.
  */
 @Component({
-  selector: 'sidebar-component',
+  selector: 'sidebar-page',
   templateUrl: 'sidebar.html'
 })
-export class SidebarComponent implements OnInit, OnDestroy{
+export class SidebarPage implements OnInit, OnDestroy{
 
   constructor(public mainService: ScriptMainService) {}
 
