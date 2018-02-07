@@ -4,6 +4,7 @@ import { DepositePage } from '@pages/deposite/deposite';
 import { HeaderPageModule } from "@pages/header/header.module";
 import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
 
+
 @NgModule({
   declarations: [
     DepositePage,
@@ -11,6 +12,7 @@ import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
   imports: [
     HeaderPageModule,
     SidebarPageModule,
+
     IonicPageModule.forChild(DepositePage),
   ],
   exports: [ DepositePage ]

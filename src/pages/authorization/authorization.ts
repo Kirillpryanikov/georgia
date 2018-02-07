@@ -1,7 +1,8 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage({
   name: 'authorization-page'
@@ -11,42 +12,56 @@ import { ScriptRegisterService } from '@core/script.data/script.register.service
   templateUrl: 'authorization.component.html',
   styleUrls: ['/authorization.scss']
 })
-export class Authorization implements OnInit, OnDestroy {
-  @ViewChild('jsSwitch') jsSwitch: ElementRef;
-  protected form: FormGroup;
 
+export class Authorization implements OnInit {
+  @ViewChild('jsorganization') jsOrganization: ElementRef;
+  protected form: FormGroup;
+  private lang: string;
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               private render: Renderer2,
+              private translate: TranslateService,
               private registerService: ScriptRegisterService ) {}
 
   ngOnInit() {
+    this.lang = this.translate.currentLang || 'en';
+  }
+
+  ionViewCanEnter(){
+    this.initDropdown();
     this.initForm();
     this.initCheckout();
   }
 
   initCheckout() {
-    this.render.listen(this.jsSwitch.nativeElement, 'click', (event) => {
-      this.registerService.checkbox(event);
-    })
+    this.registerService.checkbox();
+  }
+
+  initDropdown() {
+    this.registerService.dropdown();
   }
 
   initForm() {
     this.form = this.fb.group({
-      email: '',
-      password: '',
+
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      organization: new FormControl(''),
       checkbox: false
     })
   }
+  changeLanguage(language: string) {
+    this.lang = language;
+    this.translate.use(language)
+  }
 
-  submit(){
-    console.log('Submit');
+  submit() {
+    const organization = this.jsOrganization.nativeElement.querySelector('.organization_field_c');
+    this.form.get('organization').patchValue(organization ? organization.value : '');
   }
 
   goToRegisterPage() {
-    console.log('Remove Listener !!!');
+    this.registerService.offClick();
     this.navCtrl.push('register-page');
   }
-
-  ngOnDestroy() {}
 }

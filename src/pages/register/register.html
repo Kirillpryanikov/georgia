@@ -22,33 +22,32 @@
       </svg>
     </div>
 
-    <form class="sign" novalidate="novalidate" data-form-validate="true">
-
+    <form (ngSubmit)="submit()" [formGroup]="form" class="sign">
       <div class="u2g-form-group">
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>First Name</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" data-rule-required="true" name="first name">
+          <input type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="first_name" name="first name">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Last Name</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" data-rule-required="true" name="last name">
+          <input type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="last_name" name="last name">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>First Name Georgian</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
+          <input type="text" class="u2g-form-group__field" formControlName="first_name_georgian" name="first name georgian" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Last Name Georgian</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
+          <input type="text" class="u2g-form-group__field" formControlName="last_name_georgian" name="last name georgian" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group js-organization">
           <label class="u2g-form-group__label"><span>Organization</span> <sub>*</sub></label>
           <label class="u2g-switch js-switch">
-            <input type="checkbox">
+            <input type="checkbox" formControlName="checkbox1">
             <span></span>
           </label>
           <!--<input type="text" class="u2g-form-group__field" name="organization" data-rule-required="true">-->
@@ -57,7 +56,7 @@
         <div class="u2g-form-group__field-group js-non-georgian">
           <label for="non-georgian" class="u2g-form-group__label"><span>Non-Georgian Citizen</span></label>
           <label class="u2g-switch js-switch">
-            <input type="checkbox" id="non-georgian">
+            <input type="checkbox" formControlName="checkbox2" id="non-georgian">
             <span></span>
           </label>
         </div>
@@ -67,50 +66,136 @@
             <span>ID Number 11 digit</span>
             <sub>*</sub>
           </label>
-          <input type="tel" class="u2g-form-group__field" name="id-number-11" data-rule-required="true">
+          <input type="tel" class="u2g-form-group__field" name="id-number-11" data-rule-required="true" formControlName="id_number_11">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Email</span> <sub>*</sub></label>
-          <input type="email" class="u2g-form-group__field" id="email" name="email" data-rule-required="true">
+          <input type="email" class="u2g-form-group__field" id="email" formControlName="email" name="email" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Cell Phone (5XX XX XX XX)</span> <sub>*</sub></label>
-          <input type="tel" class="u2g-form-group__field" name="phone" data-rule-required="true">
+          <input type="tel" class="u2g-form-group__field" formControlName="phone" name="phone" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>City</span> <sub>*</sub></label>
-          <select class="u2g-select" name="city" data-rule-required="true">
-            <option value="TBILISI" selected>Tbilisi</option><option value="ABASA">Abasha</option><option value="ABASTUMANI">Abastumani</option><option value="ADIGENI">Adigeni</option><option value="AMBROLAURI">Ambrolauri</option><option value="ANAKLIA">Anaklia</option><option value="ASPINZA">Aspindza</option><option value="AXALGORI">Akhalgori</option><option value="AXALQALAQI">Akhalqalaki</option><option value="AXALCIXE">Akhaltsikhe</option><option value="AXMETA">Akhmeta</option><option value="BATUMI">Batumi</option><option value="BAKURIANI">Bakuriani</option><option value="BARDADI">Baghdati</option><option value="BAXMARO">Baxmaro</option><option value="BOLNISI">Bolnisi</option><option value="BORJOMI">Borjomi</option><option value="GARDABANI">Gardabani</option><option value="GONIO">Gonio</option><option value="GORI">Gori</option><option value="GRIGOLETI">Grigoleti</option><option value="GUDAURI">Gudauri</option><option value="GURJAANI">Gurjaani</option><option value="DEDOFLISCKARO">Dedophlistskaro</option><option value="DMANISI">Dmanisi</option><option value="DUSETI">Dusheti</option><option value="VANI">Vani</option><option value="ZESTAFONI">Zestaphoni</option><option value="ZUGDIDI">Zugdidi</option><option value="TETRIWYARO">Tetritskaro</option><option value="TELAVI">Telavi</option><option value="TERJOLA">Terjola</option><option value="TIANETI">Tianeti</option><option value="TSEROVANI">Tserovani</option><option value="KASPI">Kaspi</option><option value="KAJRETI">Kajreti</option><option value="KIKETI">Kiketi</option><option value="KOJORI">Kojori</option><option value="KVARIATI">Kvariati</option><option value="LAGODEXI">Lagodekhi</option><option value="LANCXUTI">Lanchkhuti</option><option value="LENTEXI">Lentekhi</option><option value="MARNEULI">Marneuli</option><option value="MARTVILI">Martvili</option><option value="MESTIA">Mestia</option><option value="MCXETA">Mtskheta</option><option value="MCVANEKONCXI">Mtsvane Koncxi</option><option value="NINOWMINDA">Ninotsminda</option><option value="OZURGETI">Ozurgeti</option><option value="ONI">Oni</option><option value="RUSTAVI">Rustavi</option><option value="SAGAREJO">Sagarejo</option><option value="SAMTREDIA">Samtredia</option><option value="SARFI">sarpi</option><option value="SACXERE">Sachkhere</option><option value="SENAKI">Senaki</option><option value="SIRNARI">Sighnaghi</option><option value="STEFANWMIN">Stephantsminda</option><option value="SURAMI">Surami</option><option value="TABAXMELA">Tabakhmela</option><option value="TYIBULI">Tkibuli</option><option value="UREKI">Ureki</option><option value="FOTI">Poti</option><option value="QARELI">Kareli</option><option value="QEDA">Qeda</option><option value="QOBULETI">Kobuleti</option><option value="QUTAISI">Kutaisi</option><option value="YVARELI">Kvareli</option><option value="SAGURAMO">Saguramo</option><option value="SAIRME">Sairme</option><option value="SUAXEVI">Shuakhevi</option><option value="CHAQVI">Chaqvi</option><option value="COXATAURI">Chokhatauri</option><option value="CAGERI">Tsageri</option><option value="CXOROWYU">Chkhorotsku</option><option value="WALENJIXA">Tsalenjikha</option><option value="WALKA">Tsalka</option><option value="WAVKISI">Tsavkisi</option><option value="WNORI">Tsnori</option><option value="WYALTUBO">Tskaltubo</option><option value="WYNETI">Tskneti</option><option value="WIATURA">Chiatura</option><option value="XARAGAULI">Kharagauli</option><option value="XASHURI">Khashuri</option><option value="XELVACAURI">Khelvachauri</option><option value="XOBI">Khobi</option><option value="XONI">Khoni</option><option value="XULO">Khulo</option>
+          <select class="u2g-select" formControlName="city" name="city" data-rule-required="true">
+            <option value="TBILISI" selected>Tbilisi</option>
+            <option value="ABASA">Abasha</option>
+            <option value="ABASTUMANI">Abastumani</option>
+            <option value="ADIGENI">Adigeni</option>
+            <option value="AMBROLAURI">Ambrolauri</option>
+            <option value="ANAKLIA">Anaklia</option>
+            <option value="ASPINZA">Aspindza</option>
+            <option value="AXALGORI">Akhalgori</option>
+            <option value="AXALQALAQI">Akhalqalaki</option>
+            <option value="AXALCIXE">Akhaltsikhe</option>
+            <option value="AXMETA">Akhmeta</option>
+            <option value="BATUMI">Batumi</option>
+            <option value="BAKURIANI">Bakuriani</option>
+            <option value="BARDADI">Baghdati</option>
+            <option value="BAXMARO">Baxmaro</option>
+            <option value="BOLNISI">Bolnisi</option>
+            <option value="BORJOMI">Borjomi</option>
+            <option value="GARDABANI">Gardabani</option>
+            <option value="GONIO">Gonio</option>
+            <option value="GORI">Gori</option>
+            <option value="GRIGOLETI">Grigoleti</option>
+            <option value="GUDAURI">Gudauri</option>
+            <option value="GURJAANI">Gurjaani</option>
+            <option value="DEDOFLISCKARO">Dedophlistskaro</option>
+            <option value="DMANISI">Dmanisi</option>
+            <option value="DUSETI">Dusheti</option>
+            <option value="VANI">Vani</option>
+            <option value="ZESTAFONI">Zestaphoni</option>
+            <option value="ZUGDIDI">Zugdidi</option>
+            <option value="TETRIWYARO">Tetritskaro</option>
+            <option value="TELAVI">Telavi</option>
+            <option value="TERJOLA">Terjola</option>
+            <option value="TIANETI">Tianeti</option>
+            <option value="TSEROVANI">Tserovani</option>
+            <option value="KASPI">Kaspi</option>
+            <option value="KAJRETI">Kajreti</option>
+            <option value="KIKETI">Kiketi</option>
+            <option value="KOJORI">Kojori</option>
+            <option value="KVARIATI">Kvariati</option>
+            <option value="LAGODEXI">Lagodekhi</option>
+            <option value="LANCXUTI">Lanchkhuti</option>
+            <option value="LENTEXI">Lentekhi</option>
+            <option value="MARNEULI">Marneuli</option>
+            <option value="MARTVILI">Martvili</option>
+            <option value="MESTIA">Mestia</option>
+            <option value="MCXETA">Mtskheta</option>
+            <option value="MCVANEKONCXI">Mtsvane Koncxi</option>
+            <option value="NINOWMINDA">Ninotsminda</option>
+            <option value="OZURGETI">Ozurgeti</option>
+            <option value="ONI">Oni</option>
+            <option value="RUSTAVI">Rustavi</option>
+            <option value="SAGAREJO">Sagarejo</option>
+            <option value="SAMTREDIA">Samtredia</option>
+            <option value="SARFI">sarpi</option>
+            <option value="SACXERE">Sachkhere</option>
+            <option value="SENAKI">Senaki</option>
+            <option value="SIRNARI">Sighnaghi</option>
+            <option value="STEFANWMIN">Stephantsminda</option>
+            <option value="SURAMI">Surami</option>
+            <option value="TABAXMELA">Tabakhmela</option>
+            <option value="TYIBULI">Tkibuli</option>
+            <option value="UREKI">Ureki</option>
+            <option value="FOTI">Poti</option>
+            <option value="QARELI">Kareli</option>
+            <option value="QEDA">Qeda</option>
+            <option value="QOBULETI">Kobuleti</option>
+            <option value="QUTAISI">Kutaisi</option>
+            <option value="YVARELI">Kvareli</option>
+            <option value="SAGURAMO">Saguramo</option>
+            <option value="SAIRME">Sairme</option>
+            <option value="SUAXEVI">Shuakhevi</option>
+            <option value="CHAQVI">Chaqvi</option>
+            <option value="COXATAURI">Chokhatauri</option>
+            <option value="CAGERI">Tsageri</option>
+            <option value="CXOROWYU">Chkhorotsku</option>
+            <option value="WALENJIXA">Tsalenjikha</option>
+            <option value="WALKA">Tsalka</option>
+            <option value="WAVKISI">Tsavkisi</option>
+            <option value="WNORI">Tsnori</option>
+            <option value="WYALTUBO">Tskaltubo</option>
+            <option value="WYNETI">Tskneti</option>
+            <option value="WIATURA">Chiatura</option>
+            <option value="XARAGAULI">Kharagauli</option>
+            <option value="XASHURI">Khashuri</option>
+            <option value="XELVACAURI">Khelvachauri</option>
+            <option value="XOBI">Khobi</option>
+            <option value="XONI">Khoni</option>
+            <option value="XULO">Khulo</option>
           </select>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Address 1 (Street)</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
+          <input type="text" class="u2g-form-group__field" formControlName="address_1" name="address 1" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Address 2 (Apt...)</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" data-rule-required="true" name="address 2">
+          <input type="text" class="u2g-form-group__field" formControlName="address_2" data-rule-required="true" name="address 2">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Password (min. 4 char)</span> <sub>*</sub></label>
-          <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
+          <input id="password" type="password" class="u2g-form-group__field" formControlName="password" data-rule-required="true" name="password">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Confirm password</span> <sub>*</sub></label>
-
-          <input id="confirm_password" type="password" class="u2g-form-group__field" name="confirm_password" aria-invalid="true">
+          <input id="confirm_password" type="password" class="u2g-form-group__field"  formControlName="confirm_password"  name="confirm_password" aria-invalid="true">
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>City</span> <sub>*</sub></label>
-          <select class="u2g-select" name="default-branch" data-rule-required="true">
+          <select class="u2g-select" formControlName="default_branch" name="default-branch" data-rule-required="true">
             <option value="OFFICE_3">Vaja-Pshavela Branch</option>
             <option value="OFFICE_1">Mickevichi Branch</option>
             <option value="OFFICE_2">Digomi Branch</option>

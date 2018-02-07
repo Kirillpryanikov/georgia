@@ -4,6 +4,7 @@ import { TbcPage } from '@pages/tbc/tbc';
 import {HeaderPageModule} from "@pages/header/header.module";
 import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
 
+
 @NgModule({
   declarations: [
     TbcPage,

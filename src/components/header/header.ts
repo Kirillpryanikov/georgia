@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import { NavController } from "ionic-angular";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -9,18 +8,16 @@ import { NavController } from "ionic-angular";
  * Components.
  */
 @Component({
-  selector: 'header-page',
+  selector: 'header-component',
   templateUrl: 'header.html'
 })
-export class HeaderPage implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit, OnDestroy{
 
   notification: number = 2;
   unpaid_invoice: number = 8;
   undeclared_tracking: number = 4;
-  visible: boolean = false;
 
-  constructor(public mainService: ScriptMainService,
-              public navCtrl: NavController) {}
+  constructor(public mainService: ScriptMainService) {}
 
   ngOnInit() {
     this.initdropdown();
@@ -28,17 +25,6 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   initdropdown() {
     this.mainService.dropdown();
-  }
-
-  settings(e) {
-    e.preventDefault();
-    this.navCtrl.push('settings-page');
-  }
-
-  hide(e) {
-    e.target.id === 'USA' ? this.visible = true : this.visible = false;
-    this.mainService.hideDropdown();
-    console.log(e.target.id);
   }
 
   ngOnDestroy() {
