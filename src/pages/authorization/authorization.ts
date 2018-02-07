@@ -48,10 +48,6 @@ export class Authorization implements OnInit {
       checkbox: false
     })
   }
-  changeLanguage(language: string) {
-    this.lang = language;
-    this.translate.use(language)
-  }
 
   changeLanguage(language: string) {
     this.lang = language;
