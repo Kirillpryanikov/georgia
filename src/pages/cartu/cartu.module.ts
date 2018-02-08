@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CartuPage } from '@pages/cartu/cartu';
-import {ComponentsModule} from "../../components/components.module";
+import {HeaderPageModule} from "@pages/header/header.module";
+import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
 
 @NgModule({
   declarations: [
     CartuPage,
   ],
   imports: [
-    ComponentsModule,
+    HeaderPageModule,
+    SidebarPageModule,
     IonicPageModule.forChild(CartuPage),
   ],
   exports: [ CartuPage ]

@@ -3007,6 +3007,7 @@
 /*RESET CSS*/
 html,
 body,
+ion-content,
 div,
 span,
 applet,
@@ -3161,7 +3162,7 @@ img {
   border: 0;
   padding: 0; }
 
-body, ion-content#content {
+body, ion-content, ion-content#content {
   background: #f3f5f7;
   color: #2f3d4a;
   font-family: Helvetica, Arial, sans-serif;
@@ -3170,7 +3171,7 @@ body, ion-content#content {
   line-height: 1.2;
   max-width: 100%;
   overflow-x: hidden; }
-  body.overflow {
+ion-content, body.overflow {
     overflow: hidden; }
 
 .u2g-page-wrapper {

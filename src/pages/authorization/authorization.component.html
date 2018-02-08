@@ -43,7 +43,7 @@
       </div>
 
       <div class="u2g-form-group__field-group">
-        <button class="u2g-button u2g-button--green">Sign in</button>
+        <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">Sign in</button>
         <a (click)="goToRegisterPage()" class="u2g-button">Register</a>
       </div>
 

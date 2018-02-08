@@ -1,9 +1,10 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
-import { ScriptMainService } from '@core/script.data/script.main.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthorizationService } from '@core/services';
+import { Subscription } from "rxjs/Subscription";
 
 @IonicPage({
   name: 'authorization-page'
@@ -13,15 +14,18 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'authorization.component.html',
   styleUrls: ['/authorization.scss']
 })
-export class Authorization implements OnInit {
+export class Authorization implements OnInit, OnDestroy {
   @ViewChild('jsorganization') jsOrganization: ElementRef;
-  protected form: FormGroup;
+  private form: FormGroup;
   private lang: string;
+  private authObservable: Subscription;
+
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               private render: Renderer2,
               private translate: TranslateService,
-              private registerService: ScriptRegisterService ) {}
+              private registerService: ScriptRegisterService,
+              private authService: AuthorizationService) {}
 
   ngOnInit() {
     this.lang = this.translate.currentLang || 'en';
@@ -43,7 +47,7 @@ export class Authorization implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
       organization: new FormControl(''),
       checkbox: false
@@ -59,10 +63,21 @@ export class Authorization implements OnInit {
   submit() {
     const organization = this.jsOrganization.nativeElement.querySelector('.organization_field_c');
     this.form.get('organization').patchValue(organization ? organization.value : '');
+
+    this.authObservable = this.authService.authorization(this.form.value)
+      .subscribe(() => this.navCtrl.push('page-awaiting-tracking'))
   }
 
   goToRegisterPage() {
+    /**
+     *  Remove listener on click checkbox
+     */
     this.registerService.offClick();
+
     this.navCtrl.push('register-page');
+  }
+
+  ngOnDestroy() {
+    if (this.authObservable) this.authObservable.unsubscribe();
   }
 }

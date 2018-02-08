@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DepositePage } from '@pages/deposite/deposite';
-import {ComponentsModule} from "../../components/components.module";
+import { HeaderPageModule } from "@pages/header/header.module";
+import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
+
 
 @NgModule({
   declarations: [
     DepositePage,
   ],
   imports: [
-    ComponentsModule,
+    HeaderPageModule,
+    SidebarPageModule,
+
     IonicPageModule.forChild(DepositePage),
   ],
   exports: [ DepositePage ]

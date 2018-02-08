@@ -208,7 +208,7 @@
         </div>
 
         <div class="u2g-form-group__field-group u2g-form-group__field-group--button">
-          <input type="submit" value="Sign in" class="u2g-button u2g-button--green">
+          <input type="submit" [disabled]="form.invalid" value="Sign in" class="u2g-button u2g-button--green">
         </div>
 
       </div>

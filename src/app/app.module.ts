@@ -13,8 +13,6 @@ import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { MyApp } from './app.component';
 
-import {ComponentsModule} from "../components/components.module";
-
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -49,4 +47,5 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

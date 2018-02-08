@@ -1,12 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AwaitingTrackingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @IonicPage({
   name: "page-awaiting-tracking"
@@ -15,13 +9,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-awaiting-tracking',
   templateUrl: 'awaiting-tracking.html',
 })
-export class AwaitingTrackingPage {
+export class AwaitingTrackingPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private form: FormGroup;
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private fb: FormBuilder) {}
+
+  ngOnInit() {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AwaitingTrackingPage');
   }
 
+  initForm() {
+    // this.form = this.fb.group({
+    //
+    // })
+  }
 }
