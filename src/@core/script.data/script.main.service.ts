@@ -53,4 +53,11 @@ export class ScriptMainService {
 
     $('.u2g-menu-toggle').removeClass('u2g-menu-toggle--open');
   }
+
+  tabsSetting() {
+    $('li:not(.tab-active_js)').on('click', function () {
+      $(this).addClass('u2g-settings__tab-active').siblings().removeClass('u2g-settings__tab-active')
+        .parents('.tabs-wrapper_js').find('.tab-content_js').hide().eq($(this).index()).fadeIn(0);
+    });
+  }
 }

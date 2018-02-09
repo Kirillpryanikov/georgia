@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ScriptMainService } from "@core/script.data/script.main.service";
 
 /**
  * Generated class for the SettingsPage page.
@@ -15,13 +16,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
-export class SettingsPage {
+export class SettingsPage implements OnInit, OnDestroy{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private mainService: ScriptMainService) {
+  }
+
+  ngOnInit() {
+
+  }
+
+  tabsSetting() {
+    this.mainService.tabsSetting();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    this.tabsSetting();
+  }
+
+  ngOnDestroy() {
+
   }
 
 }
