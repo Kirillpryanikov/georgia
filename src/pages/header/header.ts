@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NavController } from "ionic-angular";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
+import { HeaderService } from "@core/services";
+
+import { IName } from "@IFolder/IUser";
+import { INotification }  from "@IFolder/INotification";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -14,22 +18,53 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: 'header.html'
 })
 export class HeaderPage implements OnInit, OnDestroy{
-
-  notification: number = 2;
-  unpaid_invoice: number = 8;
-  undeclared_tracking: number = 4;
+  private user: IName = {
+    userId: '1',
+    userPhoto: '/img/Grey-Mens-Hair-WE.png',
+    userName: 'Konstantin Dugladze',
+    email: 'dugladze@gmail.com',
+    userCode: 'U00100',
+    userBalance: '-1224.05 GEL'
+  };
+  private notification: INotification = {
+    notifications: 2,
+    unpaid_invoice: 23,
+    undeclared_tracking: 104
+  };
   private lang: string;
 
   constructor(public mainService: ScriptMainService,
               public navCtrl: NavController,
-              private translate: TranslateService,) {}
+              private translate: TranslateService,
+              private headerService: HeaderService) {}
 
   ngOnInit() {
     this.initdropdown();
+    // this.getInfo();
+    // this.getNotification();
+    // Todo run this functions after create API
   }
 
   initdropdown() {
     this.mainService.dropdown();
+  }
+
+  getInfo() {
+    this.headerService.getInfo().subscribe(data => {
+      this.user = data;
+    })
+  }
+
+  getNotification() {
+    this.headerService.getNotification().subscribe(data => {
+      this.notification = data;
+    })
+  }
+
+  loadLanguagePack() {
+    this.headerService.loadLanguagePack().subscribe(data => {
+      this.lang = data
+    })
   }
 
   settings(e) {
@@ -40,7 +75,8 @@ export class HeaderPage implements OnInit, OnDestroy{
   changeLanguage(language:string) {
     this.mainService.hideDropdown();
     this.lang = language;
-    this.translate.use(language)
+    this.translate.use(language);
+    // this.loadLanguagePack();
   }
 
   ngOnDestroy() {

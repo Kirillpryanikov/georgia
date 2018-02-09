@@ -18,7 +18,8 @@
       "@shared/*": [ "@shared/*" ],
       "@pages/*": [ "pages/*" ],
       "@env/*": [ "environments/*" ],
-      "@theme/*": ["theme/*"]
+      "@theme/*": ["theme/*"],
+      "@IFolder/*": ["IFolder/*"]
     }
   },
   "include": [

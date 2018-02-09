@@ -9,7 +9,8 @@ if (env === 'prod' || env === 'dev') {
     "@shared": path.resolve('./src/@shared/'),
     "@pages": path.resolve('./src/pages/'),
     "@env": path.resolve('./src/environments/'),
-    "@theme": path.resolve('./src/theme/')
+    "@theme": path.resolve('./src/theme/'),
+    "@IFolder": path.resolve('./src/IFolder/')
   };
 } else {
   useDefaultConfig[env] = useDefaultConfig.dev;
@@ -18,7 +19,8 @@ if (env === 'prod' || env === 'dev') {
     "@shared": path.resolve('./src/@shared/'),
     "@pages": path.resolve('./src/pages/'),
     "@env": path.resolve('./src/environments/'),
-    "@theme": path.resolve('./src/theme/')
+    "@theme": path.resolve('./src/theme/'),
+    "@IFolder": path.resolve('./src/IFolder/')
   };
 }
 
