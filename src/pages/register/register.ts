@@ -60,7 +60,6 @@ export class RegisterPage implements OnDestroy {
     })
   }
 
-
   submit() {
     this.registerScriptService.offClick();
     this.navCtrl.push('authorization-page');
