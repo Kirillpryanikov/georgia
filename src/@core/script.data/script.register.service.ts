@@ -7,7 +7,6 @@ const nonGeorgian = $('.js-non-georgian');
 
 @Injectable()
 export class ScriptRegisterService {
-  constructor(){}
 
   checkbox() {
     $(document).on('click', '.js-switch', function (event) {
