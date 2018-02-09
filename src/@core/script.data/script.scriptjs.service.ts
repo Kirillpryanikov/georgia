@@ -11,6 +11,10 @@ export class ScriptService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
+  /**
+   * Location center
+   * @param {ElementRef} el
+   */
   setPositionCenter(el: ElementRef) {
     $('.u2g-overlay').css({'display' : 'block'});
     let style = {
@@ -21,59 +25,23 @@ export class ScriptService {
     this.renderer.setStyle(el.nativeElement, 'left', style.left  + 'px');
   }
 
+  /**
+   * Close Modal
+   */
   closePopup() {
-    $('.u2g-overlay').css({'display' : 'none'});
-
+    this.hidePopup();
     $('.u2g-popup-wrapper').remove(); // hide background
   }
 
-  showPopup() {
-    const that = this;
-    var popup = $('<div class="u2g-popup-wrapper"></div>');
-    $(document).on('click', '[data-popup]', function(e) {
-      if($(this).prop('tagName') == 'LABEL') {
-        if($(this).find('input[type="checkbox"]').is(':not(:checked)')) {
-          $(this).addClass('u2g-check');
-        } else {
-          $(this).find('input[type="checkbox"]').prop('checked', false)
-          return false;
-        }
-      }
-      e.preventDefault();
-      that.hideDropdown();
-      popup.appendTo('ionic-content');
-
-      $('.u2g-overlay').css({'display' : 'block'});
-      popup.load('popups.html #' + $(this).data('popup'), function() {
-        if (!!$('.u2g-select:not(.u2g-select_stylized)')) {
-          var select = $('.u2g-popup-wrapper').find('.u2g-select');
-
-          if(select.length != 0) {
-            // styleSelect('.u2g-select');
-            select.addClass('.u2g-select')
-          }
-        }
-        that.popupPosition(popup);
-      });
-    });
-
-    $(document).on('click', '.u2g-overlay', function() {
-      $('.u2g-popup-wrapper').remove();
-
-      $('.u2g-check').removeClass('u2g-check');
-    });
-
-    $(document).on('click', '.u2g-close-popup_js', function(e) {
-      that.hidePopup();
-    });
-
-    $(document).on('click', '.u2g-yes-button_js', function() {
-      $('.u2g-check').find('input[type="checkbox"]').prop('checked', true);
-
-      that.hidePopup();
-    });
+  /**
+   * Click on checkbox
+   * @param {ElementRef} el this is input[type = checkbox]
+   */
+  checkboxSelect(el: ElementRef) {
+    this.renderer.addClass(el, 'u2g-check');
+    this.renderer.addClass(el, 'u2g-select');
+    console.log('el :::: ', el)
   }
-
 
   offClick() {
     $(document).off('click', '.u2g-overlay', function() {});
@@ -92,14 +60,6 @@ export class ScriptService {
     $('.u2g-overlay').css({'display' : 'none'});
   }
 
-  private popupPosition(popup) {
-    var top = ($(window).height() - popup.outerHeight()) / 2,
-      left = ($(window).width() - popup.outerWidth()) / 2;
-    popup.css({
-      'top': top + 'px',
-      'left': left + 'px',
-    });
-  }
 
   private hideDropdown() {
     $('.u2g-show').removeClass('u2g-show');

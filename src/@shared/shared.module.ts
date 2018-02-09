@@ -1,17 +1,24 @@
 import { ModuleWithProviders, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import { RiskFreeShipping } from '@shared/popups/risk-free-shipping.component/risk-free-shipping';
+import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
+import { SharedComponentModule } from '@shared/components/shared-component.module';
 
+const MODULES = [
+  SharedComponentModule
+];
 const DECLARATIONS = [
-  RiskFreeShipping
+  WarningPopups
 ];
 
 @NgModule({
-  imports: [ CommonModule ],
+  imports: [ ...MODULES, CommonModule ],
   declarations: [ ...DECLARATIONS ],
   entryComponents: [ ...DECLARATIONS ],
-  exports: [ ...DECLARATIONS ],
+  exports: [
+    ...DECLARATIONS,
+    ...MODULES
+  ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [ NativePageTransitions ]
 })
