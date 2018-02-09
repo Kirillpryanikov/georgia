@@ -196,7 +196,7 @@
       <!--LANGUAGE SWITCH-->
       <div class="u2g-multilang">
         <span class="u2g-multilang__switcher" data-show-element="u2g-multilang__select">
-		      <svg *ngIf="visible" version="1.1"
+		      <svg *ngIf="lang === 'en' " version="1.1"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
 <g>
@@ -217,7 +217,7 @@
 	l8.288-25.509l8.288,25.509h26.822L212.039,130.317z M212.039,55.743l8.289,25.509l-21.699-15.765L176.93,81.252l8.289-25.509
 	l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822L212.039,55.743z"/>
 </svg>
-          <svg *ngIf="!visible" version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
+          <svg *ngIf="lang !== 'en' " version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
 <g>
 	<path style="fill:#D80027;" d="M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0s-22.461,0.744-33.391,2.167
@@ -236,7 +236,7 @@
 </svg>
 		    </span>
         <div class="u2g-multilang__select">
-          <div id="USA" class="u2g-multilang__select-item" (click)="hide($event)">
+          <div class="u2g-multilang__select-item" (click)="changeLanguage('en')">
             <span>English</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
@@ -260,7 +260,7 @@
 </svg>
 
           </div>
-          <div id="Georgia" class="u2g-multilang__select-item" (click)="hide($event)">
+          <div class="u2g-multilang__select-item" (click)="changeLanguage('ge')">
             <span>Georgian</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>

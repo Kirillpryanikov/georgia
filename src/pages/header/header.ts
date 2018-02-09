@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NavController } from "ionic-angular";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -17,10 +18,11 @@ export class HeaderPage implements OnInit, OnDestroy{
   notification: number = 2;
   unpaid_invoice: number = 8;
   undeclared_tracking: number = 4;
-  visible: boolean = false;
+  private lang: string;
 
   constructor(public mainService: ScriptMainService,
-              public navCtrl: NavController) {}
+              public navCtrl: NavController,
+              private translate: TranslateService,) {}
 
   ngOnInit() {
     this.initdropdown();
@@ -35,10 +37,10 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.navCtrl.push('settings-page');
   }
 
-  hide(e) {
-    e.target.id === 'USA' ? this.visible = true : this.visible = false;
+  changeLanguage(language:string) {
     this.mainService.hideDropdown();
-    console.log(e.target.id);
+    this.lang = language;
+    this.translate.use(language)
   }
 
   ngOnDestroy() {
