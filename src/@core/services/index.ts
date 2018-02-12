@@ -6,3 +6,4 @@ export * from '@core/services/usa-warehouse';
 export * from '@core/services/received';
 export * from '@core/services/pending';
 export * from '@core/services/arrived';
+export * from '@core/services/popup';

@@ -26,6 +26,8 @@ export class SidebarPage implements OnInit, OnDestroy{
     received: 9
   };
 
+  sessionId: string;
+
   constructor(public mainService: ScriptMainService,
               private awaitingTrackingService: AwaitingTrackingService,
               private usaWarehouseService: UsaWarehouseService,
@@ -48,7 +50,7 @@ export class SidebarPage implements OnInit, OnDestroy{
   }
 
   getAwaiting() {
-    this.awaitingTrackingService.getAwaiting().subscribe(data => {
+    this.awaitingTrackingService.getAwaiting(this.sessionId).subscribe(data => {
       this.notifications.awaitingPackages = data.length();
     })
   }

@@ -1,20 +1,21 @@
-import { Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { Platform, ViewController } from 'ionic-angular';
+import { Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
+import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 
 @Component({
-  selector: 'risk-free-popup',
-  templateUrl: './risk-free-shipping.html',
-  styleUrls: ['/risk-free-shipping.scss'],
+  selector: 'warning-popup',
+  templateUrl: './warning-popups.html',
+  styleUrls: ['/warning-popups.scss'],
 })
-export class RiskFreeShipping implements OnDestroy, AfterViewInit {
+export class WarningPopups implements OnDestroy, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
+              private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions) {}
 
   ionViewWillLeave() {

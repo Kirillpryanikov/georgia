@@ -8,8 +8,15 @@ import 'rxjs/add/operator/catch';
 export class AwaitingTrackingService {
   constructor(private http: HttpClient){}
 
-  getAwaiting(): Observable<any> {
-    return this.http.get(environment.CONST.URL + '/getAwaiting')
+  getAwaiting($sessionId: string): Observable<any> {
+    return this.http.get(environment.CONST.URL + '/getAwaiting?session='+ $sessionId)
+      .catch((err) => {
+        return err;
+      })
+  }
+
+  removeTracking($sessionId: string, $packageId: number): Observable<any> {
+    return  this.http.delete(environment.CONST.URL + '/removeTracking')
       .catch((err) => {
         return err;
       })
