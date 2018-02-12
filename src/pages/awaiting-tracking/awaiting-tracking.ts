@@ -73,17 +73,17 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
     // this.seqAwaitingTracking = this.awaitingService.getAwaiting('session')
   }
 
-  ionViewDidLoad() {
-    this.arrRiskFree = this.u2ginfo.nativeElement.querySelectorAll('.risk-free-shipping_js input');
-    this.arrDownPackage = this.u2ginfo.nativeElement.querySelectorAll('.cut-down-package_js');
-  }
+  // ionViewDidLoad() {
+  //   this.arrRiskFree = this.u2ginfo.nativeElement.querySelectorAll('.risk-free-shipping_js input');
+  //   this.arrDownPackage = this.u2ginfo.nativeElement.querySelectorAll('.cut-down-package_js');
+  // }
 
   showWarningPopup(index, checkbox) {
     if(this.listAwaitingTracking[index][checkbox] === 1) {
       this.listAwaitingTracking[index][checkbox] = 0;
       return false;
     }
-    this.scriptService.checkboxSelect(this.arrRiskFree[index]);
+    // this.scriptService.checkboxSelect(this.arrRiskFree[index]);
     const modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
