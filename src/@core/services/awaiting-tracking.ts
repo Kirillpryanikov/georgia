@@ -14,4 +14,11 @@ export class AwaitingTrackingService {
         return err;
       })
   }
+
+  removeTracking($sessionId: string, $packageId: number): Observable<any> {
+    return  this.http.delete(environment.CONST.URL + '/removeTracking')
+      .catch((err) => {
+        return err;
+      })
+  }
 }

@@ -15,7 +15,10 @@ const notice = {
   insurance: 'Please confirm you\'d like to enable Risk Free shipping service for your packages.',
   cut_down: 'Please note, that by unchecking Cut Down service, you may get a huge box that stores usually send ' +
             'to us in USA, which will result into dramatical increase of shipping price to Tbilisi. See Cut Down servic' +
-            ' terms under Agreement, Paragraph 3.'
+            ' terms under Agreement, Paragraph 3.',
+  put_into_bag: 'Please note, there is a risk of product damage and USA2GEORGIA takes no responsibility ' +
+            'in case you choose shoes to be repacked in plastic bag. Please Confirm or Cancel the request!',
+  remove_tracking: 'Do you really want to remove tracking from awaiting list?'
 };
 
 @IonicPage({
@@ -39,8 +42,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
       "client_comment":"",
       insurance: 0,
       "global_repacking":"1",
-      cut_down: false,
-      "put_into_bag":"1",
+      cut_down: 0,
+      put_into_bag: 1,
       "declared":1
     },
     {
@@ -49,8 +52,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
       "client_comment":"My wife's shoes",
       insurance: 1,
       "global_repacking":"1",
-      cut_down: false,
-      "put_into_bag":"1",
+      cut_down: 0,
+      put_into_bag: 1,
       "declared":1
     }
   ];
@@ -75,23 +78,13 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
     this.arrDownPackage = this.u2ginfo.nativeElement.querySelectorAll('.cut-down-package_js');
   }
 
-  showPopup(index, checkbox) {
+  showWarningPopup(index, checkbox) {
     if(this.listAwaitingTracking[index][checkbox] === 1) {
       this.listAwaitingTracking[index][checkbox] = 0;
       return false;
     }
-
-    let modal;
-    switch (checkbox) {
-      case 'insurance':
-        this.scriptService.checkboxSelect(this.arrRiskFree[index]);
-        modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
-        break;
-      case 'cut_down':
-        modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
-        break;
-      default: return;
-    }
+    this.scriptService.checkboxSelect(this.arrRiskFree[index]);
+    const modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
         this.listAwaitingTracking[index][checkbox] = 1;
@@ -102,6 +95,20 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
        * request. Change package
        */
       this.changePackageSetting(this.listAwaitingTracking[index].package_id, checkbox, this.listAwaitingTracking[index][checkbox]);
+    });
+    modal.present();
+  }
+
+  showRemoveTrackingPopup(index) {
+    const modal = this.modalController.create(WarningPopups, {notice: notice.remove_tracking});
+    modal.onDidDismiss(data => {
+      if(!data) {
+        return false;
+      }
+      /**
+       * Нужно раскоментировать когда будет апи
+       */
+      // this.awaitingService.removeTracking( $sessionId, this.listAwaitingTracking[index].package_id);
     });
     modal.present();
   }
