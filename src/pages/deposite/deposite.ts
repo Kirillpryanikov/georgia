@@ -41,10 +41,6 @@ export class DepositePage implements OnInit, OnDestroy{
     this.navCtrl.push('cartu-page');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DepositePage');
-  }
-
   ngOnDestroy(){
 
   }

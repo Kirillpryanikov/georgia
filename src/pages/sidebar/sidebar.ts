@@ -36,17 +36,12 @@ export class SidebarPage implements OnInit, OnDestroy{
               private pendingSevice: PendingService) {}
 
   ngOnInit() {
-    this.initdropdown();
     // this.getAwaiting();
     // this.getReceived();
     // this.getUsaWarehouse();
     // this.getArrived();
     // this.getPending();
     // Todo run this functions after create API
-  }
-
-  initdropdown() {
-    this.mainService.dropdown();
   }
 
   getAwaiting() {

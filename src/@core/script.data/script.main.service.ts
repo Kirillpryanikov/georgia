@@ -8,6 +8,7 @@ export class ScriptMainService {
   dropdown() {
     const that = this;
     $(document).on('click', '[data-show-element]', function () {
+      console.log('init');
       $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
       $(this).addClass('u2g-showed');

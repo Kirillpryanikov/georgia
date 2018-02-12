@@ -80,18 +80,18 @@
             <!--         PROFILE-->
 
             <div class=  "u2g-settings__tab-content tab-content_js u2g-settings__tab-content--visible">
-              <form class="u2g-settings-form" data-form-validate="true" novalidate="novalidate">
+              <form [formGroup]="form" (submit)="submit()" class="u2g-settings-form" data-form-validate="true" novalidate="novalidate">
                 <div class="u2g-settings-form__photo">
                   <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">Profile Photo</span>
                   <div class="u2g-settings-form__image">
-                    <img src="img/settings-profile-photo.png" alt="Profile photo">
+                    <img src="{{photo}}" alt="Profile photo">
                   </div>
                   <div class="u2g-settings-form__button-wrapper">
                     <label class="u2g-button u2g-button--green">
                       <svg width="14" height="14" viewBox="0 0 14 14">
                         <image id="if--arrow--up--upload--391748" width="14" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYOHyPE7dUjAAAAmUlEQVQY032OsQ3CMBBFnyOnZQm6LJAmEm0kCrZgBjIBnoEp3CDRItGwAB1LuEj7U8RKDoP4Lvz93935nDAKwMm8tZ4gSQpr8olGjRZbFBQVszOwz0FUzIUH29mLBaK9nBA+73WzS3Odr4o/8gzA+QcZwNOa4Gl8y/LnrGJCRaKh/hpa05CcOu68eRWwYcvOCTqObAqYuPCYAH79a3BtEp49AAAAAElFTkSuQmCC"/>
                       </svg>
-                      <input style="display: none;" type="file">Upload image</label>
+                      <input style="display: none;" type="file" (change)="upload($event)">Upload image</label>
                     <button class="u2g-button u2g-button--remove-image"><svg width="13" height="16" viewBox="0 0 13 16">
                       <image id="if--10--294964" width="13" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAQAAABnqj2yAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYPDxOpNJ3pAAAAy0lEQVQY063MrUoEARSG4WfGQURwXVyTybDBS9igYJIBy9qMZjF4B1azfbMXIIJgEZkgGCwGBcN0WZhdEVZYPQZHxb/m+4UD7znnE+r0oowyyui9m0zbugS5BZDbRThO4sqSJ9+ZdCuq2P4o/cxWVBmmLf74mieJyqzfGCSx7MS+4ovO7chThbFrI01nVl1oGrkxVqT1XUcXe6Z0dd5U6k/+fZXV88g5Njw6MLACSdB371Lf0ItUQ0vHnFYSrNnU1jBjwrMHQ3cOnb4CgfNMECUoUQsAAAAASUVORK5CYII="/>
                     </svg>
@@ -101,56 +101,56 @@
                 <div class="u2g-form-group">
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>First Name</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" data-rule-required="true" name="first name">
+                    <input formControlName="firstName" type="text" class="u2g-form-group__field" data-rule-required="true" name="first name">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Last Name</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" data-rule-required="true" name="last name">
+                    <input formControlName="lastName" type="text" class="u2g-form-group__field" data-rule-required="true" name="last name">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>First Name Georgian</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
+                    <input formControlName="firstNameGeorgian" type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Last Name Georgian</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
+                    <input formControlName="lastNameGeorgian" type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Cell Phone</span> <sub>*</sub></label>
-                    <input type="tel" class="u2g-form-group__field" name="phone" data-rule-required="true">
+                    <input formControlName="cellPhone" type="tel" class="u2g-form-group__field" name="phone" data-rule-required="true">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Email</span> <sub>*</sub></label>
-                    <input type="email" class="u2g-form-group__field" id="email" name="email" data-rule-required="true">
+                    <input formControlName="email" type="email" class="u2g-form-group__field" id="email" name="email" data-rule-required="true">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Country</span> <sub>*</sub></label>
-                    <select class="u2g-select" name="country">
+                    <select formControlName="country" class="u2g-select" name="country">
                       <option value="Georgia" selected>Georgia</option>
                     </select>
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>City</span> <sub>*</sub></label>
-                    <select class="u2g-select" name="city" data-rule-required="true">
+                    <select formControlName="city" class="u2g-select" name="city" data-rule-required="true">
                       <option value="TBILISI" selected>Tbilisi</option><option value="ABASA">Abasha</option><option value="ABASTUMANI">Abastumani</option><option value="ADIGENI">Adigeni</option><option value="AMBROLAURI">Ambrolauri</option><option value="ANAKLIA">Anaklia</option><option value="ASPINZA">Aspindza</option><option value="AXALGORI">Akhalgori</option><option value="AXALQALAQI">Akhalqalaki</option><option value="AXALCIXE">Akhaltsikhe</option><option value="AXMETA">Akhmeta</option><option value="BATUMI">Batumi</option><option value="BAKURIANI">Bakuriani</option><option value="BARDADI">Baghdati</option><option value="BAXMARO">Baxmaro</option><option value="BOLNISI">Bolnisi</option><option value="BORJOMI">Borjomi</option><option value="GARDABANI">Gardabani</option><option value="GONIO">Gonio</option><option value="GORI">Gori</option><option value="GRIGOLETI">Grigoleti</option><option value="GUDAURI">Gudauri</option><option value="GURJAANI">Gurjaani</option><option value="DEDOFLISCKARO">Dedophlistskaro</option><option value="DMANISI">Dmanisi</option><option value="DUSETI">Dusheti</option><option value="VANI">Vani</option><option value="ZESTAFONI">Zestaphoni</option><option value="ZUGDIDI">Zugdidi</option><option value="TETRIWYARO">Tetritskaro</option><option value="TELAVI">Telavi</option><option value="TERJOLA">Terjola</option><option value="TIANETI">Tianeti</option><option value="TSEROVANI">Tserovani</option><option value="KASPI">Kaspi</option><option value="KAJRETI">Kajreti</option><option value="KIKETI">Kiketi</option><option value="KOJORI">Kojori</option><option value="KVARIATI">Kvariati</option><option value="LAGODEXI">Lagodekhi</option><option value="LANCXUTI">Lanchkhuti</option><option value="LENTEXI">Lentekhi</option><option value="MARNEULI">Marneuli</option><option value="MARTVILI">Martvili</option><option value="MESTIA">Mestia</option><option value="MCXETA">Mtskheta</option><option value="MCVANEKONCXI">Mtsvane Koncxi</option><option value="NINOWMINDA">Ninotsminda</option><option value="OZURGETI">Ozurgeti</option><option value="ONI">Oni</option><option value="RUSTAVI">Rustavi</option><option value="SAGAREJO">Sagarejo</option><option value="SAMTREDIA">Samtredia</option><option value="SARFI">sarpi</option><option value="SACXERE">Sachkhere</option><option value="SENAKI">Senaki</option><option value="SIRNARI">Sighnaghi</option><option value="STEFANWMIN">Stephantsminda</option><option value="SURAMI">Surami</option><option value="TABAXMELA">Tabakhmela</option><option value="TYIBULI">Tkibuli</option><option value="UREKI">Ureki</option><option value="FOTI">Poti</option><option value="QARELI">Kareli</option><option value="QEDA">Qeda</option><option value="QOBULETI">Kobuleti</option><option value="QUTAISI">Kutaisi</option><option value="YVARELI">Kvareli</option><option value="SAGURAMO">Saguramo</option><option value="SAIRME">Sairme</option><option value="SUAXEVI">Shuakhevi</option><option value="CHAQVI">Chaqvi</option><option value="COXATAURI">Chokhatauri</option><option value="CAGERI">Tsageri</option><option value="CXOROWYU">Chkhorotsku</option><option value="WALENJIXA">Tsalenjikha</option><option value="WALKA">Tsalka</option><option value="WAVKISI">Tsavkisi</option><option value="WNORI">Tsnori</option><option value="WYALTUBO">Tskaltubo</option><option value="WYNETI">Tskneti</option><option value="WIATURA">Chiatura</option><option value="XARAGAULI">Kharagauli</option><option value="XASHURI">Khashuri</option><option value="XELVACAURI">Khelvachauri</option><option value="XOBI">Khobi</option><option value="XONI">Khoni</option><option value="XULO">Khulo</option>
                     </select>
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Address 1 (Street)</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
+                    <input formControlName="address_1" type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
                   </div>
 
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Address 2 (Apt...)</span> <sub>*</sub></label>
-                    <input type="text" class="u2g-form-group__field" data-rule-required="true" name="address 2">
+                    <input formControlName="address_2" type="text" class="u2g-form-group__field" data-rule-required="true" name="address 2">
                   </div>
 
                   <div class="u2g-form-group__field-group">
@@ -158,7 +158,7 @@
 Post Office</span></label>
                     <div class="u2g-form-group__field u2g-form-group__field--no-border">
                       <label class="u2g-form-group__checkbox">
-                        <input type="checkbox" checked>
+                        <input formControlName="checkbox1" type="checkbox" checked>
                         <span><i class="ion-checkmark-round"></i></span>
                       </label>
                       <div class="u2g-form-group__notes">
@@ -173,13 +173,12 @@ Post Office</span></label>
 Citizen</span></label>
                     <div class="u2g-form-group__field u2g-form-group__field--space-between u2g-form-group__field--no-border">
                       <label class="u2g-form-group__checkbox">
-                        <input type="checkbox">
+                        <input formControlName="checkbox2" type="checkbox">
                         <span><i class="ion-checkmark-round"></i></span>
                       </label>
-                      <input type="submit" value="Save Changes" class="u2g-button">
+                      <input [disabled]="form.invalid" type="submit" value="Save Changes" class="u2g-button">
                     </div>
                   </div>
-
                 </div>
               </form>
             </div>
@@ -203,8 +202,9 @@ Citizen</span></label>
                     <input type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
                   </div>
                   <div class="u2g-form-group__field-group">
-                    <input type="submit" value="Save Changes" class="u2g-button">
+                    <input [disabled]="!form.invalid" type="submit" value="Save Changes" class="u2g-button">
                   </div>
+                  <!--<h1>AAAAAAAAAAAAAAAAAAAa{{form.invalid}}</h1>-->
                 </div>
               </form>
             </div>

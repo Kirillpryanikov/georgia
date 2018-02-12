@@ -24,15 +24,7 @@ export class TbcPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.initdropdown();
-  }
 
-  initdropdown() {
-    this.mainService.dropdown();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TbcPage');
   }
 
   ngOnDestroy() {

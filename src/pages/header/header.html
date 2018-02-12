@@ -28,7 +28,7 @@
                 </g>
                </g>
               </svg>
-        <div class="u2g-header-profile__notifications-amount">{{notification.notifications}}</div>
+        <div *ngIf="notification.notifications" class="u2g-header-profile__notifications-amount">{{notification.notifications}}</div>
 
         <div class="u2g-notifications">
           <div class="u2g-notifications__title">

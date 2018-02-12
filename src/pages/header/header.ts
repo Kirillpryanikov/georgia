@@ -27,7 +27,7 @@ export class HeaderPage implements OnInit, OnDestroy{
     userBalance: '-1224.05 GEL'
   };
   private notification: INotification = {
-    notifications: 2,
+    notifications: 18,
     unpaid_invoice: 23,
     undeclared_tracking: 104
   };
@@ -39,14 +39,9 @@ export class HeaderPage implements OnInit, OnDestroy{
               private headerService: HeaderService) {}
 
   ngOnInit() {
-    this.initdropdown();
     // this.getInfo();
     // this.getNotification();
     // Todo run this functions after create API
-  }
-
-  initdropdown() {
-    this.mainService.dropdown();
   }
 
   getInfo() {
@@ -69,7 +64,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   settings(e) {
     e.preventDefault();
-    this.navCtrl.push('settings-page');
+    this.navCtrl.setRoot('settings-page');
   }
 
   changeLanguage(language:string) {
