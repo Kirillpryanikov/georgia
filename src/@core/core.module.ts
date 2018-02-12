@@ -3,14 +3,19 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ScriptDataModule } from '@core/script.data/script.data.module';
 import {
-  AuthorizationService,
-  RegistrationService,
-  AwaitingTrackingService,
-  PopupService } from '@core/services';
+  AuthorizationService, RegistrationService, AwaitingTrackingService, HeaderService, UsaWarehouseService,
+  PendingService, ArrivedService, ReceivedService, PopupService
+} from '@core/services';
 
 const CORE_PROVIDERS = [
   AuthorizationService,
   RegistrationService,
+  AwaitingTrackingService,
+  HeaderService,
+  UsaWarehouseService,
+  PendingService,
+  ArrivedService,
+  ReceivedService,
   AwaitingTrackingService,
   PopupService
 ];

@@ -57,7 +57,7 @@ export class Authorization implements OnInit, OnDestroy {
   changeLanguage(language: string) {
     this.registerService.hideDropdown();
     this.lang = language;
-    this.translate.use(language)
+    this.translate.use(language);
   }
 
   submit() {
