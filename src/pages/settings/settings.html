@@ -80,19 +80,19 @@
             <!--         PROFILE-->
 
             <div class=  "u2g-settings__tab-content tab-content_js u2g-settings__tab-content--visible">
-              <form [formGroup]="form" (submit)="submit()" class="u2g-settings-form" data-form-validate="true" novalidate="novalidate">
+              <form [formGroup]="userForm" (submit)="submit('user')" class="u2g-settings-form" data-form-validate="true" novalidate="novalidate">
                 <div class="u2g-settings-form__photo">
                   <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">Profile Photo</span>
                   <div class="u2g-settings-form__image">
-                    <img src="{{photo}}" alt="Profile photo">
+                    <img src="{{userPhoto}}" alt="Profile photo">
                   </div>
                   <div class="u2g-settings-form__button-wrapper">
                     <label class="u2g-button u2g-button--green">
                       <svg width="14" height="14" viewBox="0 0 14 14">
                         <image id="if--arrow--up--upload--391748" width="14" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYOHyPE7dUjAAAAmUlEQVQY032OsQ3CMBBFnyOnZQm6LJAmEm0kCrZgBjIBnoEp3CDRItGwAB1LuEj7U8RKDoP4Lvz93935nDAKwMm8tZ4gSQpr8olGjRZbFBQVszOwz0FUzIUH29mLBaK9nBA+73WzS3Odr4o/8gzA+QcZwNOa4Gl8y/LnrGJCRaKh/hpa05CcOu68eRWwYcvOCTqObAqYuPCYAH79a3BtEp49AAAAAElFTkSuQmCC"/>
                       </svg>
-                      <input style="display: none;" type="file" (change)="upload($event)">Upload image</label>
-                    <button class="u2g-button u2g-button--remove-image"><svg width="13" height="16" viewBox="0 0 13 16">
+                      <input style="display: none;" type="file" (change)="uploadPhoto($event)">Upload image</label>
+                    <button type="button" class="u2g-button u2g-button--remove-image" (click)="removePhoto()"><svg width="13" height="16" viewBox="0 0 13 16">
                       <image id="if--10--294964" width="13" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAQAAABnqj2yAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYPDxOpNJ3pAAAAy0lEQVQY063MrUoEARSG4WfGQURwXVyTybDBS9igYJIBy9qMZjF4B1azfbMXIIJgEZkgGCwGBcN0WZhdEVZYPQZHxb/m+4UD7znnE+r0oowyyui9m0zbugS5BZDbRThO4sqSJ9+ZdCuq2P4o/cxWVBmmLf74mieJyqzfGCSx7MS+4ovO7chThbFrI01nVl1oGrkxVqT1XUcXe6Z0dd5U6k/+fZXV88g5Njw6MLACSdB371Lf0ItUQ0vHnFYSrNnU1jBjwrMHQ3cOnb4CgfNMECUoUQsAAAAASUVORK5CYII="/>
                     </svg>
                       Remove image</button>
@@ -176,7 +176,7 @@ Citizen</span></label>
                         <input formControlName="checkbox2" type="checkbox">
                         <span><i class="ion-checkmark-round"></i></span>
                       </label>
-                      <input [disabled]="form.invalid" type="submit" value="Save Changes" class="u2g-button">
+                      <input [disabled]="userForm.invalid" type="submit" value="Save Changes" class="u2g-button">
                     </div>
                   </div>
                 </div>
@@ -186,25 +186,24 @@ Citizen</span></label>
             <!--          CHANGE PASSWORD-->
 
             <div class="u2g-settings__tab-content tab-content_js">
-              <form class="u2g-settings-form u2g-settings-form--password" data-form-validate="true">
+              <form [formGroup]="passwordForm" (submit)="submit('psw')" class="u2g-settings-form u2g-settings-form--password" data-form-validate="true">
                 <h3 class="u2g-settings-form__note">Please use latin symbols only!</h3>
                 <div class="u2g-form-group">
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Current Password</span> <sub>*</sub></label>
-                    <input type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
+                    <input formControlName="currentPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
                   </div>
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>New Password</span> <sub>*</sub></label>
-                    <input type="password" class="u2g-form-group__field" data-rule-required="true" name="new password">
+                    <input formControlName="newPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="new password">
                   </div>
                   <div class="u2g-form-group__field-group">
                     <label class="u2g-form-group__label"><span>Confirm New Password</span> <sub>*</sub></label>
-                    <input type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
+                    <input formControlName="confirmPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
                   </div>
                   <div class="u2g-form-group__field-group">
-                    <input [disabled]="!form.invalid" type="submit" value="Save Changes" class="u2g-button">
+                    <input [disabled]="passwordForm.invalid" type="submit" value="Save Changes" class="u2g-button">
                   </div>
-                  <!--<h1>AAAAAAAAAAAAAAAAAAAa{{form.invalid}}</h1>-->
                 </div>
               </form>
             </div>
@@ -212,42 +211,42 @@ Citizen</span></label>
             <!--          NOTIFICATION MANAGEMENT-->
 
             <div class="u2g-settings__tab-content tab-content_js">
-              <form class="u2g-settings-form">
+              <form [formGroup]="notificationForm" (submit)="submit('ntf')" class="u2g-settings-form">
                 <h3 class="u2g-settings-form__note">Enable to Disable a Notification!</h3>
                 <div class="u2g-form-group u2g-form-group--notifications">
                   <h4 class="u2g-form-group__notifications-title">E-mail Notifications</h4>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="receivingOfPackageInUsa" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Receiving of package in USA
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="invoicePayments" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Invoice Payments
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="packageSent" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Package Sent
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="insufficientFunds" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Insufficient Funds
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="packageDelivered" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Package Delivered
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="companyNewsAndPromotions" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Company news and promotions
                   </label>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="addFunds" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Add Funds
                   </label>
@@ -255,7 +254,7 @@ Citizen</span></label>
                 <div class="u2g-form-group u2g-form-group--notifications">
                   <h4 class="u2g-form-group__notifications-title">SMS Notifications</h4>
                   <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                    <input type="checkbox" checked>
+                    <input formControlName="receivingOfPackageInUsaSms" type="checkbox" checked>
                     <span><i class="ion-checkmark-round"></i></span>
                     Receiving of package in USA
                   </label>

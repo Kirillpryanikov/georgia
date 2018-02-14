@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScriptDataModule } from '@core/script.data/script.data.module';
 import {
   AuthorizationService, RegistrationService, AwaitingTrackingService, HeaderService, UsaWarehouseService,
-  PendingService, ArrivedService, ReceivedService, PopupService
+  PendingService, ArrivedService, ReceivedService, PopupService, SettingService
 } from '@core/services';
 
 const CORE_PROVIDERS = [
@@ -17,7 +17,9 @@ const CORE_PROVIDERS = [
   ArrivedService,
   ReceivedService,
   AwaitingTrackingService,
-  PopupService
+  PopupService,
+  FileReader,
+  SettingService
 ];
 const MODULES = [ ScriptDataModule ];
 

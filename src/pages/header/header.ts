@@ -4,7 +4,7 @@ import { NavController } from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
 import { HeaderService } from "@core/services";
 
-import { IName } from "@IFolder/IUser";
+import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
 
 /**
@@ -18,7 +18,7 @@ import { INotification }  from "@IFolder/INotification";
   templateUrl: 'header.html'
 })
 export class HeaderPage implements OnInit, OnDestroy{
-  private user: IName = {
+  private user: IUserHeader = {
     userId: '1',
     userPhoto: '/img/Grey-Mens-Hair-WE.png',
     userName: 'Konstantin Dugladze',

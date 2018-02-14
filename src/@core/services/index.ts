@@ -7,3 +7,4 @@ export * from '@core/services/received';
 export * from '@core/services/pending';
 export * from '@core/services/arrived';
 export * from '@core/services/popup';
+export * from '@core/services/setting';
