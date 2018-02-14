@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { AwaitingTrackingPage } from './awaiting-tracking';
 import { HeaderPageModule } from '@pages/header/header.module';
 import { SharedModule } from '@shared/shared.module';
+import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     IonicPageModule.forChild(AwaitingTrackingPage),
     HeaderPageModule,
+    SidebarPageModule,
     SharedModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
