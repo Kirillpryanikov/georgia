@@ -56,6 +56,11 @@ export class SidebarPage implements OnInit, OnDestroy{
     this.navCtrl.setRoot('usa-warehouse-page');
   }
 
+  pending(e) {
+    e.preventDefault();
+    this.navCtrl.setRoot('pending-page');
+  }
+
   getAwaiting() {
     this.awaitingTrackingService.getAwaiting(this.sessionId).subscribe(data => {
       this.notifications.awaitingPackages = data.length();
