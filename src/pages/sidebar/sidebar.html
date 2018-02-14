@@ -21,7 +21,7 @@
   </a>
   <div class="u2g-nav">
     <a (click)="awaitingPackages($event)" class="u2g-nav__item u2g-nav__item--awaiting-packages">Awaiting Packages<span class="u2g-nav__item-amount">{{notifications.awaitingPackages}}</span></a>
-    <a href="usa-warehouse.html" class="u2g-nav__item u2g-nav__item--warehouse">USA Warehouse<span class="u2g-nav__item-amount">{{notifications.usaWarehouse}}</span></a>
+    <a (click)="usaWarehouse($event)" class="u2g-nav__item u2g-nav__item--warehouse">USA Warehouse<span class="u2g-nav__item-amount">{{notifications.usaWarehouse}}</span></a>
     <a href="pending.html" class="u2g-nav__item u2g-nav__item--pending">Pending<span class="u2g-nav__item-amount">{{notifications.pending}}</span></a>
     <a href="arrived.html" class="u2g-nav__item u2g-nav__item--arrived">Arrived<span class="u2g-nav__item-amount">{{notifications.arrived}}</span></a>
     <a href="received.html" class="u2g-nav__item u2g-nav__item--received">Received<span class="u2g-nav__item-amount">{{notifications.received}}</span></a>
