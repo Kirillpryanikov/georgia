@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as $ from 'jquery'
+import * as $ from 'jquery';
+import * as Masonry from 'masonry-layout';
+import * as jQueryBridget from 'jquery-bridget'
 
 @Injectable()
 export class ScriptMainService {
@@ -59,6 +61,17 @@ export class ScriptMainService {
     $('li:not(.tab-active_js)').on('click', function () {
       $(this).addClass('u2g-settings__tab-active').siblings().removeClass('u2g-settings__tab-active')
         .parents('.tabs-wrapper_js').find('.tab-content_js').hide().eq($(this).index()).fadeIn(0);
+    });
+  }
+
+  initMasonry() {
+    console.log('masonry');
+    jQueryBridget( 'masonry', Masonry, $ );
+    $('.u2g-content--masonry').masonry({
+      itemSelector: '.u2g-info-block',
+      columnWidth: '.u2g-info-block',
+      gutter: 24,
+      percentPosition: true
     });
   }
 }

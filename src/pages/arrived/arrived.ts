@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -17,11 +18,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ArrivedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private mainService: ScriptMainService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ArrivedPage');
+    this.initMasonry();
+  }
+
+  initMasonry() {
+    this.mainService.initMasonry();
   }
 
 }
