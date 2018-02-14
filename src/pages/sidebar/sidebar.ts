@@ -6,6 +6,7 @@ import {
 } from "@core/services";
 
 import { ISidebarNotification }  from "@IFolder/ISidebarNotification";
+import {NavController} from "ionic-angular";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -29,6 +30,7 @@ export class SidebarPage implements OnInit, OnDestroy{
   sessionId: string;
 
   constructor(public mainService: ScriptMainService,
+              private navCtrl: NavController,
               private awaitingTrackingService: AwaitingTrackingService,
               private usaWarehouseService: UsaWarehouseService,
               private receivedService: ReceivedService,
@@ -42,6 +44,11 @@ export class SidebarPage implements OnInit, OnDestroy{
     // this.getArrived();
     // this.getPending();
     // Todo run this functions after create API
+  }
+
+  awaitingPackages(e) {
+    e.preventDefault();
+    this.navCtrl.setRoot('page-awaiting-tracking');
   }
 
   getAwaiting() {
