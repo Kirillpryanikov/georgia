@@ -31,4 +31,9 @@ export class ReceivedPage {
     this.mainService.initMasonry();
   }
 
+  invoice(e) {
+    e.preventDefault();
+    this.navCtrl.push('invoice-page');
+  }
+
 }
