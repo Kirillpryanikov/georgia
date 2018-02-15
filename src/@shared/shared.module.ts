@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
 import { SharedComponentModule } from '@shared/components/shared-component.module';
+import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
+import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
 
 const MODULES = [
   SharedComponentModule
 ];
 const DECLARATIONS = [
-  WarningPopups
+  WarningPopups,
+  CommentPopups,
+  InvoicePopups
 ];
 
 @NgModule({

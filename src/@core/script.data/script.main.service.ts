@@ -74,4 +74,31 @@ export class ScriptMainService {
       percentPosition: true
     });
   }
+
+  invoiceFileAdd() {
+    $(document).on('change', '.invoice-input_js', function (e) {
+      var fileName;
+
+      if(e.target.files[0] == undefined) {
+        fileName = '';
+      } else {
+        fileName = e.target.files[0].name;
+      }
+
+      $('.u2g-file-name').text(fileName);
+
+      $('.remove-file_js').addClass('u2g-remove-file--chosen');
+    });
+  }
+
+  invoiceFileRemove() {
+    $(document).on('click', '.remove-file_js', function() {
+
+      $('.invoice-input_js').val('');
+
+      $('.u2g-file-name').text('');
+
+      $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+    });
+  }
 }

@@ -6,6 +6,8 @@ import { AwaitingTrackingService } from '@core/services/awaiting-tracking';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { PopupService } from '@core/services/popup';
 import { Observable } from "rxjs/Observable";
+import { CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
+import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -110,6 +112,16 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
        */
       // this.awaitingService.removeTracking( $sessionId, this.listAwaitingTracking[index].package_id);
     });
+    modal.present();
+  }
+
+  showCommentPopup(index) {
+    const modal = this.modalController.create(CommentPopups);
+    modal.present();
+  }
+
+  showInvoicePopup(index) {
+    const modal = this.modalController.create(InvoicePopups);
     modal.present();
   }
 

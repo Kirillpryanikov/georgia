@@ -1,0 +1,48 @@
+<ion-content>
+  <div #popup class="u2g-popup-wrapper">
+    <div id="invoice" class="u2g-popup">
+      <div class="u2g-popup__header">
+        <div class="u2g-popup__title">invoice upload</div>
+        <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
+      </div>
+      <div class="u2g-popup__content">
+        <p class="u2g-popup__text u2g-popup__text--bold">Required ONLY for packages subject to customs clearance (over 300 GEL)</p>
+        <p class="u2g-popup__text">Please attach your Purchase Order (Invoice). Accepted file formats (jpg, gif, png, pdf,
+          doc, docx, pdf, xls, xlsx, rtf). File max size 5mb.</p>
+        <form class="u2g-invoice">
+          <div class="u2g-file-name-wrapper">
+            <span class="u2g-remove-file remove-file_js"><i class="ion-close"></i></span>
+            <span class="u2g-file-name u2g-popup__text u2g-popup__text--bold"></span>
+          </div>
+          <div class="u2g-invoice__button-wrapper">
+            <label class="u2g-button u2g-button--green u2g-invoice__button">
+              <input type="file" name="file" class="invoice-input_js">
+              <svg viewBox="0 0 47 43">
+                <defs>
+                  <style>
+                    .cls-11{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}
+                  </style>
+                </defs>
+                <path class="cls-11" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
+              <span>Choose File</span>
+            </label>
+            <label class="u2g-button u2g-button--green u2g-invoice__button u2g-invoice__button--snapshot">
+              <input type="file" name="file" accept="image/*" capture="camera" class="invoice-input_js">
+              <svg viewBox="0 0 58 58" width="15px" height="15px">
+                <g>
+                  <path d="M54.63,10H3.37C1.512,10,0,11.512,0,13.37v35.26C0,50.488,1.512,52,3.37,52h51.26c1.858,0,3.37-1.512,3.37-3.37V13.37   C58,11.512,56.488,10,54.63,10z M56,48.63c0,0.756-0.614,1.37-1.37,1.37H3.37C2.614,50,2,49.386,2,48.63V13.37   C2,12.614,2.614,12,3.37,12h51.26c0.756,0,1.37,0.614,1.37,1.37V48.63z" fill="#FFFFFF"/>
+                  <path d="M30,14c-9.374,0-17,7.626-17,17s7.626,17,17,17s17-7.626,17-17S39.374,14,30,14z M30,46c-8.271,0-15-6.729-15-15   s6.729-15,15-15s15,6.729,15,15S38.271,46,30,46z" fill="#FFFFFF"/>
+                  <path d="M20,8h19c0.553,0,1-0.447,1-1s-0.447-1-1-1H20c-0.553,0-1,0.447-1,1S19.447,8,20,8z" fill="#FFFFFF"/>
+                </g>
+              </svg>
+              <span>Snapshot</span>
+            </label>
+          </div>
+          <div class="u2g-popup__buttons">
+            <button (click)="ok()" class="u2g-button  u2g-popup__bottom-button">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>
