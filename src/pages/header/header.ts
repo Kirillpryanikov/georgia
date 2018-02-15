@@ -76,7 +76,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   arrived(e) {
     e.preventDefault();
-    this.navCtrl.push('arrived-page');
+    this.navCtrl.setRoot('arrived-page');
   }
 
   ngOnDestroy() {
