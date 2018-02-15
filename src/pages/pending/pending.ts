@@ -31,4 +31,9 @@ export class PendingPage {
     this.mainService.initMasonry();
   }
 
+  declaration(e) {
+    e.preventDefault();
+    this.navCtrl.push('declaration-page');
+  }
+
 }

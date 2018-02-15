@@ -17,7 +17,7 @@
 
           <div class="u2g-content u2g-content--masonry u2g-content--pending">
 
-            <div class="u2g-info-block">
+            <div *ngFor="let i of [1,2,3]" class="u2g-info-block">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
                 <span class="u2g-info-block__tracking-number-value">H0501511</span>
@@ -34,7 +34,7 @@
                 </select>
               </div>
               <div class="u2g-info-block__list">
-                <div class="u2g-info-block__list-item">
+                <div *ngFor="let i of [1,2,3]" class="u2g-info-block__list-item">
                   <span>TBA5264975960019330</span>
                   <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
                   <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
@@ -46,173 +46,7 @@
                     <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
                   </div>
                   <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="u2g-info-block__pending-info">
-                <span class="u2g-info-block__pending-date">28-11-2017</span> -
-                <span class="u2g-info-block__pending-info-text">ჩამოფრენის სავარაუდო თარიღი</span>
-              </div>
-            </div>
-            <div class="u2g-info-block">
-              <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
-                <span class="u2g-info-block__tracking-number-value">H0501511</span>
-              </div>
-              <div class="u2g-info-block__choose-branch">
-                <span>Choose Branch:</span>
-                <select class="u2g-select">
-                  <option>Vaja-Pshavela</option>
-                  <option>Mickevichi</option>
-                  <option>Digomi</option>
-                  <option>Gldani</option>
-                  <option>Isani</option>
-                  <option>Vake</option>
-                </select>
-              </div>
-              <div class="u2g-info-block__list">
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="u2g-info-block__pending-info">
-                <span class="u2g-info-block__pending-date">28-11-2017</span> -
-                <span class="u2g-info-block__pending-info-text">ჩამოფრენის სავარაუდო თარიღი</span>
-              </div>
-            </div>
-            <div class="u2g-info-block">
-              <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
-                <span class="u2g-info-block__tracking-number-value">H0501511</span>
-              </div>
-              <div class="u2g-info-block__choose-branch">
-                <span>Choose Branch:</span>
-                <select class="u2g-select">
-                  <option>Vaja-Pshavela</option>
-                  <option>Mickevichi</option>
-                  <option>Digomi</option>
-                  <option>Gldani</option>
-                  <option>Isani</option>
-                  <option>Vake</option>
-                </select>
-              </div>
-              <div class="u2g-info-block__list">
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
-                  </div>
-                </div>
-                <div class="u2g-info-block__list-item">
-                  <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
-                  <div class="u2g-info-block__invoice u2g-info-block__invoice--small">
-                    <span>Invoice</span>
-                    <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-                  </div>
-                  <div class="u2g-info-block__comment u2g-info-block__comment--small">
-                    <span>Comment</span>
-                    <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
-                  </div>
-                  <div class="u2g-info-block__button-wrapper">
-                    <a href="declaration.html" class="u2g-button u2g-button--green"><span>Declaration</span></a>
+                    <a (click)="declaration($event)" class="u2g-button u2g-button--green"><span>Declaration</span></a>
                   </div>
                 </div>
               </div>

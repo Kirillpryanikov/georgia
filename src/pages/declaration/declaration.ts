@@ -2,31 +2,26 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the UsaWarehousePage page.
+ * Generated class for the DeclarationPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @IonicPage({
-  name: 'usa-warehouse-page'
+  name: 'declaration-page'
 })
 @Component({
-  selector: 'page-usa-warehouse',
-  templateUrl: 'usa-warehouse.html',
+  selector: 'page-declaration',
+  templateUrl: 'declaration.html',
 })
-export class UsaWarehousePage {
+export class DeclarationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UsaWarehousePage');
-  }
-
-  declaration(e) {
-    e.preventDefault()
-    this.navCtrl.push('declaration-page');
+    console.log('ionViewDidLoad DeclarationPage');
   }
 
 }

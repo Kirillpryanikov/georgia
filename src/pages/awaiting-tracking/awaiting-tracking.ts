@@ -126,5 +126,10 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
     // this.popupService.changePackageSetting(params);
   }
 
+  declaration(e) {
+    e.preventDefault();
+    this.navCtrl.push('declaration-page');
+  }
+
   ngOnDestroy() {}
 }
