@@ -24,11 +24,7 @@ export class DepositePage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.initDropdown();
-  }
 
-  initDropdown() {
-    this.mainService.dropdown();
   }
 
   payment_tbc(e) {
