@@ -74,6 +74,11 @@ export class HeaderPage implements OnInit, OnDestroy{
     // this.loadLanguagePack();
   }
 
+  arrived(e) {
+    e.preventDefault();
+    this.navCtrl.push('arrived-page');
+  }
+
   ngOnDestroy() {
 
   }
