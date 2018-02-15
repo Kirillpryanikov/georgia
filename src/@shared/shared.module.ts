@@ -5,6 +5,7 @@ import { WarningPopups } from '@shared/popups/warning-popup-component/warning-po
 import { SharedComponentModule } from '@shared/components/shared-component.module';
 import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
+import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -12,7 +13,8 @@ const MODULES = [
 const DECLARATIONS = [
   WarningPopups,
   CommentPopups,
-  InvoicePopups
+  InvoicePopups,
+  InvoiceInfoPopups
 ];
 
 @NgModule({

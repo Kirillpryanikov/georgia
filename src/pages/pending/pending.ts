@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
+import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 
 /**
  * Generated class for the PendingPage page.
@@ -20,7 +22,8 @@ export class PendingPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private mainService: ScriptMainService) {
+              private mainService: ScriptMainService,
+              private modalController: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -34,6 +37,16 @@ export class PendingPage {
   declaration(e) {
     e.preventDefault();
     this.navCtrl.push('declaration-page');
+  }
+
+  showCommentPopup(index) {
+    const modal = this.modalController.create(CommentPopups);
+    modal.present();
+  }
+
+  showInvoicePopup(index) {
+    const modal = this.modalController.create(InvoicePopups);
+    modal.present();
   }
 
 }

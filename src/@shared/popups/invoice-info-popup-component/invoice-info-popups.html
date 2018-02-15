@@ -1,0 +1,46 @@
+<ion-content>
+  <div #popup class="u2g-popup-wrapper">
+    <div id="invoice-table" class="u2g-popup">
+      <div class="u2g-popup__header">
+        <div class="u2g-popup__title">Invoice</div>
+        <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
+      </div>
+      <div class="u2g-popup__content">
+        <div class="u2g-invoice-table-wrapper">
+          <table class="u2g-invoice-table">
+            <thead>
+            <tr>
+              <td>Invoice</td>
+              <td>Amount</td>
+              <td>Vat</td>
+              <td>Sum</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td >Transportation:</td>
+              <td>2.14 GEL</td>
+              <td>0.00 GEL</td>
+              <td>2.14 GEL</td>
+            </tr>
+            <tr>
+              <td>Discount (10%):</td>
+              <td class="green-cell">-0.21 GEL</td>
+              <td class="green-cell">0.00 GEL</td>
+              <td class="green-cell">-0.21 GEL</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td>Total</td>
+              <td></td>
+              <td></td>
+              <td>1.93 GEL</td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
