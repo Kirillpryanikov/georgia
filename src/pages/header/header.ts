@@ -7,6 +7,7 @@ import { HeaderService } from "@core/services";
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
 import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
+import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -89,6 +90,12 @@ export class HeaderPage implements OnInit, OnDestroy{
   details() {
     this.mainService.hideDropdown();
     const modal = this.modalController.create(DetailsPopups);
+    modal.present();
+  }
+
+  usaAddress() {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(AddressPopups);
     modal.present();
   }
 

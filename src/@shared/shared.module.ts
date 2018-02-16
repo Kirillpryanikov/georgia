@@ -7,6 +7,7 @@ import { CommentPopups } from "@shared/popups/comment-popup-component/comment-po
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
 import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
 import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
+import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -16,7 +17,8 @@ const DECLARATIONS = [
   CommentPopups,
   InvoicePopups,
   InvoiceInfoPopups,
-  DetailsPopups
+  DetailsPopups,
+  AddressPopups
 ];
 
 @NgModule({
