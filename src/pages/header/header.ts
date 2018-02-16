@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import { NavController } from "ionic-angular";
+import {ModalController, NavController} from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
 import { HeaderService } from "@core/services";
 
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
+import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -36,7 +37,8 @@ export class HeaderPage implements OnInit, OnDestroy{
   constructor(public mainService: ScriptMainService,
               public navCtrl: NavController,
               private translate: TranslateService,
-              private headerService: HeaderService) {}
+              private headerService: HeaderService,
+              private modalController: ModalController) {}
 
   ngOnInit() {
     // this.getInfo();
@@ -82,6 +84,12 @@ export class HeaderPage implements OnInit, OnDestroy{
   transaction(e) {
     e.preventDefault();
     this.navCtrl.setRoot('transaction-page')
+  }
+
+  details() {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(DetailsPopups);
+    modal.present();
   }
 
   ngOnDestroy() {

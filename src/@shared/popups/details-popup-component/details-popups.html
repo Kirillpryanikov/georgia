@@ -1,0 +1,29 @@
+<ion-content>
+  <div #popup class="u2g-popup-wrapper">
+  <div id="details" class="u2g-popup">
+    <div class="u2g-popup__header">
+      <div class="u2g-popup__title">details</div>
+      <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
+    </div>
+    <div class="u2g-popup__content">
+      <div class="u2g-packages-account-status__info">
+        <div class="u2g-packages-account-status__items-wrapper">
+          <div class="u2g-packages-account-status__item u2g-packages-account-status__item--total">
+            <h6 class="u2g-packages-account-status__item-title"><span>3.98</span> GEL</h6>
+            <p class="u2g-packages-account-status__item-description">Total Invoices</p>
+          </div>
+          <div class="u2g-packages-account-status__item u2g-packages-account-status__item--unused">
+            <h6 class="u2g-packages-account-status__item-title"><span>0.08</span> GEL</h6>
+            <p class="u2g-packages-account-status__item-description">Unused Credits</p>
+          </div>
+          <div class="u2g-packages-account-status__item u2g-packages-account-status__item--amount">
+            <h6 class="u2g-packages-account-status__item-title"><span>3.9</span> GEL</h6>
+            <p class="u2g-packages-account-status__item-description">Amount Due</p>
+          </div>
+        </div>
+        <a (click)="payNow($event)" class="u2g-packages-account-status__pay-btn">Pay now</a>
+      </div>
+    </div>
+  </div>
+</div>
+</ion-content>
