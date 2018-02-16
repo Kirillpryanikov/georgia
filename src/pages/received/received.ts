@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 
 /**
  * Generated class for the ReceivedPage page.
@@ -20,7 +21,8 @@ export class ReceivedPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private mainService: ScriptMainService) {
+              private mainService: ScriptMainService,
+              private modalController: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -34,6 +36,11 @@ export class ReceivedPage {
   invoice(e) {
     e.preventDefault();
     this.navCtrl.push('invoice-page');
+  }
+
+  showCommentPopup(index) {
+    const modal = this.modalController.create(CommentPopups);
+    modal.present();
   }
 
 }

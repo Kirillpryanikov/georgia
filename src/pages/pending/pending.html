@@ -18,7 +18,7 @@
 
           <div class="u2g-content u2g-content--masonry u2g-content--pending">
 
-            <div *ngFor="let i of [1,2,3]" class="u2g-info-block">
+            <div *ngFor="let pending of listPending; index as index" class="u2g-info-block">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
                 <span class="u2g-info-block__tracking-number-value">H0501511</span>
@@ -35,9 +35,10 @@
                 </select>
               </div>
               <div class="u2g-info-block__list">
-                <div *ngFor="let i of [1,2,3]" class="u2g-info-block__list-item">
+                <div *ngFor="let pendings of pending.bill; index as _index" class="u2g-info-block__list-item">
                   <span>TBA5264975960019330</span>
-                  <label class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js"><input type="checkbox"><span>Risk free shipping</span></label>
+                  <label (click)="showWarningPopup(index, _index, 'insurance')" class="u2g-info-block__label u2g-info-block__list-item--label risk-free-shipping_js">
+                    <input [ngModel]="pendings.insurance" type="checkbox"><span>Risk free shipping</span></label>
                   <div (click)="showInvoicePopup(index)" class="u2g-info-block__invoice u2g-info-block__invoice--small">
                     <span>Invoice</span>
                     <svg viewBox="0 0 47 43"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}</style></defs><path class="cls-1" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>

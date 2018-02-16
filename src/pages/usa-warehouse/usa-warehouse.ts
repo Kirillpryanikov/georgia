@@ -48,6 +48,26 @@ export class UsaWarehousePage {
       cut_down: 0,
       put_into_bag: 1,
       "declared":1
+    },
+    {
+      package_id:7965800,
+      "tracking":"6667778001",
+      "client_comment":"My wife's shoes",
+      insurance: 1,
+      "global_repacking":"1",
+      cut_down: 0,
+      put_into_bag: 1,
+      "declared":1
+    },
+    {
+      package_id:7965800,
+      "tracking":"6667778001",
+      "client_comment":"My wife's shoes",
+      insurance: 1,
+      "global_repacking":"1",
+      cut_down: 0,
+      put_into_bag: 1,
+      "declared":1
     }
   ];
   constructor(public navCtrl: NavController,
