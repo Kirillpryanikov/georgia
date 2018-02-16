@@ -37,7 +37,6 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
 
   @HostListener('document:click', ['$event.target.tagName'])
   public documentClick(e) {
-    console.log(e);
     if(e === 'ION-CONTENT')
       this.close();
     if(e === 'ION-BACKDROP')
