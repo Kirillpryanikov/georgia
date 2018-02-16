@@ -18,8 +18,8 @@ export class ScriptService {
   setPositionCenter(el: ElementRef) {
     $('.u2g-overlay').css({'display' : 'block'});
     let style = {
-      top: (this.platform.height() - el.nativeElement.offsetHeight) / 2,
-      left: (this.platform.width() - el.nativeElement.offsetWidth) / 2
+      top: (el.nativeElement.parentElement.clientHeight - el.nativeElement.offsetHeight) / 2,
+      left: (el.nativeElement.parentElement.clientWidth - el.nativeElement.offsetWidth) / 2
     };
     this.renderer.setStyle(el.nativeElement, 'top', style.top  + 'px');
     this.renderer.setStyle(el.nativeElement, 'left', style.left  + 'px');

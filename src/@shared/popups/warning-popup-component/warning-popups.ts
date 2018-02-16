@@ -1,4 +1,7 @@
-import { Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
+import {
+  Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
+  HostListener
+} from '@angular/core';
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
@@ -22,6 +25,14 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
     this.nativePageTransitions.flip({})
       .then(onSuccess => { console.log('onSuccess') })
       .catch(onError => { console.log('onError') });
+  }
+
+  @HostListener('document:click', ['$event.target.tagName'])
+  public documentClick(e) {
+    if(e === 'ION-CONTENT')
+      this.close();
+    if(e === 'ION-BACKDROP')
+      this.scriptService.closePopup();
   }
 
   ngAfterViewInit() {

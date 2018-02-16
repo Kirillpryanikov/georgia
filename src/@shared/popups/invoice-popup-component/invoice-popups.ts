@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
@@ -23,6 +23,14 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   ngOnInit() {
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
+  }
+
+  @HostListener('document:click', ['$event.target.tagName'])
+  public documentClick(e) {
+    if(e === 'ION-CONTENT')
+      this.close();
+    if(e === 'ION-BACKDROP')
+      this.scriptService.closePopup();
   }
 
   ionViewWillLeave() {
