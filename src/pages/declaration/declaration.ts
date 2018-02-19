@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {AddProductPopups} from "@shared/popups/add-product-popup-component/add-product-popups";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -17,11 +18,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DeclarationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private modalController: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeclarationPage');
   }
 
+  addProduct() {
+    const modal = this.modalController.create(AddProductPopups);
+    modal.present();
+  }
 }

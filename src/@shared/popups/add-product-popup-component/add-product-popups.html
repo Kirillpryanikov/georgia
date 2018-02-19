@@ -1,0 +1,59 @@
+<ion-content>
+  <div #popup class="u2g-popup-wrapper">
+    <div id="product-plus" class="u2g-popup u2g-popup__product">
+      <div class="u2g-popup__header">
+        <div class="u2g-popup__title">add product</div>
+        <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
+      </div>
+      <div class="u2g-popup__content">
+        <form id="add-product" class="u2g-add-product">
+          <div class="u2g-add-product__radio-wrapper">
+            <label class="u2g-add-product__radio">
+              <input id="radio-description" type="radio" name="product" checked>
+              <span>Description</span>
+            </label>
+            <label class="u2g-add-product__radio">
+              <input id="radio-code" type="radio" name="product">
+              <span>Code</span>
+            </label>
+          </div>
+          <div class="u2g-add-product__field u2g-add-product__field--select u2g-add-product__field--active">
+            <select name="product-select" class="u2g-select u2g-add-product__select product-input_js">
+              <option value="9603">Other consumer products</option>
+              <option value="8708">Auto Parts</option>
+              <option value="71171999000">Bijouterie, jewellery</option>
+              <option value="9405">Lighting, chandeliers, headlights, lighting equipments</option>
+              <option value="8205">Tools</option>
+              <option value="8471">Computers, laptops, computer parts</option><option value="3004">Medicine</option>
+              <option value="7013">Glass products</option>
+              <option value="9207">Music instruments &amp; parts</option>
+              <option value="0602">Plants</option>
+              <option value="4901">Printing products, books, brochures</option>
+              <option value="8525">Photo &amp; Video Equipment</option>
+              <option value="3304">Perfumery &amp; Cosmetics</option>
+              <option value="9102">Watches</option>
+              <option value="9504">Toys and Sport Equipment</option>
+              <option value="2106">Supplements</option>
+              <option value="6204">Clothing</option>
+              <option value="8517">Phone, network equipment</option>
+              <option value="6403">Footwear</option>
+              <option value="4202">Bags</option>
+              <option value="8543">Different electronic and consumer products</option>
+            </select>
+          </div>
+          <div class="u2g-add-product__field u2g-add-product__field--code">
+            <input type="text" class="u2g-add-product__code product-input_js">
+          </div>
+          <div class="u2g-add-product__field">
+            <span class="u2g-add-product__price">Price</span>
+            <input type="text" name="price" class="u2g-add-product__price-field product-price_js">
+            <span class="u2g-add-product__currency">USD</span>
+          </div>
+          <div class="u2g-popup__buttons">
+            <input type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js" value="Add">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>
