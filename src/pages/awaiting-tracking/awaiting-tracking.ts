@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2} from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
 import { AwaitingTrackingService } from '@core/services/awaiting-tracking';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
@@ -36,29 +36,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
 
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
-  private form: FormGroup;
-  private listAwaitingTracking = [
-    {
-      package_id:7965559,
-      "tracking":"6667778889",
-      "client_comment":"",
-      insurance: 0,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    },
-    {
-      package_id:7965800,
-      "tracking":"6667778001",
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    }
-  ];
+  private trackingForm: FormGroup;
+  private listAwaitingTracking;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -69,10 +48,12 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
               private popupService: PopupService) {}
 
   ngOnInit() {
+    this.listAwaitingTracking = this.awaitingService.getAwaitingTracking();
     /**
      * Request. Get awaiting tracking
      */
     // this.seqAwaitingTracking = this.awaitingService.getAwaiting('session')
+    this.createFormAddTracking();
   }
 
   // ionViewDidLoad() {
@@ -107,6 +88,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
       if(!data) {
         return false;
       }
+      this.listAwaitingTracking.splice(index,1);
       /**
        * Нужно раскоментировать когда будет апи
        */
@@ -141,6 +123,28 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
   declaration(e) {
     e.preventDefault();
     this.navCtrl.push('declaration-page');
+  }
+
+  createFormAddTracking() {
+    this.trackingForm = this.fb.group({
+      trackingNumber: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(10)
+      ])]
+    })
+  }
+
+  addTracking() {
+    this.listAwaitingTracking.push({
+      package_id:7965800,
+      "tracking":this.trackingForm.value.trackingNumber,
+      "client_comment":"My wife's shoes",
+      insurance: 1,
+      "global_repacking":"1",
+      cut_down: 0,
+      put_into_bag: 1,
+      "declared":1
+    })
   }
 
   ngOnDestroy() {}

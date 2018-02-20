@@ -10,7 +10,7 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
-  rootPage:string = 'deposite-page';
+  rootPage:string = 'page-awaiting-tracking';
 
   constructor(private platform: Platform,
               private statusBar: StatusBar,

@@ -22,9 +22,9 @@
               <div *ngFor="let warehouse of listUsaWarehouse; index as index" class="u2g-info-block">
                 <div class="u2g-info-block__tracking-number">
                   <span class="u2g-info-block__tracking-number-title">Tracking</span>
-                  <span class="u2g-info-block__tracking-number-value">TBA526497596000</span></div>
+                  <span class="u2g-info-block__tracking-number-value">{{warehouse.tracking}}</span></div>
                 <div class="u2g-info-block__button-wrapper">
-                  <a (click)="declaration($event)" class="u2g-info-block__button u2g-info-block__button--top"><span>Declared</span></a>
+                  <a (click)="declaration($event, index)" class="u2g-info-block__button u2g-info-block__button--top"><span>Declared</span></a>
                 </div>
                 <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                   <label (click)="showWarningPopup(index, 'insurance')" class="u2g-info-block__list-item u2g-info-block__list-item--label  risk-free-shipping_js">

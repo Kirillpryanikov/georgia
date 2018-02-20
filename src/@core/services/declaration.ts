@@ -5,18 +5,18 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class UsaWarehouseService {
+export class DeclarationService {
   constructor(private http: HttpClient){}
 
-  getUsaWarehouse(): Observable<any> {
-    return this.http.get(environment.CONST.URL + '/getUsaWarehouse')
+  getDeclaration(package_id): Observable<any> {
+    return this.http.post(environment.CONST.URL + '/getDeclaration',{package_id})
       .catch((err) => {
         return err;
       })
   }
 
-  changePackageSetting($packageId: number, $key: string, $value: number): Observable<any>{
-    return this.http.post(environment.CONST.URL + '/changePackageSetting', {$packageId, $key, $value})
+  declareTracking(package_id, shiper, details): Observable<any> {
+    return this.http.post(environment.CONST.URL + '/declareTracking', {package_id, shiper, details})
       .catch((err) => {
         return err;
       })

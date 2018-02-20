@@ -8,10 +8,10 @@
       <div class="u2g-popup__content">
         <p class="u2g-popup__text">You can comment your purchase order, e.g. 'Clothing', 'Gift for Friend' etc...This will work as a reminder for you in the future.</p>
         <form class="u2g-comment">
-          <textarea class="u2g-comment__textarea"></textarea>
+          <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" class="u2g-comment__textarea"></textarea>
           <p class="u2g-popup__text u2g-popup__text--bold u2g-popup__text--right-align">Adding of comment is optional.</p>
           <div class="u2g-popup__buttons">
-            <button (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">Save</button>
+            <button [disabled]="!comment" (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">Save</button>
             <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">Cancel</button>
           </div>
         </form>

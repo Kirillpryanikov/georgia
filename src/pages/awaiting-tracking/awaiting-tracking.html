@@ -19,10 +19,10 @@
 
           <div class="u2g-tracking-number">
             <p class="u2g-tracking-number__description">Please add the tracking number you expect to receive from shipper, then click the declaration to add shipper name, commodity and value. Once we receive the package in USA, package will move to the USA Warehouse</p>
-            <form class="u2g-tracking-number__form">
+            <form [formGroup]="trackingForm" (submit)="addTracking()" class="u2g-tracking-number__form">
               <div class="u2g-tracking-number__field-wrapper">
-                <input type="text" class="u2g-tracking-number__field" placeholder="Add your tracking number">
-                <input type="submit" value="Add" class="u2g-tracking-number__button u2g-button">
+                <input formControlName="trackingNumber" type="text" class="u2g-tracking-number__field" placeholder="Add your tracking number">
+                <input [disabled]="trackingForm.invalid" type="submit" value="Add" class="u2g-tracking-number__button u2g-button">
               </div>
             </form>
           </div>

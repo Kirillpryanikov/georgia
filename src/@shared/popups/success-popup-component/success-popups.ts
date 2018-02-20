@@ -1,27 +1,39 @@
 import {
-  Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
+  Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
   HostListener
 } from '@angular/core';
-import { Platform, ViewController, NavParams } from 'ionic-angular';
+import {Platform, ViewController, NavParams, NavController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {PopupService} from "@core/services";
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 @Component({
-  selector: 'warning-popup',
-  templateUrl: './warning-popups.html',
-  styleUrls: ['/warning-popups.scss'],
+  selector: 'success-popup',
+  templateUrl: './success-popups.html',
+  styleUrls: ['/success-popups.scss'],
 })
-export class WarningPopups implements OnDestroy, AfterViewInit {
+export class SuccessPopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
+              private navCtrl: NavController,
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
-              private popupService: PopupService) {}
+              private mainService: ScriptMainService) {}
+
+  ngOnInit() {
+
+  }
+
+  ionViewDidLoad() {
+    let that = this;
+    setTimeout(function () {
+      that.close();
+    },2000);
+  }
 
   ionViewWillLeave() {
     this.nativePageTransitions.flip({})
@@ -41,15 +53,9 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
     this.scriptService.setPositionCenter(this.popup);
   }
 
-  ok() {
-    // this.popupService.changePackageSetting(this.navParams.data.package_id, this.navParams.data.key, this.navParams.data.value).subscribe();
-    // ToDo: after get Api
-    this.close(true);
-  }
-
-  close(data?: boolean) {
+  close() {
     this.scriptService.closePopup();
-    this.viewCtrl.dismiss(data);
+    this.viewCtrl.dismiss();
   }
 
   ngOnDestroy() {}

@@ -6,10 +6,12 @@ import {
   AuthorizationService, RegistrationService, AwaitingTrackingService, HeaderService, UsaWarehouseService,
   PendingService, ArrivedService, ReceivedService, PopupService, SettingService
 } from '@core/services';
+import {DeclarationService} from "@core/services/declaration";
 
 const CORE_PROVIDERS = [
   AuthorizationService,
   RegistrationService,
+  DeclarationService,
   AwaitingTrackingService,
   HeaderService,
   UsaWarehouseService,

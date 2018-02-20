@@ -5,10 +5,12 @@ import { WarningPopups } from '@shared/popups/warning-popup-component/warning-po
 import { SharedComponentModule } from '@shared/components/shared-component.module';
 import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
-import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
-import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
-import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
-import {AddProductPopups} from "@shared/popups/add-product-popup-component/add-product-popups";
+import { InvoiceInfoPopups } from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
+import { DetailsPopups } from "@shared/popups/details-popup-component/details-popups";
+import { AddressPopups } from "@shared/popups/address-popup-component/address-popups";
+import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -20,11 +22,12 @@ const DECLARATIONS = [
   InvoiceInfoPopups,
   DetailsPopups,
   AddressPopups,
-  AddProductPopups
+  AddProductPopups,
+  SuccessPopups
 ];
 
 @NgModule({
-  imports: [ ...MODULES, CommonModule ],
+  imports: [ ...MODULES, CommonModule, FormsModule, ReactiveFormsModule ],
   declarations: [ ...DECLARATIONS ],
   entryComponents: [ ...DECLARATIONS ],
   exports: [

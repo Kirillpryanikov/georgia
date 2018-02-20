@@ -18,8 +18,15 @@ export class PopupService {
    *
    * @returns {Observable<any>}
    */
-  changePackageSetting(data): Observable<any> {
-    return this.http.post(environment.CONST.URL, data)
+  changePackageSetting(package_id, key, value ): Observable<any> {
+    return this.http.post(environment.CONST.URL + '/changePackageSetting', {package_id, key, value})
+      .catch((err) => {
+        return err;
+      })
+  }
+
+  addTrackingComment(package_id, comment): Observable<any> {
+    return this.http.post(environment.CONST.URL + '/addTrackingComment', {package_id, comment})
       .catch((err) => {
         return err;
       })

@@ -3,6 +3,7 @@ import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angula
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {UsaWarehouseService} from "@core/services";
 
 /**
  * Generated class for the UsaWarehousePage page.
@@ -28,20 +29,11 @@ const notice = {
   templateUrl: 'usa-warehouse.html',
 })
 export class UsaWarehousePage {
+  private params: any;
   private listUsaWarehouse = [
     {
-      package_id:7965559,
-      "tracking":"6667778889",
-      "client_comment":"",
-      insurance: 0,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    },
-    {
       package_id:7965800,
-      "tracking":"6667778001",
+      "tracking":"66677784534",
       "client_comment":"My wife's shoes",
       insurance: 1,
       "global_repacking":"1",
@@ -51,7 +43,17 @@ export class UsaWarehousePage {
     },
     {
       package_id:7965800,
-      "tracking":"6667778001",
+      "tracking":"689464654681",
+      "client_comment":"My wife's shoes",
+      insurance: 1,
+      "global_repacking":"1",
+      cut_down: 0,
+      put_into_bag: 1,
+      "declared":1
+    },
+    {
+      package_id:7965800,
+      "tracking":"66677780049978",
       "client_comment":"My wife's shoes",
       insurance: 1,
       "global_repacking":"1",
@@ -70,52 +72,46 @@ export class UsaWarehousePage {
       "declared":1
     }
   ];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private modalController: ModalController) {
+              private modalController: ModalController,
+              private usaWarehouseService: UsaWarehouseService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UsaWarehousePage');
+    // this.usaWarehouseService.getUsaWarehouse().subscribe(data => {
+    //   this.listUsaWarehouse = data;
+    // })
+    // ToDo: create after get API
   }
 
-  declaration(e) {
+  declaration(e, index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page');
+    this.navCtrl.push('declaration-page',{package_id: this.listUsaWarehouse[index].package_id, tracking: this.listUsaWarehouse[index].tracking});
   }
 
   showWarningPopup(index, checkbox) {
     if(this.listUsaWarehouse[index][checkbox] === 1) {
       this.listUsaWarehouse[index][checkbox] = 0;
+      // this.usaWarehouseService.changePackageSetting(package_id: this.listUsaWarehouse[index].package_id, key: checkbox, value: this.listUsaWarehouse[index][checkbox]).subscribe();
+      // ToDo: create after get API
       return false;
     }
-    // this.scriptService.checkboxSelect(this.arrRiskFree[index]);
-    const modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
+    const modal = this.modalController.create(WarningPopups,
+      {notice: notice[checkbox], package_id: this.listUsaWarehouse[index].package_id, key: checkbox, value: this.listUsaWarehouse[index][checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
         this.listUsaWarehouse[index][checkbox] = 1;
       } else {
         this.listUsaWarehouse[index][checkbox] = 0;
       }
-      /**
-       * request. Change package
-       */
-      this.changePackageSetting(this.listUsaWarehouse[index].package_id, checkbox, this.listUsaWarehouse[index][checkbox]);
     });
     modal.present();
   }
 
-  changePackageSetting($packageId: number, $key: string, $value: number) {
-    const params = {
-      $sessionId: '',
-      $packageId,
-      $key,
-      $value
-    };
-  }
-
   showCommentPopup(index) {
-    const modal = this.modalController.create(CommentPopups);
+    const modal = this.modalController.create(CommentPopups,{package_id: this.listUsaWarehouse[index].package_id});
     modal.present();
   }
 

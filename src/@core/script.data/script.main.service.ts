@@ -101,4 +101,34 @@ export class ScriptMainService {
       $('.remove-file_js').removeClass('u2g-remove-file--chosen');
     });
   }
+
+
+  radio() {
+    $(document).on('click', '.u2g-add-product__radio > input', function() {
+      if($('#radio-description').is(':checked')) {
+        $('.u2g-add-product__field--select').addClass('u2g-add-product__field--active');
+        $('.u2g-add-product__field--code').removeClass('u2g-add-product__field--active');
+      } else {
+        $('.u2g-add-product__field--select').removeClass('u2g-add-product__field--active');
+        $('.u2g-add-product__field--code').addClass('u2g-add-product__field--active');
+      }
+    });
+  }
+
+  //shipper field readonly
+  readonly(){
+    $(document).on('click', '[name="shipper"]', function() {
+      var urlInput = $('#store-url');
+
+      if($('#shipper-personal').is(':checked')) {
+        urlInput.prop('readonly', true);
+        urlInput.addClass('readonly');
+        $('#store-url').val('');
+        $('.error').remove();
+      } else {
+        urlInput.prop('readonly', false);
+        urlInput.removeClass('readonly');
+      }
+    });
+  }
 }

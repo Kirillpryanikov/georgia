@@ -6,6 +6,7 @@ import {Platform, ViewController, NavParams, NavController} from 'ionic-angular'
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'add-product-popup',
@@ -15,6 +16,12 @@ import {ScriptMainService} from "@core/script.data/script.main.service";
 export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
+  productForm: FormGroup;
+  product = {
+    code:'',
+    unit_price: 0
+  };
+
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -22,11 +29,12 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
               private navCtrl: NavController,
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
-              private mainService: ScriptMainService) {}
+              private mainService: ScriptMainService,
+              private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.mainService.invoiceFileAdd();
-    this.mainService.invoiceFileRemove();
+    this.mainService.radio();
+    this.createFormAddProduct();
   }
 
   ionViewWillLeave() {
@@ -50,6 +58,24 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
   close() {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss();
+  }
+
+  addProduct() {
+    this.product.code = this.productForm.value.code;
+    this.product.unit_price = parseFloat(this.productForm.value.unit_price);
+    this.scriptService.closePopup();
+    this.viewCtrl.dismiss(this.product);
+  }
+
+  createFormAddProduct() {
+    this.productForm = this.fb.group({
+      unit_price: ['', Validators.compose([
+        Validators.required
+      ])],
+      code: ['', Validators.compose([
+        Validators.required
+      ])]
+    });
   }
 
   ngOnDestroy() {}
