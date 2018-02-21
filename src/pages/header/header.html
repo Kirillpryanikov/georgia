@@ -16,11 +16,11 @@
   <div class="u2g-header__container">
     <div class="u2g-header__info">
 
-
       <!-- NOTIFICATIONS -->
 
-      <div class="u2g-header-profile__notifications" data-show-element="u2g-notifications">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 483.3 483.3" style="enable-background:new 0 0 483.3 483.3;" xml:space="preserve" width="30px">
+      <div class="u2g-header-profile__notifications" >
+        <div class="u2g-header-profile__notifications" data-show-element="u2g-notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 483.3 483.3" style="enable-background:new 0 0 483.3 483.3;" xml:space="preserve" width="30px">
             <g>
                 <g>
                     <path d="M424.3,57.75H59.1c-32.6,0-59.1,26.5-59.1,59.1v249.6c0,32.6,26.5,59.1,59.1,59.1h365.1c32.6,0,59.1-26.5,59.1-59.1    v-249.5C483.4,84.35,456.9,57.75,424.3,57.75z M456.4,366.45c0,17.7-14.4,32.1-32.1,32.1H59.1c-17.7,0-32.1-14.4-32.1-32.1v-249.5    c0-17.7,14.4-32.1,32.1-32.1h365.1c17.7,0,32.1,14.4,32.1,32.1v249.5H456.4z" fill="#bcc9cf"/>
@@ -28,7 +28,9 @@
                 </g>
                </g>
               </svg>
-        <div *ngIf="notification.notifications" class="u2g-header-profile__notifications-amount">{{notification.notifications}}</div>
+          <div *ngIf="notification.notifications" class="u2g-header-profile__notifications-amount">{{notification.notifications}}</div>
+
+        </div>
 
         <div class="u2g-notifications">
           <div class="u2g-notifications__title">
