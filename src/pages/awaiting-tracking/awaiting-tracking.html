@@ -42,15 +42,15 @@
               </div>
               <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <label (click)="showWarningPopup(index, 'insurance')" class="u2g-info-block__list-item u2g-info-block__list-item--label risk-free-shipping_js">
-                  <input type="checkbox" [ngModel]="tracking.insurance">
+                  <input type="checkbox" [ngModel]="-tracking.insurance">
                   <span>Risk free shipping</span>
                 </label>
                 <label (click)="showWarningPopup(index, 'cut_down')" class="u2g-info-block__list-item u2g-info-block__list-item--label cut-down-package_js">
-                  <input type="checkbox" [ngModel]="tracking.cut_down">
+                  <input type="checkbox" [ngModel]="-tracking.cut_down">
                   <span>Cut-Down package</span>
                 </label>
                 <label (click)="showWarningPopup(index, 'put_into_bag')" class="u2g-info-block__list-item u2g-info-block__list-item--label repack_js">
-                  <input type="checkbox" [ngModel]="tracking.put_into_bag">
+                  <input type="checkbox" [ngModel]="-tracking.put_into_bag">
                   <span>Repack</span>
                 </label>
               </div>

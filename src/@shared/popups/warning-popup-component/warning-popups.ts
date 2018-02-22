@@ -42,8 +42,6 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
   }
 
   ok() {
-    // this.popupService.changePackageSetting(this.navParams.data.package_id, this.navParams.data.key, this.navParams.data.value).subscribe();
-    // ToDo: after get Api
     this.close(true);
   }
 

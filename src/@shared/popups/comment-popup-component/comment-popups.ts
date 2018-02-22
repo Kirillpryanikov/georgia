@@ -1,6 +1,6 @@
 import {
   Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
-  HostListener
+  HostListener, OnInit
 } from '@angular/core';
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
@@ -12,10 +12,11 @@ import {PopupService} from "@core/services";
   templateUrl: './comment-popups.html',
   styleUrls: ['/comment-popups.scss'],
 })
-export class CommentPopups implements OnDestroy, AfterViewInit {
+export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
   @ViewChild('popup') popup : ElementRef;
 
-  comment: string = null;
+  private comment: string = null;
+  private data;
 
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -23,7 +24,13 @@ export class CommentPopups implements OnDestroy, AfterViewInit {
               private viewCtrl: ViewController,
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
-              private popupService: PopupService) {}
+              private popupService: PopupService) {
+
+  }
+
+  ngOnInit() {
+    this.getComment();
+  }
 
   ionViewWillLeave() {
     this.nativePageTransitions.flip({})
@@ -44,15 +51,33 @@ export class CommentPopups implements OnDestroy, AfterViewInit {
   }
 
   ok() {
-    // this.popupService.addTrackingComment(this.navParams.data.package_id, this.comment).subscribe();
-    // Todo: after get api
+    this.data = {
+        sessionId: '9017a521969df545c9e35c391ec89d72',
+        packageId: this.navParams.data.package_id,
+        comment: this.comment
+    };
+    this.popupService.addTrackingComment('addTrackingComment', this.data).subscribe(data => {
+      console.log(data);
+      this.close(true);
+    });
 
-    this.close(true);
   }
 
   close(data?: boolean) {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss(data);
+  }
+
+  getComment() {
+    this.data = {
+      sessionId: '9017a521969df545c9e35c391ec89d72',
+      packageId: this.navParams.data.package_id,
+      comment: this.comment
+    };
+    this.popupService.getTrackingComment('getTrackingComment', this.data).subscribe(data => {
+      this.comment = data.message.comment;
+      console.log(data);
+    })
   }
 
   ngOnDestroy() {}

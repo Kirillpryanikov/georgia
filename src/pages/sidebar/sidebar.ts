@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import {
   ArrivedService, AwaitingTrackingService, PendingService, ReceivedService,
@@ -20,11 +20,11 @@ import { NavController } from "ionic-angular";
 })
 export class SidebarPage implements OnInit, OnDestroy{
   notifications: ISidebarNotification = {
-    awaitingPackages: 13,
-    usaWarehouse: 8,
-    pending: 6,
-    arrived: 5,
-    received: 9
+    awaitingPackages: 0,
+    usaWarehouse: 0,
+    pending: 0,
+    arrived: 0,
+    received: 0
   };
 
   sessionId: string;
@@ -38,7 +38,7 @@ export class SidebarPage implements OnInit, OnDestroy{
               private pendingSevice: PendingService) {}
 
   ngOnInit() {
-    // this.getAwaiting();
+    this.getAwaiting();
     // this.getReceived();
     // this.getUsaWarehouse();
     // this.getArrived();
@@ -72,9 +72,9 @@ export class SidebarPage implements OnInit, OnDestroy{
   }
 
   getAwaiting() {
-    this.awaitingTrackingService.getAwaiting(this.sessionId).subscribe(data => {
-      this.notifications.awaitingPackages = data.length();
-    })
+    this.awaitingTrackingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
+      this.notifications.awaitingPackages = data.message.awaiting.length;
+    });
   }
 
   getUsaWarehouse() {

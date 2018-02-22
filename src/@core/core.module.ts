@@ -6,7 +6,8 @@ import {
   AuthorizationService, RegistrationService, AwaitingTrackingService, HeaderService, UsaWarehouseService,
   PendingService, ArrivedService, ReceivedService, PopupService, SettingService
 } from '@core/services';
-import {DeclarationService} from "@core/services/declaration";
+import { DeclarationService } from "@core/services/declaration";
+import { NgxSoapModule } from "ngx-soap";
 
 const CORE_PROVIDERS = [
   AuthorizationService,
@@ -23,7 +24,7 @@ const CORE_PROVIDERS = [
   FileReader,
   SettingService
 ];
-const MODULES = [ ScriptDataModule ];
+const MODULES = [ ScriptDataModule, NgxSoapModule ];
 
 @NgModule({
   imports: [

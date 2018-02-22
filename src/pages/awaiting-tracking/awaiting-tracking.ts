@@ -1,13 +1,12 @@
-import {Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
 import { AwaitingTrackingService } from '@core/services/awaiting-tracking';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { PopupService } from '@core/services/popup';
-import { Observable } from "rxjs/Observable";
-import { CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
-import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
+import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
+import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -32,12 +31,11 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy {
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
-  private seqAwaitingTracking: Observable<any>;
-
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
   private trackingForm: FormGroup;
   private listAwaitingTracking;
+  private data;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -48,36 +46,40 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
               private popupService: PopupService) {}
 
   ngOnInit() {
-    this.listAwaitingTracking = this.awaitingService.getAwaitingTracking();
-    /**
-     * Request. Get awaiting tracking
-     */
-    // this.seqAwaitingTracking = this.awaitingService.getAwaiting('session')
+    this.getAwaiting();
     this.createFormAddTracking();
   }
 
-  // ionViewDidLoad() {
-  //   this.arrRiskFree = this.u2ginfo.nativeElement.querySelectorAll('.risk-free-shipping_js input');
-  //   this.arrDownPackage = this.u2ginfo.nativeElement.querySelectorAll('.cut-down-package_js');
-  // }
-
   showWarningPopup(index, checkbox) {
-    if(this.listAwaitingTracking[index][checkbox] === 1) {
-      this.listAwaitingTracking[index][checkbox] = 0;
+    if(this.listAwaitingTracking[index][checkbox] === '1') {
+      this.listAwaitingTracking[index][checkbox] = '0';
+      this.data = {
+        sessionId: '9017a521969df545c9e35c391ec89d72',
+        packageId: parseInt(this.listAwaitingTracking[index].package_id),
+        key: checkbox.toUpperCase(),
+        value: this.listAwaitingTracking[index][checkbox]
+      };
+      this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+        console.log(data);
+      });
       return false;
     }
-    // this.scriptService.checkboxSelect(this.arrRiskFree[index]);
     const modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
-        this.listAwaitingTracking[index][checkbox] = 1;
+        this.listAwaitingTracking[index][checkbox] = '1';
+        this.data = {
+          sessionId: '9017a521969df545c9e35c391ec89d72',
+          packageId: this.listAwaitingTracking[index].package_id,
+          key: checkbox.toUpperCase(),
+          value: this.listAwaitingTracking[index][checkbox]
+        };
+        this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+          console.log(data);
+        });
       } else {
-        this.listAwaitingTracking[index][checkbox] = 0;
+        this.listAwaitingTracking[index][checkbox] = '0';
       }
-      /**
-       * request. Change package
-       */
-      this.changePackageSetting(this.listAwaitingTracking[index].package_id, checkbox, this.listAwaitingTracking[index][checkbox]);
     });
     modal.present();
   }
@@ -88,36 +90,26 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
       if(!data) {
         return false;
       }
+      this.data = {
+        sessionId: '9017a521969df545c9e35c391ec89d72',
+        packageId: this.listAwaitingTracking[index].package_id
+      };
       this.listAwaitingTracking.splice(index,1);
-      /**
-       * Нужно раскоментировать когда будет апи
-       */
-      // this.awaitingService.removeTracking( $sessionId, this.listAwaitingTracking[index].package_id);
+      this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
+        console.log(data);
+      });
     });
     modal.present();
   }
 
   showCommentPopup(index) {
-    const modal = this.modalController.create(CommentPopups);
+    const modal = this.modalController.create(CommentPopups,{package_id: this.listAwaitingTracking[index].package_id});
     modal.present();
   }
 
   showInvoicePopup(index) {
     const modal = this.modalController.create(InvoicePopups);
     modal.present();
-  }
-
-  changePackageSetting($packageId: number, $key: string, $value: number) {
-    const params = {
-      $sessionId: '',
-      $packageId,
-      $key,
-      $value
-    };
-    /**
-     * Нужно раскоментировать когда будет апи
-     */
-    // this.popupService.changePackageSetting(params);
   }
 
   declaration(e) {
@@ -134,17 +126,22 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
     })
   }
 
+  getAwaiting() {
+    this.awaitingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
+      console.log(data.message.awaiting);
+      this.listAwaitingTracking = data.message.awaiting;
+    });
+  }
+
   addTracking() {
-    this.listAwaitingTracking.push({
-      package_id:7965800,
-      "tracking":this.trackingForm.value.trackingNumber,
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    })
+    this.data = {
+      sessionId: '9017a521969df545c9e35c391ec89d72',
+      tracking: this.trackingForm.value.trackingNumber
+    };
+    this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
+      console.log(data);
+    });
+    this.getAwaiting();
   }
 
   ngOnDestroy() {}

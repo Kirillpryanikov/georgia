@@ -3632,6 +3632,10 @@ ion-content, body.overflow {
     cursor: pointer;
     margin-right: 30px;
     position: relative; }
+    .u2g-header-profile__notifications > .u2g-header-profile__notifications{
+      padding: 0;
+      margin: 0;
+    }
     .u2g-header-profile__notifications:before {
       content: '';
       display: block;
