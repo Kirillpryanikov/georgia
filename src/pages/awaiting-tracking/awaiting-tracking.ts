@@ -112,9 +112,9 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
     modal.present();
   }
 
-  declaration(e) {
+  declaration(e, index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page');
+    this.navCtrl.push('declaration-page', {package_id: this.listAwaitingTracking[index].package_id});
   }
 
   createFormAddTracking() {

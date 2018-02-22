@@ -26,9 +26,11 @@ const notice = {
 })
 export class DeclarationPage {
 
-  productList = [];
+  productList;
   total: number = 0;
+  data;
   shiper: string;
+  temp;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,10 +41,7 @@ export class DeclarationPage {
 
   ionViewDidLoad() {
     this.mainService.readonly();
-    // this.declarationService.getDeclaration(this.navParams.data.package_id).subscribe(data => {
-    //   this.productList.push(data);
-    // });
-    // ToDo: after get API
+    this.getDeclaration();
   }
 
   addProduct() {
@@ -68,7 +67,31 @@ export class DeclarationPage {
   }
 
   declareTracking() {
-    this.modalController.create(SuccessPopups).present();
-    // this.declarationService.declareTracking(this.navParams.data.package_id, this.shiper, this.productList).subscribe();
+
+    this.data = {
+      sessionId: '9017a521969df545c9e35c391ec89d72',
+      packageId: this.navParams.data.package_id,
+      shipper: 'amazon.com',
+      declarationDetailsJson: JSON.stringify(this.productList)
+    };
+    console.log(this.data);
+    console.log(this.data);
+    this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
+      console.log(data);
+    });
+    // this.modalController.create(SuccessPopups).present();
+  }
+
+  getDeclaration() {
+    this.data = {
+      sessionId: '9017a521969df545c9e35c391ec89d72',
+      packageId: this.navParams.data.package_id
+    };
+    this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
+      if(data.message.declaration) {
+        this.productList = data.message.declaration.goods;
+        console.log(data);
+      }
+    });
   }
 }

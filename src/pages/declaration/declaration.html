@@ -28,15 +28,15 @@
                   <span>Shipper</span>
                 </div>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
-                  <input id="online-store" value="false" type="radio" name="shipper" checked>
+                  <input [(ngModel)]="temp" id="online-store" value="false" type="radio" name="shipper" checked>
                   <span>Online Store</span>
                 </label>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
-                  <input id="shipper-personal" value="true" type="radio" name="shipper">
+                  <input [(ngModel)]="temp" id="shipper-personal" value="true" type="radio" name="shipper">
                   <span>Personal</span>
                 </label>
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--input">
-                  <input id="store-url" type="text" placeholder="Add store URL without www">
+                  <input [(ngModel)]="shiper" [ngModelOptions]="{standalone: true}" id="store-url" type="text" placeholder="Add store URL without www">
                 </div>
               </div>
             </form>
