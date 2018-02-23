@@ -21,7 +21,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: 'header.html'
 })
 export class HeaderPage implements OnInit, OnDestroy{
-  private sessionId = '9017a521969df545c9e35c391ec89d72';
+  private sessionId = '707d235b00280e693eab0496acb2690d';
   private subscription: Subscription;
   private data;
   private user: IUserHeader = {
@@ -51,22 +51,20 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   getInfo() {
-    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+    this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
       this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;
       this.user.userBalance = data.message.profile.balance;
       this.lang = data.message.profile.panel_language;
-      console.log(data);
     })
   }
 
   getNotifications() {
-    this.subscription = this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
+    this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
       this.notification.unpaid_invoice = data.message.un_uploaded_invoices.count;
       this.notification.undeclared_tracking = data.message.undeclared_trackings.count;
       this.notification.notifications = parseInt(data.message.un_uploaded_invoices.count) + parseInt(data.message.undeclared_trackings.count);
-      console.log(data)
     })
   }
 
@@ -84,7 +82,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       language: language
     };
     this.subscription = this.headerService.changeLanguage('changeLanguage', this.data).subscribe(data => {
-      console.log(data);
+      this.subscription.unsubscribe();
       this.getInfo();
     })
   }
@@ -117,8 +115,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    if(this.subscription)
-      this.subscription.unsubscribe();
+
   }
 
 }

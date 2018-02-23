@@ -16,6 +16,7 @@ import { Subscription } from "rxjs/Subscription";
 export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
   @ViewChild('popup') popup : ElementRef;
 
+  private sessionId = '707d235b00280e693eab0496acb2690d';
   private comment: string = null;
   private data;
   private subscription: Subscription;
@@ -54,12 +55,11 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
 
   ok() {
     this.data = {
-        sessionId: '9017a521969df545c9e35c391ec89d72',
+        sessionId: this.sessionId,
         packageId: this.navParams.data.package_id,
         comment: this.comment
     };
     this.subscription = this.popupService.addTrackingComment('addTrackingComment', this.data).subscribe(data => {
-      console.log(data);
       this.close(true);
     });
 
@@ -72,13 +72,12 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
 
   getComment() {
     this.data = {
-      sessionId: '9017a521969df545c9e35c391ec89d72',
+      sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
       comment: this.comment
     };
     this.subscription = this.popupService.getTrackingComment('getTrackingComment', this.data).subscribe(data => {
       this.comment = data.message.comment;
-      console.log(data);
     })
   }
 

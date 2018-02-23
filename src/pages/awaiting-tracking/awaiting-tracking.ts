@@ -117,7 +117,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
 
   declaration(e, index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page', {package_id: this.listAwaitingTracking[index].package_id});
+    this.navCtrl.push('declaration-page', {package_id: this.listAwaitingTracking[index].package_id, tracking: this.listAwaitingTracking[index].tracking});
   }
 
   createFormAddTracking() {
@@ -132,7 +132,6 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   getAwaiting() {
     this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: this.sessionId}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
-      console.log(data);
     });
   }
 

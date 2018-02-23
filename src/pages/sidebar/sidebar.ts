@@ -7,6 +7,7 @@ import {
 
 import { ISidebarNotification }  from "@IFolder/ISidebarNotification";
 import { NavController } from "ionic-angular";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -19,6 +20,8 @@ import { NavController } from "ionic-angular";
   templateUrl: 'sidebar.html'
 })
 export class SidebarPage implements OnInit, OnDestroy{
+  sessionId = '707d235b00280e693eab0496acb2690d';
+  private subscription: Subscription;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
     usaWarehouse: 0,
@@ -26,8 +29,6 @@ export class SidebarPage implements OnInit, OnDestroy{
     arrived: 0,
     received: 0
   };
-
-  sessionId: string;
 
   constructor(public mainService: ScriptMainService,
               private navCtrl: NavController,
@@ -68,7 +69,7 @@ export class SidebarPage implements OnInit, OnDestroy{
   }
 
   getInfo() {
-    this.headerService.getInfo('getInfo', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
       this.notifications.awaitingPackages = data.message.counts.awaiting;
       this.notifications.arrived = data.message.counts.arrived;
       this.notifications.pending = data.message.counts.pending;
@@ -78,6 +79,6 @@ export class SidebarPage implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-
+    this.subscription.unsubscribe();
   }
 }

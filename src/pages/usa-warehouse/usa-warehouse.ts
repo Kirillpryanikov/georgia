@@ -3,7 +3,7 @@ import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angula
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
-import {UsaWarehouseService} from "@core/services";
+import {AwaitingTrackingService, UsaWarehouseService} from "@core/services";
 import {Subscription} from "rxjs/Subscription";
 
 /**
@@ -33,11 +33,13 @@ export class UsaWarehousePage {
   private sessionId = '707d235b00280e693eab0496acb2690d';
   private listUsaWarehouse;
   private subscription: Subscription;
+  private data;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private modalController: ModalController,
-              private usaWarehouseService: UsaWarehouseService) {
+              private usaWarehouseService: UsaWarehouseService,
+              private awaitingService: AwaitingTrackingService) {
   }
 
   ionViewDidLoad() {
@@ -50,19 +52,35 @@ export class UsaWarehousePage {
   }
 
   showWarningPopup(index, checkbox) {
-    if(this.listUsaWarehouse[index][checkbox] === 1) {
-      this.listUsaWarehouse[index][checkbox] = 0;
-      // this.usaWarehouseService.changePackageSetting(package_id: this.listUsaWarehouse[index].package_id, key: checkbox, value: this.listUsaWarehouse[index][checkbox]).subscribe();
-      // ToDo: create after get API
+    if(this.listUsaWarehouse[index][checkbox] === '1') {
+      this.listUsaWarehouse[index][checkbox] = '0';
+      this.data = {
+        sessionId: this.sessionId,
+        packageId: parseInt(this.listUsaWarehouse[index].package_id),
+        key: checkbox.toUpperCase(),
+        value: this.listUsaWarehouse[index][checkbox]
+      };
+      this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      });
       return false;
     }
     const modal = this.modalController.create(WarningPopups,
       {notice: notice[checkbox], package_id: this.listUsaWarehouse[index].package_id, key: checkbox, value: this.listUsaWarehouse[index][checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
-        this.listUsaWarehouse[index][checkbox] = 1;
+        this.listUsaWarehouse[index][checkbox] = '1';
+        this.data = {
+          sessionId: this.sessionId,
+          packageId: this.listUsaWarehouse[index].package_id,
+          key: checkbox.toUpperCase(),
+          value: this.listUsaWarehouse[index][checkbox]
+        };
+        this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+          this.subscription.unsubscribe();
+        });
       } else {
-        this.listUsaWarehouse[index][checkbox] = 0;
+        this.listUsaWarehouse[index][checkbox] = '0';
       }
     });
     modal.present();
@@ -81,7 +99,6 @@ export class UsaWarehousePage {
   getWarehouse() {
     this.subscription = this.usaWarehouseService.getUsaWarehouse('getUsaWarehouse', {sessionId: this.sessionId}).subscribe(data => {
       this.listUsaWarehouse = data.message.usa_warehouse;
-      console.log(data.message)
     });
   }
 

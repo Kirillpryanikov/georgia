@@ -27,6 +27,7 @@ const notice = {
 export class DeclarationPage {
 
   productList = [];
+  sessionId = '707d235b00280e693eab0496acb2690d';
   total: number = 0;
   data;
   shipper: string;
@@ -68,7 +69,7 @@ export class DeclarationPage {
 
   declareTracking() {
     this.data = {
-      sessionId: '9017a521969df545c9e35c391ec89d72',
+      sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
       shipper: this.shipper || "-2",
       declarationDetailsJson: JSON.stringify(this.productList)
@@ -82,7 +83,7 @@ export class DeclarationPage {
 
   getDeclaration() {
     this.data = {
-      sessionId: '9017a521969df545c9e35c391ec89d72',
+      sessionId: this.sessionId,
       packageId: this.navParams.data.package_id
     };
     this.subscription = this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
