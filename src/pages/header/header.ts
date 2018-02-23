@@ -8,6 +8,7 @@ import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
 import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
 import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -20,18 +21,21 @@ import {AddressPopups} from "@shared/popups/address-popup-component/address-popu
   templateUrl: 'header.html'
 })
 export class HeaderPage implements OnInit, OnDestroy{
+  private sessionId = '9017a521969df545c9e35c391ec89d72';
+  private subscription: Subscription;
+  private data;
   private user: IUserHeader = {
-    userId: '1',
+    userId: '',
     userPhoto: '/img/Grey-Mens-Hair-WE.png',
-    userName: 'Konstantin Dugladze',
-    email: 'dugladze@gmail.com',
-    userCode: 'U00100',
-    userBalance: '-1224.05 GEL'
+    userName: '',
+    email: '',
+    userCode: '',
+    userBalance: ''
   };
   private notification: INotification = {
-    notifications: 18,
-    unpaid_invoice: 23,
-    undeclared_tracking: 104
+    notifications: 0,
+    unpaid_invoice: 0,
+    undeclared_tracking: 0
   };
   private lang: string;
 
@@ -42,26 +46,27 @@ export class HeaderPage implements OnInit, OnDestroy{
               private modalController: ModalController) {}
 
   ngOnInit() {
-    // this.getInfo();
-    // this.getNotification();
-    // Todo run this functions after create API
+    this.getInfo();
+    this.getNotifications();
   }
 
   getInfo() {
-    this.headerService.getInfo().subscribe(data => {
-      this.user = data;
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
+      this.user.email = data.message.profile.email;
+      this.user.userCode = data.message.profile.suite;
+      this.user.userBalance = data.message.profile.balance;
+      this.lang = data.message.profile.panel_language;
+      console.log(data);
     })
   }
 
-  getNotification() {
-    this.headerService.getNotification().subscribe(data => {
-      this.notification = data;
-    })
-  }
-
-  loadLanguagePack() {
-    this.headerService.loadLanguagePack().subscribe(data => {
-      this.lang = data
+  getNotifications() {
+    this.subscription = this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
+      this.notification.unpaid_invoice = data.message.un_uploaded_invoices.count;
+      this.notification.undeclared_tracking = data.message.undeclared_trackings.count;
+      this.notification.notifications = parseInt(data.message.un_uploaded_invoices.count) + parseInt(data.message.undeclared_trackings.count);
+      console.log(data)
     })
   }
 
@@ -74,12 +79,24 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.mainService.hideDropdown();
     this.lang = language;
     this.translate.use(language);
-    // this.loadLanguagePack();
+    this.data = {
+      sessionId: this.sessionId,
+      language: language
+    };
+    this.subscription = this.headerService.changeLanguage('changeLanguage', this.data).subscribe(data => {
+      console.log(data);
+      this.getInfo();
+    })
   }
 
   arrived(e) {
     e.preventDefault();
     this.navCtrl.setRoot('arrived-page');
+  }
+
+  awaiting(e) {
+    e.preventDefault();
+    this.navCtrl.setRoot('page-awaiting-tracking')
   }
 
   transaction(e) {
@@ -100,7 +117,8 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
 }

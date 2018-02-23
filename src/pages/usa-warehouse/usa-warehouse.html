@@ -28,7 +28,7 @@
                 </div>
                 <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                   <label (click)="showWarningPopup(index, 'insurance')" class="u2g-info-block__list-item u2g-info-block__list-item--label  risk-free-shipping_js">
-                    <input [ngModel]="warehouse.insurance" type="checkbox"><span>Risk free shipping</span>
+                    <input [ngModel]="-warehouse.insurance" type="checkbox"><span>Risk free shipping</span>
                   </label>
                 </div>
                 <div (click)="showCommentPopup(index)" class="u2g-info-block__comment">

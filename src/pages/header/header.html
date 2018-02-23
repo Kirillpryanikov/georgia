@@ -92,7 +92,7 @@
                 </svg>
             <div>You have <span>{{notification.unpaid_invoice}}</span> unpaid invoice(s)</div>
           </a>
-          <a class="u2g-notifications__item">
+          <a (click)="awaiting($event)" class="u2g-notifications__item">
             <svg x="0px" y="0px"
 	 viewBox="0 0 480 480" height="22px" width="22px" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <g>

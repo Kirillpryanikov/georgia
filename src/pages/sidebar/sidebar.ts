@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import {
-  ArrivedService, AwaitingTrackingService, PendingService, ReceivedService,
+  ArrivedService, AwaitingTrackingService, HeaderService, PendingService, ReceivedService,
   UsaWarehouseService
 } from "@core/services";
 
@@ -35,15 +35,11 @@ export class SidebarPage implements OnInit, OnDestroy{
               private usaWarehouseService: UsaWarehouseService,
               private receivedService: ReceivedService,
               private arrivedService: ArrivedService,
-              private pendingSevice: PendingService) {}
+              private pendingSevice: PendingService,
+              private headerService: HeaderService) {}
 
   ngOnInit() {
-    this.getAwaiting();
-    // this.getReceived();
-    // this.getUsaWarehouse();
-    // this.getArrived();
-    // this.getPending();
-    // Todo run this functions after create API
+    this.getInfo();
   }
 
   awaitingPackages(e) {
@@ -71,34 +67,14 @@ export class SidebarPage implements OnInit, OnDestroy{
     this.navCtrl.setRoot('received-page');
   }
 
-  getAwaiting() {
-    this.awaitingTrackingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
-      this.notifications.awaitingPackages = data.message.awaiting.length;
+  getInfo() {
+    this.headerService.getInfo('getInfo', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
+      this.notifications.awaitingPackages = data.message.counts.awaiting;
+      this.notifications.arrived = data.message.counts.arrived;
+      this.notifications.pending = data.message.counts.pending;
+      this.notifications.received = data.message.counts.received;
+      this.notifications.usaWarehouse = data.message.counts.usa_warehouse;
     });
-  }
-
-  getUsaWarehouse() {
-    this.usaWarehouseService.getUsaWarehouse().subscribe(data => {
-      this.notifications.usaWarehouse = data.length();
-    })
-  }
-
-  getReceived() {
-    this.receivedService.getReceived().subscribe(data => {
-      this.notifications.received = data.length();
-    })
-  }
-
-  getArrived() {
-    this.arrivedService.getArrived().subscribe(data => {
-      this.notifications.arrived = data.length();
-    })
-  }
-
-  getPending() {
-    this.pendingSevice.getPending().subscribe(data => {
-      this.notifications.pending = data.length();
-    })
   }
 
   ngOnDestroy() {

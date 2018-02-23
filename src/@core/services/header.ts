@@ -1,31 +1,63 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import environment from '@env/environment';
+
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
+import {Client, SOAPService} from "ngx-soap";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class HeaderService {
-  constructor(private http: HttpClient){}
+  private client: Client;
+  private getNotificationMessage = new Subject<any>();
+  private getInfoMessage = new Subject<any>();
+  private changeLanguageMessage = new Subject<any>();
+  constructor(private http: HttpClient,
+              private soap: SOAPService){}
 
-  getInfo(): Observable<any> {
-    return this.http.get(environment.CONST.URL + '/getInfo')
-      .catch((err) => {
-        return err;
-      })
+  getNotifications(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getNotificationMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getNotificationsResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getNotificationMessage.asObservable();
   }
 
-  getNotification(): Observable<any> {
-    return this.http.get(environment.CONST.URL + '/getNotification')
-      .catch((err) => {
-        return err;
-      })
+  getInfo(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getInfoMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getInfoResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getInfoMessage.asObservable();
   }
 
-  loadLanguagePack(): Observable<any> {
-    return this.http.get(environment.CONST.URL + '/loadLanguagePack')
-      .catch((err) => {
-        return err;
-      })
+  changeLanguage(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.changeLanguageMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.changeLanguageResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.changeLanguageMessage.asObservable();
   }
+
 }

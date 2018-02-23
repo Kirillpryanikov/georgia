@@ -4,6 +4,7 @@ import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popu
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {UsaWarehouseService} from "@core/services";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the UsaWarehousePage page.
@@ -29,49 +30,9 @@ const notice = {
   templateUrl: 'usa-warehouse.html',
 })
 export class UsaWarehousePage {
-  private params: any;
-  private listUsaWarehouse = [
-    {
-      package_id:7965800,
-      "tracking":"66677784534",
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    },
-    {
-      package_id:7965800,
-      "tracking":"689464654681",
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    },
-    {
-      package_id:7965800,
-      "tracking":"66677780049978",
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    },
-    {
-      package_id:7965800,
-      "tracking":"6667778001",
-      "client_comment":"My wife's shoes",
-      insurance: 1,
-      "global_repacking":"1",
-      cut_down: 0,
-      put_into_bag: 1,
-      "declared":1
-    }
-  ];
+  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private listUsaWarehouse;
+  private subscription: Subscription;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -80,10 +41,7 @@ export class UsaWarehousePage {
   }
 
   ionViewDidLoad() {
-    // this.usaWarehouseService.getUsaWarehouse().subscribe(data => {
-    //   this.listUsaWarehouse = data;
-    // })
-    // ToDo: create after get API
+   this.getWarehouse();
   }
 
   declaration(e, index) {
@@ -118,6 +76,13 @@ export class UsaWarehousePage {
   showInvoicePopup(index) {
     const modal = this.modalController.create(InvoicePopups);
     modal.present();
+  }
+
+  getWarehouse() {
+    this.subscription = this.usaWarehouseService.getUsaWarehouse('getUsaWarehouse', {sessionId: this.sessionId}).subscribe(data => {
+      this.listUsaWarehouse = data.message.usa_warehouse;
+      console.log(data.message)
+    });
   }
 
 }

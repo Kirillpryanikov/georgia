@@ -32,6 +32,7 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
+  private sessionId = '707d235b00280e693eab0496acb2690d';
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
   private trackingForm: FormGroup;
@@ -56,7 +57,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     if(this.listAwaitingTracking[index][checkbox] === '1') {
       this.listAwaitingTracking[index][checkbox] = '0';
       this.data = {
-        sessionId: '9017a521969df545c9e35c391ec89d72',
+        sessionId: this.sessionId,
         packageId: parseInt(this.listAwaitingTracking[index].package_id),
         key: checkbox.toUpperCase(),
         value: this.listAwaitingTracking[index][checkbox]
@@ -71,7 +72,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       if(data) {
         this.listAwaitingTracking[index][checkbox] = '1';
         this.data = {
-          sessionId: '9017a521969df545c9e35c391ec89d72',
+          sessionId: this.sessionId,
           packageId: this.listAwaitingTracking[index].package_id,
           key: checkbox.toUpperCase(),
           value: this.listAwaitingTracking[index][checkbox]
@@ -93,7 +94,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
         return false;
       }
       this.data = {
-        sessionId: '9017a521969df545c9e35c391ec89d72',
+        sessionId: this.sessionId,
         packageId: this.listAwaitingTracking[index].package_id
       };
       this.listAwaitingTracking.splice(index,1);
@@ -129,14 +130,15 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   getAwaiting() {
-    this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
+    this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: this.sessionId}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
+      console.log(data);
     });
   }
 
   addTracking() {
     this.data = {
-      sessionId: '9017a521969df545c9e35c391ec89d72',
+      sessionId: this.sessionId,
       tracking: this.trackingForm.value.trackingNumber
     };
     this.subscription = this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
