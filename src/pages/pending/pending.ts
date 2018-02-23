@@ -4,6 +4,8 @@ import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {AwaitingTrackingService, PendingService} from "@core/services";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the PendingPage page.
@@ -30,165 +32,97 @@ const notice = {
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  private listPending = [
-    {
-      bill: [
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        }
-      ]
-    },
-    {
-      bill: [
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },{
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },{
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        }
-      ]
-    },
-    {
-      bill: [
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        },
-        {
-          package_id:7965559,
-          "tracking":"6667778889",
-          "client_comment":"",
-          insurance: 0,
-          "global_repacking":"1",
-          cut_down: 0,
-          put_into_bag: 1,
-          "declared":1
-        }
-      ]
-    },
-  ];
+  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private listPending;
+  private data;
+  private branch = [];
+  private subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
-              private modalController: ModalController) {
+              private modalController: ModalController,
+              private pendingService: PendingService,
+              private awaitingService: AwaitingTrackingService) {
   }
 
   ionViewDidLoad() {
     this.initMasonry();
+    this.getPending();
   }
 
   initMasonry() {
     this.mainService.initMasonry();
   }
 
-  declaration(e) {
+  declaration(e, index, _index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page');
+    this.navCtrl.push('declaration-page', {package_id: this.listPending[index].trackings[_index].id, tracking: this.listPending[index].trackings[_index].tracking});
   }
 
-  showCommentPopup(index) {
-    const modal = this.modalController.create(CommentPopups);
+  showCommentPopup(index, _index) {
+    const modal = this.modalController.create(CommentPopups, {package_id: this.listPending[index].trackings[_index].id});
     modal.present();
   }
 
-  showInvoicePopup(index) {
+  showInvoicePopup(index, _index) {
+
     const modal = this.modalController.create(InvoicePopups);
     modal.present();
   }
 
   showWarningPopup(index, _index, checkbox) {
-    if(this.listPending[index].bill[_index][checkbox] === 1) {
-      this.listPending[index].bill[_index][checkbox] = 0;
+    if(this.listPending[index].trackings[_index][checkbox] === '1') {
+      this.listPending[index].trackings[_index][checkbox] = '0';
+      this.data = {
+        sessionId: this.sessionId,
+        packageId: this.listPending[index].trackings[_index].id,
+        key: checkbox.toUpperCase(),
+        value: this.listPending[index].trackings[_index][checkbox]
+      };
+      this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      });
       return false;
     }
-    // this.scriptService.checkboxSelect(this.arrRiskFree[index]);
     const modal = this.modalController.create(WarningPopups, {notice: notice[checkbox]});
     modal.onDidDismiss(data => {
       if(data) {
-        this.listPending[index].bill[_index][checkbox] = 1;
+        this.listPending[index].trackings[_index][checkbox] = '1';
+        this.data = {
+          sessionId: this.sessionId,
+          packageId: this.listPending[index].trackings[_index].id,
+          key: checkbox.toUpperCase(),
+          value: this.listPending[index].trackings[_index][checkbox]
+        };
+        this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+          this.subscription.unsubscribe();
+        });
       } else {
-        this.listPending[index].bill[_index][checkbox] = 0;
+        this.listPending[index].trackings[_index][checkbox] = '0';
       }
-      /**
-       * request. Change package
-       */
-      // this.changePackageSetting(this.listPending[index].bill[index].package_id, checkbox, this.listPending[index].bill[index][checkbox]);
     });
     modal.present();
   }
 
-  changePackageSetting($packageId: number, $key: string, $value: number) {
-    const params = {
-      $sessionId: '',
-      $packageId,
-      $key,
-      $value
+  getPending() {
+    this. subscription = this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
+      this.listPending = data.message.in_transit;
+      // for(let i = 0; i < this.listPending.length; i++){
+      //   this.branch[i] = 'Vaja-Pshavela'
+      // }
+      this.subscription.unsubscribe();
+    })
+  }
+
+  changeHawbBranch(hawb, index) {
+    this.data = {
+      sessionId: this.sessionId,
+      hawb: hawb,
+      branch: this.branch[index]
     };
+    this.subscription = this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe(data => {
+      this.subscription.unsubscribe();
+    })
   }
 
 }
