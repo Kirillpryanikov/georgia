@@ -30,7 +30,7 @@ const notice = {
   selector: 'page-awaiting-tracking',
   templateUrl: 'awaiting-tracking.html',
 })
-export class AwaitingTrackingPage implements OnInit{
+export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
@@ -131,7 +131,6 @@ export class AwaitingTrackingPage implements OnInit{
   getAwaiting() {
     this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
-      this.subscription.unsubscribe();
     });
   }
 
@@ -144,5 +143,9 @@ export class AwaitingTrackingPage implements OnInit{
       this.subscription.unsubscribe();
     });
     this.getAwaiting();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
