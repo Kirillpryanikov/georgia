@@ -28,15 +28,15 @@
                   <span>Shipper</span>
                 </div>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
-                  <input [(ngModel)]="temp" id="online-store" value="false" type="radio" name="shipper" checked>
+                  <input id="online-store" value="false" type="radio" name="shipper" checked>
                   <span>Online Store</span>
                 </label>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
-                  <input [(ngModel)]="temp" id="shipper-personal" value="true" type="radio" name="shipper">
+                  <input id="shipper-personal" value="true" type="radio" name="shipper">
                   <span>Personal</span>
                 </label>
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--input">
-                  <input [(ngModel)]="shiper" [ngModelOptions]="{standalone: true}" id="store-url" type="text" placeholder="Add store URL without www">
+                  <input [(ngModel)]="shipper" [ngModelOptions]="{standalone: true}" id="store-url" type="text" placeholder="Add store URL without www">
                 </div>
               </div>
             </form>
@@ -52,7 +52,7 @@
               </div>
               <form class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div *ngFor="let list of productList; index as index" class="u2g-info-block__product">
-                  <span class="u2g-info-block__product-name">{{list.code}}</span>
+                  <span class="u2g-info-block__product-name">{{list.description}}</span>
                   <span class="u2g-info-block__price">${{list.unit_price}}</span>
                   <button (click)="removeProduct(index)" class="u2g-info-block__remove" data-popup="remove-product">
                     <svg viewBox="0 0 512 512" width="16px" height="16px">

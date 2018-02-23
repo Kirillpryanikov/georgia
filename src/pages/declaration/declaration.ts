@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {AddProductPopups} from "@shared/popups/add-product-popup-component/add-product-popups";
-import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
-import {DeclarationService} from "@core/services";
-import {ScriptMainService} from "@core/script.data/script.main.service";
-import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import {Component, OnChanges, OnDestroy} from '@angular/core';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
+import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
+import { DeclarationService } from "@core/services";
+import { ScriptMainService } from "@core/script.data/script.main.service";
+import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -14,7 +15,6 @@ import {SuccessPopups} from "@shared/popups/success-popup-component/success-popu
  */
 const notice = {
   rm: 'Please confirm you would like to remove the product',
-
 };
 
 @IonicPage({
@@ -26,11 +26,11 @@ const notice = {
 })
 export class DeclarationPage {
 
-  productList;
+  productList = [];
   total: number = 0;
   data;
-  shiper: string;
-  temp;
+  shipper: string;
+  subscription: Subscription;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -67,19 +67,17 @@ export class DeclarationPage {
   }
 
   declareTracking() {
-
     this.data = {
       sessionId: '9017a521969df545c9e35c391ec89d72',
       packageId: this.navParams.data.package_id,
-      shipper: 'amazon.com',
+      shipper: this.shipper || "-2",
       declarationDetailsJson: JSON.stringify(this.productList)
     };
-    console.log(this.data);
-    console.log(this.data);
-    this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
-      console.log(data);
+    this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
+      if(data.message.status === "OK")
+        this.modalController.create(SuccessPopups).present();
+      this.subscription.unsubscribe();
     });
-    // this.modalController.create(SuccessPopups).present();
   }
 
   getDeclaration() {
@@ -87,11 +85,14 @@ export class DeclarationPage {
       sessionId: '9017a521969df545c9e35c391ec89d72',
       packageId: this.navParams.data.package_id
     };
-    this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
+    this.subscription = this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
       if(data.message.declaration) {
         this.productList = data.message.declaration.goods;
-        console.log(data);
+        for(let i = 0; i < this.productList.length; i++) {
+          this.total+=parseFloat(this.productList[i].unit_price);
+        }
       }
+      this.subscription.unsubscribe();
     });
   }
 }

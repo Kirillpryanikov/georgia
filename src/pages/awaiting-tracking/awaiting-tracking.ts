@@ -7,6 +7,7 @@ import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { PopupService } from '@core/services/popup';
 import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -29,13 +30,14 @@ const notice = {
   selector: 'page-awaiting-tracking',
   templateUrl: 'awaiting-tracking.html',
 })
-export class AwaitingTrackingPage implements OnInit, OnDestroy {
+export class AwaitingTrackingPage implements OnInit{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
   private trackingForm: FormGroup;
   private listAwaitingTracking;
   private data;
+  private subscription: Subscription;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -59,8 +61,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
         key: checkbox.toUpperCase(),
         value: this.listAwaitingTracking[index][checkbox]
       };
-      this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
-        console.log(data);
+      this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
       });
       return false;
     }
@@ -74,8 +76,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
           key: checkbox.toUpperCase(),
           value: this.listAwaitingTracking[index][checkbox]
         };
-        this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
-          console.log(data);
+        this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+          this.subscription.unsubscribe();
         });
       } else {
         this.listAwaitingTracking[index][checkbox] = '0';
@@ -95,8 +97,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
         packageId: this.listAwaitingTracking[index].package_id
       };
       this.listAwaitingTracking.splice(index,1);
-      this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
-        console.log(data);
+      this.subscription = this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
       });
     });
     modal.present();
@@ -127,9 +129,9 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
   }
 
   getAwaiting() {
-    this.awaitingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
-      console.log(data.message.awaiting);
+    this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: '9017a521969df545c9e35c391ec89d72'}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
+      this.subscription.unsubscribe();
     });
   }
 
@@ -138,11 +140,9 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy {
       sessionId: '9017a521969df545c9e35c391ec89d72',
       tracking: this.trackingForm.value.trackingNumber
     };
-    this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
-      console.log(data);
+    this.subscription = this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
+      this.subscription.unsubscribe();
     });
     this.getAwaiting();
   }
-
-  ngOnDestroy() {}
 }

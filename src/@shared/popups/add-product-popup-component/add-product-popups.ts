@@ -19,7 +19,9 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
   productForm: FormGroup;
   product = {
     code:'',
-    unit_price: 0
+    description: '',
+    unit_price: 0,
+    unit_count: 0
   };
 
   constructor(private renderer: Renderer2,
@@ -61,8 +63,74 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   addProduct() {
+    switch (this.productForm.value.code) {
+      case '9603':
+        this.product.description = 'Other consumer products';
+        break;
+      case '8708':
+        this.product.description = 'Auto Parts';
+        break;
+      case "71171999000":
+        this.product.description = 'Bijouterie, jewellery';
+        break;
+      case "9405":
+        this.product.description = 'Lighting, chandeliers, headlights, lighting equipments';
+        break;
+      case "8205":
+        this.product.description = 'Tools';
+        break;
+      case "8471":
+        this.product.description = 'Computers, laptops, computer parts';
+        break;
+      case "3004":
+        this.product.description = 'Medicine';
+        break;
+      case "7013":
+        this.product.description = 'Glass products';
+        break;
+      case "9207":
+        this.product.description = 'Music instruments &amp; parts';
+        break;
+      case "0602":
+        this.product.description = 'Plants';
+        break;
+      case "4901":
+        this.product.description = 'Printing products, books, brochures';
+        break;
+      case "8525":
+        this.product.description = 'Photo &amp; Video Equipment';
+        break;
+      case "3304":
+        this.product.description = 'Perfumery &amp; Cosmetics';
+        break;
+      case "9102":
+        this.product.description = 'Watches';
+        break;
+      case "9504":
+        this.product.description = 'Toys and Sport Equipment';
+        break;
+      case "2106":
+        this.product.description = 'Supplements';
+        break;
+      case "6204":
+        this.product.description = 'Clothing';
+        break;
+      case "8517":
+        this.product.description = 'Phone, network equipment';
+        break;
+      case "6403":
+        this.product.description = 'Footwear';
+        break;
+      case "4202":
+        this.product.description = 'Bags';
+        break;
+      case "8543":
+        this.product.description = 'Different electronic and consumer products';
+        break;
+    }
     this.product.code = this.productForm.value.code;
     this.product.unit_price = parseFloat(this.productForm.value.unit_price);
+    this.product.unit_count++;
     this.scriptService.closePopup();
     this.viewCtrl.dismiss(this.product);
   }

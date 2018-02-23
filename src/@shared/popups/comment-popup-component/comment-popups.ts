@@ -5,7 +5,8 @@ import {
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {PopupService} from "@core/services";
+import { PopupService } from "@core/services";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'comment-popup',
@@ -17,6 +18,7 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
 
   private comment: string = null;
   private data;
+  private subscription: Subscription;
 
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -56,7 +58,7 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
         packageId: this.navParams.data.package_id,
         comment: this.comment
     };
-    this.popupService.addTrackingComment('addTrackingComment', this.data).subscribe(data => {
+    this.subscription = this.popupService.addTrackingComment('addTrackingComment', this.data).subscribe(data => {
       console.log(data);
       this.close(true);
     });
@@ -74,11 +76,14 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
       packageId: this.navParams.data.package_id,
       comment: this.comment
     };
-    this.popupService.getTrackingComment('getTrackingComment', this.data).subscribe(data => {
+    this.subscription = this.popupService.getTrackingComment('getTrackingComment', this.data).subscribe(data => {
       this.comment = data.message.comment;
       console.log(data);
     })
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
 }
