@@ -32,7 +32,7 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
-  private sessionId = '9017a521969df545c9e35c391ec89d72';
+  private sessionId = '707d235b00280e693eab0496acb2690d';
   private arrRiskFree: ElementRef[];
   private arrDownPackage: ElementRef[];
   private trackingForm: FormGroup;
