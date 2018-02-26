@@ -16,7 +16,7 @@ export class DeclarationService {
   }
 
   getDeclaration(remote_function, data): Observable<any> {
-    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -31,7 +31,7 @@ export class DeclarationService {
   }
 
   declareTracking(remote_function, data) {
-    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {

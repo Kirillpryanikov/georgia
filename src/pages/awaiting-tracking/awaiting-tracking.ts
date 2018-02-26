@@ -130,7 +130,6 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   getAwaiting() {
-    console.log(this.sessionId)
     this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: this.sessionId}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
     });
