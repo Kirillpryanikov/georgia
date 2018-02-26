@@ -5,6 +5,7 @@ import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popu
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {AwaitingTrackingService, UsaWarehouseService} from "@core/services";
 import {Subscription} from "rxjs/Subscription";
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 /**
  * Generated class for the UsaWarehousePage page.
@@ -39,11 +40,17 @@ export class UsaWarehousePage {
               public navParams: NavParams,
               private modalController: ModalController,
               private usaWarehouseService: UsaWarehouseService,
-              private awaitingService: AwaitingTrackingService) {
+              private awaitingService: AwaitingTrackingService,
+              private mainService: ScriptMainService) {
   }
 
   ionViewDidLoad() {
-   this.getWarehouse();
+    this.initMasonry();
+    this.getWarehouse();
+  }
+
+  initMasonry() {
+    this.mainService.initMasonry();
   }
 
   declaration(e, index) {

@@ -8,6 +8,7 @@ import { PopupService } from '@core/services/popup';
 import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
 import {Subscription} from "rxjs/Subscription";
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -46,11 +47,17 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private modalController: ModalController,
               private awaitingService: AwaitingTrackingService,
               private scriptService: ScriptService,
-              private popupService: PopupService) {}
+              private popupService: PopupService,
+              private mainService: ScriptMainService) {}
 
   ngOnInit() {
     this.getAwaiting();
     this.createFormAddTracking();
+    this.initMasonry();
+  }
+
+  initMasonry() {
+    this.mainService.initMasonry();
   }
 
   showWarningPopup(index, checkbox) {

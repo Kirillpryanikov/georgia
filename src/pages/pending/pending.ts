@@ -46,7 +46,6 @@ export class PendingPage {
   }
 
   ionViewDidLoad() {
-    this.initMasonry();
     this.getPending();
   }
 
@@ -105,12 +104,12 @@ export class PendingPage {
   }
 
   getPending() {
-    this. subscription = this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
+    this.subscription = this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
       this.listPending = data.message.in_transit;
-      // for(let i = 0; i < this.listPending.length; i++){
-      //   this.branch[i] = 'Vaja-Pshavela'
-      // }
       this.subscription.unsubscribe();
+      setTimeout(() => {
+        this.initMasonry();
+      })
     })
   }
 

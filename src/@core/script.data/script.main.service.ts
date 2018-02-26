@@ -64,6 +64,7 @@ export class ScriptMainService {
   }
 
   initMasonry() {
+    console.log('masonry');
     jQueryBridget( 'masonry', Masonry, $ );
     $('.u2g-content--masonry').masonry({
       itemSelector: '.u2g-info-block',
