@@ -45,12 +45,7 @@ export class UsaWarehousePage {
   }
 
   ionViewDidLoad() {
-    this.initMasonry();
     this.getWarehouse();
-  }
-
-  initMasonry() {
-    this.mainService.initMasonry();
   }
 
   declaration(e, index) {
@@ -60,6 +55,8 @@ export class UsaWarehousePage {
 
   showWarningPopup(index, checkbox) {
     if(this.listUsaWarehouse[index][checkbox] === '1') {
+      if(checkbox === 'insurance')
+        return false;
       this.listUsaWarehouse[index][checkbox] = '0';
       this.data = {
         sessionId: this.sessionId,

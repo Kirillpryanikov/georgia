@@ -31,29 +31,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>22-Nov-17</td>
-                  <td><a href="">5054812</a></td>
+                <tr *ngFor="let transaction of listTransaction">
+                  <td>{{transaction.date}}</td>
+                  <td><a href="">{{transaction.invoice}}</a></td>
                   <td></td>
-                  <td>-3.97</td>
-                  <td>13.97</td>
-                  <td class="u2g-transactions__text u2g-transactions__text--red"><span>Pay Now</span></td>
-                </tr>
-                <tr>
-                  <td>22-Nov-17</td>
-                  <td><a href="">5054812</a></td>
-                  <td></td>
-                  <td>-3.97</td>
-                  <td>13.97</td>
-                  <td class="u2g-transactions__text u2g-transactions__text--red"><span>Pay Now</span></td>
-                </tr>
-                <tr>
-                  <td>22-Nov-17</td>
-                  <td><a href="">5054812</a></td>
-                  <td></td>
-                  <td>-3.97</td>
-                  <td>13.97</td>
-                  <td class="u2g-transactions__text"><span>Adjustment</span></td>
+                  <td>{{transaction.net}}</td>
+                  <td>{{transaction.balance}}</td>
+                  <td *ngIf="transaction.type_value !== 'Adjustment'" class="u2g-transactions__text u2g-transactions__text--red"><span>{{transaction.type_value}}</span></td>
+                  <td *ngIf="transaction.type_value === 'Adjustment'" class="u2g-transactions__text"><span>{{transaction.type_value}}</span></td>
                 </tr>
                 </tbody>
               </table>

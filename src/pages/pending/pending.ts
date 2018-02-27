@@ -5,7 +5,8 @@ import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popu
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {AwaitingTrackingService, PendingService} from "@core/services";
-import {Subscription} from "rxjs/Subscription";
+import {Subject} from "rxjs/Subject";
+import {debounceTime} from 'rxjs/operators';
 
 /**
  * Generated class for the PendingPage page.
@@ -36,7 +37,7 @@ export class PendingPage {
   private listPending;
   private data;
   private branch = [];
-  private subscription: Subscription;
+  private subject = new Subject<any>();
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
@@ -46,7 +47,9 @@ export class PendingPage {
   }
 
   ionViewDidLoad() {
-    this.getPending();
+    this.getPending().pipe(debounceTime(0)).subscribe(() => {
+      this.initMasonry();
+    });
   }
 
   initMasonry() {
@@ -71,6 +74,8 @@ export class PendingPage {
 
   showWarningPopup(index, _index, checkbox) {
     if(this.listPending[index].trackings[_index][checkbox] === '1') {
+      if(checkbox === 'insurance')
+        return false;
       this.listPending[index].trackings[_index][checkbox] = '0';
       this.data = {
         sessionId: this.sessionId,
@@ -78,8 +83,8 @@ export class PendingPage {
         key: checkbox.toUpperCase(),
         value: this.listPending[index].trackings[_index][checkbox]
       };
-      this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
-        this.subscription.unsubscribe();
+      this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
+
       });
       return false;
     }
@@ -93,8 +98,8 @@ export class PendingPage {
           key: checkbox.toUpperCase(),
           value: this.listPending[index].trackings[_index][checkbox]
         };
-        this.subscription = this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(data => {
-          this.subscription.unsubscribe();
+        this.awaitingService.changePackageSetting('changePackageSetting', this.data).subscribe(() => {
+
         });
       } else {
         this.listPending[index].trackings[_index][checkbox] = '0';
@@ -104,13 +109,12 @@ export class PendingPage {
   }
 
   getPending() {
-    this.subscription = this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
+    this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
+      console.log(data.message);
       this.listPending = data.message.in_transit;
-      this.subscription.unsubscribe();
-      setTimeout(() => {
-        this.initMasonry();
-      })
-    })
+      this.subject.next();
+    });
+    return this.subject.asObservable();
   }
 
   changeHawbBranch(hawb, index) {
@@ -119,8 +123,8 @@ export class PendingPage {
       hawb: hawb,
       branch: this.branch[index]
     };
-    this.subscription = this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe(data => {
-      this.subscription.unsubscribe();
+    this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe((data) => {
+      console.log(data);
     })
   }
 

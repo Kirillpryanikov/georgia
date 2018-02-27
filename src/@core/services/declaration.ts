@@ -10,6 +10,7 @@ export class DeclarationService {
   private client: Client;
   private getDeclarationMessage = new Subject<any>();
   private declareTrackingMessage = new Subject<any>();
+  private getShippersMessage = new Subject<any>();
   constructor(private http: HttpClient,
               private soap: SOAPService){
 
@@ -43,5 +44,20 @@ export class DeclarationService {
       });
     });
     return this.declareTrackingMessage.asObservable();
+  }
+
+  getShippers(remote_function, data) {
+    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getShippersMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getShippersResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getShippersMessage.asObservable();
   }
 }

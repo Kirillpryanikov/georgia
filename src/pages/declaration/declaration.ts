@@ -1,11 +1,12 @@
-import {Component, OnChanges, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnChanges} from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
 import { DeclarationService } from "@core/services";
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
-import {Subscription} from "rxjs/Subscription";
+import { Subscription } from "rxjs/Subscription";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -24,25 +25,36 @@ const notice = {
   selector: 'page-declaration',
   templateUrl: 'declaration.html',
 })
-export class DeclarationPage {
+export class DeclarationPage implements OnInit, OnChanges{
 
   productList = [];
   sessionId = '707d235b00280e693eab0496acb2690d';
   total: number = 0;
   data;
-  shipper: string;
+  form: FormGroup;
   subscription: Subscription;
+  shipperList;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private modalController: ModalController,
               private declarationService: DeclarationService,
-              private mainService: ScriptMainService) {
+              private mainService: ScriptMainService,
+              private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.createForm();
+  }
+
+  ngOnChanges(event) {
+    console.log('Event ', event);
   }
 
   ionViewDidLoad() {
     this.mainService.readonly();
     this.getDeclaration();
+    this.getshipers();
   }
 
   addProduct() {
@@ -68,16 +80,29 @@ export class DeclarationPage {
   }
 
   declareTracking() {
+    console.log('this.form.value::',this.form.value);
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
-      shipper: this.shipper || "-2",
+      shipper: this.form.value.code,
       declarationDetailsJson: JSON.stringify(this.productList)
     };
+    console.log(this.data);
     this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
       if(data.message.status === "OK")
         this.modalController.create(SuccessPopups).present();
       this.subscription.unsubscribe();
+    });
+  }
+
+  autocomplete(e) {
+    console.log(e)
+    this.mainService.autocomplete(this.shipperList);
+  }
+
+  getshipers() {
+    this.declarationService.getShippers('getShippers', {sessionId: this.sessionId}).subscribe(data => {
+      this.shipperList = Object.keys(data.message.data).map(key => data.message.data[key]);
     });
   }
 
@@ -94,6 +119,14 @@ export class DeclarationPage {
         }
       }
       this.subscription.unsubscribe();
+    });
+  }
+
+  createForm() {
+    this.form = this.fb.group({
+      code: ['', Validators.compose([
+        Validators.required
+      ])]
     });
   }
 }

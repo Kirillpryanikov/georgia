@@ -18,7 +18,7 @@
 
             <!--CHOICE SHIPPER-->
 
-            <form id="shipper" class="u2g-info-block u2g-info-block--declaration">
+            <form [formGroup]="form" id="shipper" class="u2g-info-block u2g-info-block--declaration">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">Tracking code:</span>
                 <span class="u2g-info-block__tracking-number-value">{{navParams.data.tracking}}</span>
@@ -36,7 +36,7 @@
                   <span>Personal</span>
                 </label>
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--input">
-                  <input [(ngModel)]="shipper" [ngModelOptions]="{standalone: true}" id="store-url" type="text" placeholder="Add store URL without www">
+                  <input formControlName="code" [(ngModel)]="form['code']" (keypress)="autocomplete($event)" id="store-url" type="text" placeholder="Add store URL without www">
                 </div>
               </div>
             </form>
@@ -69,7 +69,7 @@
                 </div>
               </form>
             </div>
-            <button (click)="declareTracking()" class="u2g-button u2g-submit-shipper">Save</button>
+            <button [disabled]="form.invalid" (click)="declareTracking()" class="u2g-button u2g-submit-shipper">Save</button>
           </div>
         </div>
       </div>

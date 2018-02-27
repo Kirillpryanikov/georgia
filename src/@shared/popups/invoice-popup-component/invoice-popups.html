@@ -16,7 +16,7 @@
           </div>
           <div class="u2g-invoice__button-wrapper">
             <label class="u2g-button u2g-button--green u2g-invoice__button">
-              <input type="file" name="file" class="invoice-input_js">
+              <input (change)="addFile($event)" type="file" name="file" class="invoice-input_js">
               <svg viewBox="0 0 47 43">
                 <defs>
                   <style>
@@ -39,7 +39,7 @@
             </label>
           </div>
           <div class="u2g-popup__buttons">
-            <button (click)="ok()" class="u2g-button  u2g-popup__bottom-button">Upload</button>
+            <button [disabled]="!file" (click)="upload()" class="u2g-button  u2g-popup__bottom-button">Upload</button>
           </div>
         </form>
       </div>

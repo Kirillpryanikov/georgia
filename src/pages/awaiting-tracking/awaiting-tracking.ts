@@ -62,6 +62,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
 
   showWarningPopup(index, checkbox) {
     if(this.listAwaitingTracking[index][checkbox] === '1') {
+      if(checkbox === 'insurance')
+        return false;
       this.listAwaitingTracking[index][checkbox] = '0';
       this.data = {
         sessionId: this.sessionId,

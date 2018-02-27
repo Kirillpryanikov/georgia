@@ -1,13 +1,11 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {ReceivedService} from "@core/services";
-
-import 'rxjs/operator/toPromise';
-import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
-import {Subscription} from "rxjs/Subscription";
+import {Subject} from "rxjs/Subject";
+import {debounceTime} from 'rxjs/operators';
 
 /**
  * Generated class for the ReceivedPage page.
@@ -26,7 +24,7 @@ import {Subscription} from "rxjs/Subscription";
 export class ReceivedPage {
   private sessionId = '707d235b00280e693eab0496acb2690d';
   private listReceived = [];
-  private subscription: Subscription;
+  private subject = new Subject<any>();
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
@@ -35,11 +33,9 @@ export class ReceivedPage {
   }
 
   ionViewWillEnter() {
-    // this.getReceived().then((data) => {
-    //   console.log(data);
-    //   this.listReceived = data.message.received;
-    //   this.initMasonry();
-    // });
+    this.getReceived().pipe(debounceTime(0)).subscribe(() => {
+      this.initMasonry();
+    })
   }
 
   initMasonry() {
@@ -56,12 +52,12 @@ export class ReceivedPage {
     modal.present();
   }
 
-  getReceived(){
-    return new Promise((resolve) => {
-      this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
-        resolve(data);
-      });
+  getReceived(): Observable<any> {
+    this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
+      this.listReceived = data.message.received;
+      this.subject.next();
     });
+    return this.subject.asObservable();
   }
 }
 

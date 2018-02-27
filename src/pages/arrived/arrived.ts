@@ -93,7 +93,9 @@ export class ArrivedPage {
       const keys = Object.keys(data.message.arrived);
 
       const tmp1_2 = keys.filter(key => !key.match('PREPARING')).map(key => data.message.arrived[key]);
+
       const tmp2 = tmp1_2.map(val => Object.keys(val).map(key => val[key]));
+
       this.listArrived = [].concat(...tmp2);
 
       this.ListCities = keys.filter(key => key.match('PREPARING_')).reduce((obj, city) => {obj[city.split('_')[1]] = []; return obj}, {});

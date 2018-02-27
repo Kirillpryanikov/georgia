@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as $ from 'jquery';
+import 'jqueryui';
 import * as Masonry from 'masonry-layout';
 import * as jQueryBridget from 'jquery-bridget'
 
@@ -71,6 +72,12 @@ export class ScriptMainService {
       columnWidth: '.u2g-info-block',
       gutter: 24,
       percentPosition: true
+    });
+  }
+
+  autocomplete(availableTags) {
+    $( "#store-url" ).autocomplete({
+      source: availableTags
     });
   }
 

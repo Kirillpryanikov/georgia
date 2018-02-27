@@ -3359,20 +3359,20 @@ ion-content, body.overflow {
   white-space: nowrap;
   text-decoration: none; }
 
-.ui-menu .ui-menu-item-wrapper {
-  border: none;
-  padding: 5px 15px; }
+.ui-menu .ui-menu-item-wrapper, .ui-menu-item {
+  border: none !important;
+  padding: 5px 15px !important; }
 
-.ui-state-hover, .ui-state-active {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #ffffff;
-  text-decoration: none;
-  background-color: #e47b7b;
-  border-radius: 0px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  background-image: none; }
+.ui-state-hover, .ui-state-active, .ui-state-focus {
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background-color: #e47b7b !important;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  background-image: none !important; }
 
 .readonly {
   cursor: not-allowed;

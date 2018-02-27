@@ -1,11 +1,17 @@
-<wsdl:definitions
-  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-  xmlns:tns="http://www.example.org/utils/"
-  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="clientWS" targetNamespace="http://www.example.org/utils/">
-  <wsdl:message name="loginRequest">...</wsdl:message>
-  <wsdl:message name="loginResponse">...</wsdl:message>
-  <wsdl:message name="logoutRequest">...</wsdl:message>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/utils/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="clientWS" targetNamespace="http://www.example.org/utils/">
+  <wsdl:message name="loginRequest">
+    <wsdl:part name="secret" type="xsd:string"/>
+    <wsdl:part name="userName" type="xsd:string"/>
+    <wsdl:part name="password" type="xsd:string"/>
+    <wsdl:part name="language" type="xsd:string"/>
+    <wsdl:part name="remember" type="xsd:boolean"/>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="logoutRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:message name="logoutResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
@@ -231,6 +237,30 @@
   <wsdl:message name="getNotificationsResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
+  <wsdl:message name="uploadInvoiceRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="packageId" type="xsd:int"/>
+    <wsdl:part name="base64data" type="xsd:string"/>
+    <wsdl:part name="extention" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="uploadInvoiceResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getListOfUploadedInvoicesRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="packageId" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="getListOfUploadedInvoicesResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="removeInvoiceRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="packageId" type="xsd:int"/>
+    <wsdl:part name="filename" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="removeInvoiceResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:portType name="ClientWSPortType">
     <wsdl:operation name="login">
       <wsdl:input message="tns:loginRequest"/>
@@ -371,6 +401,18 @@
     <wsdl:operation name="getNotifications">
       <wsdl:input message="tns:getNotificationsRequest"/>
       <wsdl:output message="tns:getNotificationsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="uploadInvoice">
+      <wsdl:input message="tns:uploadInvoiceRequest"/>
+      <wsdl:output message="tns:uploadInvoiceResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfUploadedInvoices">
+      <wsdl:input message="tns:getListOfUploadedInvoicesRequest"/>
+      <wsdl:output message="tns:getListOfUploadedInvoicesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="removeInvoice">
+      <wsdl:input message="tns:removeInvoiceRequest"/>
+      <wsdl:output message="tns:removeInvoiceResponse"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientWSPort" type="tns:ClientWSPortType">
@@ -683,6 +725,33 @@
     </wsdl:operation>
     <wsdl:operation name="getNotifications">
       <soap:operation soapAction="http://www.example.org/utils/getNotifications"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadInvoice">
+      <soap:operation soapAction="http://www.example.org/utils/uploadInvoice"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfUploadedInvoices">
+      <soap:operation soapAction="http://www.example.org/utils/getListOfUploadedInvoices"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeInvoice">
+      <soap:operation soapAction="http://www.example.org/utils/removeInvoice"/>
       <wsdl:input>
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
       </wsdl:input>

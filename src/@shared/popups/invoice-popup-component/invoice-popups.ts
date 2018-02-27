@@ -3,6 +3,7 @@ import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {PopupService} from "@core/services";
 
 @Component({
   selector: 'invoice-popup',
@@ -11,14 +12,21 @@ import {ScriptMainService} from "@core/script.data/script.main.service";
 })
 export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
-
+  private file: string = '';
+  private extention: string = '';
+  private data;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
-              private mainService: ScriptMainService) {}
+              private mainService: ScriptMainService,
+              private reader: FileReader,
+              private popupService: PopupService) {
+
+  }
 
   ngOnInit() {
     this.mainService.invoiceFileAdd();
@@ -43,13 +51,31 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     this.scriptService.setPositionCenter(this.popup);
   }
 
-  ok() {
+  upload() {
+    this.data = {
+      sessionId: this.sessionId,
+      packageId: this.navParams.data.package_id,
+      base64data: this.reader.result.split(',')[1],
+      extention: this.reader.result.split(',')[0].split(/,|\/|:|;/)[2]
+    };
+    this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+      console.log(data);
+    });
     this.close(true);
   }
 
   close(data?: boolean) {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss(data);
+  }
+
+  addFile(e) {
+    if(e.target.files[0]) {
+      this.reader.readAsDataURL(e.target.files[0]);
+      this.reader.onloadend = () => {
+        this.file = this.reader.result;
+      }
+    }
   }
 
   ngOnDestroy() {}
