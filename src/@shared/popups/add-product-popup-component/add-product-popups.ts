@@ -1,11 +1,11 @@
 import {
-  Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
-  HostListener
+  Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener,
+  EventEmitter
 } from '@angular/core';
-import {Platform, ViewController, NavParams, NavController} from 'ionic-angular';
+import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {ScriptMainService} from "@core/script.data/script.main.service";
+import { ScriptMainService } from "@core/script.data/script.main.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   templateUrl: './add-product-popups.html',
   styleUrls: ['/add-product-popups.scss'],
 })
-export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
+export class AddProductPopups implements OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
   productForm: FormGroup;
@@ -34,35 +34,18 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
               private mainService: ScriptMainService,
               private fb: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.mainService.radio();
     this.createFormAddProduct();
   }
 
-  ionViewWillLeave() {
+  ionViewWillLeave(): void {
     this.nativePageTransitions.flip({})
       .then(onSuccess => { console.log('onSuccess') })
       .catch(onError => { console.log('onError') });
   }
 
-  @HostListener('document:click', ['$event.target.tagName'])
-  public documentClick(e) {
-    if(e === 'ION-CONTENT')
-      this.close();
-    if(e === 'ION-BACKDROP')
-      this.scriptService.closePopup();
-  }
-
-  ngAfterViewInit() {
-    this.scriptService.setPositionCenter(this.popup);
-  }
-
-  close() {
-    this.scriptService.closePopup();
-    this.viewCtrl.dismiss();
-  }
-
-  addProduct() {
+  addProduct(): void {
     switch (this.productForm.value.code) {
       case '9603':
         this.product.description = 'Other consumer products';
@@ -135,7 +118,12 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
     this.viewCtrl.dismiss(this.product);
   }
 
-  createFormAddProduct() {
+  close(): void {
+    this.scriptService.closePopup();
+    this.viewCtrl.dismiss();
+  }
+
+  createFormAddProduct(): void {
     this.productForm = this.fb.group({
       unit_price: ['', Validators.compose([
         Validators.required
@@ -146,5 +134,16 @@ export class AddProductPopups implements OnDestroy, OnInit, AfterViewInit {
     });
   }
 
-  ngOnDestroy() {}
+  @HostListener('document:click', ['$event.target.tagName'])
+  documentClick(e: string): void {
+    if(e === 'ION-CONTENT')
+      this.close();
+    if(e === 'ION-BACKDROP')
+      this.scriptService.closePopup();
+  }
+
+  ngAfterViewInit(): void {
+    this.scriptService.setPositionCenter(this.popup);
+  }
+
 }

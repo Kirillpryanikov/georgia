@@ -65,7 +65,6 @@ export class ScriptMainService {
   }
 
   initMasonry() {
-    console.log('masonry');
     jQueryBridget( 'masonry', Masonry, $ );
     $('.u2g-content--masonry').masonry({
       itemSelector: '.u2g-info-block',
@@ -75,9 +74,10 @@ export class ScriptMainService {
     });
   }
 
-  autocomplete(availableTags) {
+  autocomplete(availableTags, change) {
     $( "#store-url" ).autocomplete({
-      source: availableTags
+      source: availableTags,
+      change: change
     });
   }
 

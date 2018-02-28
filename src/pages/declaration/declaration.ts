@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
@@ -25,15 +25,16 @@ const notice = {
   selector: 'page-declaration',
   templateUrl: 'declaration.html',
 })
-export class DeclarationPage implements OnInit, OnChanges{
+export class DeclarationPage implements OnInit{
 
-  productList = [];
-  sessionId = '707d235b00280e693eab0496acb2690d';
+  productList: Array<any>;
+  sessionId: string = '707d235b00280e693eab0496acb2690d';
   total: number = 0;
-  data;
+  data: Object;
   form: FormGroup;
   subscription: Subscription;
-  shipperList;
+  shipper: string;
+  shipperList: Array<string>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -43,21 +44,17 @@ export class DeclarationPage implements OnInit, OnChanges{
               private fb: FormBuilder) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.createForm();
   }
 
-  ngOnChanges(event) {
-    console.log('Event ', event);
-  }
-
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
     this.mainService.readonly();
     this.getDeclaration();
-    this.getshipers();
+    this.getShipers();
   }
 
-  addProduct() {
+  addProduct(): void {
     const modal = this.modalController.create(AddProductPopups);
     modal.onDidDismiss(data => {
       if(data){
@@ -68,23 +65,27 @@ export class DeclarationPage implements OnInit, OnChanges{
     modal.present();
   }
 
-  removeProduct(index) {
-    const modal = this.modalController.create(WarningPopups,{notice:notice.rm});
-    modal.onDidDismiss(data => {
-      if(data){
-        this.total-=this.productList[index].unit_price;
-        this.productList.splice(index,1);
-      }
-    });
-    modal.present();
+  autocomplete(): void {
+    this.mainService.autocomplete(this.shipperList, this.getValue.bind(this));
   }
 
-  declareTracking() {
-    console.log('this.form.value::',this.form.value);
+  createForm(): void {
+    this.form = this.fb.group({
+      code: ['', Validators.compose([
+        Validators.required
+      ])],
+      shipper: 'true',
+    });
+  }
+
+  declareTracking(): void {
+    if(this.form.value.shipper === 'false'){
+      this.shipper = '-2';
+    }
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
-      shipper: this.form.value.code,
+      shipper: this.shipper,
       declarationDetailsJson: JSON.stringify(this.productList)
     };
     console.log(this.data);
@@ -95,18 +96,7 @@ export class DeclarationPage implements OnInit, OnChanges{
     });
   }
 
-  autocomplete(e) {
-    console.log(e)
-    this.mainService.autocomplete(this.shipperList);
-  }
-
-  getshipers() {
-    this.declarationService.getShippers('getShippers', {sessionId: this.sessionId}).subscribe(data => {
-      this.shipperList = Object.keys(data.message.data).map(key => data.message.data[key]);
-    });
-  }
-
-  getDeclaration() {
+  getDeclaration(): void {
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id
@@ -122,11 +112,26 @@ export class DeclarationPage implements OnInit, OnChanges{
     });
   }
 
-  createForm() {
-    this.form = this.fb.group({
-      code: ['', Validators.compose([
-        Validators.required
-      ])]
+  getShipers(): void {
+    this.declarationService.getShippers('getShippers', {sessionId: this.sessionId}).subscribe(data => {
+      this.shipperList = Object.keys(data.message.data).map(key => data.message.data[key]);
     });
   }
+
+  getValue(event, ui): void {
+    if(ui.item)
+      this.shipper = ui.item.value;
+  }
+
+  removeProduct(index: number): void {
+    const modal = this.modalController.create(WarningPopups,{notice:notice.rm});
+    modal.onDidDismiss(data => {
+      if(data){
+        this.total-=this.productList[index].unit_price;
+        this.productList.splice(index,1);
+      }
+    });
+    modal.present();
+  }
+
 }
