@@ -9,6 +9,7 @@ import {
 import { DeclarationService } from "@core/services/declaration";
 import { NgxSoapModule } from "ngx-soap";
 import {TransactionPageModule} from "@pages/transaction/transaction.module";
+import {InvoiceService} from "@core/services/invoice";
 
 const CORE_PROVIDERS = [
   AuthorizationService,
@@ -24,7 +25,8 @@ const CORE_PROVIDERS = [
   PopupService,
   FileReader,
   SettingService,
-  TransactionService
+  TransactionService,
+  InvoiceService
 ];
 const MODULES = [ ScriptDataModule, NgxSoapModule ];
 

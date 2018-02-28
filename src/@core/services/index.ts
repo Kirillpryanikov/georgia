@@ -10,3 +10,4 @@ export * from '@core/services/popup';
 export * from '@core/services/setting';
 export * from '@core/services/declaration';
 export * from '@core/services/transaction';
+export * from '@core/services/invoice';

@@ -44,9 +44,9 @@ export class ReceivedPage {
     this.mainService.initMasonry();
   }
 
-  invoice(e) {
+  invoice(e, index) {
     e.preventDefault();
-    this.navCtrl.push('invoice-page');
+    this.navCtrl.push('invoice-page',{invoice: this.listReceived[index].invoice});
   }
 
   showCommentPopup(index, _index) {
@@ -56,6 +56,7 @@ export class ReceivedPage {
 
   getReceived(): Observable<any> {
     this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
+      console.log(data);
       this.listReceived = data.message.received;
       for(let i in this.listReceived){
         let weight_kg = 0;

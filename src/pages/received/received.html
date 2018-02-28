@@ -23,7 +23,7 @@
                 <span class="u2g-info-block__tracking-number-value">{{received.hawb}}</span>
               </div>
               <div class="u2g-info-block__button-wrapper">
-                <a (click)="invoice($event)"  class="u2g-info-block__button u2g-info-block__button--top">Invoice</a>
+                <a (click)="invoice($event, index)"  class="u2g-info-block__button u2g-info-block__button--top">Invoice</a>
               </div>
               <div class="u2g-info-block__list">
                 <div *ngFor="let tracking of received.trackings; index as _index" class="u2g-info-block__list-item u2g-tracing-code">

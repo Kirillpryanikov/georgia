@@ -24,16 +24,16 @@
           </svg>
         </div>
         <div class="invoice-data invoice-data--left-align">
-          <p>22/12/2017</p>
-          <p>Invoice: <span>5113076</span></p>
-          <p>Air Way Bill: <span>H0101668</span></p>
-          <p>Weight: 0.2 Pound(lbs) – 0.1 kg</p>
+          <!--<p>{{invoices.date}}</p>-->
+          <p>Invoice: <span>{{invoice.invoice}}</span></p>
+          <p>Air Way Bill: <span>{{invoice.hawb}}</span></p>
+          <p>Weight: {{invoice.weight_lbs}} Pound(lbs) – {{invoice.weight_kg}} kg</p>
         </div>
         <div class="invoice-data">
-          Customer <br> Konstantine Dugladze <br> Customer Support: (+995 32) 2-42-18-18 <br> sales@usa2georgia.com <br> dugladze@gmail.com <br> www.usa2georgia.com
+          Customer <br> {{invoice.full_name}} <br> Customer Support: (+995 32) 2-42-18-18 <br> sales@usa2georgia.com <br> {{invoice.email}} <br> www.usa2georgia.com
         </div>
         <div class="invoice-data">
-          USA2GEORGIA LLC <br> 27 Kavtaradze st. <br> qavtaradzis p. st. 31, #3 12345 <br> 591707510 <br> dugladze@gmail.com <br> Suite U00100
+          USA2GEORGIA LLC <br> 27 Kavtaradze st. <br> {{invoice.address}} <br> {{invoice.mobile}} <br> {{invoice.email}} <br> Suite {{invoice.suite}}
         </div>
         <div class="invoice-table-wrapper">
           <table class="invoice__table">
@@ -48,15 +48,15 @@
             <tbody>
             <tr>
               <td>Transportation:</td>
-              <td>2.14 GEL</td>
-              <td>0.00 GEL</td>
-              <td>2.14 GEL</td>
+              <td>{{invoice.transportation.amount}} GEL</td>
+              <td>{{invoice.transportation.vat}} GEL</td>
+              <td>{{invoice.transportation.total}} GEL</td>
             </tr>
             <tr>
               <td>Discount (10%):</td>
-              <td class="green-cell">-0.21 GEL</td>
-              <td class="green-cell">0.00 GEL</td>
-              <td class="green-cell">-0.21 GEL</td>
+              <td class="green-cell">-{{discount.amount}} GEL</td>
+              <td class="green-cell">{{discount.amount}} GEL</td>
+              <td class="green-cell">-{{discount.amount}} GEL</td>
             </tr>
             </tbody>
             <tfoot>
@@ -64,7 +64,7 @@
               <td>Total</td>
               <td></td>
               <td></td>
-              <td>1.93 GEL</td>
+              <td>{{invoice.total}} GEL</td>
             </tr>
             </tfoot>
           </table>

@@ -69,7 +69,7 @@
                 </div>
               </form>
             </div>
-            <button [disabled]="form.invalid && (form.controls.shipper.value === 'true')" (click)="declareTracking()" class="u2g-button u2g-submit-shipper">Save</button>
+            <button [disabled]="(form.invalid && (form.controls.shipper.value === 'true')) || productList.length === 0" (click)="declareTracking()" class="u2g-button u2g-submit-shipper">Save</button>
           </div>
         </div>
       </div>
