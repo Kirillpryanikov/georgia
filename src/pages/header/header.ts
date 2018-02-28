@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import {ModalController, NavController} from "ionic-angular";
+import { ModalController, NavController } from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
 import { HeaderService } from "@core/services";
 
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
-import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
-import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
-import {Subscription} from "rxjs/Subscription";
+import { DetailsPopups } from "@shared/popups/details-popup-component/details-popups";
+import { AddressPopups } from "@shared/popups/address-popup-component/address-popups";
+import { Subscription } from "rxjs/Subscription";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -52,6 +52,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   getInfo() {
     this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      console.log(data);
       this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;
