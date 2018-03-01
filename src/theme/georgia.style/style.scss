@@ -3332,6 +3332,9 @@ ion-content, body.overflow {
 
 /*AUTOCOMLETE*/
 .ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: absolute;
   top: 100%;
   left: 0;
@@ -3346,7 +3349,6 @@ ion-content, body.overflow {
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   border-width: 1px;
-  overflow: hidden;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 

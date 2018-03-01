@@ -22,8 +22,8 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId = '707d235b00280e693eab0496acb2690d';
-  private subscription: Subscription;
   private data;
+  private subscription: Subscription;
   private user: IUserHeader = {
     userId: '',
     userPhoto: '/img/Grey-Mens-Hair-WE.png',
@@ -51,13 +51,13 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   getInfo() {
-    this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data);
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
       this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;
       this.user.userBalance = data.message.profile.balance;
       this.lang = data.message.profile.panel_language;
+      this.subscription.unsubscribe();
     })
   }
 
@@ -71,7 +71,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   settings(e) {
     e.preventDefault();
-    this.navCtrl.setRoot('settings-page');
+    this.navCtrl.setRoot('settings-page', {language: this.lang});
   }
 
   changeLanguage(language:string) {
@@ -82,8 +82,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       sessionId: this.sessionId,
       language: language
     };
-    this.subscription = this.headerService.changeLanguage('changeLanguage', this.data).subscribe(data => {
-      this.subscription.unsubscribe();
+    this.headerService.changeLanguage('changeLanguage', this.data).subscribe(data => {
       this.getInfo();
     })
   }

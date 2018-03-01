@@ -102,27 +102,27 @@
                   <div class="u2g-form-group">
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>First Name</span> <sub>*</sub></label>
-                      <input formControlName="firstName" type="text" class="u2g-form-group__field" data-rule-required="true" name="first name">
+                      <input formControlName="first_name" type="text" class="u2g-form-group__field" data-rule-required="true" name="first name">
                     </div>
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Last Name</span> <sub>*</sub></label>
-                      <input formControlName="lastName" type="text" class="u2g-form-group__field" data-rule-required="true" name="last name">
+                      <input formControlName="last_name" type="text" class="u2g-form-group__field" data-rule-required="true" name="last name">
                     </div>
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>First Name Georgian</span> <sub>*</sub></label>
-                      <input formControlName="firstNameGeorgian" type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
+                      <input formControlName="first_name_loc" type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
                     </div>
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Last Name Georgian</span> <sub>*</sub></label>
-                      <input formControlName="lastNameGeorgian" type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
+                      <input formControlName="last_name_loc" type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
                     </div>
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Cell Phone</span> <sub>*</sub></label>
-                      <input formControlName="cellPhone" type="tel" class="u2g-form-group__field" name="phone" data-rule-required="true">
+                      <input formControlName="mobile" type="tel" class="u2g-form-group__field" name="phone" data-rule-required="true">
                     </div>
 
                     <div class="u2g-form-group__field-group">
@@ -133,7 +133,7 @@
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Country</span> <sub>*</sub></label>
                       <select formControlName="country" class="u2g-select" name="country">
-                        <option value="Georgia" selected>Georgia</option>
+                        <option value="GEORGIA" selected>Georgia</option>
                       </select>
                     </div>
 
@@ -146,12 +146,12 @@
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Address 1 (Street)</span> <sub>*</sub></label>
-                      <input formControlName="address_1" type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
+                      <input formControlName="street" (keypress)="autocomplete()" id="store-url" type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
                     </div>
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Address 2 (Apt...)</span> <sub>*</sub></label>
-                      <input formControlName="address_2" type="text" class="u2g-form-group__field" data-rule-required="true" name="address 2">
+                      <input formControlName="extra_address" type="text" class="u2g-form-group__field" data-rule-required="true" name="address 2">
                     </div>
 
                     <div class="u2g-form-group__field-group">
@@ -159,7 +159,7 @@
 Post Office</span></label>
                       <div class="u2g-form-group__field u2g-form-group__field--no-border">
                         <label class="u2g-form-group__checkbox">
-                          <input formControlName="checkbox1" type="checkbox" checked>
+                          <input formControlName="no_courier" type="checkbox" checked>
                           <span><i class="ion-checkmark-round"></i></span>
                         </label>
                         <div class="u2g-form-group__notes">
@@ -174,7 +174,7 @@ Post Office</span></label>
 Citizen</span></label>
                       <div class="u2g-form-group__field u2g-form-group__field--space-between u2g-form-group__field--no-border">
                         <label class="u2g-form-group__checkbox">
-                          <input formControlName="checkbox2" type="checkbox">
+                          <input formControlName="non_georgian_citizen" type="checkbox">
                           <span><i class="ion-checkmark-round"></i></span>
                         </label>
                         <input [disabled]="userForm.invalid" type="submit" value="Save Changes" class="u2g-button">
@@ -192,15 +192,15 @@ Citizen</span></label>
                   <div class="u2g-form-group">
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Current Password</span> <sub>*</sub></label>
-                      <input formControlName="currentPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
+                      <input formControlName="current_password" type="password" class="u2g-form-group__field" data-rule-required="true" name="password">
                     </div>
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>New Password</span> <sub>*</sub></label>
-                      <input formControlName="newPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="new password">
+                      <input formControlName="new_password" type="password" class="u2g-form-group__field" data-rule-required="true" name="new password">
                     </div>
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>Confirm New Password</span> <sub>*</sub></label>
-                      <input formControlName="confirmPassword" type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
+                      <input formControlName="retry_new_password" type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
                     </div>
                     <div class="u2g-form-group__field-group">
                       <input [disabled]="passwordForm.invalid" type="submit" value="Save Changes" class="u2g-button">
@@ -217,37 +217,37 @@ Citizen</span></label>
                   <div class="u2g-form-group u2g-form-group--notifications">
                     <h4 class="u2g-form-group__notifications-title">E-mail Notifications</h4>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="receivingOfPackageInUsa" type="checkbox" checked>
+                      <input formControlName="newpackage" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Receiving of package in USA
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="invoicePayments" type="checkbox" checked>
+                      <input formControlName="invoicepay" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Invoice Payments
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="packageSent" type="checkbox" checked>
+                      <input formControlName="sent" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Package Sent
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="insufficientFunds" type="checkbox" checked>
+                      <input formControlName="invoicenotpay" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Insufficient Funds
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="packageDelivered" type="checkbox" checked>
+                      <input formControlName="shipped" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Package Delivered
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="companyNewsAndPromotions" type="checkbox" checked>
+                      <input formControlName="companynews" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Company news and promotions
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="addFunds" type="checkbox" checked>
+                      <input formControlName="addfund" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Add Funds
                     </label>
@@ -255,7 +255,7 @@ Citizen</span></label>
                   <div class="u2g-form-group u2g-form-group--notifications">
                     <h4 class="u2g-form-group__notifications-title">SMS Notifications</h4>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
-                      <input formControlName="receivingOfPackageInUsaSms" type="checkbox" checked>
+                      <input formControlName="newpackage_sms" type="checkbox" checked>
                       <span><i class="ion-checkmark-round"></i></span>
                       Receiving of package in USA
                     </label>
@@ -278,7 +278,12 @@ Citizen</span></label>
                     </div>
                     <h3 class="u2g-settings-form__branch-select-title">Choose Branch</h3>
                     <select class="u2g-select">
-                      <option value="OFFICE--3" selected>Vaja-Pshavela Branch</option><option value="OFFICE--1">Mickevichi Branch</option><option value="OFFICE--2">Digomi Branch</option><option value="OFFICE--4">Gldani Branch</option><option value="OFFICE--5">Isani Branch</option><option value="OFFICE--6">Vake Branch</option>
+                      <option value="OFFICE--3" selected>Vaja-Pshavela Branch</option>
+                      <option value="OFFICE--1">Mickevichi Branch</option>
+                      <option value="OFFICE--2">Digomi Branch</option>
+                      <option value="OFFICE--4">Gldani Branch</option>
+                      <option value="OFFICE--5">Isani Branch</option>
+                      <option value="OFFICE--6">Vake Branch</option>
                     </select>
                   </div>
                 </div>

@@ -1,17 +1,60 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import environment from '@env/environment';
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/catch';
+import {Client, SOAPService} from "ngx-soap";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class SettingService {
-  constructor(private http: HttpClient){}
+  private client: Client;
+  private getCustomerSettingsMessage = new Subject<any>();
+  private changeCustomerSettingsMessage = new Subject<any>();
+  private getStreetsMessage = new Subject<any>();
+  constructor(private http: HttpClient,
+              private soap: SOAPService){}
 
-  changeCustomerSettings(data): Observable<any> {
-    return this.http.post(environment.CONST.URL + '/changeCustomerSettings', data)
-      .catch((err) => {
-        return err;
-      })
+  getCustomerSettings(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getCustomerSettingsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getCustomerSettingsResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getCustomerSettingsMessage.asObservable();
+  }
+
+  changeCustomerSettings(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.changeCustomerSettingsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.changeCustomerSettingsResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.changeCustomerSettingsMessage.asObservable();
+  }
+
+  getStreets(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getStreetsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getStreetsResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getStreetsMessage.asObservable();
   }
 }

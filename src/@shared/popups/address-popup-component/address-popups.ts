@@ -2,11 +2,11 @@ import {
   Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
   HostListener
 } from '@angular/core';
-import {Platform, ViewController, NavParams, NavController} from 'ionic-angular';
+import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {ScriptMainService} from "@core/script.data/script.main.service";
-import {PopupService} from "@core/services";
+import { ScriptMainService } from "@core/script.data/script.main.service";
+import { PopupService } from "@core/services";
 
 @Component({
   selector: 'address-popup',
@@ -16,6 +16,11 @@ import {PopupService} from "@core/services";
 export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
   private sessionId = '707d235b00280e693eab0496acb2690d';
+  private user: Object = {
+    first_name: '',
+    last_name: '',
+    suite: ''
+  };
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -29,7 +34,7 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
   ngOnInit() {
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
-    this.getTrackingComment();
+    this.getInfo();
   }
 
   ionViewWillLeave() {
@@ -55,8 +60,11 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
     this.viewCtrl.dismiss();
   }
 
-  getTrackingComment() {
-    this.popupService.getCustomerSettings('getTrackingComment', {sessionId: this.sessionId}).subscribe()
+  getInfo() {
+    this.popupService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.user = data.message.profile;
+      console.log(data);
+    })
   }
 
   ngOnDestroy() {}

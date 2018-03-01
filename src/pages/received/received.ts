@@ -58,16 +58,6 @@ export class ReceivedPage {
     this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
       console.log(data);
       this.listReceived = data.message.received;
-      for(let i in this.listReceived){
-        let weight_kg = 0;
-        let weight_lbs = 0;
-        for(let j in this.listReceived[i].trackings){
-          weight_kg+=parseFloat(this.listReceived[i].trackings[j].weight_kg);
-          weight_lbs+=parseFloat(this.listReceived[i].trackings[j].weight_lbs);
-        }
-        this.listReceived[i].weight_kg = Math.round(weight_kg * 10) / 10;
-        this.listReceived[i].weight_lbs = Math.round(weight_lbs * 10) / 10;
-      }
       this.subject.next();
     });
     return this.subject.asObservable();

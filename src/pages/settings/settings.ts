@@ -7,6 +7,7 @@ import { IPassword } from "@IFolder/IPassword";
 import { SettingService } from "@core/services/setting";
 import 'rxjs/add/operator/map';
 import {INotificationSettings} from "@IFolder/INotificationSettings";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the SettingsPage page.
@@ -23,7 +24,10 @@ import {INotificationSettings} from "@IFolder/INotificationSettings";
   templateUrl: 'settings.html',
 })
 export class SettingsPage implements OnInit, OnDestroy{
-
+  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private data: Object;
+  private streetsList: Array<string>;
+  private subscription: Subscription;
   userForm: FormGroup;
   passwordForm: FormGroup;
   notificationForm: FormGroup;
@@ -36,11 +40,11 @@ export class SettingsPage implements OnInit, OnDestroy{
     checkbox2: true,
     city: 'string',
     country: 'string',
-    email: 'tring',
-    firstName: 'string',
+    email: 'string',
+    firstName: '',
     firstNameGeorgian: 'string',
-    lastName: "van",
-    lastNameGeorgian: 'GOgi',
+    lastName: "string",
+    lastNameGeorgian: 'string',
     userPhoto: 'img/settings-profile-photo.png'
   };
   password: IPassword = {
@@ -68,9 +72,11 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.getStreets();
     this.createFormChangeCustomer();
     this.createFormChangePassword();
     this.createFormChangeNotification();
+    this.getCustomerSettings();
   }
 
   tabsSetting() {
@@ -87,7 +93,6 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.reader.readAsDataURL(this.file);
       this.reader.onloadend = () => {
         this.userPhoto = this.reader.result;
-        console.log(this.userPhoto)
       }
     }
   }
@@ -100,8 +105,8 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   private comparePassword(AC: AbstractControl) {
-    if(AC.get('newPassword').value != AC.get('confirmPassword').value) {
-      AC.get('confirmPassword').setErrors({MatchPassword: true})
+    if(AC.get('new_password').value != AC.get('retry_new_password').value) {
+      AC.get('retry_new_password').setErrors({MatchPassword: true})
     } else {
       return null;
     }
@@ -110,19 +115,19 @@ export class SettingsPage implements OnInit, OnDestroy{
   createFormChangeCustomer() {
     this.userForm = this.fb.group({
       userPhoto: [this.user.userPhoto],
-      firstName: ['', Validators.compose([
+      first_name: ['', Validators.compose([
         Validators.required
       ])],
-      lastName: ['', Validators.compose([
+      last_name: ['', Validators.compose([
         Validators.required
       ])],
-      firstNameGeorgian: ['', Validators.compose([
+      first_name_loc: ['', Validators.compose([
         Validators.required
       ])],
-      lastNameGeorgian: ['', Validators.compose([
+      last_name_loc: ['', Validators.compose([
         Validators.required
       ])],
-      cellPhone: ['', Validators.compose([
+      mobile: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^\d+$/),
         Validators.minLength(6)
@@ -136,26 +141,27 @@ export class SettingsPage implements OnInit, OnDestroy{
       city: ['', Validators.compose([
         Validators.required
       ])],
-      address_1: ['', Validators.compose([
+      street: ['', Validators.compose([
         Validators.required
       ])],
-      address_2: ['', Validators.compose([
+      extra_address: ['', Validators.compose([
         Validators.required
       ])],
-      checkbox1: false,
-      checkbox2: false
+      no_courier: false,
+      non_georgian_citizen: false,
+      language: ['']
     });
   }
 
   createFormChangePassword() {
     this.passwordForm = this.fb.group({
-      currentPassword: ['', Validators.compose([
+      current_password: ['', Validators.compose([
         Validators.required
       ])],
-      newPassword: ['', Validators.compose([
+      new_password: ['', Validators.compose([
         Validators.required
       ])],
-      confirmPassword: ['', Validators.compose([
+      retry_new_password: ['', Validators.compose([
         Validators.required
       ])]
     }, {
@@ -165,40 +171,96 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   createFormChangeNotification() {
     this.notificationForm = this.fb.group({
-      receivingOfPackageInUsa: true,
-      invoicePayments: true,
-      packageSent: true,
-      insufficientFunds: true,
-      packageDelivered: true,
-      companyNewsAndPromotions: true,
-      addFunds: true,
-      receivingOfPackageInUsaSms: true
+      newpackage: false,
+      invoicepay: false,
+      sent: false,
+      invoicenotpay: false,
+      shipped: false,
+      companynews: false,
+      addfund: false,
+      newpackage_sms: false
     });
   }
 
   submit(e) {
     if(e === 'user'){
-      this.user = this.userForm.value;
-      this.user.userPhoto = this.userPhoto;
-      console.log(this.user);
-      // this.settingService.changeCustomerSettings(this.user).subscribe(data => {
-      //
-      // })
+      this.data = {
+        sessionId: this.sessionId,
+        data: JSON.stringify({profile: this.userForm.value})
+      };
+      this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      })
     }
     if(e === 'psw'){
-      this.password = this.passwordForm.value;
-      console.log(this.password);
-      // this.settingService.changeCustomerSettings(this.password).subscribe(data => {
-      //
-      // })
+      this.data = {
+        sessionId: this.sessionId,
+        data: JSON.stringify({password_change: this.passwordForm.value})
+      };
+      this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      })
     }
     if(e === 'ntf'){
-      this.notification = this.notificationForm.value;
-      console.log(this.notification);
-      // this.settingService.changeCustomerSettings(this.notification).subscribe(data => {
-      //
-      // })
+      this.data = {
+        sessionId: this.sessionId,
+        data: JSON.stringify({
+          notification_settings: {
+            email: this.notificationForm.value,
+            sms: this.notificationForm.value
+          }
+        })
+      };
+      this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      })
     }
+  }
+
+  getCustomerSettings() {
+    this.subscription = this.settingService.getCustomerSettings('getCustomerSettings', {sessionId: this.sessionId}).subscribe(data => {
+      this.userForm.patchValue({
+        first_name: data.message.data.profile.first_name,
+        last_name: data.message.data.profile.last_name,
+        first_name_loc: data.message.data.profile.first_name_loc,
+        last_name_loc: data.message.data.profile.last_name_loc,
+        country: data.message.data.profile.country,
+        city: data.message.data.profile.city,
+        mobile: data.message.data.profile.mobile,
+        email: data.message.data.profile.email,
+        street: data.message.data.profile.street,
+        extra_address: data.message.data.profile.extra_address,
+        no_courier: -data.message.data.profile.no_courier,
+        non_georgian_citizen: -data.message.data.profile.non_georgian_citizen,
+        language: this.navParams.data.language
+      });
+      this.notificationForm.patchValue({
+        newpackage: data.message.notifications.newpackage,
+        invoicepay: data.message.notifications.invoicepay,
+        sent: data.message.notifications.sent,
+        invoicenotpay: data.message.notifications.invoicenotpay,
+        shipped: data.message.notifications.shipped,
+        companynews: data.message.notifications.companynews,
+        addfund: data.message.notifications.addfund,
+        newpackage_sms: data.message.notifications.newpackage_sms
+      });
+      this.subscription.unsubscribe();
+    })
+  }
+
+  getStreets() {
+    this.settingService.getStreets('getStreets', {language: this.navParams.data.language}).subscribe(data => {
+      this.streetsList = Object.keys(data.message.data).map(key => data.message.data[key]);
+    })
+  }
+
+  autocomplete(): void {
+    this.mainService.autocomplete(this.streetsList, this.getValue.bind(this));
+  }
+
+  getValue(event, ui): void {
+    if(ui.item)
+      this.userForm.patchValue({street: ui.item.value});
   }
 
   ngOnDestroy() {
