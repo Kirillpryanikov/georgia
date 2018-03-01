@@ -189,7 +189,14 @@ export class SettingsPage implements OnInit, OnDestroy{
         data: JSON.stringify({profile: this.userForm.value})
       };
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
-        this.subscription.unsubscribe();
+        this.data = {
+          sessionId: this.sessionId,
+          base64data: this.userPhoto.split(',')[1]
+        };
+        console.log(this.data);
+        this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
+          console.log(data);
+        })
       })
     }
     if(e === 'psw'){
@@ -261,6 +268,10 @@ export class SettingsPage implements OnInit, OnDestroy{
   getValue(event, ui): void {
     if(ui.item)
       this.userForm.patchValue({street: ui.item.value});
+  }
+
+  hide() {
+    this.mainService.hide();
   }
 
   ngOnDestroy() {

@@ -6,7 +6,9 @@ import * as jQueryBridget from 'jquery-bridget'
 
 @Injectable()
 export class ScriptMainService {
-  constructor(){}
+  constructor(){
+
+  }
 
   dropdown() {
     const that = this;
@@ -136,5 +138,10 @@ export class ScriptMainService {
         urlInput.removeClass('readonly');
       }
     });
+  }
+
+  hide() {
+    console.log('hide');
+    $('.u2g-settings-form__branch-notice').hide();
   }
 }

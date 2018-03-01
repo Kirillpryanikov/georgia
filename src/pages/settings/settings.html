@@ -272,7 +272,7 @@ Citizen</span></label>
                 <div class="u2g-settings-form">
                   <div class="u2g-settings-form__branch">
                     <div class="u2g-settings-form__branch-notice">
-                      <i class="ion-close-round" onclick="$('.u2g-settings-form__branch-notice').hide();"></i>
+                      <i class="ion-close-round" (click)="hide()" ></i>
                       <span>Please select the branch packages will forward automatically to.</span>
                       <p>Please note: An automatic forwarding will NOT apply on transit packages with HAWB Shipment number already assigned. You may still able to select the branch location for packages in transit by changing the setting under the navigation menu.</p>
                     </div>

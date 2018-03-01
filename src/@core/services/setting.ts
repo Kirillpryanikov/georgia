@@ -10,6 +10,9 @@ export class SettingService {
   private getCustomerSettingsMessage = new Subject<any>();
   private changeCustomerSettingsMessage = new Subject<any>();
   private getStreetsMessage = new Subject<any>();
+  private uploadAvatarMessage = new Subject<any>();
+  private removeAvatarMessage = new Subject<any>();
+
   constructor(private http: HttpClient,
               private soap: SOAPService){}
 
@@ -56,5 +59,35 @@ export class SettingService {
       });
     });
     return this.getStreetsMessage.asObservable();
+  }
+
+  uploadAvatar(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.uploadAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.uploadAvatarResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.uploadAvatarMessage.asObservable();
+  }
+
+  removeAvatar(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.removeAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.removeAvatarResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.removeAvatarMessage.asObservable();
   }
 }
