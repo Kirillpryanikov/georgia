@@ -5,7 +5,7 @@
 
       <!--HEADER-->
 
-      <header-page></header-page>
+      <header-page (branchSelection)="branchSelection($event)"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
@@ -23,16 +23,19 @@
                 <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
                 <span class="u2g-info-block__tracking-number-value">{{pending.hawb}}</span>
               </div>
-              <div class="u2g-info-block__choose-branch">
+              <div *ngIf="!pending.locked" class="u2g-info-block__choose-branch">
                 <span>Choose Branch:</span>
                 <select [(ngModel)]="branch[index]" (change)="changeHawbBranch(pending.hawb, index)" class="u2g-select">
-                  <option value="Vaja-Pshavela">Vaja-Pshavela</option>
-                  <option value="Mickevichi">Mickevichi</option>
-                  <option value="Digomi">Digomi</option>
-                  <option value="Gldani">Gldani</option>
-                  <option value="Isani">Isani</option>
-                  <option value="Vake">Vake</option>
+                  <option value="OFFICE_3" selected>Vaja-Pshavela Branch</option>
+                  <option value="OFFICE_1">Mickevichi Branch</option>
+                  <option value="OFFICE_2">Digomi Branch</option>
+                  <option value="OFFICE_4">Gldani Branch</option>
+                  <option value="OFFICE_5">Isani Branch</option>
+                  <option value="OFFICE_6">Vake Branch</option>
                 </select>
+              </div>
+              <div *ngIf="pending.locked" class="u2g-info-block__choose-branch">
+                <span>Branch: {{pending.branch}}</span>
               </div>
               <div class="u2g-info-block__list">
                 <div *ngFor="let pendings of pending.trackings; index as _index" class="u2g-info-block__list-item">

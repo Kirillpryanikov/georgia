@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { ModalController, NavController } from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
-import { HeaderService } from "@core/services";
+import {HeaderService, SettingService} from "@core/services";
 
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
@@ -18,7 +18,8 @@ import { Subscription } from "rxjs/Subscription";
  */
 @Component({
   selector: 'header-page',
-  templateUrl: 'header.html'
+  templateUrl: 'header.html',
+  outputs: ['branchSelection']
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId = '707d235b00280e693eab0496acb2690d';
@@ -26,7 +27,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   private subscription: Subscription;
   private user: IUserHeader = {
     userId: '',
-    userPhoto: '/img/Grey-Mens-Hair-WE.png',
+    userPhoto: '',
     userName: '',
     email: '',
     userCode: '',
@@ -38,20 +39,34 @@ export class HeaderPage implements OnInit, OnDestroy{
     undeclared_tracking: 0
   };
   private lang: string;
+  public branchSelection = new EventEmitter<any>();
 
   constructor(public mainService: ScriptMainService,
               public navCtrl: NavController,
               private translate: TranslateService,
               private headerService: HeaderService,
-              private modalController: ModalController) {}
+              private modalController: ModalController,
+              private settingService: SettingService) {}
 
   ngOnInit() {
+    this.getAvatar();
     this.getInfo();
     this.getNotifications();
   }
 
+  getAvatar() {
+    this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+      this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
+    });
+  }
+
+  getBranchSelection(data) {
+    this.branchSelection.emit(data);
+  }
+
   getInfo() {
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.getBranchSelection(data);
       this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;

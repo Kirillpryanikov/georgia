@@ -28,10 +28,12 @@ export class SettingsPage implements OnInit, OnDestroy{
   private data: Object;
   private streetsList: Array<string>;
   private subscription: Subscription;
+  private branch: string;
   userForm: FormGroup;
   passwordForm: FormGroup;
   notificationForm: FormGroup;
   file: any;
+
   user: IUserSetings = {
     address_1: 'string',
     address_2: 'tring',
@@ -45,7 +47,7 @@ export class SettingsPage implements OnInit, OnDestroy{
     firstNameGeorgian: 'string',
     lastName: "string",
     lastNameGeorgian: 'string',
-    userPhoto: 'img/settings-profile-photo.png'
+    userPhoto: ''
   };
   password: IPassword = {
     currentPassword: '456',
@@ -76,6 +78,7 @@ export class SettingsPage implements OnInit, OnDestroy{
     this.createFormChangeCustomer();
     this.createFormChangePassword();
     this.createFormChangeNotification();
+    this.getAvatar();
     this.getCustomerSettings();
   }
 
@@ -93,13 +96,21 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.reader.readAsDataURL(this.file);
       this.reader.onloadend = () => {
         this.userPhoto = this.reader.result;
+        this.data = {
+          sessionId: this.sessionId,
+          base64data: this.userPhoto.split(',')[1]
+        };
+        this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
+        })
       }
     }
   }
 
   removePhoto() {
     if(this.userPhoto) {
-      this.userPhoto = null;
+      this.settingService.removeAvatar('removeAvatar', {sessionId: this.sessionId}).subscribe(data => {
+        this.userPhoto = null;
+      })
     }
 
   }
@@ -189,15 +200,7 @@ export class SettingsPage implements OnInit, OnDestroy{
         data: JSON.stringify({profile: this.userForm.value})
       };
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
-        this.data = {
-          sessionId: this.sessionId,
-          base64data: this.userPhoto.split(',')[1]
-        };
-        console.log(this.data);
-        this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
-          console.log(data);
-        })
-      })
+      });
     }
     if(e === 'psw'){
       this.data = {
@@ -222,6 +225,12 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.subscription.unsubscribe();
       })
     }
+  }
+
+  getAvatar() {
+    this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+      this.userPhoto = 'data:image/png;base64,' + data.message.file;
+    });
   }
 
   getCustomerSettings() {
@@ -251,6 +260,7 @@ export class SettingsPage implements OnInit, OnDestroy{
         addfund: data.message.notifications.addfund,
         newpackage_sms: data.message.notifications.newpackage_sms
       });
+      this.branch = data.message.data.branch_settings.default_branch;
       this.subscription.unsubscribe();
     })
   }
@@ -268,6 +278,19 @@ export class SettingsPage implements OnInit, OnDestroy{
   getValue(event, ui): void {
     if(ui.item)
       this.userForm.patchValue({street: ui.item.value});
+  }
+
+  changeBranch(e) {
+    this.data = {
+      sessionId: this.sessionId,
+      data: JSON.stringify({
+        branch_settings: {
+          default_branch: e.target.value
+        }
+      })
+    };
+    this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+    })
   }
 
   hide() {

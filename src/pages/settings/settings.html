@@ -85,7 +85,7 @@
                   <div class="u2g-settings-form__photo">
                     <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">Profile Photo</span>
                     <div class="u2g-settings-form__image">
-                      <img src="{{userPhoto}}" alt="Profile photo">
+                      <img [src]="userPhoto" alt="Profile photo">
                     </div>
                     <div class="u2g-settings-form__button-wrapper">
                       <label class="u2g-button u2g-button--green">
@@ -277,13 +277,13 @@ Citizen</span></label>
                       <p>Please note: An automatic forwarding will NOT apply on transit packages with HAWB Shipment number already assigned. You may still able to select the branch location for packages in transit by changing the setting under the navigation menu.</p>
                     </div>
                     <h3 class="u2g-settings-form__branch-select-title">Choose Branch</h3>
-                    <select class="u2g-select">
-                      <option value="OFFICE--3" selected>Vaja-Pshavela Branch</option>
-                      <option value="OFFICE--1">Mickevichi Branch</option>
-                      <option value="OFFICE--2">Digomi Branch</option>
-                      <option value="OFFICE--4">Gldani Branch</option>
-                      <option value="OFFICE--5">Isani Branch</option>
-                      <option value="OFFICE--6">Vake Branch</option>
+                    <select [(ngModel)]="branch" (change)="changeBranch($event)" class="u2g-select">
+                      <option value="OFFICE_3" selected>Vaja-Pshavela Branch</option>
+                      <option value="OFFICE_1">Mickevichi Branch</option>
+                      <option value="OFFICE_2">Digomi Branch</option>
+                      <option value="OFFICE_4">Gldani Branch</option>
+                      <option value="OFFICE_5">Isani Branch</option>
+                      <option value="OFFICE_6">Vake Branch</option>
                     </select>
                   </div>
                 </div>

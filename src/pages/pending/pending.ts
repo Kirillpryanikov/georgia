@@ -38,6 +38,7 @@ export class PendingPage {
   private data;
   private branch = [];
   private subject = new Subject<any>();
+  private branch_selection;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
@@ -61,13 +62,16 @@ export class PendingPage {
     this.navCtrl.push('declaration-page', {package_id: this.listPending[index].trackings[_index].id, tracking: this.listPending[index].trackings[_index].tracking});
   }
 
+  branchSelection(data) {
+    this.branch_selection = data.message.branch_selection;
+  }
+
   showCommentPopup(index, _index) {
     const modal = this.modalController.create(CommentPopups, {package_id: this.listPending[index].trackings[_index].id});
     modal.present();
   }
 
   showInvoicePopup(index, _index) {
-
     const modal = this.modalController.create(InvoicePopups);
     modal.present();
   }
@@ -110,8 +114,34 @@ export class PendingPage {
 
   getPending() {
     this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data.message);
-      this.listPending = data.message.in_transit;
+      const obj = data.message.in_transit.reduce((object, value) => {
+        object[value.hawb] = value; return object
+      }, {});
+      this.branch_selection.forEach(val => {obj[val.hawb].locked = val.locked});
+      this.branch_selection.forEach(val => {obj[val.hawb].branch = val.branch});
+      this.listPending = Object.keys(obj).map(key => obj[key]);
+      for(let i in this.listPending) {
+        switch (this.listPending[i].branch){
+          case 'OFFICE_1':
+            this.listPending[i].branch = 'Mickevichi Branch';
+            break;
+          case 'OFFICE_2':
+            this.listPending[i].branch = 'Digomi Branch';
+            break;
+          case 'OFFICE_3':
+            this.listPending[i].branch = 'Vaja-Pshavela Branch';
+            break;
+          case 'OFFICE_4':
+            this.listPending[i].branch = 'Gldani Branch';
+            break;
+          case 'OFFICE_5':
+            this.listPending[i].branch = 'Isani Branch';
+            break;
+          case 'OFFICE_6':
+            this.listPending[i].branch = 'Vake Branch';
+            break;
+        }
+      }
       this.subject.next();
     });
     return this.subject.asObservable();
@@ -124,7 +154,6 @@ export class PendingPage {
       branch: this.branch[index]
     };
     this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe((data) => {
-      console.log(data);
     })
   }
 

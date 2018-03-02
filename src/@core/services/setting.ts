@@ -12,6 +12,7 @@ export class SettingService {
   private getStreetsMessage = new Subject<any>();
   private uploadAvatarMessage = new Subject<any>();
   private removeAvatarMessage = new Subject<any>();
+  private getAvatarMessage = new Subject<any>()
 
   constructor(private http: HttpClient,
               private soap: SOAPService){}
@@ -89,5 +90,20 @@ export class SettingService {
       });
     });
     return this.removeAvatarMessage.asObservable();
+  }
+
+  getAvatar(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getAvatarResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getAvatarMessage.asObservable();
   }
 }
