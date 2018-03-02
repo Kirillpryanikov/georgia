@@ -98,7 +98,8 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.userPhoto = this.reader.result;
         this.data = {
           sessionId: this.sessionId,
-          base64data: this.userPhoto.split(',')[1]
+          base64data: this.userPhoto.split(',')[1],
+          extention: this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
         };
         this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
         })
@@ -229,7 +230,7 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   getAvatar() {
     this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
-      this.userPhoto = 'data:image/png;base64,' + data.message.file;
+      this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
     });
   }
 
