@@ -12,6 +12,7 @@ export class PopupService {
   private addComment = new Subject<any>();
   private uploadInvoiceComment = new Subject<any>();
   private getInfoMessage = new Subject<any>();
+  private getUnpaidInvoicesMessage = new Subject<any>();
   constructor(private http: HttpClient,
               private soap: SOAPService){}
 
@@ -84,5 +85,20 @@ export class PopupService {
       });
     });
     return this.getInfoMessage.asObservable();
+  }
+
+  getUnpaidInvoices(remote_function, data): Observable<any> {
+    this.http.get('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.getUnpaidInvoicesMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getUnpaidInvoicesResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getUnpaidInvoicesMessage.asObservable();
   }
 }
