@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScriptDataModule } from '@core/script.data/script.data.module';
 import {
   AuthorizationService, RegistrationService, AwaitingTrackingService, HeaderService, UsaWarehouseService,
-  PendingService, ArrivedService, ReceivedService, PopupService, SettingService, TransactionService
+  PendingService, ArrivedService, ReceivedService, PopupService, SettingService, TransactionService, TbcService,
+  CartuService
 } from '@core/services';
 import { DeclarationService } from "@core/services/declaration";
 import { NgxSoapModule } from "ngx-soap";
@@ -26,7 +27,9 @@ const CORE_PROVIDERS = [
   FileReader,
   SettingService,
   TransactionService,
-  InvoiceService
+  InvoiceService,
+  TbcService,
+  CartuService
 ];
 const MODULES = [ ScriptDataModule, NgxSoapModule ];
 

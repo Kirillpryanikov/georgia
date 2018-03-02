@@ -11,3 +11,5 @@ export * from '@core/services/setting';
 export * from '@core/services/declaration';
 export * from '@core/services/transaction';
 export * from '@core/services/invoice';
+export * from '@core/services/tbc';
+export * from '@core/services/cartu';

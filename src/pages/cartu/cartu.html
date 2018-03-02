@@ -20,8 +20,8 @@
             <form class="u2g-payment-form">
               <h4 class="u2g-payment-form__text">Recommended amount to pay is 1227.90 GEL, including commision fee</h4>
               <span class="u2g-payment-form__text">Please enter an amount in GEL: </span>
-              <input type="text" class="u2g-payment-form__input">
-              <input type="button" class="u2g-button" value="Payment">
+              <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
+              <input (click)="pay()" type="button" class="u2g-button" value="Payment">
               <p class="u2g-payment-form__note">Minimal amount to deposit is 1 GEL.</p>
             </form>
           </div>

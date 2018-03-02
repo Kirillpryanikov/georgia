@@ -21,8 +21,8 @@
               <h4 class="u2g-payment-form__text">Total unpaid invoices 1197.20 GEL.</h4>
               <p class="u2g-payment-form__note"><span>NOTE:</span> comission fee not included</p>
               <span class="u2g-payment-form__text">Please enter an amount in GEL: </span>
-              <input type="text" class="u2g-payment-form__input">
-              <input type="button" class="u2g-button" value="Payment">
+              <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
+              <input (click)="generateTBCBankTransaction()" type="button" class="u2g-button" value="Payment">
             </form>
           </div>
         </div>
