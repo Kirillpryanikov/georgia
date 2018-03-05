@@ -9,8 +9,8 @@ import {
 } from '@core/services';
 import { DeclarationService } from "@core/services/declaration";
 import { NgxSoapModule } from "ngx-soap";
-import {TransactionPageModule} from "@pages/transaction/transaction.module";
-import {InvoiceService} from "@core/services/invoice";
+import { InvoiceService } from "@core/services/invoice";
+import { NativeStorage } from "@ionic-native/native-storage";
 
 const CORE_PROVIDERS = [
   AuthorizationService,
@@ -29,7 +29,8 @@ const CORE_PROVIDERS = [
   TransactionService,
   InvoiceService,
   TbcService,
-  CartuService
+  CartuService,
+  NativeStorage
 ];
 const MODULES = [ ScriptDataModule, NgxSoapModule ];
 

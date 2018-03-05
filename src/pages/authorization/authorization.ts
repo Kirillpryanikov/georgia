@@ -5,6 +5,7 @@ import { ScriptRegisterService } from '@core/script.data/script.register.service
 import { TranslateService } from '@ngx-translate/core';
 import { AuthorizationService } from '@core/services';
 import { Subscription } from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @IonicPage({
   name: 'authorization-page'
@@ -19,20 +20,21 @@ export class Authorization implements OnInit, OnDestroy {
   private form: FormGroup;
   private lang: string;
   private authObservable: Subscription;
+  private data;
 
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               private render: Renderer2,
               private translate: TranslateService,
               private registerService: ScriptRegisterService,
-              private authService: AuthorizationService) {}
+              private authService: AuthorizationService,
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
     this.lang = this.translate.currentLang || 'en';
   }
 
   ionViewCanEnter(){
-    this.initDropdown();
     this.initForm();
     this.initCheckout();
   }
@@ -60,12 +62,21 @@ export class Authorization implements OnInit, OnDestroy {
     this.translate.use(language);
   }
 
-  submit() {
-    const organization = this.jsOrganization.nativeElement.querySelector('.organization_field_c');
-    this.form.get('organization').patchValue(organization ? organization.value : '');
-
-    this.authObservable = this.authService.authorization(this.form.value)
-      .subscribe(() => this.navCtrl.push('page-awaiting-tracking'))
+  login() {
+    this.data = {
+      secret: '6LcbGCsUAAATUM-mRB1xmIGEAbaSfebzeUlPpsuZ',
+      userName: this.form.value.email,
+      password: this.form.value.password,
+      language: this.lang,
+      remember: this.form.value.checkbox
+    };
+    console.log(this.data);
+    this.authService.login('login', this.data).subscribe(data => {
+      if(data.message.status === 'OK') {
+        this.nativeStorage.setItem('sessionId', data.message.message.session_id);
+        this.navCtrl.push('page-awaiting-tracking');
+      }
+    })
   }
 
   goToRegisterPage() {

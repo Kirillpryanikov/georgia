@@ -6,6 +6,7 @@ import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popu
 import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
 import {Subscription} from "rxjs/Subscription";
 import {ArrivedService} from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -32,11 +33,15 @@ export class ArrivedPage {
               public navParams: NavParams,
               private mainService: ScriptMainService,
               private modalController: ModalController,
-              private arrivedService: ArrivedService) {
+              private arrivedService: ArrivedService,
+              private nativeStorage: NativeStorage) {
   }
 
   ionViewDidLoad() {
-    this.getArrived();
+    this.nativeStorage.getItem('sessionid').then(res => {
+      this.sessionId = res;
+      this.getArrived();
+    });
   }
 
   initMasonry() {

@@ -9,6 +9,7 @@ import { INotification }  from "@IFolder/INotification";
 import { DetailsPopups } from "@shared/popups/details-popup-component/details-popups";
 import { AddressPopups } from "@shared/popups/address-popup-component/address-popups";
 import { Subscription } from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -46,7 +47,8 @@ export class HeaderPage implements OnInit, OnDestroy{
               private translate: TranslateService,
               private headerService: HeaderService,
               private modalController: ModalController,
-              private settingService: SettingService) {}
+              private settingService: SettingService,
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
     this.getAvatar();
@@ -127,6 +129,12 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.mainService.hideDropdown();
     const modal = this.modalController.create(AddressPopups);
     modal.present();
+  }
+
+  logout(e) {
+    e.preventDefault();
+    this.nativeStorage.clear();
+    this.navCtrl.setRoot('authorization-page');
   }
 
   ngOnDestroy() {

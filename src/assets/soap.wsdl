@@ -75,6 +75,12 @@
   <wsdl:message name="getInfoResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
+  <wsdl:message name="getCartuDescriptorRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getCartuDescriptorResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:message name="getDeclarationRequest">
     <wsdl:part name="sessionId" type="xsd:string"/>
     <wsdl:part name="packageId" type="xsd:int"/>
@@ -246,6 +252,20 @@
   <wsdl:message name="uploadInvoiceResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
+  <wsdl:message name="getUploadedInvoiceRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="packageId" type="xsd:int"/>
+    <wsdl:part name="filename" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getUploadedInvoiceResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getAvatarRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getAvatarResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:message name="getListOfUploadedInvoicesRequest">
     <wsdl:part name="sessionId" type="xsd:string"/>
     <wsdl:part name="packageId" type="xsd:int"/>
@@ -259,6 +279,20 @@
     <wsdl:part name="filename" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="removeInvoiceResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="uploadAvatarRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="base64data" type="xsd:string"/>
+    <wsdl:part name="extention" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="uploadAvatarResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="removeAvatarRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="removeAvatarResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
   <wsdl:portType name="ClientWSPortType">
@@ -285,6 +319,10 @@
     <wsdl:operation name="removeTracking">
       <wsdl:input message="tns:removeTrackingRequest"/>
       <wsdl:output message="tns:removeTrackingResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getCartuDescriptor">
+      <wsdl:input message="tns:getCartuDescriptorRequest"/>
+      <wsdl:output message="tns:getCartuDescriptorResponse"/>
     </wsdl:operation>
     <wsdl:operation name="changePackageSetting">
       <wsdl:input message="tns:changePackageSettingRequest"/>
@@ -406,6 +444,14 @@
       <wsdl:input message="tns:uploadInvoiceRequest"/>
       <wsdl:output message="tns:uploadInvoiceResponse"/>
     </wsdl:operation>
+    <wsdl:operation name="getUploadedInvoice">
+      <wsdl:input message="tns:getUploadedInvoiceRequest"/>
+      <wsdl:output message="tns:getUploadedInvoiceResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAvatar">
+      <wsdl:input message="tns:getAvatarRequest"/>
+      <wsdl:output message="tns:getAvatarResponse"/>
+    </wsdl:operation>
     <wsdl:operation name="getListOfUploadedInvoices">
       <wsdl:input message="tns:getListOfUploadedInvoicesRequest"/>
       <wsdl:output message="tns:getListOfUploadedInvoicesResponse"/>
@@ -413,6 +459,14 @@
     <wsdl:operation name="removeInvoice">
       <wsdl:input message="tns:removeInvoiceRequest"/>
       <wsdl:output message="tns:removeInvoiceResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="uploadAvatar">
+      <wsdl:input message="tns:uploadAvatarRequest"/>
+      <wsdl:output message="tns:uploadAvatarResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="removeAvatar">
+      <wsdl:input message="tns:removeAvatarRequest"/>
+      <wsdl:output message="tns:removeAvatarResponse"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientWSPort" type="tns:ClientWSPortType">
@@ -741,6 +795,24 @@
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getUploadedInvoice">
+      <soap:operation soapAction="http://www.example.org/utils/getUploadedInvoice"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAvatar">
+      <soap:operation soapAction="http://www.example.org/utils/getAvatar"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getListOfUploadedInvoices">
       <soap:operation soapAction="http://www.example.org/utils/getListOfUploadedInvoices"/>
       <wsdl:input>
@@ -752,6 +824,33 @@
     </wsdl:operation>
     <wsdl:operation name="removeInvoice">
       <soap:operation soapAction="http://www.example.org/utils/removeInvoice"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadAvatar">
+      <soap:operation soapAction="http://www.example.org/utils/uploadAvatar"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAvatar">
+      <soap:operation soapAction="http://www.example.org/utils/removeAvatar"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCartuDescriptor">
+      <soap:operation soapAction="http://www.example.org/utils/getCartuDescriptor"/>
       <wsdl:input>
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
       </wsdl:input>

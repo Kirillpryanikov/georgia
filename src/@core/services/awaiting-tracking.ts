@@ -18,7 +18,7 @@ export class AwaitingTrackingService {
   }
 
   getAwaiting(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -33,7 +33,7 @@ export class AwaitingTrackingService {
   }
 
   addTracking(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -48,7 +48,7 @@ export class AwaitingTrackingService {
   }
 
   removeTracking(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -63,7 +63,7 @@ export class AwaitingTrackingService {
   }
 
   changePackageSetting(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {

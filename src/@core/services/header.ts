@@ -16,7 +16,7 @@ export class HeaderService {
               private soap: SOAPService){}
 
   getNotifications(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -31,7 +31,7 @@ export class HeaderService {
   }
 
   getInfo(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
@@ -46,7 +46,7 @@ export class HeaderService {
   }
 
   changeLanguage(remote_function, data): Observable<any> {
-    this.http.get('/assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
