@@ -18,7 +18,7 @@
 
           <div class="u2g-payment-form-wrapper">
             <form class="u2g-payment-form">
-              <h4 class="u2g-payment-form__text">Recommended amount to pay is 1227.90 GEL, including commision fee</h4>
+              <h4 class="u2g-payment-form__text">Recommended amount to pay is {{unpaid_invoice}} GEL, including commision fee</h4>
               <span class="u2g-payment-form__text">Please enter an amount in GEL: </span>
               <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
               <input [disabled]="!amount" (click)="getCartuDescriptor()" type="button" class="u2g-button" value="Payment">

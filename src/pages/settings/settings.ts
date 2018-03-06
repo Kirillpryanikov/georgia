@@ -8,6 +8,7 @@ import { SettingService } from "@core/services/setting";
 import 'rxjs/add/operator/map';
 import {INotificationSettings} from "@IFolder/INotificationSettings";
 import {Subscription} from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the SettingsPage page.
@@ -24,7 +25,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: 'settings.html',
 })
 export class SettingsPage implements OnInit, OnDestroy{
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private data: Object;
   private streetsList: Array<string>;
   private subscription: Subscription;
@@ -70,16 +71,21 @@ export class SettingsPage implements OnInit, OnDestroy{
               private mainService: ScriptMainService,
               private fb: FormBuilder,
               private reader: FileReader,
-              private settingService: SettingService) {
+              private settingService: SettingService,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
-    this.getStreets();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getStreets();
+        this.getAvatar();
+        this.getCustomerSettings();
+      });
     this.createFormChangeCustomer();
     this.createFormChangePassword();
     this.createFormChangeNotification();
-    this.getAvatar();
-    this.getCustomerSettings();
   }
 
   tabsSetting() {

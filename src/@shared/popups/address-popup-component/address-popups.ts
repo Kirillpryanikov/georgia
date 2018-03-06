@@ -7,6 +7,7 @@ import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { PopupService } from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
   selector: 'address-popup',
@@ -15,7 +16,7 @@ import { PopupService } from "@core/services";
 })
 export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private user: Object = {
     first_name: '',
     last_name: '',
@@ -29,12 +30,17 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
               private mainService: ScriptMainService,
-              private popupService: PopupService) {}
+              private popupService: PopupService,
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getInfo();
+      });
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
-    this.getInfo();
   }
 
   ionViewWillLeave() {

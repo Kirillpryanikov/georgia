@@ -28,8 +28,4 @@ export class CartuService {
     return this.getCartuDescriptorMessage.asObservable();
   }
 
-  pay(data){
-    return this.http.post('https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp', data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}, responseType: 'text'});
-  }
-
 }

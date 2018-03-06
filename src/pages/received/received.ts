@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 import {ScriptMainService} from "@core/script.data/script.main.service";
@@ -8,6 +8,7 @@ import {ReceivedService} from "@core/services";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the ReceivedPage page.
@@ -23,21 +24,30 @@ import {debounceTime} from 'rxjs/operators';
   selector: 'page-received',
   templateUrl: 'received.html',
 })
-export class ReceivedPage {
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+export class ReceivedPage implements OnInit {
+  private sessionId: string;
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
               private modalController: ModalController,
-              private receivedService: ReceivedService) {
+              private receivedService: ReceivedService,
+              private nativeStorage: NativeStorage) {
+  }
+
+  ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getReceived().pipe(debounceTime(0)).subscribe(() => {
+          this.initMasonry();
+        })
+      });
   }
 
   ionViewWillEnter() {
-    this.getReceived().pipe(debounceTime(0)).subscribe(() => {
-      this.initMasonry();
-    })
+
   }
 
   initMasonry() {

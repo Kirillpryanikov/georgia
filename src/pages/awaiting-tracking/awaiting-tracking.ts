@@ -9,6 +9,7 @@ import { CommentPopups } from "@shared/popups/comment-popup-component/comment-po
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
 import {Subscription} from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -33,9 +34,7 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
-  private arrRiskFree: ElementRef[];
-  private arrDownPackage: ElementRef[];
+  private sessionId: string;
   private trackingForm: FormGroup;
   private listAwaitingTracking;
   private data;
@@ -48,10 +47,15 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private awaitingService: AwaitingTrackingService,
               private scriptService: ScriptService,
               private popupService: PopupService,
-              private mainService: ScriptMainService) {}
+              private mainService: ScriptMainService,
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    this.getAwaiting();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getAwaiting();
+      });
     this.createFormAddTracking();
     this.initMasonry();
   }

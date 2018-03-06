@@ -45,10 +45,10 @@ export class MyApp implements OnInit{
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.rootPage = 'page-awaiting-tracking'
-    })
-    .catch(err => {
-      this.rootPage = 'authorization-page';
-    })
+      })
+      .catch(err => {
+        this.rootPage = 'authorization-page';
+      })
 
   }
 

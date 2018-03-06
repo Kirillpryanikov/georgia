@@ -4,6 +4,7 @@ import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {PopupService} from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
   selector: 'invoice-popup',
@@ -15,7 +16,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private file: string = '';
   private extention: string = '';
   private data;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -24,11 +25,16 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
               private nativePageTransitions: NativePageTransitions,
               private mainService: ScriptMainService,
               private reader: FileReader,
-              private popupService: PopupService) {
+              private popupService: PopupService,
+              private nativeStorage: NativeStorage) {
 
   }
 
   ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+      });
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
   }

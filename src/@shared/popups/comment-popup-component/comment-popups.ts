@@ -7,6 +7,7 @@ import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { PopupService } from "@core/services";
 import { Subscription } from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
   selector: 'comment-popup',
@@ -16,7 +17,7 @@ import { Subscription } from "rxjs/Subscription";
 export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
   @ViewChild('popup') popup : ElementRef;
 
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private comment: string = null;
   private data;
   private subscription: Subscription;
@@ -27,12 +28,17 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
               private viewCtrl: ViewController,
               private navParams: NavParams,
               private nativePageTransitions: NativePageTransitions,
-              private popupService: PopupService) {
+              private popupService: PopupService,
+              private nativeStorage: NativeStorage) {
 
   }
 
   ngOnInit() {
-    this.getComment();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getComment();
+      });
   }
 
   ionViewWillLeave() {

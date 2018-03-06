@@ -11,6 +11,7 @@ import { DeclarationService } from "@core/services/declaration";
 import { NgxSoapModule } from "ngx-soap";
 import { InvoiceService } from "@core/services/invoice";
 import { NativeStorage } from "@ionic-native/native-storage";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 const CORE_PROVIDERS = [
   AuthorizationService,
@@ -30,7 +31,8 @@ const CORE_PROVIDERS = [
   InvoiceService,
   TbcService,
   CartuService,
-  NativeStorage
+  NativeStorage,
+  InAppBrowser
 ];
 const MODULES = [ ScriptDataModule, NgxSoapModule ];
 

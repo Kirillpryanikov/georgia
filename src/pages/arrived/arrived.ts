@@ -25,7 +25,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class ArrivedPage {
 
   private subscription: Subscription;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private listArrived;
   private ListCities = {};
 
@@ -38,7 +38,7 @@ export class ArrivedPage {
   }
 
   ionViewDidLoad() {
-    this.nativeStorage.getItem('sessionid').then(res => {
+    this.nativeStorage.getItem('sessionId').then(res => {
       this.sessionId = res;
       this.getArrived();
     });

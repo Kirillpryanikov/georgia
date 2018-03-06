@@ -73,7 +73,7 @@ export class Authorization implements OnInit, OnDestroy {
     console.log(this.data);
     this.authService.login('login', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
-        this.nativeStorage.setItem('sessionId', data.message.message.session_id);
+        this.nativeStorage.setItem('sessionId', data.message.session_id);
         this.navCtrl.push('page-awaiting-tracking');
       }
     })

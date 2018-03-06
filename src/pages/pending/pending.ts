@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
@@ -7,6 +7,7 @@ import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popu
 import {AwaitingTrackingService, PendingService} from "@core/services";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the PendingPage page.
@@ -32,8 +33,8 @@ const notice = {
   selector: 'page-pending',
   templateUrl: 'pending.html',
 })
-export class PendingPage {
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+export class PendingPage implements OnInit{
+  private sessionId: string;
   private listPending;
   private data;
   private branch = [];
@@ -44,13 +45,23 @@ export class PendingPage {
               private mainService: ScriptMainService,
               private modalController: ModalController,
               private pendingService: PendingService,
-              private awaitingService: AwaitingTrackingService) {
+              private awaitingService: AwaitingTrackingService,
+              private nativeStorage: NativeStorage) {
+  }
+
+  ngOnInit() {
+
   }
 
   ionViewDidLoad() {
-    this.getPending().pipe(debounceTime(0)).subscribe(() => {
-      this.initMasonry();
-    });
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        console.log(res);
+        this.getPending().pipe(debounceTime(0)).subscribe(() => {
+          this.initMasonry();
+        });
+      });
   }
 
   initMasonry() {

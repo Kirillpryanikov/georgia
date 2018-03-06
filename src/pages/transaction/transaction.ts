@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransactionService} from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the TransactionPage page.
@@ -16,17 +17,25 @@ import {TransactionService} from "@core/services";
   selector: 'page-transaction',
   templateUrl: 'transaction.html',
 })
-export class TransactionPage {
-  private data;
+export class TransactionPage implements OnInit{
   private listTransaction;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private transactionService: TransactionService) {
+              private transactionService: TransactionService,
+              private nativeStorage: NativeStorage) {
+  }
+
+  ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getTransactions();
+      });
   }
 
   ionViewDidLoad() {
-    this.getTransactions();
+
   }
 
   getTransactions() {

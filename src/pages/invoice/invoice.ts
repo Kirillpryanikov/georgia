@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InvoiceService } from "@core/services";
 import { IInvoice } from "@IFolder/IInvoice";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the InvoicePage page.
@@ -19,7 +20,7 @@ import { IInvoice } from "@IFolder/IInvoice";
 })
 export class InvoicePage implements OnInit{
   private data;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private discount = {
     amount: 0,
     total: 0,
@@ -45,11 +46,16 @@ export class InvoicePage implements OnInit{
   };
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private invoiceService: InvoiceService) {
+              private invoiceService: InvoiceService,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
-    this.getInvoice();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getInvoice();
+      });
   }
 
   getInvoice() {

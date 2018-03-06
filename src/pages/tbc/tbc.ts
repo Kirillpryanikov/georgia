@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import { TbcService } from "@core/services";
+import {PopupService, TbcService} from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the TbcPage page.
@@ -21,15 +22,22 @@ export class TbcPage implements OnInit, OnDestroy{
 
   private data;
   private amount;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private unpaid_invoice: string;
+  private sessionId: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public mainService: ScriptMainService,
-              private tbcService: TbcService) {
+              private tbcService: TbcService,
+              private popupService: PopupService,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
-
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getUnpaidInvoices();
+      });
   }
 
   generateTBCBankTransaction() {
@@ -49,6 +57,12 @@ export class TbcPage implements OnInit, OnDestroy{
         });
       }
     })
+  }
+
+  getUnpaidInvoices() {
+    this.popupService.getUnpaidInvoices('getUnpaidInvoices', {sessionId: this.sessionId}).subscribe(data => {
+      this.unpaid_invoice = data.message.total_unpaid;
+    });
   }
 
   ngOnDestroy() {

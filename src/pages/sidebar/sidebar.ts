@@ -8,6 +8,7 @@ import {
 import { ISidebarNotification }  from "@IFolder/ISidebarNotification";
 import { NavController } from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -20,7 +21,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: 'sidebar.html'
 })
 export class SidebarPage implements OnInit, OnDestroy{
-  sessionId = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private subscription: Subscription;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
@@ -37,10 +38,15 @@ export class SidebarPage implements OnInit, OnDestroy{
               private receivedService: ReceivedService,
               private arrivedService: ArrivedService,
               private pendingSevice: PendingService,
-              private headerService: HeaderService) {}
+              private headerService: HeaderService,
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    this.getInfo();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getInfo();
+      });
   }
 
   awaitingPackages(e) {

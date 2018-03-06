@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import { CartuService } from "@core/services";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CartuService, PopupService} from "@core/services";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
+import {Subscription} from "rxjs/Subscription";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the CartuPage page.
@@ -21,20 +23,30 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class CartuPage implements OnInit, OnDestroy{
 
   private body = new URLSearchParams();
-  private amount;
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+  private data: string;
+  private unpaid_invoice: string;
+  private amount: string;
+  private sessionId: string;
+  private subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public mainService: ScriptMainService,
-              private cartuService: CartuService) {
+              private cartuService: CartuService,
+              private iab: InAppBrowser,
+              private popupService: PopupService,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
-
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getUnpaidInvoices();
+      });
   }
 
   getCartuDescriptor() {
-    this.cartuService.getCartuDescriptor('getCartuDescriptor', {sessionId: this.sessionId})
+    this.subscription = this.cartuService.getCartuDescriptor('getCartuDescriptor', {sessionId: this.sessionId})
       .subscribe(data => {
         this.body.append('PurchaseAmt', this.amount);
         this.body.append('PurchaseDesc', data.message.descriptor);
@@ -45,11 +57,16 @@ export class CartuPage implements OnInit, OnDestroy{
         this.body.append('MerchantCity', 'Tbilisi');
         this.body.append('MerchantID', '000000008000308-00000001');
         this.body.append('xDDDSProxy.Language', '01');
-        this.cartuService.pay(this.body.toString())
-          .subscribe(data => {
-            console.log(data);
-        })
+        this.data = this.body.toString();
+        this.iab.create(`https://e-commerce.cartubank.ge/servlet/Process3DSServlet/3dsproxy_init.jsp?${this.data}`);
+        this.subscription.unsubscribe();
     })
+  }
+
+  getUnpaidInvoices() {
+    this.popupService.getUnpaidInvoices('getUnpaidInvoices', {sessionId: this.sessionId}).subscribe(data => {
+      this.unpaid_invoice = data.message.total_unpaid;
+    });
   }
 
   ngOnDestroy() {

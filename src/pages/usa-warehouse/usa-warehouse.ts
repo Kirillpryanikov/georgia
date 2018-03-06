@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
@@ -6,6 +6,7 @@ import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popu
 import {AwaitingTrackingService, UsaWarehouseService} from "@core/services";
 import {Subscription} from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the UsaWarehousePage page.
@@ -30,8 +31,8 @@ const notice = {
   selector: 'page-usa-warehouse',
   templateUrl: 'usa-warehouse.html',
 })
-export class UsaWarehousePage {
-  private sessionId = '707d235b00280e693eab0496acb2690d';
+export class UsaWarehousePage implements OnInit{
+  private sessionId: string;
   private listUsaWarehouse;
   private subscription: Subscription;
   private data;
@@ -41,11 +42,20 @@ export class UsaWarehousePage {
               private modalController: ModalController,
               private usaWarehouseService: UsaWarehouseService,
               private awaitingService: AwaitingTrackingService,
-              private mainService: ScriptMainService) {
+              private nativeStorage: NativeStorage
+              ) {
+  }
+
+  ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getWarehouse();
+      });
   }
 
   ionViewDidLoad() {
-    this.getWarehouse();
+
   }
 
   declaration(e, index) {

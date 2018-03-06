@@ -7,6 +7,7 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
 import { Subscription } from "rxjs/Subscription";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -28,7 +29,7 @@ const notice = {
 export class DeclarationPage implements OnInit{
 
   productList: Array<any>;
-  sessionId: string = '707d235b00280e693eab0496acb2690d';
+  sessionId: string;
   total: number = 0;
   data: Object;
   form: FormGroup;
@@ -41,17 +42,22 @@ export class DeclarationPage implements OnInit{
               private modalController: ModalController,
               private declarationService: DeclarationService,
               private mainService: ScriptMainService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit(): void {
     this.createForm();
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getDeclaration();
+        this.getShipers();
+      });
   }
 
   ionViewDidLoad(): void {
     this.mainService.readonly();
-    this.getDeclaration();
-    this.getShipers();
   }
 
   addProduct(): void {
