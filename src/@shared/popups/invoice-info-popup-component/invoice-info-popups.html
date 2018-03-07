@@ -19,15 +19,15 @@
             <tbody>
             <tr>
               <td >Transportation:</td>
-              <td>2.14 GEL</td>
-              <td>0.00 GEL</td>
-              <td>2.14 GEL</td>
+              <td>{{invoice.transportation.amount}} GEL</td>
+              <td>{{invoice.transportation.vat}} GEL</td>
+              <td>{{invoice.transportation.total}} GEL</td>
             </tr>
             <tr>
               <td>Discount (10%):</td>
-              <td class="green-cell">-0.21 GEL</td>
-              <td class="green-cell">0.00 GEL</td>
-              <td class="green-cell">-0.21 GEL</td>
+              <td class="green-cell">-{{discount.amount}} GEL</td>
+              <td class="green-cell">{{discount.amount}} GEL</td>
+              <td class="green-cell">-{{discount.amount}} GEL</td>
             </tr>
             </tbody>
             <tfoot>
@@ -35,7 +35,7 @@
               <td>Total</td>
               <td></td>
               <td></td>
-              <td>1.93 GEL</td>
+              <td>{{invoice.total}} GEL</td>
             </tr>
             </tfoot>
           </table>

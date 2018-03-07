@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NativeStorage } from "@ionic-native/native-storage";
 import 'rxjs/add/operator/catch';
 import {Client, SOAPService} from "ngx-soap";
 import {Subject} from "rxjs/Subject";
@@ -10,8 +9,7 @@ export class AuthorizationService {
   private client: Client;
   private loginMessage = new Subject<any>();
   constructor(private http: HttpClient,
-              private soap: SOAPService,
-              private nativeStorage: NativeStorage){}
+              private soap: SOAPService){}
 
   login(remote_function, data) {
     this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {

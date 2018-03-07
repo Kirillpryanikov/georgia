@@ -106,7 +106,7 @@ export class UsaWarehousePage implements OnInit{
   }
 
   showInvoicePopup(index) {
-    const modal = this.modalController.create(InvoicePopups);
+    const modal = this.modalController.create(InvoicePopups, {package_id: this.listUsaWarehouse[index].package_id});
     modal.present();
   }
 

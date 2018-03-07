@@ -27,6 +27,7 @@ export class ArrivedPage {
   private subscription: Subscription;
   private sessionId: string;
   private listArrived;
+  private keys = [];
   private ListCities = {};
 
   constructor(public navCtrl: NavController,
@@ -38,62 +39,51 @@ export class ArrivedPage {
   }
 
   ionViewDidLoad() {
-    this.nativeStorage.getItem('sessionId').then(res => {
-      this.sessionId = res;
-      this.getArrived();
-    });
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getArrived();
+      });
   }
 
   initMasonry() {
     this.mainService.initMasonry();
   }
 
-  showCommentPopup(index) {
-    const modal = this.modalController.create(CommentPopups);
-    modal.present();
+  showCommentPopup(city, index, _index) {
+    console.log(city);
+    if(city){
+      const modal = this.modalController.create(CommentPopups, {package_id: this.ListCities[city][index].trackings[_index].id});
+      modal.present();
+    }
+    else{
+      const modal = this.modalController.create(CommentPopups, {package_id: this.listArrived[index].trackings[_index].id});
+      modal.present();
+    }
   }
 
-  showInvoicePopup(index) {
-    const modal = this.modalController.create(InvoicePopups);
-    modal.present();
+  showInvoicePopup(city, index, _index) {
+    if(city){
+      const modal = this.modalController.create(InvoicePopups, {package_id: this.ListCities[city][index].trackings[_index].id});
+      modal.present();
+    }else{
+      const modal = this.modalController.create(InvoicePopups, {package_id: this.listArrived[index].trackings[_index].id});
+      modal.present();
+    }
   }
 
-  showInvoiceInfoPopup(index) {
-    const modal = this.modalController.create(InvoiceInfoPopups);
-    modal.present();
+  showInvoiceInfoPopup(city, index) {
+    if(city){
+      const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.ListCities[city][index].invoice});
+      modal.present();
+    }else{
+      const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.listArrived[index].invoice});
+      modal.present();
+    }
   }
 
   getArrived() {
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
-
-      data.message.arrived = {
-        NONE: {
-          12412412: {
-            hawb: 'H1'
-          },
-          12451235: {
-            hawb: 'H2'
-          }
-        },
-        ARRIVED: {
-          124: {
-            hawb: 'H#'
-          }
-        },
-        PREPARING_ABASA: {
-          124124: {
-            hawb: 'H4'
-          },
-          214124: {
-            hawb: 'H5'
-          }
-        },
-        PREPARING_TEST: {
-          4124: {
-            hawb: 'H7'
-          }
-        }
-      };
 
       const keys = Object.keys(data.message.arrived);
 
@@ -102,21 +92,63 @@ export class ArrivedPage {
       const tmp2 = tmp1_2.map(val => Object.keys(val).map(key => val[key]));
 
       this.listArrived = [].concat(...tmp2);
+      for(let i in this.listArrived) {
+        switch (this.listArrived[i].branch){
+          case 'OFFICE_1':
+            this.listArrived[i].branch = 'Mickevichi Branch';
+            break;
+          case 'OFFICE_2':
+            this.listArrived[i].branch = 'Digomi Branch';
+            break;
+          case 'OFFICE_3':
+            this.listArrived[i].branch = 'Vaja-Pshavela Branch';
+            break;
+          case 'OFFICE_4':
+            this.listArrived[i].branch = 'Gldani Branch';
+            break;
+          case 'OFFICE_5':
+            this.listArrived[i].branch = 'Isani Branch';
+            break;
+          case 'OFFICE_6':
+            this.listArrived[i].branch = 'Vake Branch';
+            break;
+        }
+      }
 
       this.ListCities = keys.filter(key => key.match('PREPARING_')).reduce((obj, city) => {obj[city.split('_')[1]] = []; return obj}, {});
+
       Object.keys(this.ListCities).forEach(city => {
         const tmp = `PREPARING_${city}`;
-        this.ListCities[city].push(...Object.keys(data.message.arrived[tmp]).map(key => data.message.arrived[tmp][key]))
+        this.ListCities[city].push(...Object.keys(data.message.arrived[tmp]).map(key => data.message.arrived[tmp][key]));
+        for(let i in this.ListCities[city]) {
+          switch (this.ListCities[city][i].branch){
+            case 'OFFICE_1':
+              this.ListCities[city][i].branch = 'Mickevichi Branch';
+              break;
+            case 'OFFICE_2':
+              this.ListCities[city][i].branch = 'Digomi Branch';
+              break;
+            case 'OFFICE_3':
+              this.ListCities[city][i].branch = 'Vaja-Pshavela Branch';
+              break;
+            case 'OFFICE_4':
+              this.ListCities[city][i].branch = 'Gldani Branch';
+              break;
+            case 'OFFICE_5':
+              this.ListCities[city][i].branch = 'Isani Branch';
+              break;
+            case 'OFFICE_6':
+              this.ListCities[city][i].branch = 'Vake Branch';
+              break;
+          }
+        }
       });
-      this.ListCities['keys'] = Object.keys(this.ListCities);
 
-      console.log(this.ListCities);
+      this.keys = Object.keys(this.ListCities);
 
       setTimeout(() => {
         this.initMasonry();
       });
-
-      console.log(data);
     });
   }
 

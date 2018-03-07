@@ -12,8 +12,8 @@ import { NativeStorage } from "@ionic-native/native-storage";
 })
 export class MyApp implements OnInit{
   // rootPage:string = 'page-awaiting-tracking';
-  // rootPage:string = 'authorization-page';
-  private rootPage: string;
+  rootPage:string = 'arrived-page';
+  // private rootPage: string;
   constructor(private platform: Platform,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
@@ -30,7 +30,7 @@ export class MyApp implements OnInit{
 
   ngOnInit() {
     this.initDropdown();
-    this.isAuth();
+    // this.isAuth();
   }
 
   ionViewDidLoad() {

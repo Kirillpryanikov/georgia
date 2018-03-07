@@ -83,7 +83,7 @@ export class PendingPage implements OnInit{
   }
 
   showInvoicePopup(index, _index) {
-    const modal = this.modalController.create(InvoicePopups);
+    const modal = this.modalController.create(InvoicePopups, {package_id: this.listPending[index].trackings[_index].id});
     modal.present();
   }
 

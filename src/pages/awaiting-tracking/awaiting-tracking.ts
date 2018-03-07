@@ -124,7 +124,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   showInvoicePopup(index) {
-    const modal = this.modalController.create(InvoicePopups);
+    const modal = this.modalController.create(InvoicePopups, {package_id: this.listAwaitingTracking[index].package_id});
     modal.present();
   }
 
