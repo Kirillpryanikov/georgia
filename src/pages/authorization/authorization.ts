@@ -89,6 +89,7 @@ export class Authorization implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.authObservable) this.authObservable.unsubscribe();
+    if (this.authObservable)
+      this.authObservable.unsubscribe();
   }
 }

@@ -77,6 +77,7 @@ export class RegisterPage implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.registrationObservable) this.registrationObservable.unsubscribe();
+    if(this.registrationObservable)
+      this.registrationObservable.unsubscribe();
   }
 }

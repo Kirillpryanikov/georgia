@@ -28,7 +28,7 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('mouseup', function (e) {
+    $(document).on('click', function (e) {
 
       var showItem = $('.u2g-show');
 
@@ -141,7 +141,6 @@ export class ScriptMainService {
   }
 
   hide() {
-    console.log('hide');
     $('.u2g-settings-form__branch-notice').hide();
   }
 }
