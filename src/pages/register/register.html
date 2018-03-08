@@ -45,19 +45,19 @@
           <input type="text" class="u2g-form-group__field" formControlName="last_name_georgian" name="last name georgian" data-rule-required="true">
         </div>
 
-        <div class="u2g-form-group__field-group js-organization">
+        <div *ngIf="!nonGeorgian" class="u2g-form-group__field-group js-organization">
           <label class="u2g-form-group__label"><span>Organization</span> <sub>*</sub></label>
           <label class="u2g-switch js-switch">
-            <input type="checkbox" formControlName="checkbox1">
+            <input [(ngModel)]="org" type="checkbox" formControlName="checkbox1">
             <span></span>
           </label>
-          <!--<input type="text" class="u2g-form-group__field" name="organization" data-rule-required="true">-->
+          <input *ngIf="org" type="text" formControlName="organization" class="u2g-form-group__field" name="organization" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group js-non-georgian">
           <label for="non-georgian" class="u2g-form-group__label"><span>Non-Georgian Citizen</span></label>
           <label class="u2g-switch js-switch">
-            <input type="checkbox" formControlName="checkbox2" id="non-georgian">
+            <input [(ngModel)]="nonGeorgian" type="checkbox" formControlName="checkbox2" id="non-georgian">
             <span></span>
           </label>
         </div>
@@ -176,7 +176,7 @@
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>Address 1 (Street)</span> <sub>*</sub></label>
-          <input type="text" class="u2g-form-group__field" formControlName="address_1" name="address 1" data-rule-required="true">
+          <input type="text" (click)="autocomplete()" class="u2g-form-group__field" id="store-url" formControlName="address_1" name="address 1" data-rule-required="true">
         </div>
 
         <div class="u2g-form-group__field-group">
