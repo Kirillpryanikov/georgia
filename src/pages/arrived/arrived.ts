@@ -91,7 +91,7 @@ export class ArrivedPage {
       action: 'CHECK'
     };
     this.subscription = this.arrivedService.retrieveCourier('retrieveCourier', this.data).subscribe(data => {
-      if(data.message.status !== 'FAIL') {
+      if(data.message.status === 'FAIL') {
         const modal = this.modalController.create(CourierNotSuccessPopups);
         modal.present();
       } else{
