@@ -23,7 +23,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
   outputs: ['branchSelection']
 })
 export class HeaderPage implements OnInit, OnDestroy{
-  private sessionId;
+  private sessionId: string;
   private data;
   private subscription: Subscription;
   private user: IUserHeader = {

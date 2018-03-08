@@ -33,12 +33,12 @@
                 <tbody>
                 <tr *ngFor="let transaction of listTransaction">
                   <td>{{transaction.date}}</td>
-                  <td><a href="">{{transaction.invoice}}</a></td>
+                  <td><a (click)="invoice($event, transaction.invoice)" >{{transaction.invoice}}</a></td>
                   <td></td>
                   <td>{{transaction.net}}</td>
                   <td>{{transaction.balance}}</td>
-                  <td *ngIf="transaction.type_value !== 'Adjustment'" class="u2g-transactions__text u2g-transactions__text--red"><span>{{transaction.type_value}}</span></td>
-                  <td *ngIf="transaction.type_value === 'Adjustment'" class="u2g-transactions__text"><span>{{transaction.type_value}}</span></td>
+                  <td (click)="goTo(transaction.type)" *ngIf="transaction.type !== 'ADJUSTMENT'" class="u2g-transactions__text u2g-transactions__text--red"><span>{{transaction.type_value}}</span></td>
+                  <td *ngIf="transaction.type === 'ADJUSTMENT'" class="u2g-transactions__text"><span>{{transaction.type_value}}</span></td>
                 </tr>
                 </tbody>
               </table>
