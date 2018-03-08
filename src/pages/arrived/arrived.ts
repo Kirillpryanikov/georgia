@@ -7,6 +7,8 @@ import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/inv
 import {Subscription} from "rxjs/Subscription";
 import {ArrivedService} from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
+import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -25,6 +27,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class ArrivedPage {
 
   private subscription: Subscription;
+  private data;
   private sessionId: string;
   private listArrived;
   private keys = [];
@@ -80,6 +83,23 @@ export class ArrivedPage {
       const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.listArrived[index].invoice});
       modal.present();
     }
+  }
+
+  expressCourier() {
+    this.data = {
+      sessionId: this.sessionId,
+      action: 'CHECK'
+    };
+    this.subscription = this.arrivedService.retrieveCourier('retrieveCourier', this.data).subscribe(data => {
+      if(data.message.status !== 'FAIL') {
+        const modal = this.modalController.create(CourierNotSuccessPopups);
+        modal.present();
+      } else{
+        const modal = this.modalController.create(CourierSuccessPopups);
+        modal.present();
+      }
+      this.subscription.unsubscribe();
+    });
   }
 
   getArrived() {

@@ -11,6 +11,8 @@ import { AddressPopups } from "@shared/popups/address-popup-component/address-po
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
+import { CourierSuccessPopups } from "@shared/popups/courier-success-popup-component/courier-success-popups";
+import { CourierNotSuccessPopups } from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -23,7 +25,9 @@ const DECLARATIONS = [
   DetailsPopups,
   AddressPopups,
   AddProductPopups,
-  SuccessPopups
+  SuccessPopups,
+  CourierSuccessPopups,
+  CourierNotSuccessPopups
 ];
 
 @NgModule({

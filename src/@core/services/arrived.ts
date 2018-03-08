@@ -9,6 +9,7 @@ import {Subject} from "rxjs/Subject";
 export class ArrivedService {
   private client: Client;
   private getArrivedMessage = new Subject<any>();
+  private retrieveCourierMessage = new Subject<any>();
   constructor(private http: HttpClient,
               private soap: SOAPService){}
 
@@ -25,5 +26,20 @@ export class ArrivedService {
       });
     });
     return this.getArrivedMessage.asObservable();
+  }
+
+  retrieveCourier(remote_function, data): Observable<any> {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+            .subscribe(response => {
+              this.retrieveCourierMessage.next({ message: JSON.parse(response)});
+            })
+        });
+      });
+    });
+    return this.retrieveCourierMessage.asObservable();
   }
 }
