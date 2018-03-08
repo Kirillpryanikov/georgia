@@ -12,7 +12,7 @@ import { PagesModule } from '@pages/pages.module'
 import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { MyApp } from './app.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Rend
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {ScriptMainService} from "@core/script.data/script.main.service";
-import {PopupService} from "@core/services";
-import {NativeStorage} from "@ionic-native/native-storage";
-
+import { ScriptMainService } from "@core/script.data/script.main.service";
+import { PopupService } from "@core/services";
+import { NativeStorage } from "@ionic-native/native-storage";
+import { Camera, CameraOptions } from '@ionic-native/camera';
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -26,7 +26,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
               private mainService: ScriptMainService,
               private reader: FileReader,
               private popupService: PopupService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private camera: Camera) {
 
   }
 
@@ -61,8 +62,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
-      base64data: this.reader.result.split(',')[1],
-      extention: this.reader.result.split(',')[0].split(/,|\/|:|;/)[2]
+      base64data: this.file.split(',')[1],
+      extention: this.file.split(',')[0].split(/,|\/|:|;/)[2]
     };
     this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
       console.log(data);
@@ -82,6 +83,18 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         this.file = this.reader.result;
       }
     }
+  }
+
+  createPhotoInvoice() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+    this.camera.getPicture(options).then((imageData) => {
+      this.file = 'data:image/jpeg;base64,' + imageData;
+    });
   }
 
   ngOnDestroy() {}

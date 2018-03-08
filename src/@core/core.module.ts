@@ -11,7 +11,8 @@ import { DeclarationService } from "@core/services/declaration";
 import { NgxSoapModule } from "ngx-soap";
 import { InvoiceService } from "@core/services/invoice";
 import { NativeStorage } from "@ionic-native/native-storage";
-import {InAppBrowser} from "@ionic-native/in-app-browser";
+import { InAppBrowser} from "@ionic-native/in-app-browser";
+import { Camera } from '@ionic-native/camera';
 
 const CORE_PROVIDERS = [
   AuthorizationService,
@@ -32,6 +33,7 @@ const CORE_PROVIDERS = [
   TbcService,
   CartuService,
   NativeStorage,
+  Camera,
   InAppBrowser
 ];
 const MODULES = [ ScriptDataModule, NgxSoapModule ];
