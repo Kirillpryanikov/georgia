@@ -42,8 +42,8 @@ export class UsaWarehousePage implements OnInit{
               private modalController: ModalController,
               private usaWarehouseService: UsaWarehouseService,
               private awaitingService: AwaitingTrackingService,
-              private nativeStorage: NativeStorage
-              ) {
+              private mainService: ScriptMainService,
+              private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
@@ -56,6 +56,10 @@ export class UsaWarehousePage implements OnInit{
 
   ionViewDidLoad() {
 
+  }
+
+  initMasonry() {
+    this.mainService.initMasonry();
   }
 
   declaration(e, index) {
@@ -112,7 +116,11 @@ export class UsaWarehousePage implements OnInit{
 
   getWarehouse() {
     this.subscription = this.usaWarehouseService.getUsaWarehouse('getUsaWarehouse', {sessionId: this.sessionId}).subscribe(data => {
+      console.log(data);
       this.listUsaWarehouse = data.message.usa_warehouse;
+      setTimeout(() => {
+        this.initMasonry();
+      })
     });
   }
 

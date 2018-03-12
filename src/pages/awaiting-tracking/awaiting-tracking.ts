@@ -7,9 +7,11 @@ import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { PopupService } from '@core/services/popup';
 import { CommentPopups } from "@shared/popups/comment-popup-component/comment-popups";
 import { InvoicePopups } from "@shared/popups/invoice-popup-component/invoice-popups";
-import {Subscription} from "rxjs/Subscription";
-import {ScriptMainService} from "@core/script.data/script.main.service";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { Subscription } from "rxjs/Subscription";
+import { ScriptMainService } from "@core/script.data/script.main.service";
+import { NativeStorage } from "@ionic-native/native-storage";
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from "rxjs/Subject";
 
 /**
  * Временное решение, пока не получил ответа по поводу языков/
@@ -39,6 +41,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private listAwaitingTracking;
   private data;
   private subscription: Subscription;
+  private subject = new Subject<any>();
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -48,16 +51,19 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private scriptService: ScriptService,
               private popupService: PopupService,
               private mainService: ScriptMainService,
-              private nativeStorage: NativeStorage) {}
+              private nativeStorage: NativeStorage) {
+
+  }
 
   ngOnInit() {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
-        this.getAwaiting();
+        this.getAwaiting().pipe(debounceTime(0)).subscribe(() => {
+          this.initMasonry();
+        });
       });
     this.createFormAddTracking();
-    this.initMasonry();
   }
 
   initMasonry() {
@@ -145,7 +151,9 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   getAwaiting() {
     this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: this.sessionId}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
+      this.subject.next();
     });
+    return this.subject.asObservable();
   }
 
   addTracking() {

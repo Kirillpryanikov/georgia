@@ -11,7 +11,7 @@ import { NativeStorage } from "@ionic-native/native-storage";
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
-  // rootPage:string = 'page-awaiting-tracking';
+  // rootPage:string = 'usa-warehouse-page';
   // rootPage:string = 'arrived-page';
   private rootPage: string;
   constructor(private platform: Platform,

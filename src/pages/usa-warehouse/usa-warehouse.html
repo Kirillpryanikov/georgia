@@ -13,11 +13,10 @@
 
       <div class="u2g-container">
         <div class="u2g-content-wrapper">
-          <div class="u2g-content-panel u2g-content-panel--space-between">
 
             <!--INFO BLOCKS WRAPPER / CONTENT -->
 
-            <div class="u2g-content u2g-content--warehouse">
+            <div #u2ginfo class="u2g-content u2g-content--warehouse u2g-content--masonry">
 
               <div *ngFor="let warehouse of listUsaWarehouse; index as index" class="u2g-info-block">
                 <div class="u2g-info-block__tracking-number">
@@ -49,7 +48,6 @@
               </div>
 
             </div>
-          </div>
         </div>
         <div class="u2g-overlay"></div>
       </div>
