@@ -65,6 +65,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       base64data: this.file.split(',')[1],
       extention: this.file.split(',')[0].split(/,|\/|:|;/)[2]
     };
+    console.log(this.data);
     this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
       console.log(data);
     });
@@ -95,6 +96,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     this.camera.getPicture(options).then((imageData) => {
       this.file = 'data:image/jpeg;base64,' + imageData;
     });
+    return 'invoice.jpg'
   }
 
   ngOnDestroy() {}
