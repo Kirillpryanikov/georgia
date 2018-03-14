@@ -2,17 +2,17 @@
   <div #popup class="u2g-popup-wrapper">
     <div id="comment" class="u2g-popup">
       <div class="u2g-popup__header">
-        <div class="u2g-popup__title">Comment</div>
+        <div class="u2g-popup__title">{{'_COMMENT' | translate}}</div>
         <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
       </div>
       <div class="u2g-popup__content">
-        <p class="u2g-popup__text">You can comment your purchase order, e.g. 'Clothing', 'Gift for Friend' etc...This will work as a reminder for you in the future.</p>
+        <p class="u2g-popup__text">{{'_COMMENT_DESCRIPTION' | translate}}</p>
         <form class="u2g-comment">
           <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" class="u2g-comment__textarea"></textarea>
-          <p class="u2g-popup__text u2g-popup__text--bold u2g-popup__text--right-align">Adding of comment is optional.</p>
+          <p class="u2g-popup__text u2g-popup__text--bold u2g-popup__text--right-align">{{'_ADDING_COMMENT_NOT_REQUIRED' | translate}}</p>
           <div class="u2g-popup__buttons">
-            <button [disabled]="!comment" (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">Save</button>
-            <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">Cancel</button>
+            <button [disabled]="!comment" (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">{{'_SAVE' | translate}}</button>
+            <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">{{'_CANCEL' | translate}}</button>
           </div>
         </form>
       </div>

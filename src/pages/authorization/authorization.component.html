@@ -25,7 +25,7 @@
     <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>Email</span></label>
+        <label class="u2g-form-group__label"><span>{{'_EMAIL' | translate}}</span></label>
         <input type="email" class="u2g-form-group__field" id="email" name="email" formControlName="email" data-rule-required="true">
       </div>
 

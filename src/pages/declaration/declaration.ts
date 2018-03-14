@@ -29,7 +29,7 @@ const notice = {
 export class DeclarationPage implements OnInit{
 
   productList: Array<any>;
-  sessionId: string;
+  sessionId: string = '707d235b00280e693eab0496acb2690d';
   total: number = 0;
   data: Object;
   form: FormGroup;
@@ -48,12 +48,12 @@ export class DeclarationPage implements OnInit{
 
   ngOnInit(): void {
     this.createForm();
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getDeclaration();
         this.getShipers();
-      });
+      // });
   }
 
   ionViewDidLoad(): void {

@@ -4,6 +4,7 @@ import { AwaitingTrackingPage } from './awaiting-tracking';
 import { HeaderPageModule } from '@pages/header/header.module';
 import { SharedModule } from '@shared/shared.module';
 import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
   ],
   imports: [
     IonicPageModule.forChild(AwaitingTrackingPage),
+    TranslateModule.forChild(),
     HeaderPageModule,
     SidebarPageModule,
     SharedModule

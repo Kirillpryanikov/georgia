@@ -25,7 +25,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
   templateUrl: 'received.html',
 })
 export class ReceivedPage implements OnInit {
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();
   constructor(public navCtrl: NavController,
@@ -37,13 +37,13 @@ export class ReceivedPage implements OnInit {
   }
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getReceived().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         })
-      });
+      // });
   }
 
   ionViewWillEnter() {

@@ -2,7 +2,7 @@
   <div #popup class="u2g-popup-wrapper">
     <div id="invoice-table" class="u2g-popup">
       <div class="u2g-popup__header">
-        <div class="u2g-popup__title">Invoice</div>
+        <div class="u2g-popup__title">{{'_INVOICE' | translate}}</div>
         <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
       </div>
       <div class="u2g-popup__content">
@@ -10,32 +10,32 @@
           <table class="u2g-invoice-table">
             <thead>
             <tr>
-              <td>Invoice</td>
-              <td>Amount</td>
-              <td>Vat</td>
-              <td>Sum</td>
+              <td>{{'_INVOICE' | translate}}</td>
+              <td>{{'_AMOUNT' | translate}}</td>
+              <td>{{'_VAT' | translate}}</td>
+              <td>{{'_SUM' | translate}}</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td >Transportation:</td>
-              <td>{{invoice.transportation.amount}} GEL</td>
-              <td>{{invoice.transportation.vat}} GEL</td>
-              <td>{{invoice.transportation.total}} GEL</td>
+              <td >{{'_TRANSPORTATION' | translate}}:</td>
+              <td>{{invoice.transportation.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td>{{invoice.transportation.vat}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td>{{invoice.transportation.total}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             <tr>
-              <td>Discount (10%):</td>
-              <td class="green-cell">-{{discount.amount}} GEL</td>
-              <td class="green-cell">{{discount.amount}} GEL</td>
-              <td class="green-cell">-{{discount.amount}} GEL</td>
+              <td>{{'_DISCOUNT' | translate}} (10%):</td>
+              <td class="green-cell">-{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td class="green-cell">{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td class="green-cell">-{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
-              <td>Total</td>
+              <td>{{'_TOTAL' | translate}}</td>
               <td></td>
               <td></td>
-              <td>{{invoice.total}} GEL</td>
+              <td>{{invoice.total}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             </tfoot>
           </table>

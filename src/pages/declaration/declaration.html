@@ -20,23 +20,23 @@
 
             <form [formGroup]="form" id="shipper" class="u2g-info-block u2g-info-block--declaration">
               <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">Tracking code:</span>
+                <span class="u2g-info-block__tracking-number-title">{{'_TRACKING_CODE' |translate}}:</span>
                 <span class="u2g-info-block__tracking-number-value">{{navParams.data.tracking}}</span>
               </div>
               <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--title">
-                  <span>Shipper</span>
+                  <span>{{'_SHIPPER' | translate}}</span>
                 </div>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
                   <input formControlName="shipper" id="online-store" value="true" type="radio" name="shipper" checked>
-                  <span>Online Store</span>
+                  <span>{{'_ONLINE_STORE' | translate}}</span>
                 </label>
                 <label class="u2g-info-block__list-item u2g-info-block__list-item--label">
                   <input formControlName="shipper" id="shipper-personal" value="false" type="radio" name="shipper">
-                  <span>Personal</span>
+                  <span>{{'_PERSONAL_PACKAGE' | translate}}</span>
                 </label>
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--input">
-                  <input formControlName="code" (click)="autocomplete()" id="store-url" type="text" placeholder="Add store URL without www">
+                  <input formControlName="code" (click)="autocomplete()" id="store-url" type="text" placeholder="{{'_ADD_STORE_URL' | translate}}">
                 </div>
               </div>
             </form>
@@ -45,7 +45,7 @@
 
             <div class="u2g-info-block u2g-info-block--declaration">
               <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">Product List</span>
+                <span class="u2g-info-block__tracking-number-title">{{'_PRODUCT_LIST' | translate}}</span>
               </div>
               <div class="u2g-info-block__button-wrapper">
                 <button (click)="addProduct()" class="u2g-info-block__button u2g-info-block__button--top u2g-info-block__button--plus" data-popup="product-plus"><i class="ion-plus-round"></i></button>
@@ -64,12 +64,12 @@
                   </button>
                 </div>
                 <div class="u2g-info-block__product u2g-info-block__product--total">
-                  <span class="u2g-info-block__product-name">Total:</span>
+                  <span class="u2g-info-block__product-name">{{'_TOTAL' | translate}}:</span>
                   <span class="u2g-info-block__price">${{total}}</span>
                 </div>
               </form>
             </div>
-            <button [disabled]="(form.invalid && (form.controls.shipper.value === 'true')) || productList.length === 0" (click)="declareTracking()" class="u2g-button u2g-submit-shipper">Save</button>
+            <button [disabled]="(form.invalid && (form.controls.shipper.value === 'true')) || productList.length === 0" (click)="declareTracking()" class="u2g-button u2g-submit-shipper">{{'_SAVE' | translate}}</button>
           </div>
         </div>
       </div>

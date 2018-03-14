@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
 import { CourierSuccessPopups } from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import { CourierNotSuccessPopups } from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
+import {TranslateModule} from "@ngx-translate/core";
 
 const MODULES = [
   SharedComponentModule
@@ -31,7 +32,7 @@ const DECLARATIONS = [
 ];
 
 @NgModule({
-  imports: [ ...MODULES, CommonModule, FormsModule, ReactiveFormsModule ],
+  imports: [ ...MODULES, CommonModule, FormsModule, ReactiveFormsModule, TranslateModule ],
   declarations: [ ...DECLARATIONS ],
   entryComponents: [ ...DECLARATIONS ],
   exports: [

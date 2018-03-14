@@ -27,7 +27,7 @@ export class CourierSuccessPopups implements OnInit, AfterViewInit {
   };
 
   private data;
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -43,10 +43,10 @@ export class CourierSuccessPopups implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
-      });
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
+    //   });
   }
 
   ionViewWillLeave(): void {

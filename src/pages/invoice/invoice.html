@@ -25,46 +25,46 @@
         </div>
         <div class="invoice-data invoice-data--left-align">
           <!--<p>{{invoices.date}}</p>-->
-          <p>Invoice: <span>{{invoice.invoice}}</span></p>
-          <p>Air Way Bill: <span>{{invoice.hawb}}</span></p>
-          <p>Weight: {{invoice.weight_lbs}} Pound(lbs) – {{invoice.weight_kg}} kg</p>
+          <p>{{'_INVOICE' | translate}}: <span>{{invoice.invoice}}</span></p>
+          <p>{{'_AIR_WAY_BILL' | translate}}: <span>{{invoice.hawb}}</span></p>
+          <p>{{'_WEIGHT' | translate}}: {{invoice.weight_lbs}} {{'_POUND' | translate}} – {{invoice.weight_kg}} {{'_KG' | translate}}</p>
         </div>
         <div class="invoice-data">
-          Customer <br> {{invoice.full_name}} <br> Customer Support: (+995 32) 2-42-18-18 <br> sales@usa2georgia.com <br> {{invoice.email}} <br> www.usa2georgia.com
+          {{'_CUSTOMER' |translate}} <br> {{invoice.full_name}} <br> {{'_CUSTOMER_SUPPORT' | translate}}: (+995 32) 2-42-18-18 <br> sales@usa2georgia.com <br> {{invoice.email}} <br> www.usa2georgia.com
         </div>
         <div class="invoice-data">
-          USA2GEORGIA LLC <br> 27 Kavtaradze st. <br> {{invoice.address}} <br> {{invoice.mobile}} <br> {{invoice.email}} <br> Suite {{invoice.suite}}
+          {{'_BANK_PARAMETER_LINEA' | translate}} <br> {{'_USAGEO_ADDRESS' | translate}} <br> {{invoice.address}} <br> {{invoice.mobile}} <br> {{invoice.email}} <br> {{'_SUITE' | translate}} {{invoice.suite}}
         </div>
         <div class="invoice-table-wrapper">
           <table class="invoice__table">
             <thead>
             <tr>
-              <td>Invoice</td>
-              <td>Amount</td>
-              <td>Vat</td>
-              <td>Sum</td>
+              <td>{{'_INVOICE' | translate}}</td>
+              <td>{{'_AMOUNT' | translate}}</td>
+              <td>{{'_VAT' | translate}}</td>
+              <td>{{'_SUM' | translate}}</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>Transportation:</td>
-              <td>{{invoice.transportation.amount}} GEL</td>
-              <td>{{invoice.transportation.vat}} GEL</td>
-              <td>{{invoice.transportation.total}} GEL</td>
+              <td>{{'_TRANSPORTATION' | translate}}:</td>
+              <td>{{invoice.transportation.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td>{{invoice.transportation.vat}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td>{{invoice.transportation.total}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             <tr>
-              <td>Discount (10%):</td>
-              <td class="green-cell">-{{discount.amount}} GEL</td>
-              <td class="green-cell">{{discount.amount}} GEL</td>
-              <td class="green-cell">-{{discount.amount}} GEL</td>
+              <td>{{'_DISCOUNT' | translate}} (10%):</td>
+              <td class="green-cell">-{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td class="green-cell">{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
+              <td class="green-cell">-{{discount.amount}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
-              <td>Total</td>
+              <td>{{'_TOTAL' | translate}}</td>
               <td></td>
               <td></td>
-              <td>{{invoice.total}} GEL</td>
+              <td>{{invoice.total}} {{'_GEL_SYMBOL' | translate}}</td>
             </tr>
             </tfoot>
           </table>

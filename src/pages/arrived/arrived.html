@@ -15,7 +15,7 @@
         <div class="u2g-content-wrapper">
 
           <div class="u2g-content-panel u2g-content-panel--space-between">
-            <button (click)="expressCourier()" class="u2g-button u2g-button--express-courier" data-popup="courier-enough-balance">Express Courier</button>
+            <button (click)="expressCourier()" class="u2g-button u2g-button--express-courier" data-popup="courier-enough-balance">{{'_EXPRESS_RETRIEVE_BUTTON' | translate}}</button>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
         <div class="u2g-content u2g-content--masonry">
           <div *ngFor="let arrived of listArrived; index as index" class="u2g-info-block">
             <div class="u2g-info-block__tracking-number">
-              <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
+              <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>
               <span class="u2g-info-block__tracking-number-value">{{ arrived.hawb }}</span>
             </div>
             <div class="u2g-info-block__button-wrapper">
@@ -48,11 +48,11 @@
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} kg</h5>
-                <span class="u2g-arrived-info__explanation">Chargeble Weight</span>
+                <span class="u2g-arrived-info__explanation">{{'_CHARGEABLE_WEIGHT' | translate}}</span>
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.shipper || 'personal'}}</h5>
-                <span class="u2g-arrived-info__explanation">Shipper</span>
+                <span class="u2g-arrived-info__explanation">{{'_SHIPPER' | translate}}</span>
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.branch}}</h5>
@@ -63,7 +63,7 @@
           <div *ngFor="let city of keys" class="u2g-info-block u2g-info-block--packages-being" data-packages="Packages are being prepared Abasha to send!">
             <div *ngFor="let arrived of ListCities[city]; index as index" class="u2g-info-block">
               <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">Air Way Bill:</span>
+                <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>
                 <span class="u2g-info-block__tracking-number-value">{{arrived.hawb}}</span>
               </div>
               <div class="u2g-info-block__button-wrapper">
@@ -87,11 +87,11 @@
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} kg</h5>
-                  <span class="u2g-arrived-info__explanation">Chargeble Weight</span>
+                  <span class="u2g-arrived-info__explanation">{{'_CHARGEABLE_WEIGHT' | translate}}</span>
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.shipper || 'personal'}}</h5>
-                  <span class="u2g-arrived-info__explanation">Shipper</span>
+                  <span class="u2g-arrived-info__explanation">{{'_SHIPPER' | translate}}</span>
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.branch}}</h5>

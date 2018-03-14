@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { ReceivedPage } from './received';
 import {SidebarPageModule} from "../sidebar/sidebar.module";
 import {HeaderPageModule} from "../header/header.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {HeaderPageModule} from "../header/header.module";
     SidebarPageModule,
     HeaderPageModule,
     IonicPageModule.forChild(ReceivedPage),
+    TranslateModule.forChild()
   ],
 })
 export class ReceivedPageModule {}

@@ -12,8 +12,8 @@ import { NativeStorage } from "@ionic-native/native-storage";
 })
 export class MyApp implements OnInit{
   // rootPage:string = 'usa-warehouse-page';
-  // rootPage:string = 'arrived-page';
-  private rootPage: string;
+  rootPage:string = 'cartu-page';
+  // private rootPage: string;
   constructor(private platform: Platform,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
@@ -30,7 +30,7 @@ export class MyApp implements OnInit{
 
   ngOnInit() {
     this.initDropdown();
-    this.isAuth();
+    // this.isAuth();
   }
 
   ionViewDidLoad() {
@@ -53,14 +53,14 @@ export class MyApp implements OnInit{
   }
 
   initLanguage() {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+    this.translate.setDefaultLang('ka');
+    this.translate.use('ka');
     /**
      * Get language device
      */
     this.globalization.getPreferredLanguage()
       .then(res => {
-        const countryCode = res.value.split('-')[0] !== 'ge' ? 'en': 'ge';
+        const countryCode = res.value.split('-')[0] !== 'ka' ? 'en': 'ka';
         this.translate.use(countryCode);
       })
       .catch(e => console.log('language app.component err --> ', e));

@@ -36,7 +36,7 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private trackingForm: FormGroup;
   private listAwaitingTracking;
   private data;
@@ -56,13 +56,13 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getAwaiting().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         });
-      });
+      // });
     this.createFormAddTracking();
   }
 

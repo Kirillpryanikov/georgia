@@ -20,7 +20,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 })
 export class InvoicePage implements OnInit{
   private data;
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private discount = {
     amount: 0,
     total: 0,
@@ -51,11 +51,11 @@ export class InvoicePage implements OnInit{
   }
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getInvoice();
-      });
+      // });
   }
 
   getInvoice() {

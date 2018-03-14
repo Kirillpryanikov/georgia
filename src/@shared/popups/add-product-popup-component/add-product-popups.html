@@ -2,7 +2,7 @@
   <div #popup class="u2g-popup-wrapper">
     <div id="product-plus" class="u2g-popup u2g-popup__product">
       <div class="u2g-popup__header">
-        <div class="u2g-popup__title">add product</div>
+        <div class="u2g-popup__title">{{'_ADD_PARCEL' | translate}}</div>
         <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="ion-close"></i></button>
       </div>
       <div class="u2g-popup__content">
@@ -10,11 +10,11 @@
           <div class="u2g-add-product__radio-wrapper">
             <label class="u2g-add-product__radio">
               <input id="radio-description" type="radio" name="product" checked>
-              <span>Description</span>
+              <span>{{'_DESCRIPTION' | translate}}</span>
             </label>
             <label class="u2g-add-product__radio">
               <input id="radio-code" type="radio" name="product">
-              <span>Code</span>
+              <span>{{'_CODE' | translate}}</span>
             </label>
           </div>
           <div class="u2g-add-product__field u2g-add-product__field--select u2g-add-product__field--active">
@@ -46,12 +46,12 @@
             <input formControlName="code" type="text" class="u2g-add-product__code product-input_js">
           </div>
           <div class="u2g-add-product__field">
-            <span class="u2g-add-product__price">Price</span>
+            <span class="u2g-add-product__price">{{'_PRICE' | translate}}</span>
             <input formControlName="unit_price" type="text" name="price" class="u2g-add-product__price-field product-price_js">
             <span class="u2g-add-product__currency">USD</span>
           </div>
           <div class="u2g-popup__buttons">
-            <input [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js" value="Add">
+            <input [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js" value="{{'_ADD' | translate}}">
           </div>
         </form>
       </div>

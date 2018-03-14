@@ -25,7 +25,7 @@ export class TransactionPage implements OnInit{
   private listTransaction;
   private data;
   private subscription: Subscription;
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private transactionService: TransactionService,
@@ -35,11 +35,11 @@ export class TransactionPage implements OnInit{
   }
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getTransactions();
-      });
+      // });
   }
 
   ionViewDidLoad() {

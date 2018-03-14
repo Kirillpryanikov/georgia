@@ -18,11 +18,11 @@
 
           <div class="u2g-payment-form-wrapper">
             <form class="u2g-payment-form">
-              <h4 class="u2g-payment-form__text">Recommended amount to pay is {{unpaid_invoice}} GEL, including commision fee</h4>
-              <span class="u2g-payment-form__text">Please enter an amount in GEL: </span>
+              <h4 class="u2g-payment-form__text">{{'_CARTU_PAYMENT_RECOMENDED_1' | translate}}{{unpaid_invoice}}{{'_CARTU_PAYMENT_RECOMENDED_2' | translate}}</h4>
+              <span class="u2g-payment-form__text">{{'_ENTER_AMOUNT_GEL' | translate}}: </span>
               <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
-              <input [disabled]="!amount" (click)="getCartuDescriptor()" type="button" class="u2g-button" value="Payment">
-              <p class="u2g-payment-form__note">Minimal amount to deposit is 1 GEL.</p>
+              <button [disabled]="!amount" (click)="getCartuDescriptor()" class="u2g-button">{{'_PAYMENT' | translate}}</button>
+              <p class="u2g-payment-form__note">{{'_CARTU_PAYMENT_NOTE' | translate}}.</p>
             </form>
           </div>
         </div>

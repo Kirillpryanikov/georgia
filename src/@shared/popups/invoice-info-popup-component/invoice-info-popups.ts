@@ -19,7 +19,7 @@ export class InvoiceInfoPopups implements OnDestroy, OnInit, AfterViewInit {
 
 
   private data;
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private discount = {
     amount: 0,
     total: 0,
@@ -54,11 +54,11 @@ export class InvoiceInfoPopups implements OnDestroy, OnInit, AfterViewInit {
               private invoiceService: InvoiceService) {}
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getInvoice();
-      });
+      // });
   }
 
   ionViewWillLeave() {

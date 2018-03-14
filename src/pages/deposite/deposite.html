@@ -16,8 +16,8 @@
 
         <div class="u2g-content">
           <div class="u2g-payment">
-            <h3 class="u2g-payment__title">Please select your payment method. </h3>
-            <span class="u2g-payment__note">Note Different commision fee applies to each option!</span>
+            <h3 class="u2g-payment__title">{{'_BALANCE_DESCRIPTION_1' | translate}}</h3>
+            <span class="u2g-payment__note">{{'_BALANCE_DESCRIPTION_2' | translate}}</span>
 
             <!--BANK PAYMENT METHODS -->
 
@@ -44,16 +44,14 @@
                   </h6>
                 </div>
                 <div class="u2g-payment-method__info u2g-payment-method__info--block">
-                  <h6 class="u2g-payment-method__info-title">Commision fees for following bank cards:</h6>
+                  <h6 class="u2g-payment-method__info-title">{{'_TBC_COMMISION_FEE_1' | translate}}</h6>
                   <p class="u2g-payment-method__info-description">
-                    <span class="u2g-payment-method__value u2g-payment-method__value--left">1.3% -</span> TBC Bank, Liberty Bank, VTB, HalikBank,
-                    BasisBank;
+                    <span class="u2g-payment-method__value u2g-payment-method__value--left">1.3% -</span>{{'_TBC_COMMISION_FEE_2' | translate}}
                   </p>
                   <p class="u2g-payment-method__info-description">
-                    <span class="u2g-payment-method__value u2g-payment-method__value--left">1.8% -</span> Bank Of Georgia, Cartu Bank,
-                    Procredit Bank
+                    <span class="u2g-payment-method__value u2g-payment-method__value--left">1.8% -</span>{{'_TBC_COMMISION_FEE_3' | translate}}
                   </p>
-                  <a (click)="payment_tbc($event)" class="u2g-button u2g-payment-method__button">Pay Now</a>
+                  <a (click)="payment_tbc($event)" class="u2g-button u2g-payment-method__button">{{'_INVOICE_PAYMENT' | translate}}</a>
                 </div>
               </div>
 
@@ -74,10 +72,10 @@
                 </div>
                 <div class="u2g-payment-method__info">
                   <p class="u2g-payment-method__info-description">
-                    Commision fee <br>
+                    {{'_COMMISION_FEE' | translate}} <br>
                     <span class="u2g-payment-method__value">1.8%</span>
                   </p>
-                  <a (click)="payment_cartu($event)" class="u2g-button u2g-payment-method__button">Pay Now</a>
+                  <a (click)="payment_cartu($event)" class="u2g-button u2g-payment-method__button">{{'_INVOICE_PAYMENT' | translate}}</a>
                   <svg height="100%" class="u2g-payment-method__bg" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 8016 8016" width="50"><defs><style type="text/css">
                     .fil0 {fill:none}
                     .fil2 {fill:#464D5C;fill-rule:nonzero}
@@ -104,12 +102,12 @@
                     </style></defs><g><rect class="fil0" height="15754" width="15754"/><path class="fil1" d="M7693 1281c0,-102 82,-185 184,-185 102,0 185,83 185,185l0 3143c0,102 -83,184 -185,184 -102,0 -184,-82 -184,-184l0 -3143z"/><path class="fil1" d="M7877 0c203,0 386,82 518,215 133,132 215,316 215,518 0,202 -82,385 -215,517l0 1c-133,133 -316,215 -518,215 -202,0 -385,-82 -517,-215l-1 -1c-133,-132 -215,-315 -215,-517 0,-202 82,-386 215,-518 133,-133 316,-215 518,-215zm257 476c-65,-66 -156,-107 -257,-107 -100,0 -191,41 -257,107 -66,65 -106,156 -106,257 0,101 40,192 106,257 65,66 157,106 257,106 101,0 192,-40 258,-106 65,-65 106,-156 106,-257 0,-101 -41,-192 -107,-257z"/><path class="fil1" d="M5362 2207c-102,0 -185,-82 -185,-184 0,-102 83,-185 185,-185l822 0c229,0 436,93 586,244 151,150 244,357 244,586l0 1756c0,102 -83,184 -185,184 -102,0 -185,-82 -185,-184l0 -1756c0,-127 -51,-242 -135,-325 -83,-84 -198,-136 -325,-136l-822 0z"/><path class="fil1" d="M4814 1290c201,0 384,82 517,215l1 0c132,133 214,316 214,518 0,202 -82,385 -214,518 -133,133 -316,215 -518,215 -202,0 -385,-82 -518,-215l-1 0c-132,-133 -214,-316 -214,-518 0,-202 82,-386 214,-518 133,-133 316,-215 519,-215zm257 475c-66,-65 -157,-106 -257,-106 -101,0 -192,41 -258,107 -65,65 -106,156 -106,257 0,100 41,191 106,257l0 0 0 1c66,65 157,105 258,105 100,0 191,-40 257,-106 65,-66 106,-157 106,-257 0,-101 -40,-192 -106,-258z"/><path class="fil1" d="M10393 1838c102,0 184,83 184,185 0,102 -82,184 -184,184l-823 0c-126,0 -242,52 -325,136 -83,83 -135,198 -135,325l0 1756c0,102 -83,184 -185,184 -102,0 -184,-82 -184,-184l0 -1756c0,-229 93,-436 243,-586 150,-151 358,-244 586,-244l823 0z"/><path class="fil1" d="M10941 1659c-101,0 -192,41 -258,106 -65,66 -106,157 -106,258 0,100 41,191 107,257 65,66 156,106 257,106 100,0 191,-40 257,-106 66,-66 106,-157 106,-257 0,-101 -40,-192 -106,-257 -66,-66 -157,-107 -257,-107zm-518 -154c133,-133 316,-215 518,-215 202,0 385,82 518,215 133,132 215,316 215,518 0,202 -82,385 -215,518 -133,133 -316,215 -518,215 -203,0 -386,-82 -518,-215 -133,-133 -215,-316 -215,-518 0,-202 82,-385 215,-518l0 0z"/><path class="fil1" d="M5478 3824c0,-102 83,-185 185,-185 102,0 185,83 185,185l0 600c0,102 -83,184 -185,184 -102,0 -185,-82 -185,-184l0 -600zm4429 0c0,-102 82,-185 184,-185 102,0 185,83 185,185l0 600c0,102 -83,184 -185,184 -102,0 -184,-82 -184,-184l0 -600z"/><path class="fil0" d="M7946 9922l1060 870 67 -1768c58,-823 986,-689 1014,-47l112 1539c782,508 936,1299 676,2336l0 831 -2145 0 -1774 -2910c-213,-286 -263,-539 -101,-856"/><g><path class="fil2" d="M7829 10064c-79,-64 -90,-180 -25,-259 64,-78 180,-89 258,-25l774 635 53 -1397 1 -6 -1 0c25,-354 187,-573 391,-677 96,-49 200,-71 304,-68 103,2 205,28 297,75 210,107 375,323 389,622l1 0 106 1450c385,272 621,616 729,1025 111,417 86,898 -47,1438l0 806c0,101 -82,184 -184,184l0 1 -2145 0c-71,0 -133,-41 -164,-101l-1764 -2894c-121,-164 -197,-323 -220,-492 -24,-176 10,-354 109,-547 46,-91 157,-127 248,-80 90,46 126,156 80,247 -63,123 -86,230 -72,331 14,103 66,208 151,323 6,7 11,14 16,22l1720 2821 1857 0 0 -632c-1,-19 0,-39 5,-58 123,-489 149,-917 54,-1275 -91,-344 -297,-631 -642,-857 -52,-29 -88,-83 -93,-147l-112 -1539 0 0 0 -5c-7,-153 -87,-262 -189,-315 -45,-22 -92,-34 -137,-35 -45,-1 -90,8 -131,29 -97,49 -175,168 -189,372l0 0 -68 1762 0 0c-1,39 -15,78 -41,111 -65,78 -181,89 -259,25l-1060 -870zm737 3703c-13,-25 -20,-54 -20,-84l20 84z"/></g><line class="fil0" x1="8993" x2="9018" y1="11037" y2="10547"/><path class="fil2" d="M9177 11045c-4,102 -91,180 -192,176 -102,-5 -180,-91 -175,-193l24 -490c4,-102 91,-180 192,-175 102,5 180,91 176,192l-25 490z"/><path class="fil2" d="M8604 13868l0 1517 2865 0 0 -773c0,-205 -83,-391 -218,-526 -135,-135 -321,-218 -526,-218l-2121 0zm-369 1702l0 -1887c0,-102 83,-185 185,-185l2305 0c307,0 585,126 787,327 201,202 327,480 327,787l0 958c0,102 -83,184 -185,184l-3234 0c-102,0 -185,-82 -185,-184z"/><path class="fil1" d="M10539 15160c-102,0 -184,-83 -184,-185 0,-102 82,-184 184,-184 29,0 55,-12 73,-30l0 -1c18,-18 30,-44 30,-72 0,-29 -11,-55 -30,-73l0 0c-19,-18 -44,-30 -73,-30 -102,0 -184,-82 -184,-184 0,-102 82,-185 184,-185 131,0 249,53 334,138l0 1 0 0c85,85 138,203 138,333 0,130 -53,248 -138,334l0 -1 -1 1c-85,85 -203,138 -333,138z"/><path class="fil0" d="M10091 5219l0 2690m-1658 2013l-2297 0c-256,0 -465,-209 -465,-464l0 -4239"/><path class="fil1" d="M9907 5219c0,-102 82,-184 184,-184 102,0 185,82 185,184l0 2690c0,102 -83,184 -185,184 -102,0 -184,-82 -184,-184l0 -2690zm-1474 4519c101,0 184,82 184,184 0,102 -83,185 -184,185l-2297 0c-178,0 -341,-73 -458,-191l-1 0 0 0c-117,-117 -191,-280 -191,-458l0 -4239c0,-102 83,-184 185,-184 102,0 185,82 185,184l0 4239c0,76 31,146 82,197l0 1c51,50 121,82 198,82l2297 0z"/><path class="fil0" d="M9016 7977l0 -460m0 -1058l0 -695"/><path class="fil1" d="M9201 7977c0,102 -83,185 -185,185 -102,0 -185,-83 -185,-185l0 -460c0,-102 83,-184 185,-184 102,0 185,82 185,184l0 460zm0 -1518c0,102 -83,185 -185,185 -102,0 -185,-83 -185,-185l0 -695c0,-101 83,-184 185,-184 102,0 185,83 185,184l0 695z"/><path class="fil1" d="M6971 7458l667 0c116,0 221,47 297,123l1 1 0 -1c76,77 124,182 124,298l0 668c0,115 -48,220 -124,297l-1 0c-76,77 -181,124 -297,124l-667 0c-116,0 -222,-47 -298,-124 -4,-4 -8,-8 -12,-13 -69,-75 -112,-175 -112,-284l0 -668c0,-115 48,-220 124,-297l0 0 1 -1 0 0c77,-76 182,-123 297,-123zm667 369l-667 0c-15,0 -28,6 -37,15l-1 0c-9,10 -14,23 -14,37l0 668c0,12 4,23 11,32l4 4c10,10 23,16 37,16l667 0c15,0 28,-6 37,-15l0 0c10,-10 15,-23 15,-37l0 -668c0,-14 -6,-27 -15,-37l0 0c-9,-9 -22,-15 -37,-15z"/><path class="fil2" d="M4979 5461c102,0 184,82 184,184 0,102 -82,185 -184,185l-316 0c-374,0 -613,-206 -719,-472 -40,-100 -59,-209 -59,-317 0,-109 21,-218 61,-319 108,-270 354,-483 733,-483l6405 0c376,0 618,208 725,475 41,101 61,209 61,317 0,107 -20,215 -61,316 -107,267 -349,475 -725,475l-360 0c-101,0 -184,-83 -184,-185 0,-102 83,-184 184,-184l360 0c201,0 329,-107 383,-243 23,-55 34,-117 34,-179 0,-63 -11,-125 -34,-180 -54,-136 -182,-243 -383,-243l-6405 0c-204,0 -335,111 -391,251 -23,58 -35,120 -35,182 0,63 11,125 33,182 53,134 178,238 377,238l316 0z"/><path class="fil2" d="M4117 6908c0,-101 83,-184 185,-184 102,0 185,83 185,184l0 1258c0,102 -83,185 -185,185 -102,0 -185,-83 -185,-185l0 -1258zm0 2322c0,-102 83,-184 185,-184 102,0 185,82 185,184l0 291c0,102 -83,184 -185,184 -102,0 -185,-82 -185,-184l0 -291z"/><path class="fil2" d="M10847 6735c0,-102 82,-184 184,-184 102,0 185,82 185,184l0 726c0,102 -83,185 -185,185 -102,0 -184,-83 -184,-185l0 -726z"/></g></svg>
                   </div>
                   <h6 class="u2g-payment-method__title">
-                    Terminal
+                    {{'_TERMINAL' | translate}}
                   </h6>
                 </div>
                 <div class="u2g-payment-method__info">
                   <p class="u2g-payment-method__info-description">
-                    Commision fee<br>
+                    {{'_COMMISION_FEE' | translate}}<br>
                     <span class="u2g-payment-method__value">2%</span>
                   </p>
 
@@ -138,8 +136,8 @@
                 </div>
                 <div class="u2g-payment-method__info">
                   <p class="u2g-payment-method__info-description">
-                    Commision fee <br>
-                    <span class="u2g-payment-method__value">0.50 GEL</span>
+                    {{'_COMMISION_FEE' | translate}} <br>
+                    <span class="u2g-payment-method__value">0.50 {{'_GEL_SYMBOL'| translate}}</span>
                   </p>
                   <svg height="100%" class="u2g-payment-method__bg u2g-payment-method__bg--bank" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 127000 127662" width="50"><defs><style type="text/css">
                     .fil4 {fill:none}
@@ -209,14 +207,14 @@
                   </h6>
                 </div>
                 <div class="u2g-payment-method__info">
-                  <h6 class="u2g-payment-method__info-title">Add Balance with UniPAY Cash: </h6>
+                  <h6 class="u2g-payment-method__info-title">{{'_UNIPAY_COMMISION_FEE_1' | translate}} </h6>
                   <p class="u2g-payment-method__info-description">
-                    Online - <a href="https://www.unipay.com/" target="_blank">www.unipay.ge</a><br>
-                    See the map of Unipay service centers - <a href="https://www.unipay.com/network" target="_blank">Map</a>
+                    {{'_UNIPAY_COMMISION_FEE_2' | translate}} <a href="https://www.unipay.com/" target="_blank">www.unipay.ge</a><br>
+                    {{'_UNIPAY_COMMISION_FEE_3' | translate}}<a href="https://www.unipay.com/network" target="_blank">{{'_UNIPAY_COMMISION_FEE_4' | translate}}</a>
                   </p>
                   <p class="u2g-payment-method__info-description">
-                    Service fee:
-                    <span class="u2g-payment-method__value">0.50 GEL</span>
+                    {{'_UNIPAY_COMMISION_FEE_1' | translate}}
+                    <span class="u2g-payment-method__value">0.50 {{'_GEL_SYMBOL' | translate}}</span>
                   </p>
                 </div>
               </div>

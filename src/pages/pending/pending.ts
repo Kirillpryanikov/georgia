@@ -8,6 +8,7 @@ import {AwaitingTrackingService, PendingService} from "@core/services";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the PendingPage page.
@@ -34,7 +35,7 @@ const notice = {
   templateUrl: 'pending.html',
 })
 export class PendingPage implements OnInit{
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private listPending;
   private data;
   private branch = [];
@@ -54,14 +55,13 @@ export class PendingPage implements OnInit{
   }
 
   ionViewDidLoad() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
-        console.log(res);
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getPending().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         });
-      });
+      // });
   }
 
   initMasonry() {

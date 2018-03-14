@@ -17,7 +17,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
-  private sessionId: string;
+  private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private unused_credits: number;
   private amount_due: number;
   private total_invoice: number;
@@ -33,11 +33,11 @@ export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
+    // this.nativeStorage.getItem('sessionId')
+    //   .then(res => {
+    //     this.sessionId = res;
         this.getInfo();
-      });
+      // });
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
   }
