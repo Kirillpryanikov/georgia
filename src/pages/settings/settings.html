@@ -83,7 +83,7 @@
               <div class=  "u2g-settings__tab-content tab-content_js u2g-settings__tab-content--visible">
                 <form [formGroup]="userForm" (submit)="submit('user')" class="u2g-settings-form" data-form-validate="true" novalidate="novalidate">
                   <div class="u2g-settings-form__photo">
-                    <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">Profile Photo</span>
+                    <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">{{'_PROFILE_PHOTO' | translate}}</span>
                     <div class="u2g-settings-form__image">
                       <img [src]="userPhoto" alt="Profile photo">
                     </div>
@@ -111,12 +111,12 @@
                     </div>
 
                     <div class="u2g-form-group__field-group">
-                      <label class="u2g-form-group__label"><span>First Name Georgian</span> <sub>*</sub></label>
+                      <label class="u2g-form-group__label"><span>{{'_FIRST_NAME_GEORGIAN' | translate}}</span> <sub>*</sub></label>
                       <input formControlName="first_name_loc" type="text" class="u2g-form-group__field" name="first name georgian" data-rule-required="true">
                     </div>
 
                     <div class="u2g-form-group__field-group">
-                      <label class="u2g-form-group__label"><span>Last Name Georgian</span> <sub>*</sub></label>
+                      <label class="u2g-form-group__label"><span>{{'_LAST_NAME_GEORGIAN' | translate}}</span> <sub>*</sub></label>
                       <input formControlName="last_name_loc" type="text" class="u2g-form-group__field" name="last name georgian" data-rule-required="true">
                     </div>
 
@@ -140,94 +140,94 @@
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>{{'_CITY' | translate}}</span> <sub>*</sub></label>
                       <select formControlName="city" class="u2g-select" name="city" data-rule-required="true">
-                        <option value="TBILISI" selected>Tbilisi</option>
-                        <option value="ABASA">Abasha</option>
-                        <option value="ABASTUMANI">Abastumani</option>
-                        <option value="ADIGENI">Adigeni</option>
-                        <option value="AMBROLAURI">Ambrolauri</option>
-                        <option value="ANAKLIA">Anaklia</option>
-                        <option value="ASPINZA">Aspindza</option>
-                        <option value="AXALGORI">Akhalgori</option>
-                        <option value="AXALQALAQI">Akhalqalaki</option>
-                        <option value="AXALCIXE">Akhaltsikhe</option>
-                        <option value="AXMETA">Akhmeta</option>
-                        <option value="BATUMI">Batumi</option>
-                        <option value="BAKURIANI">Bakuriani</option>
-                        <option value="BARDADI">Baghdati</option>
-                        <option value="BAXMARO">Baxmaro</option>
-                        <option value="BOLNISI">Bolnisi</option>
-                        <option value="BORJOMI">Borjomi</option>
-                        <option value="GARDABANI">Gardabani</option>
-                        <option value="GONIO">Gonio</option>
-                        <option value="GORI">Gori</option>
-                        <option value="GRIGOLETI">Grigoleti</option>
-                        <option value="GUDAURI">Gudauri</option>
-                        <option value="GURJAANI">Gurjaani</option>
-                        <option value="DEDOFLISCKARO">Dedophlistskaro</option>
-                        <option value="DMANISI">Dmanisi</option>
-                        <option value="DUSETI">Dusheti</option>
-                        <option value="VANI">Vani</option>
-                        <option value="ZESTAFONI">Zestaphoni</option>
-                        <option value="ZUGDIDI">Zugdidi</option>
-                        <option value="TETRIWYARO">Tetritskaro</option>
-                        <option value="TELAVI">Telavi</option>
-                        <option value="TERJOLA">Terjola</option>
-                        <option value="TIANETI">Tianeti</option>
-                        <option value="TSEROVANI">Tserovani</option>
-                        <option value="KASPI">Kaspi</option>
-                        <option value="KAJRETI">Kajreti</option>
-                        <option value="KIKETI">Kiketi</option>
-                        <option value="KOJORI">Kojori</option>
-                        <option value="KVARIATI">Kvariati</option>
-                        <option value="LAGODEXI">Lagodekhi</option>
-                        <option value="LANCXUTI">Lanchkhuti</option>
-                        <option value="LENTEXI">Lentekhi</option>
-                        <option value="MARNEULI">Marneuli</option>
-                        <option value="MARTVILI">Martvili</option>
-                        <option value="MESTIA">Mestia</option>
-                        <option value="MCXETA">Mtskheta</option>
-                        <option value="MCVANEKONCXI">Mtsvane Koncxi</option>
-                        <option value="NINOWMINDA">Ninotsminda</option>
-                        <option value="OZURGETI">Ozurgeti</option>
-                        <option value="ONI">Oni</option>
-                        <option value="RUSTAVI">Rustavi</option>
-                        <option value="SAGAREJO">Sagarejo</option>
-                        <option value="SAMTREDIA">Samtredia</option>
-                        <option value="SARFI">sarpi</option>
-                        <option value="SACXERE">Sachkhere</option>
-                        <option value="SENAKI">Senaki</option>
-                        <option value="SIRNARI">Sighnaghi</option>
-                        <option value="STEFANWMIN">Stephantsminda</option>
-                        <option value="SURAMI">Surami</option>
-                        <option value="TABAXMELA">Tabakhmela</option>
-                        <option value="TYIBULI">Tkibuli</option>
-                        <option value="UREKI">Ureki</option>
-                        <option value="FOTI">Poti</option>
-                        <option value="QARELI">Kareli</option>
-                        <option value="QEDA">Qeda</option>
-                        <option value="QOBULETI">Kobuleti</option>
-                        <option value="QUTAISI">Kutaisi</option>
-                        <option value="YVARELI">Kvareli</option>
-                        <option value="SAGURAMO">Saguramo</option>
-                        <option value="SAIRME">Sairme</option>
-                        <option value="SUAXEVI">Shuakhevi</option>
-                        <option value="CHAQVI">Chaqvi</option>
-                        <option value="COXATAURI">Chokhatauri</option>
-                        <option value="CAGERI">Tsageri</option>
-                        <option value="CXOROWYU">Chkhorotsku</option>
-                        <option value="WALENJIXA">Tsalenjikha</option>
-                        <option value="WALKA">Tsalka</option>
-                        <option value="WAVKISI">Tsavkisi</option>
-                        <option value="WNORI">Tsnori</option>
-                        <option value="WYALTUBO">Tskaltubo</option>
-                        <option value="WYNETI">Tskneti</option>
-                        <option value="WIATURA">Chiatura</option>
-                        <option value="XARAGAULI">Kharagauli</option>
-                        <option value="XASHURI">Khashuri</option>
-                        <option value="XELVACAURI">Khelvachauri</option>
-                        <option value="XOBI">Khobi</option>
-                        <option value="XONI">Khoni</option>
-                        <option value="XULO">Khulo</option>
+                        <option value="TBILISI" selected>{{'TBILISI' | translate}}</option>
+                        <option value="ABASA">{{'ABASA' | translate}}</option>
+                        <option value="ABASTUMANI">{{'ABASTUMANI' | translate}}</option>
+                        <option value="ADIGENI">{{'ADIGENI' | translate}}</option>
+                        <option value="AMBROLAURI">{{'AMBROLAURI' | translate}}</option>
+                        <option value="ANAKLIA">{{'ANAKLIA' | translate}}</option>
+                        <option value="ASPINZA">{{'ASPINZA' | translate}}</option>
+                        <option value="AXALGORI">{{'AXALGORI' | translate}}</option>
+                        <option value="AXALQALAQI">{{'AXALQALAQI' | translate}}</option>
+                        <option value="AXALCIXE">{{'AXALCIXE' | translate}}</option>
+                        <option value="AXMETA">{{'AXMETA' | translate}}</option>
+                        <option value="BATUMI">{{'BATUMI' | translate}}</option>
+                        <option value="BAKURIANI">{{'BAKURIANI' | translate}}</option>
+                        <option value="BARDADI">{{'BARDADI' | translate}}</option>
+                        <option value="BAXMARO">{{'BAXMARO' | translate}}</option>
+                        <option value="BOLNISI">{{'BOLNISI' | translate}}</option>
+                        <option value="BORJOMI">{{'BORJOMI' | translate}}</option>
+                        <option value="GARDABANI">{{'GARDABANI' | translate}}</option>
+                        <option value="GONIO">{{'GONIO' | translate}}</option>
+                        <option value="GORI">{{'GORI' | translate}}</option>
+                        <option value="GRIGOLETI">{{'GRIGOLETI' | translate}}</option>
+                        <option value="GUDAURI">{{'GUDAURI' | translate}}</option>
+                        <option value="GURJAANI">{{'GURJAANI' | translate}}</option>
+                        <option value="DEDOFLISCKARO">{{'DEDOFLISCKARO' | translate}}</option>
+                        <option value="DMANISI">{{'DMANISI' | translate}}</option>
+                        <option value="DUSETI">{{'DUSETI' | translate}}</option>
+                        <option value="VANI">{{'VANI' | translate}}</option>
+                        <option value="ZESTAFONI">{{'ZESTAFONI' | translate}}</option>
+                        <option value="ZUGDIDI">{{'ZUGDIDI' | translate}}</option>
+                        <option value="TETRIWYARO">{{'TETRIWYARO' | translate}}</option>
+                        <option value="TELAVI">{{'TELAVI' | translate}}</option>
+                        <option value="TERJOLA">{{'TERJOLA' | translate}}</option>
+                        <option value="TIANETI">{{'TIANETI' | translate}}</option>
+                        <option value="TSEROVANI">{{'TSEROVANI' | translate}}</option>
+                        <option value="KASPI">{{'KASPI' | translate}}</option>
+                        <option value="KAJRETI">{{'KAJRETI' | translate}}</option>
+                        <option value="KIKETI">{{'KIKETI' | translate}}</option>
+                        <option value="KOJORI">{{'KOJORI' | translate}}</option>
+                        <option value="KVARIATI">{{'KVARIATI' | translate}}</option>
+                        <option value="LAGODEXI">{{'LAGODEXI' | translate}}</option>
+                        <option value="LANCXUTI">{{'LANCXUTI' | translate}}</option>
+                        <option value="LENTEXI">{{'LENTEXI' | translate}}</option>
+                        <option value="MARNEULI">{{'MARNEULI' | translate}}</option>
+                        <option value="MARTVILI">{{'MARTVILI' | translate}}</option>
+                        <option value="MESTIA">{{'MESTIA' | translate}}</option>
+                        <option value="MCXETA">{{'MCXETA' | translate}}</option>
+                        <option value="MCVANEKONCXI">{{'MCVANEKONCXI' | translate}}</option>
+                        <option value="NINOWMINDA">{{'NINOWMINDA' | translate}}</option>
+                        <option value="OZURGETI">{{'OZURGETI' | translate}}</option>
+                        <option value="ONI">{{'ONI' | translate}}</option>
+                        <option value="RUSTAVI">{{'RUSTAVI' | translate}}</option>
+                        <option value="SAGAREJO">{{'SAGAREJO' | translate}}</option>
+                        <option value="SAMTREDIA">{{'SAMTREDIA' | translate}}</option>
+                        <option value="SARFI">{{'SARFI' | translate}}</option>
+                        <option value="SACXERE">{{'SACXERE' | translate}}</option>
+                        <option value="SENAKI">{{'SENAKI' | translate}}</option>
+                        <option value="SIRNARI">{{'SIRNARI' | translate}}</option>
+                        <option value="STEFANWMIN">{{'STEFANWMIN' | translate}}</option>
+                        <option value="SURAMI">{{'SURAMI' | translate}}</option>
+                        <option value="TABAXMELA">{{'TABAXMELA' | translate}}</option>
+                        <option value="TYIBULI">{{'TYIBULI' | translate}}</option>
+                        <option value="UREKI">{{'UREKI' | translate}}</option>
+                        <option value="FOTI">{{'FOTI' | translate}}</option>
+                        <option value="QARELI">{{'QARELI' | translate}}</option>
+                        <option value="QEDA">{{'QEDA' | translate}}</option>
+                        <option value="QOBULETI">{{'QOBULETI' | translate}}</option>
+                        <option value="QUTAISI">{{'QUTAISI' | translate}}</option>
+                        <option value="YVARELI">{{'YVARELI' | translate}}</option>
+                        <option value="SAGURAMO">{{'SAGURAMO' | translate}}</option>
+                        <option value="SAIRME">{{'SAIRME' | translate}}</option>
+                        <option value="SUAXEVI">{{'SUAXEVI' | translate}}</option>
+                        <option value="CHAQVI">{{'CHAQVI' | translate}}</option>
+                        <option value="COXATAURI">{{'COXATAURI' | translate}}</option>
+                        <option value="CAGERI">{{'CAGERI' | translate}}</option>
+                        <option value="CXOROWYU">{{'CXOROWYU' | translate}}</option>
+                        <option value="WALENJIXA">{{'WALENJIXA' | translate}}</option>
+                        <option value="WALKA">{{'WALKA' | translate}}</option>
+                        <option value="WAVKISI">{{'WAVKISI' | translate}}</option>
+                        <option value="WNORI">{{'WNORI' | translate}}</option>
+                        <option value="WYALTUBO">{{'WYALTUBO' | translate}}</option>
+                        <option value="WYNETI">{{'WYNETI' | translate}}</option>
+                        <option value="WIATURA">{{'WIATURA' | translate}}</option>
+                        <option value="XARAGAULI">{{'XARAGAULI' | translate}}</option>
+                        <option value="XASHURI">{{'XASHURI' | translate}}</option>
+                        <option value="XELVACAURI">{{'XELVACAURI' | translate}}</option>
+                        <option value="XOBI">{{'XOBI' | translate}}</option>
+                        <option value="XONI">{{'XONI' | translate}}</option>
+                        <option value="XULO">{{'XULO' | translate}}</option>
                       </select>
                     </div>
 
@@ -262,7 +262,7 @@
                           <input formControlName="non_georgian_citizen" type="checkbox">
                           <span><i class="ion-checkmark-round"></i></span>
                         </label>
-                        <input [disabled]="userForm.invalid" type="submit" value="Save Changes" class="u2g-button">
+                        <input [disabled]="userForm.invalid" type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
                       </div>
                     </div>
                   </div>
@@ -288,7 +288,7 @@
                       <input formControlName="retry_new_password" type="password" class="u2g-form-group__field" data-rule-required="true" name="confirm">
                     </div>
                     <div class="u2g-form-group__field-group">
-                      <input [disabled]="passwordForm.invalid" type="submit" value="Save Changes" class="u2g-button">
+                      <input [disabled]="passwordForm.invalid" type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
                     </div>
                   </div>
                 </form>
@@ -346,7 +346,7 @@
                     </label>
                   </div>
                   <div class="u2g-form-group__button-wrapper">
-                    <input type="submit" value="Save Changes" class="u2g-button">
+                    <input type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
                   </div>
                 </form>
               </div>
@@ -366,9 +366,9 @@
                       <option value="OFFICE_3" selected>{{'_CUSTOMS_BRANCH_VAJ' | translate}}/option>
                       <option value="OFFICE_1">{{'_CUSTOMS_BRANCH_MIC' | translate}}</option>
                       <option value="OFFICE_2">{{'_CUSTOMS_BRANCH_DIG' | translate}}</option>
-                      <option value="OFFICE_4">Gldani Branch</option>
-                      <option value="OFFICE_5">Isani Branch</option>
-                      <option value="OFFICE_6">Vake Branch</option>
+                      <option value="OFFICE_4">{{'_GLDANI_BRANCH' | translate}}</option>
+                      <option value="OFFICE_5">{{'_ISANI_BRANCH' | translate}}</option>
+                      <option value="OFFICE_6">{{'_VALE_BRANCH' | translate}}</option>
                     </select>
                   </div>
                 </div>

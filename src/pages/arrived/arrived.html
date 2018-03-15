@@ -28,7 +28,7 @@
               <span class="u2g-info-block__tracking-number-value">{{ arrived.hawb }}</span>
             </div>
             <div class="u2g-info-block__button-wrapper">
-              <button (click)="showInvoiceInfoPopup(null, index)" data-popup="invoice-table" class="u2g-info-block__button u2g-info-block__button--top"><span>View Invoice</span></button>
+              <button (click)="showInvoiceInfoPopup(null, index)" data-popup="invoice-table" class="u2g-info-block__button u2g-info-block__button--top"><span>{{'_VIEW_INVOICE' | translate}}</span></button>
             </div>
             <div class="u2g-info-block__list u2g-info-block__list--bg-all">
               <div *ngFor="let trackings of arrived.trackings; index as _index" class="u2g-info-block__list-item">
@@ -44,19 +44,19 @@
             <div class="u2g-arrived-info-wrapper">
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value">${{arrived.price}}</h5>
-                <span class="u2g-arrived-info__explanation">Total Amount</span>
+                <span class="u2g-arrived-info__explanation">{{'_TOTAL_AMOUNT' | translate}}</span>
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} kg</h5>
                 <span class="u2g-arrived-info__explanation">{{'_CHARGEABLE_WEIGHT' | translate}}</span>
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
-                <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.shipper || 'personal'}}</h5>
+                <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.shipper || '_PERSONAL' | translate}}</h5>
                 <span class="u2g-arrived-info__explanation">{{'_SHIPPER' | translate}}</span>
               </div>
               <div class="u2g-info-block__arrived-info u2g-arrived-info">
                 <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.branch}}</h5>
-                <span class="u2g-arrived-info__explanation">Location</span>
+                <span class="u2g-arrived-info__explanation">{{'_LOCATION' |translate}}</span>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
                 <span class="u2g-info-block__tracking-number-value">{{arrived.hawb}}</span>
               </div>
               <div class="u2g-info-block__button-wrapper">
-                <button (click)="showInvoiceInfoPopup(city, index)" data-popup="invoice-table" class="u2g-info-block__button u2g-info-block__button--top"><span>View Invoice</span></button>
+                <button (click)="showInvoiceInfoPopup(city, index)" data-popup="invoice-table" class="u2g-info-block__button u2g-info-block__button--top"><span>{{'_VIEW_INVOICE' | translate}}</span></button>
               </div>
               <div *ngFor="let tracking of arrived.trackings; index as _index" class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div class="u2g-info-block__list-item">
@@ -83,7 +83,7 @@
               <div class="u2g-arrived-info-wrapper">
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value">${{arrived.price}}</h5>
-                  <span class="u2g-arrived-info__explanation">Total Amount</span>
+                  <span class="u2g-arrived-info__explanation">{{'_TOTAL_AMOUNT' | translate}}</span>
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} kg</h5>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
                   <h5 class="u2g-arrived-info__value u2g-arrived-info__value--small">{{arrived.branch}}</h5>
-                  <span class="u2g-arrived-info__explanation">Location</span>
+                  <span class="u2g-arrived-info__explanation">{{'_LOCATION' | translate}}</span>
                 </div>
               </div>
             </div>

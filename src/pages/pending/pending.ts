@@ -4,11 +4,13 @@ import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
-import {AwaitingTrackingService, PendingService} from "@core/services";
+import {AwaitingTrackingService, HeaderService, PendingService} from "@core/services";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
 import {TranslateService} from "@ngx-translate/core";
+import {Subscription} from "rxjs/Subscription";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 /**
  * Generated class for the PendingPage page.
@@ -41,12 +43,15 @@ export class PendingPage implements OnInit{
   private branch = [];
   private subject = new Subject<any>();
   private branch_selection;
+  private lang: string;
+  private subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
               private modalController: ModalController,
               private pendingService: PendingService,
               private awaitingService: AwaitingTrackingService,
+              private headerService: HeaderService,
               private nativeStorage: NativeStorage) {
   }
 
@@ -61,6 +66,7 @@ export class PendingPage implements OnInit{
         this.getPending().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         });
+        this.getInfo();
       // });
   }
 
@@ -123,6 +129,13 @@ export class PendingPage implements OnInit{
     modal.present();
   }
 
+  getInfo() {
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.lang = data.message.profile.panel_language;
+      this.subscription.unsubscribe();
+    })
+  }
+
   getPending() {
     this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
       const obj = data.message.in_transit.reduce((object, value) => {
@@ -134,22 +147,46 @@ export class PendingPage implements OnInit{
       for(let i in this.listPending) {
         switch (this.listPending[i].branch){
           case 'OFFICE_1':
-            this.listPending[i].branch = 'Mickevichi Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Mickevichi Branch';
+            }else {
+              this.listPending[i].branch = 'მიცკევიჩის ფილიალი';
+            }
             break;
           case 'OFFICE_2':
-            this.listPending[i].branch = 'Digomi Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Digomi Branch';
+            }else {
+              this.listPending[i].branch = 'დიღმის ფილიალი';
+            }
             break;
           case 'OFFICE_3':
-            this.listPending[i].branch = 'Vaja-Pshavela Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Vaja-Pshavela Branch';
+            }else {
+              this.listPending[i].branch = 'ვაჟა-ფშაველას ფილიალი';
+            }
             break;
           case 'OFFICE_4':
-            this.listPending[i].branch = 'Gldani Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Gldani Branch';
+            }else {
+              this.listPending[i].branch = 'გლდანის ფილიალი';
+            }
             break;
           case 'OFFICE_5':
-            this.listPending[i].branch = 'Isani Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Isani Branch';
+            }else {
+              this.listPending[i].branch = 'ისნის ფილიალი';
+            }
             break;
           case 'OFFICE_6':
-            this.listPending[i].branch = 'Vake Branch';
+            if(this.lang === 'en'){
+              this.listPending[i].branch = 'Vake Branch';
+            }else {
+              this.listPending[i].branch = 'ვაკის ფილიალი';
+            }
             break;
         }
       }

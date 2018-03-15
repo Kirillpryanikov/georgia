@@ -52,11 +52,11 @@
                 </label>
                 <label (click)="showWarningPopup(index, 'cut_down')" class="u2g-info-block__list-item u2g-info-block__list-item--label cut-down-package_js">
                   <input type="checkbox" [ngModel]="-tracking.cut_down">
-                  <span>Cut-Down package</span>
+                  <span>{{'_CUT_DOWN_PACKAGE' | translate}}</span>
                 </label>
                 <label (click)="showWarningPopup(index, 'put_into_bag')" class="u2g-info-block__list-item u2g-info-block__list-item--label repack_js">
                   <input type="checkbox" [ngModel]="-tracking.put_into_bag">
-                  <span>Repack</span>
+                  <span>{{'_REPACK' | translate}}</span>
                 </label>
               </div>
               <div (click)="showCommentPopup(index)" class="u2g-info-block__comment">

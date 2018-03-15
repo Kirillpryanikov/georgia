@@ -2,13 +2,12 @@
   <div #popup class="u2g-popup-wrapper">
     <div id="courier-enough-balance" class="u2g-popup">
       <div class="u2g-popup__content">
-        <p class="u2g-popup__text">You will get your packagee(s) By Express Courier Delivery service at:<span class="u2g-popup__text--bold"> ..., KPMG</span></p>
-        <p class="u2g-popup__text u2g-popup__text--bold-red">Pleace note, that requests submitted before 1:00pm will be delivered the same day, and after 1:00pm the next day<br>
-          Express Courier service is available from Mon to Sat.</p>
-        <p class="u2g-popup__text">Express Courier Delivery is 3 GEL, and it will be deducted from your balance after the confirmation.</p>
+        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_1' | translate}}<span class="u2g-popup__text--bold"> ..., KPMG</span></p>
+        <p class="u2g-popup__text u2g-popup__text--bold-red">{{'_CUSTOMS_AND_EXPRESS_COURIER_2' | translate}}</p>
+        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_3' | translate}}</p>
         <div class="u2g-popup__buttons">
-          <button (click)="retrieveCourier()" class="u2g-button u2g-button--green u2g-popup__bottom-button">Agree</button>
-          <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">Cancel</button>
+          <button (click)="retrieveCourier()" class="u2g-button u2g-button--green u2g-popup__bottom-button">{{'_AGREE' | translate}}</button>
+          <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">{{'_CANCEL' | translate}}</button>
         </div>
       </div>
     </div>

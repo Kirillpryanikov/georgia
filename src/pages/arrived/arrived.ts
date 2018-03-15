@@ -5,10 +5,12 @@ import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popu
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {InvoiceInfoPopups} from "@shared/popups/invoice-info-popup-component/invoice-info-popups";
 import {Subscription} from "rxjs/Subscription";
-import {ArrivedService} from "@core/services";
+import {ArrivedService, HeaderService} from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
+import {TranslateService} from "@ngx-translate/core";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -28,6 +30,7 @@ export class ArrivedPage {
 
   private subscription: Subscription;
   private data;
+  private lang: string;
   private sessionId: string = '707d235b00280e693eab0496acb2690d';
   private listArrived;
   private keys = [];
@@ -36,8 +39,10 @@ export class ArrivedPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private mainService: ScriptMainService,
+              private translate: TranslateService,
               private modalController: ModalController,
               private arrivedService: ArrivedService,
+              private headerService: HeaderService,
               private nativeStorage: NativeStorage) {
   }
 
@@ -73,6 +78,13 @@ export class ArrivedPage {
       const modal = this.modalController.create(InvoicePopups, {package_id: this.listArrived[index].trackings[_index].id});
       modal.present();
     }
+  }
+
+  getInfo() {
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.lang = data.message.profile.panel_language;
+      this.subscription.unsubscribe();
+    })
   }
 
   showInvoiceInfoPopup(city, index) {
@@ -115,22 +127,46 @@ export class ArrivedPage {
       for(let i in this.listArrived) {
         switch (this.listArrived[i].branch){
           case 'OFFICE_1':
-            this.listArrived[i].branch = 'Mickevichi Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Mickevichi Branch';
+            } else{
+              this.listArrived[i].branch = 'მიცკევიჩის ფილიალი';
+            }
             break;
           case 'OFFICE_2':
-            this.listArrived[i].branch = 'Digomi Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Digomi Branch';
+            }else{
+              this.listArrived[i].branch = 'დიღმის ფილიალი';
+            }
             break;
           case 'OFFICE_3':
-            this.listArrived[i].branch = 'Vaja-Pshavela Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Vaja-Pshavela Branch';
+            }else{
+              this.listArrived[i].branch = 'ვაჟა-ფშაველას ფილიალი';
+            }
             break;
           case 'OFFICE_4':
-            this.listArrived[i].branch = 'Gldani Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Gldani Branch';
+            }else {
+              this.listArrived[i].branch = 'გლდანის ფილიალი';
+            }
             break;
           case 'OFFICE_5':
-            this.listArrived[i].branch = 'Isani Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Isani Branch';
+            }else {
+              this.listArrived[i].branch = 'ისნის ფილიალი';
+            }
             break;
           case 'OFFICE_6':
-            this.listArrived[i].branch = 'Vake Branch';
+            if(this.lang === 'en'){
+              this.listArrived[i].branch = 'Vake Branch';
+            }else {
+              this.listArrived[i].branch = 'ვაკის ფილიალი';
+            }
             break;
         }
       }
@@ -143,22 +179,46 @@ export class ArrivedPage {
         for(let i in this.ListCities[city]) {
           switch (this.ListCities[city][i].branch){
             case 'OFFICE_1':
-              this.ListCities[city][i].branch = 'Mickevichi Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Mickevichi Branch';
+              }else {
+                this.ListCities[city][i].branch = 'მიცკევიჩის ფილიალი';
+              }
               break;
             case 'OFFICE_2':
-              this.ListCities[city][i].branch = 'Digomi Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Digomi Branch';
+              }else {
+                this.ListCities[city][i].branch = 'დიღმის ფილიალი';
+              }
               break;
             case 'OFFICE_3':
-              this.ListCities[city][i].branch = 'Vaja-Pshavela Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Vaja-Pshavela Branch';
+              }else {
+                this.ListCities[city][i].branch = 'ვაჟა-ფშაველას ფილიალი';
+              }
               break;
             case 'OFFICE_4':
-              this.ListCities[city][i].branch = 'Gldani Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Gldani Branch';
+              }else {
+                this.ListCities[city][i].branch = 'გლდანის ფილიალი';
+              }
               break;
             case 'OFFICE_5':
-              this.ListCities[city][i].branch = 'Isani Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Isani Branch';
+              }else {
+                this.ListCities[city][i].branch = 'Iისნის ფილიალი';
+              }
               break;
             case 'OFFICE_6':
-              this.ListCities[city][i].branch = 'Vake Branch';
+              if(this.lang){
+                this.ListCities[city][i].branch = 'Vake Branch';
+              }else {
+                this.ListCities[city][i].branch = 'ვაკის ფილიალი';
+              }
               break;
           }
         }

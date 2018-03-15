@@ -103,8 +103,9 @@ export class HeaderPage implements OnInit, OnDestroy{
       sessionId: this.sessionId,
       language: language
     };
-    this.headerService.changeLanguage('changeLanguage', this.data).subscribe(data => {
-      this.getInfo();
+    this.headerService.changeLanguage('changeLanguage', this.data).subscribe(() => {
+      window.location.reload();
+      // this.navCtrl.setRoot(this.navCtrl.getActive().component);
     })
   }
 
