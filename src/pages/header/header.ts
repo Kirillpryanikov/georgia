@@ -1,15 +1,15 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { ModalController, NavController } from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
-import {HeaderService, SettingService} from "@core/services";
+import { HeaderService, SettingService} from "@core/services";
 
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
 import { DetailsPopups } from "@shared/popups/details-popup-component/details-popups";
 import { AddressPopups } from "@shared/popups/address-popup-component/address-popups";
 import { Subscription } from "rxjs/Subscription";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -104,7 +104,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       language: language
     };
     this.headerService.changeLanguage('changeLanguage', this.data).subscribe(() => {
-      window.location.reload();
+      this.getInfo();
     })
   }
 

@@ -14,8 +14,6 @@ import {debounceTime} from "rxjs/operators";
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
-  private sessionId: string;
-  private subscription: Subscription;
   private rootPage: string;
   constructor(private platform: Platform,
               private statusBar: StatusBar,
@@ -32,13 +30,6 @@ export class MyApp implements OnInit{
   }
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
-        this.getInfo();
-      });
-
-
     this.initDropdown();
     this.isAuth();
   }
@@ -49,15 +40,6 @@ export class MyApp implements OnInit{
 
   initDropdown() {
     this.mainService.dropdown();
-  }
-
-  getInfo() {
-    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data);
-      this.translate.setDefaultLang(data.message.profile.panel_language || 'en');
-      this.translate.use(data.message.profile.panel_language || 'en');
-      this.subscription.unsubscribe();
-    })
   }
 
   isAuth() {

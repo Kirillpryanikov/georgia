@@ -3,7 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { DepositePage } from '@pages/deposite/deposite';
 import { HeaderPageModule } from "@pages/header/header.module";
 import {SidebarPageModule} from "@pages/sidebar/sidebar.module";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {createTranslateLoader} from "../../app/app.module";
+import {HttpClient} from "@angular/common/http";
 
 
 @NgModule({
@@ -15,7 +17,13 @@ import {TranslateModule} from "@ngx-translate/core";
     SidebarPageModule,
 
     IonicPageModule.forChild(DepositePage),
-    TranslateModule.forChild()
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      },
+    })
   ],
   exports: [ DepositePage ]
 })

@@ -3,7 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { SettingsPage } from '@pages/settings/settings';
 import { HeaderPageModule } from "@pages/header/header.module";
 import { SidebarPageModule } from "@pages/sidebar/sidebar.module";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {createTranslateLoader} from "../../app/app.module";
+import {HttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -13,7 +15,13 @@ import {TranslateModule} from "@ngx-translate/core";
     HeaderPageModule,
     SidebarPageModule,
     IonicPageModule.forChild(SettingsPage),
-    TranslateModule.forChild()
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      },
+    })
   ],
   exports: [  ]
 })
