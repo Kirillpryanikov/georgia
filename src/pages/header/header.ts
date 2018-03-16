@@ -23,7 +23,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
   outputs: ['branchSelection']
 })
 export class HeaderPage implements OnInit, OnDestroy{
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private data;
   private subscription: Subscription;
   private user: IUserHeader = {
@@ -48,16 +48,16 @@ export class HeaderPage implements OnInit, OnDestroy{
               private headerService: HeaderService,
               private modalController: ModalController,
               private settingService: SettingService,
-              /*private nativeStorage: NativeStorage*/) {}
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getAvatar();
         this.getInfo();
         this.getNotifications();
-      // });
+      });
   }
 
   getAvatar() {
@@ -105,7 +105,6 @@ export class HeaderPage implements OnInit, OnDestroy{
     };
     this.headerService.changeLanguage('changeLanguage', this.data).subscribe(() => {
       window.location.reload();
-      // this.navCtrl.setRoot(this.navCtrl.getActive().component);
     })
   }
 

@@ -32,7 +32,7 @@ const notice = {
   templateUrl: 'usa-warehouse.html',
 })
 export class UsaWarehousePage implements OnInit{
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private listUsaWarehouse;
   private subscription: Subscription;
   private data;
@@ -47,11 +47,11 @@ export class UsaWarehousePage implements OnInit{
   }
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getWarehouse();
-      // });
+      });
   }
 
   ionViewDidLoad() {

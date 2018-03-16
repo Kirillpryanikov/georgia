@@ -25,17 +25,17 @@
     <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>{{'_EMAIL' | translate}}</span></label>
+        <label class="u2g-form-group__label"><span>Email</span></label>
         <input type="email" class="u2g-form-group__field" id="email" name="email" formControlName="email" data-rule-required="true">
       </div>
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>{{'_PASSWORD' | translate}}</span></label>
+        <label class="u2g-form-group__label"><span>Password</span></label>
         <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="password">
       </div>
 
       <div #jsorganization class="u2g-form-group__field-group js-organization">
-        <label class="u2g-form-group__label"><span>{{'_KEEP_LOGED_IN' | translate}}</span></label>
+        <label class="u2g-form-group__label"><span>keep loged in</span></label>
         <label  class="u2g-switch js-switch">
           <input type="checkbox" formControlName="checkbox" >
           <span></span>
@@ -43,8 +43,8 @@
       </div>
 
       <div class="u2g-form-group__field-group">
-        <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">{{'_SIGN_IN' | translate}}</button>
-        <a (click)="goToRegisterPage()" class="u2g-button">{{"_REGISTER" | translate}}</a>
+        <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">Sign In</button>
+        <a (click)="goToRegisterPage()" class="u2g-button">Register</a>
       </div>
 
     </form>
@@ -92,7 +92,7 @@
 		    </span>
         <div class="u2g-multilang__select">
           <div class="u2g-multilang__select-item" (click)="changeLanguage('en')">
-            <span>{{'_ENGLISH' | translate}}</span>
+            <span>English</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
               <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
               <g>
@@ -116,7 +116,7 @@
 
           </div>
           <div class="u2g-multilang__select-item" (click)="changeLanguage('ka')">
-            <span>{{'_GEORGIAN' | translate}}</span>
+            <span>Georgian</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
               <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
               <g>

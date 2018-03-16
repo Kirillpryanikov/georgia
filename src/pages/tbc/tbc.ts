@@ -23,7 +23,7 @@ export class TbcPage implements OnInit, OnDestroy{
   private data;
   private amount;
   private unpaid_invoice: string;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public mainService: ScriptMainService,
@@ -33,11 +33,11 @@ export class TbcPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getUnpaidInvoices();
-      // });
+      });
   }
 
   generateTBCBankTransaction() {

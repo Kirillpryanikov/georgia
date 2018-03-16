@@ -14,9 +14,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
   private file: string = '';
-  private extention: string = '';
   private data;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -32,10 +31,10 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
-    //   });
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+      });
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
   }

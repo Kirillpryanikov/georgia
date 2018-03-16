@@ -18,7 +18,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class Authorization implements OnInit, OnDestroy {
   @ViewChild('jsorganization') jsOrganization: ElementRef;
   private form: FormGroup;
-  private lang: string;
+  private lang: string = 'en';
   private authObservable: Subscription;
   private data;
 
@@ -31,7 +31,7 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    this.lang = this.translate.currentLang || 'en';
+
   }
 
   ionViewCanEnter(){

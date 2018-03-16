@@ -31,7 +31,7 @@ export class ArrivedPage {
   private subscription: Subscription;
   private data;
   private lang: string;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private listArrived;
   private keys = [];
   private ListCities = {};
@@ -47,11 +47,11 @@ export class ArrivedPage {
   }
 
   ionViewDidLoad() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getArrived();
-      // });
+      });
   }
 
   initMasonry() {

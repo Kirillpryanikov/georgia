@@ -26,7 +26,7 @@ export class CartuPage implements OnInit, OnDestroy{
   private data: string;
   private unpaid_invoice: string;
   private amount: string;
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -38,11 +38,11 @@ export class CartuPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getUnpaidInvoices();
-      // });
+      });
   }
 
   getCartuDescriptor() {

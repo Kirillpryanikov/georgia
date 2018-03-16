@@ -21,7 +21,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
   templateUrl: 'sidebar.html'
 })
 export class SidebarPage implements OnInit, OnDestroy{
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private subscription: Subscription;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
@@ -39,14 +39,14 @@ export class SidebarPage implements OnInit, OnDestroy{
               private arrivedService: ArrivedService,
               private pendingSevice: PendingService,
               private headerService: HeaderService,
-              /*private nativeStorage: NativeStorage*/) {}
+              private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getInfo();
-      // });
+      });
   }
 
   awaitingPackages(e) {

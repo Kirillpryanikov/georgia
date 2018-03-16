@@ -8,15 +8,15 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NativeStorage } from "@ionic-native/native-storage";
 import {Subscription} from "rxjs/Subscription";
 import {HeaderService} from "@core/services";
+import {debounceTime} from "rxjs/operators";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private subscription: Subscription;
-  rootPage:string = 'cartu-page';
-  // private rootPage: string;
+  private rootPage: string;
   constructor(private platform: Platform,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
@@ -32,9 +32,15 @@ export class MyApp implements OnInit{
   }
 
   ngOnInit() {
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
+        this.getInfo();
+      });
+
+
     this.initDropdown();
-    this.getInfo();
-    // this.isAuth();
+    this.isAuth();
   }
 
   ionViewDidLoad() {
@@ -47,8 +53,9 @@ export class MyApp implements OnInit{
 
   getInfo() {
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      this.translate.setDefaultLang(data.message.profile.panel_language);
-      this.translate.use(data.message.profile.panel_language);
+      console.log(data);
+      this.translate.setDefaultLang(data.message.profile.panel_language || 'en');
+      this.translate.use(data.message.profile.panel_language || 'en');
       this.subscription.unsubscribe();
     })
   }

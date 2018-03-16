@@ -37,7 +37,7 @@ const notice = {
   templateUrl: 'pending.html',
 })
 export class PendingPage implements OnInit{
-  private sessionId: string = '707d235b00280e693eab0496acb2690d';
+  private sessionId: string;
   private listPending;
   private data;
   private branch = [];
@@ -60,14 +60,14 @@ export class PendingPage implements OnInit{
   }
 
   ionViewDidLoad() {
-    // this.nativeStorage.getItem('sessionId')
-    //   .then(res => {
-    //     this.sessionId = res;
+    this.nativeStorage.getItem('sessionId')
+      .then(res => {
+        this.sessionId = res;
         this.getPending().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         });
         this.getInfo();
-      // });
+      });
   }
 
   initMasonry() {
