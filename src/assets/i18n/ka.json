@@ -237,14 +237,21 @@
   "_SAVE_DECLARATION_SUCCESS":"დეკლარირება დასრულებულია, გმადლობთ",
   "_SAVE_DECLARATION_UPLOAD_INVOICE":"დეკლარირება დასრულებულია, გმადლობთ. გთხოვთ ატვირთოთ შესყიდვის ორდერი რათა გაიტანოთ განსაბაჟებელი ამანათი",
   "_UPLOAD_INVOICE_WARNING":"შესყიდვის ორდერის ატვირთვა სავალდებულოა მხოლოდ განსაბაჟებელი ამანათებისათვის",
-  "_FILE_UPLOAD":"&nbsp;&nbsp;ფაილის მიბმა",
+  "_FILE_UPLOAD":"ფაილის მიბმა",
   "_LINK_DECLARATIONS_INSTRUCTION":"https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/47/4/",
   "_LINK__CUT_DOWN_TERMS":"https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/54/2/",
   "_LINK__RISK_FREE_SHIPPING_CONDITION":"https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/20/6/",
   "_SETTING_CHANGED":"პარამეტრი დამახსოვრებულია",
-  "_GLDANI_BRANCH":"გლდანის ფილიალი",
-  "_ISANI_BRANCH":"ისნის ფილიალი",
-  "_VALE_BRANCH":"ვაკის ფილიალი",
+
+
+  "OFFICE_3":"ვაჟა-ფშაველას ფილიალი",
+  "OFFICE_1":"მიცკევიჩის ფილიალი",
+  "OFFICE_2":"დიღმის ფილიალი",
+  "OFFICE_4":"გლდანის ფილიალი",
+  "OFFICE_5":"ისნის ფილიალი",
+  "OFFICE_6":"ვაკის ფილიალი",
+
+
   "_VIEW_INVOICE":"ინვოისის ნახვა",
   "_LOCATION":"ლოკაცია",
   "_TOTAL_AMOUNT":"ჯამური თანხა",

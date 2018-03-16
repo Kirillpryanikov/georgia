@@ -50,7 +50,7 @@ export class ArrivedPage {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
-        this.getArrived();
+        this.getInfo();
       });
   }
 
@@ -84,6 +84,7 @@ export class ArrivedPage {
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
       this.lang = data.message.profile.panel_language;
       this.subscription.unsubscribe();
+      this.getArrived();
     })
   }
 
@@ -116,7 +117,6 @@ export class ArrivedPage {
 
   getArrived() {
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
-
       const keys = Object.keys(data.message.arrived);
 
       const tmp1_2 = keys.filter(key => !key.match('PREPARING')).map(key => data.message.arrived[key]);
@@ -124,104 +124,12 @@ export class ArrivedPage {
       const tmp2 = tmp1_2.map(val => Object.keys(val).map(key => val[key]));
 
       this.listArrived = [].concat(...tmp2);
-      for(let i in this.listArrived) {
-        switch (this.listArrived[i].branch){
-          case 'OFFICE_1':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Mickevichi Branch';
-            } else{
-              this.listArrived[i].branch = 'მიცკევიჩის ფილიალი';
-            }
-            break;
-          case 'OFFICE_2':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Digomi Branch';
-            }else{
-              this.listArrived[i].branch = 'დიღმის ფილიალი';
-            }
-            break;
-          case 'OFFICE_3':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Vaja-Pshavela Branch';
-            }else{
-              this.listArrived[i].branch = 'ვაჟა-ფშაველას ფილიალი';
-            }
-            break;
-          case 'OFFICE_4':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Gldani Branch';
-            }else {
-              this.listArrived[i].branch = 'გლდანის ფილიალი';
-            }
-            break;
-          case 'OFFICE_5':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Isani Branch';
-            }else {
-              this.listArrived[i].branch = 'ისნის ფილიალი';
-            }
-            break;
-          case 'OFFICE_6':
-            if(this.lang === 'en'){
-              this.listArrived[i].branch = 'Vake Branch';
-            }else {
-              this.listArrived[i].branch = 'ვაკის ფილიალი';
-            }
-            break;
-        }
-      }
 
       this.ListCities = keys.filter(key => key.match('PREPARING_')).reduce((obj, city) => {obj[city.split('_')[1]] = []; return obj}, {});
 
       Object.keys(this.ListCities).forEach(city => {
         const tmp = `PREPARING_${city}`;
         this.ListCities[city].push(...Object.keys(data.message.arrived[tmp]).map(key => data.message.arrived[tmp][key]));
-        for(let i in this.ListCities[city]) {
-          switch (this.ListCities[city][i].branch){
-            case 'OFFICE_1':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Mickevichi Branch';
-              }else {
-                this.ListCities[city][i].branch = 'მიცკევიჩის ფილიალი';
-              }
-              break;
-            case 'OFFICE_2':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Digomi Branch';
-              }else {
-                this.ListCities[city][i].branch = 'დიღმის ფილიალი';
-              }
-              break;
-            case 'OFFICE_3':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Vaja-Pshavela Branch';
-              }else {
-                this.ListCities[city][i].branch = 'ვაჟა-ფშაველას ფილიალი';
-              }
-              break;
-            case 'OFFICE_4':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Gldani Branch';
-              }else {
-                this.ListCities[city][i].branch = 'გლდანის ფილიალი';
-              }
-              break;
-            case 'OFFICE_5':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Isani Branch';
-              }else {
-                this.ListCities[city][i].branch = 'Iისნის ფილიალი';
-              }
-              break;
-            case 'OFFICE_6':
-              if(this.lang){
-                this.ListCities[city][i].branch = 'Vake Branch';
-              }else {
-                this.ListCities[city][i].branch = 'ვაკის ფილიალი';
-              }
-              break;
-          }
-        }
       });
 
       this.keys = Object.keys(this.ListCities);

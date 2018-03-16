@@ -24,6 +24,7 @@ export class MyApp implements OnInit{
               private headerService: HeaderService,
               private nativeStorage: NativeStorage) {
     platform.ready().then(() => {
+      this.initLanguage();
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -50,6 +51,20 @@ export class MyApp implements OnInit{
       .catch(err => {
         this.rootPage = 'authorization-page';
       })
+  }
+
+  initLanguage() {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+    /**
+     * Get language device
+     */
+    this.globalization.getPreferredLanguage()
+      .then(res => {
+        const countryCode = res.value.split('-')[0] !== 'ge' ? 'en': 'ge';
+        this.translate.use(countryCode);
+      })
+      .catch(e => console.log('language app.component err --> ', e));
   }
 }
 

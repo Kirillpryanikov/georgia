@@ -242,9 +242,14 @@
   "_LINK__CUT_DOWN_TERMS":"https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/62/11/conditions-of-cut-down-repackaging-service",
   "_LINK__RISK_FREE_SHIPPING_CONDITION":"https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/83/15/can-i-insure-my-parcels-with-your-company",
   "_SETTING_CHANGED":"Setting changed successfully",
-  "_GLDANI_BRANCH":"Gldani Branch",
-  "_ISANI_BRANCH":"Isani Branch",
-  "_VALE_BRANCH":"Vake Branch",
+
+  "OFFICE_4":"Gldani Branch",
+  "OFFICE_5":"Isani Branch",
+  "OFFICE_6":"Vake Branch",
+  "OFFICE_1":"Mickevichi Branch",
+  "OFFICE_2":"Digomi Branch",
+  "OFFICE_3":"Vaja-Pshavela Branch",
+
   "_VIEW_INVOICE":"View invoice",
   "_LOCATION":"Location",
   "_TOTAL_AMOUNT":"Total Amount",

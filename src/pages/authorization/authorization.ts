@@ -67,7 +67,7 @@ export class Authorization implements OnInit, OnDestroy {
       secret: '6LcbGCsUAAATUM-mRB1xmIGEAbaSfebzeUlPpsuZ',
       userName: this.form.value.email,
       password: this.form.value.password,
-      language: this.lang,
+      language: 'en',
       remember: this.form.value.checkbox
     };
     console.log(this.data);
