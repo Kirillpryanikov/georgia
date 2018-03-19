@@ -5,6 +5,7 @@ import { ScriptRegisterService } from '@core/script.data/script.register.service
 import {RegistrationService, SettingService} from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage({
   name: 'register-page'
@@ -24,6 +25,7 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
+              private translate: TranslateService,
               private viewController: ViewController,
               private registerScriptService: ScriptRegisterService,
               private fb: FormBuilder,

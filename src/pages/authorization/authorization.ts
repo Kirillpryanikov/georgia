@@ -68,26 +68,23 @@ export class Authorization implements OnInit, OnDestroy {
       secret: '6LcbGCsUAAATUM-mRB1xmIGEAbaSfebzeUlPpsuZ',
       userName: this.form.value.email,
       password: this.form.value.password,
-      language: 'en',
+      language: this.lang,
       remember: this.form.value.checkbox
     };
     console.log(this.data);
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
-        this.navCtrl.setRoot('page-awaiting-tracking');
+        this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});
         this.subscription.unsubscribe();
       }
     })
   }
 
   goToRegisterPage() {
-    /**
-     *  Remove listener on click checkbox
-     */
     this.registerService.offClick();
 
-    this.navCtrl.push('register-page');
+    this.navCtrl.setRoot('register-page');
   }
 
   ngOnDestroy() {

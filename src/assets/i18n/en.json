@@ -266,6 +266,7 @@
   "_BANK_PAYMENT":"bank payment",
   "_FIRST_NAME_GEORGIAN":"first name georgian",
   "_LAST_NAME_GEORGIAN":"last name georgian",
+  "_ORGANIZATION":"Organization",
   "_PROFILE_PHOTO":"profile photo",
   "_SAVE_CHANGE":"save change",
   "_ADD_PRODUCT":"Add Product",
@@ -385,5 +386,7 @@
   "Bags":"Bags",
   "Different electronic and consumer products":"Different electronic and consumer products",
 
-  "_ALL_INVOICES_MUST_BE_PAID":"Please clear all outstanding invoices and add the balance 3 GEL, in order to request courier service!"
+  "_ALL_INVOICES_MUST_BE_PAID":"Please clear all outstanding invoices and add the balance 3 GEL, in order to request courier service!",
+  "_NUMBER":"numder",
+  "_DIGIT":"digit"
 }
