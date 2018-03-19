@@ -25,17 +25,17 @@
     <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>Email</span></label>
+        <label class="u2g-form-group__label"><span>{{'_EMAIL' | translate}}</span></label>
         <input type="email" class="u2g-form-group__field" id="email" name="email" formControlName="email" data-rule-required="true">
       </div>
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>Password</span></label>
+        <label class="u2g-form-group__label"><span>{{'PASSWORD' | translate}}</span></label>
         <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="password">
       </div>
 
       <div #jsorganization class="u2g-form-group__field-group js-organization">
-        <label class="u2g-form-group__label"><span>keep loged in</span></label>
+        <label class="u2g-form-group__label"><span>{{'_KEEP_LOGED_IN' | translate}}</span></label>
         <label  class="u2g-switch js-switch">
           <input type="checkbox" formControlName="checkbox" >
           <span></span>

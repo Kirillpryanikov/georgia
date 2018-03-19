@@ -15,13 +15,10 @@ import {NativeStorage} from "@ionic-native/native-storage";
  * Ionic pages and navigation.
  */
 const notice = {
-  insurance: 'Please confirm you\'d like to enable Risk Free shipping service for your packages.',
-  cut_down: 'Please note, that by unchecking Cut Down service, you may get a huge box that stores usually send ' +
-  'to us in USA, which will result into dramatical increase of shipping price to Tbilisi. See Cut Down servic' +
-  ' terms under Agreement, Paragraph 3.',
-  put_into_bag: 'Please note, there is a risk of product damage and USA2GEORGIA takes no responsibility ' +
-  'in case you choose shoes to be repacked in plastic bag. Please Confirm or Cancel the request!',
-  remove_tracking: 'Do you really want to remove tracking from awaiting list?'
+  insurance: '_CHANGE_INSURANCE_CONFIRMATION',
+  cut_down: '_CUT_DOWN_CONFIRMATION',
+  put_into_bag: '_PUT_INTO_BAG_CONFIRMATION',
+  remove_tracking: '_PARCEL_REMOVE_CONFIRMATION'
 };
 
 @IonicPage({

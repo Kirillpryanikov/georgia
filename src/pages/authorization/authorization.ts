@@ -21,6 +21,7 @@ export class Authorization implements OnInit, OnDestroy {
   private lang: string = 'en';
   private authObservable: Subscription;
   private data;
+  private subscription: Subscription;
 
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
@@ -71,10 +72,11 @@ export class Authorization implements OnInit, OnDestroy {
       remember: this.form.value.checkbox
     };
     console.log(this.data);
-    this.authService.login('login', this.data).subscribe(data => {
+    this.subscription = this.authService.login('login', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
-        this.navCtrl.push('page-awaiting-tracking');
+        this.navCtrl.setRoot('page-awaiting-tracking');
+        this.subscription.unsubscribe();
       }
     })
   }

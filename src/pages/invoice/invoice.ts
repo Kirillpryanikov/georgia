@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InvoiceService } from "@core/services";
-import { IInvoice } from "@IFolder/IInvoice";
 import {NativeStorage} from "@ionic-native/native-storage";
 
 /**

@@ -28,13 +28,13 @@
                   <option value="OFFICE_3" selected>{{'_CUSTOMS_BRANCH_VAJ' | translate}}</option>
                   <option value="OFFICE_1">{{'_CUSTOMS_BRANCH_MIC' | translate}}</option>
                   <option value="OFFICE_2">{{'_CUSTOMS_BRANCH_DIG' | translate}}</option>
-                  <option value="OFFICE_4">{{'_GLDANI_BRANCH' | translate}}</option>
-                  <option value="OFFICE_5">{{'_ISANI_BRANCH' | translate}}</option>
-                  <option value="OFFICE_6">{{'_VALE_BRANCH' | translate}}</option>
+                  <option value="OFFICE_4">{{'OFFICE_4' | translate}}</option>
+                  <option value="OFFICE_5">{{'OFFICE_5' | translate}}</option>
+                  <option value="OFFICE_6">{{'OFFICE_6' | translate}}</option>
                 </select>
               </div>
               <div *ngIf="pending.locked" class="u2g-info-block__choose-branch">
-                <span>{{'_BRANCH' | translate}}: {{pending.branch}}</span>
+                <span>{{'_BRANCH' | translate}}: {{pending.branch | translate}}</span>
               </div>
               <div class="u2g-info-block__list">
                 <div *ngFor="let pendings of pending.trackings; index as _index" class="u2g-info-block__list-item">
