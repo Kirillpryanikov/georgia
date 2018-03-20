@@ -32,11 +32,10 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-
+    this.initForm();
   }
 
   ionViewCanEnter(){
-    this.initForm();
     this.initCheckout();
   }
 
@@ -52,7 +51,6 @@ export class Authorization implements OnInit, OnDestroy {
     this.form = this.fb.group({
       email: ['', Validators.email],
       password: ['', Validators.required],
-      organization: new FormControl(''),
       checkbox: false
     })
   }
@@ -71,10 +69,11 @@ export class Authorization implements OnInit, OnDestroy {
       language: this.lang,
       remember: this.form.value.checkbox
     };
-    console.log(this.data);
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
+      console.log()
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
+        this.nativeStorage.setItem('remember', this.data.remember);
         this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});
         this.subscription.unsubscribe();
       }

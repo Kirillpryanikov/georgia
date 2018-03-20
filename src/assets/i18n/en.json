@@ -388,5 +388,6 @@
 
   "_ALL_INVOICES_MUST_BE_PAID":"Please clear all outstanding invoices and add the balance 3 GEL, in order to request courier service!",
   "_NUMBER":"numder",
-  "_DIGIT":"digit"
+  "_DIGIT":"digit",
+  "_PASSPORT_NUMBER":"Passport number"
 }

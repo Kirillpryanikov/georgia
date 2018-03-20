@@ -138,7 +138,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   logout(e) {
     e.preventDefault();
-    // this.nativeStorage.remove('sessionId');
+    this.nativeStorage.remove('sessionId');
     this.navCtrl.setRoot('authorization-page');
   }
 

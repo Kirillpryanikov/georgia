@@ -50,24 +50,26 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   initForm() {
     this.form = this.fb.group({
-      first_name: ['', Validators.required],
+      first_name: ['', Validators.compose([
+        Validators.required
+      ])],
       last_name: ['', Validators.required],
       first_name_georgian: ['', Validators.required],
       last_name_georgian: ['', Validators.required],
       organization: [''],
       checkbox1: false,
       checkbox2: false,
-      id_number_11:['', [ Validators.required, Validators.minLength(11)]],
+      id_number_11:['', [ Validators.required]],
       email: ['', Validators.email],
-      phone: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required]],
       city: ['', Validators.required],
       address_1: ['', Validators.required],
       address_2: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required]],
+      confirm_password: [''],
       default_branch: ['', Validators.required]
     }, {
-      validator: this.comparePassword
+      validator: this.comparePassword('password', 'confirm_password')
     })
   }
 
@@ -126,11 +128,13 @@ export class RegisterPage implements OnInit, OnDestroy {
     })
   }
 
-  private comparePassword(AC: AbstractControl) {
-    if(AC.get('password').value != AC.get('confirm_password').value) {
-      AC.get('confirm_password').setErrors({MatchPassword: true})
-    } else {
-      return null;
+  comparePassword(password, confirm) {
+    return (group: FormGroup) => {
+      if(group.controls[password].value === group.controls[confirm].value) {
+        return null;
+      } else {
+        return {'comparePassword': true}
+      }
     }
   }
 

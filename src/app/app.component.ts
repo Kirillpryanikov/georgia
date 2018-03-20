@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -6,15 +6,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NativeStorage } from "@ionic-native/native-storage";
-import {Subscription} from "rxjs/Subscription";
-import {HeaderService} from "@core/services";
-import {debounceTime} from "rxjs/operators";
+import { HeaderService} from "@core/services";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
   private rootPage: string;
+  private rememberMe: boolean = true;
   constructor(private platform: Platform,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
@@ -27,12 +26,23 @@ export class MyApp implements OnInit{
       this.initLanguage();
       statusBar.styleDefault();
       splashScreen.hide();
+      this.nativeStorage.getItem('remember').then(res => {
+        console.log('res',res);
+        this.rememberMe = res;
+        if(!this.rememberMe) {
+          console.log('remove');
+          this.nativeStorage.remove('sessionId');
+        }
+      });
+      setTimeout(() => {
+        console.log('init')
+        this.isAuth();
+      },100);
     });
   }
 
   ngOnInit() {
     this.initDropdown();
-    this.isAuth();
   }
 
   ionViewDidLoad() {
@@ -66,5 +76,6 @@ export class MyApp implements OnInit{
       })
       .catch(e => console.log('language app.component err --> ', e));
   }
+
 }
 

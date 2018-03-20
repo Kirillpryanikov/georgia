@@ -7108,3 +7108,16 @@ label.error {
 .u2g-content--list.u2g-content--masonry .u2g-info-block--packages-being .u2g-info-block__button {
   -webkit-border-top-right-radius: 13px;
   border-top-right-radius: 13px; }
+.error {
+  color: rgba(228, 123, 123, 0.5);
+  border-color: rgba(228, 123, 123, 0.5);
+  font-size: 15px;
+}
+
+.error input {
+  margin-bottom: 5px;
+  width: 100%;
+}
+input div {
+  width: 100%;
+}
