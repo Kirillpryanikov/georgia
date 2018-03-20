@@ -14,6 +14,7 @@ import { SuccessPopups } from "@shared/popups/success-popup-component/success-po
 import { CourierSuccessPopups } from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import { CourierNotSuccessPopups } from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {TranslateModule} from "@ngx-translate/core";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -28,7 +29,8 @@ const DECLARATIONS = [
   AddProductPopups,
   SuccessPopups,
   CourierSuccessPopups,
-  CourierNotSuccessPopups
+  CourierNotSuccessPopups,
+  ErrorPopups
 ];
 
 @NgModule({

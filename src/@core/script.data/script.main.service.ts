@@ -98,7 +98,7 @@ export class ScriptMainService {
       $('.remove-file_js').addClass('u2g-remove-file--chosen');
     });
 
-    $(document).on('click', '.invoice-input_js', function () {
+    $(document).on('click', '.invoice-input_photo_js', function () {
       var fileName = 'invoice.jpg';
 
       $('.u2g-file-name').text(fileName);
