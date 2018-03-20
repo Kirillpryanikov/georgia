@@ -1,3 +1,5 @@
+To run the app on emulator:
+
 run 'npm install -g ionic cordova'
 
 run 'cordova platform add android'
@@ -10,5 +12,8 @@ run this file on android emulator or android device
 
 or
 
-run 'ionic cordova emaulate android'
+run 'ionic cordova emulate android'
+
+Check if the emulator is available, otherwise install emulator
+   
 
