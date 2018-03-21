@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let transaction of listTransaction | paginate: { itemsPerPage: 7, currentPage: p }">
+                <tr *ngFor="let transaction of listTransaction | paginate: { itemsPerPage: 10, currentPage: p }">
                   <td>{{transaction.date}}</td>
                   <td><a (click)="invoice($event, transaction.invoice)" >{{transaction.invoice}}</a></td>
                   <td></td>
@@ -46,9 +46,15 @@
 
             <!--          TRANSACTION PAGINATION-->
 
-            <!--<div style="margin: auto; margin-top: 50px; width: 100%">-->
-              <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
-            <!--</div>-->
+            <div class="pagination">
+              <pagination-controls previousLabel=""
+                                   nextLabel=""
+                                   maxSize="5"
+                                   class="my-pagination"
+                                   (pageChange)="p = $event">
+
+              </pagination-controls>
+            </div>
           </div>
         </div>
       </div>

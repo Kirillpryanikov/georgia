@@ -5,7 +5,6 @@ import {NativeStorage} from "@ionic-native/native-storage";
 import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {Subscription} from "rxjs/Subscription";
-import * as $ from 'jquery';
 
 /**
  * Generated class for the TransactionPage page.
@@ -35,16 +34,11 @@ export class TransactionPage implements OnInit{
   }
 
   ngOnInit() {
-    this.pagination();
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
         this.getTransactions();
       });
-  }
-
-  ionViewDidLoad() {
-    this.pagination();
   }
 
   getTransactions() {
@@ -89,10 +83,5 @@ export class TransactionPage implements OnInit{
         this.navCtrl.push('page-awaiting-tracking');
         break;
     }
-  }
-
-  pagination() {
-    console.log('pagination work')
-    $('.pagination-next a').html = '';
   }
 }

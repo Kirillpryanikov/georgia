@@ -1,4 +1,8 @@
 page-transaction {
+  .pagination {
+    margin: auto;
+    margin-top: 30px;
+  }
   .my-pagination /deep/ .ngx-pagination {
     background-color: rgba(184, 204, 209, 0.4);
     font-size: 15px;
@@ -14,14 +18,14 @@ page-transaction {
 
   .my-pagination /deep/ .pagination-next a {
     padding: 0 15px;
-    margin-left: 50px;
+    //margin-left: 50px;
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
   }
 
   .my-pagination /deep/ .pagination-previous a {
     padding: 0 15px;
-    margin-right: 50px;
+    //margin-right: 50px;
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
   }
