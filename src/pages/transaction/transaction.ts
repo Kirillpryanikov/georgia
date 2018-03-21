@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ArrivedService, TransactionService} from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
-import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {Subscription} from "rxjs/Subscription";
+import * as $ from 'jquery';
 
 /**
  * Generated class for the TransactionPage page.
@@ -35,6 +35,7 @@ export class TransactionPage implements OnInit{
   }
 
   ngOnInit() {
+    this.pagination();
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
@@ -43,7 +44,7 @@ export class TransactionPage implements OnInit{
   }
 
   ionViewDidLoad() {
-
+    this.pagination();
   }
 
   getTransactions() {
@@ -88,5 +89,10 @@ export class TransactionPage implements OnInit{
         this.navCtrl.push('page-awaiting-tracking');
         break;
     }
+  }
+
+  pagination() {
+    console.log('pagination work')
+    $('.pagination-next a').html = '';
   }
 }
