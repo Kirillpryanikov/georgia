@@ -1,3 +1,47 @@
 page-transaction {
+  .my-pagination /deep/ .ngx-pagination {
+    background-color: rgba(184, 204, 209, 0.4);
+    font-size: 15px;
+    border-radius: 15px;
+  }
 
+  .my-pagination /deep/ .pagination-next a, .pagination-previous a {
+    display: block;
+    background-color: white;
+    height: 36px;
+    line-height: 30px;
+  }
+
+  .my-pagination /deep/ .pagination-next a {
+    padding: 0 15px;
+    margin-left: 50px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+  }
+
+  .my-pagination /deep/ .pagination-previous a {
+    padding: 0 15px;
+    margin-right: 50px;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+  }
+
+  .my-pagination /deep/ .ngx-pagination li a:hover{
+    background-color: white;
+    display: block;
+    height: 36px;
+    line-height: 30px;
+  }
+
+  .my-pagination /deep/ .ngx-pagination li {
+    margin-right: 0;
+    vertical-align: middle;
+  }
+
+  .my-pagination /deep/ .ngx-pagination li.current {
+    background-color: white;
+    color: #2b2b2b;
+    height: 36px;
+    line-height: 30px;
+  }
 }

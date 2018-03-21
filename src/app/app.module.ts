@@ -13,6 +13,7 @@ import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { MyApp } from './app.component';
 import { FormsModule } from "@angular/forms";
+import {NgxPaginationModule} from "ngx-pagination";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,6 +27,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgxPaginationModule,
     CoreModule.forRoot(),
     SharedModule.forRoot(),
     PagesModule.forRoot(),
