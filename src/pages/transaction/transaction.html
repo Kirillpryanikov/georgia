@@ -38,7 +38,7 @@
                   <td>{{transaction.net}}</td>
                   <td>{{transaction.balance}}</td>
                   <td (click)="goTo(transaction.type)" *ngIf="transaction.type !== 'ADJUSTMENT'" class="u2g-transactions__text u2g-transactions__text--red"><span>{{transaction.type_value}}</span></td>
-                  <td *ngIf="transaction.type === 'ADJUSTMENT'" class="u2g-transactions__text"><span>{{transaction.type_value | }}</span></td>
+                  <td *ngIf="transaction.type === 'ADJUSTMENT'" class="u2g-transactions__text"><span>{{transaction.type_value | translate}}</span></td>
                 </tr>
                 </tbody>
               </table>

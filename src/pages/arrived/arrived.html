@@ -15,7 +15,7 @@
         <div class="u2g-content-wrapper">
 
           <div class="u2g-content-panel u2g-content-panel--space-between">
-            <button (click)="expressCourier()" class="u2g-button u2g-button--express-courier" data-popup="courier-enough-balance">{{'_EXPRESS_RETRIEVE_BUTTON' | translate}}</button>
+            <button [disabled]="block" (click)="expressCourier()" class="u2g-button u2g-button--express-courier" data-popup="courier-enough-balance">{{'_EXPRESS_RETRIEVE_BUTTON' | translate}}</button>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
                   <span class="u2g-arrived-info__explanation">{{'_TOTAL_AMOUNT' | translate}}</span>
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">
-                  <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} kg</h5>
+                  <h5 class="u2g-arrived-info__value">{{arrived.weight_kg}} {{'_KG'}}</h5>
                   <span class="u2g-arrived-info__explanation">{{'_CHARGEABLE_WEIGHT' | translate}}</span>
                 </div>
                 <div class="u2g-info-block__arrived-info u2g-arrived-info">

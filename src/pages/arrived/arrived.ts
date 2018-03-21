@@ -33,6 +33,7 @@ export class ArrivedPage {
   private lang: string;
   private sessionId: string;
   private listArrived;
+  private block: boolean = false;
   private keys = [];
   private ListCities = {};
 
@@ -99,6 +100,7 @@ export class ArrivedPage {
   }
 
   expressCourier() {
+    this.block = true;
     this.data = {
       sessionId: this.sessionId,
       action: 'CHECK'
@@ -107,9 +109,11 @@ export class ArrivedPage {
       if(data.message.status === 'FAIL') {
         const modal = this.modalController.create(CourierNotSuccessPopups);
         modal.present();
+        this.block = false;
       } else{
         const modal = this.modalController.create(CourierSuccessPopups);
         modal.present();
+        this.block = false;
       }
       this.subscription.unsubscribe();
     });
