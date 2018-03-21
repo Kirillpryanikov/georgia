@@ -3177,8 +3177,8 @@ ion-content, body.overflow {
 .u2g-page-wrapper {
   position: relative;
   left: 0;
-  -webkit-transition: left .4s;
-  transition: left .4s; }
+  -webkit-transition: left .8s;
+  transition: left .8s; }
   .u2g-page-wrapper--right {
     left: 270px;
     max-width: 100%;
@@ -4023,12 +4023,12 @@ ion-content, body.overflow {
   width: 100%;
   max-width: 270px;
   min-height: 100%;
-  -webkit-transition: left .2s ease-out;
-  transition: left .2s ease-out; }
+  -webkit-transition: left .8s ease-out;
+  transition: left .8s ease-out; }
   .u2g-sidebar.u2g-show {
     left: 0;
-    -webkit-transition: left .2s ease-in;
-    transition: left .2s ease-in; }
+    -webkit-transition: left 0.8s ease-in;
+    transition: left .8s ease-in; }
   .u2g-sidebar__logo {
     width: 100%;
     max-width: 200px;
