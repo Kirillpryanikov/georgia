@@ -35,7 +35,6 @@ export class MyApp implements OnInit{
         }
       });
       setTimeout(() => {
-        console.log('init')
         this.isAuth();
       },100);
     });
