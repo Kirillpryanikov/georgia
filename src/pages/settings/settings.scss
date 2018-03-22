@@ -1,3 +1,14 @@
 page-settings {
-
+  .over {
+    width: 132px;
+    height: 132px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  img.mainImage {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
 }

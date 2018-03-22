@@ -34,6 +34,8 @@ const notice = {
 })
 export class PendingPage implements OnInit{
   private sessionId: string;
+  public logoWrapper = 'Pending';
+  public active = 'pending';
   private listPending;
   private data;
   private branch = [];

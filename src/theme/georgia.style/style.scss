@@ -3166,7 +3166,7 @@ body {
   background: #f3f5f7;
   color: #2f3d4a;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   line-height: 1.2;
   max-width: 100%;
@@ -3211,7 +3211,7 @@ ion-content, body.overflow {
   cursor: pointer;
   height: 29px;
   padding: 0 28px;
-  font-size: 12px; }
+  font-size: 15px; }
   .u2g-button--green {
     background: #85c099; }
   .u2g-button[disabled] {
@@ -3221,6 +3221,7 @@ ion-content, body.overflow {
 /*CONTAINER*/
 .u2g-container {
   background: url(../img/container-bg.png) no-repeat bottom center;
+  background-color: #f3f5f7;
   background-size: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -3326,7 +3327,7 @@ ion-content, body.overflow {
   z-index: 10; }
 
 .u2g-single-logo {
-  width: 200px;
+  width: 300px;
   padding: 10px 25px;
   margin: 40px auto 0; }
 
@@ -4723,7 +4724,7 @@ select[data-ss-uuid] {
     -webkit-flex-grow: 2;
         -ms-flex-positive: 2;
             flex-grow: 2;
-    font-size: 12px;
+    font-size: 14px;
     padding-left: 16px; }
   .u2g-info-block__tracking-number-title {
     display: none; }
@@ -5023,6 +5024,7 @@ select[data-ss-uuid] {
     padding: 10px 10px 10px 20px;
     width: 100%; }
     .u2g-info-block__product--total {
+      font-size: 14px;
       border-bottom: 0;
       font-weight: bold;
       padding-right: 38px; }
@@ -5083,8 +5085,7 @@ select[data-ss-uuid] {
         -webkit-flex-grow: 2;
             -ms-flex-positive: 2;
                 flex-grow: 2;
-        line-height: 40px;
-        padding: 10px 10px 10px 16px; }
+      }
       .u2g-content--masonry .u2g-info-block__list-item:last-child {
         border-bottom: 0; }
     .u2g-content--masonry .u2g-info-block__comment, .u2g-content--masonry .u2g-info-block__invoice {
@@ -5273,7 +5274,7 @@ select[data-ss-uuid] {
   width: 100px; }
 
 .u2g-content--warehouse .u2g-info-block__list-item {
-  font-size: 13px;
+  font-size: 15px;
   padding-top: 15px;
   padding-bottom: 15px; }
 
@@ -6137,7 +6138,7 @@ select[data-ss-uuid] {
     text-align: right;
     width: 100%;
     max-width: 103px; }
-    .u2g-form-group__label > sub {
+    .u2g-form-group__label > sup {
       color: #e47b7b; }
   .u2g-form-group__checkbox {
     -webkit-box-align: center;
@@ -6926,6 +6927,7 @@ label.error {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: url(../img/container-bg.png) no-repeat bottom center;
+  background-color: #f3f5f7;
   background-size: 100%;
   padding-bottom: 65px; }
   .sign-wrapper .u2g-multilang {
@@ -7120,4 +7122,28 @@ label.error {
 }
 input div {
   width: 100%;
+}
+.overProfile {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.profileImage {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+}
+.overHeader {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.profileHeader {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
 }

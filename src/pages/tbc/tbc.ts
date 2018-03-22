@@ -21,6 +21,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class TbcPage implements OnInit, OnDestroy{
 
   private data;
+  public logoWrapper = 'TBC';
   private amount;
   private unpaid_invoice: string;
   private sessionId: string;

@@ -5,11 +5,11 @@
 
       <!--HEADER-->
 
-      <header-page></header-page>
+      <header-page [logoWrapper]="logoWrapper"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
-      <sidebar-page></sidebar-page>
+      <sidebar-page [active]="active"></sidebar-page>
 
       <div class="u2g-container">
         <div class="u2g-content-wrapper">
@@ -20,7 +20,6 @@
 
               <div *ngFor="let warehouse of listUsaWarehouse; index as index" class="u2g-info-block">
                 <div class="u2g-info-block__tracking-number">
-                  <span class="u2g-info-block__tracking-number-title">{{'_TRACKING' | translate}}</span>
                   <span class="u2g-info-block__tracking-number-value">{{warehouse.tracking}}</span></div>
                 <div *ngIf="warehouse.declared" class="u2g-info-block__button-wrapper">
                   <a (click)="declaration($event, index)" class="u2g-info-block__button u2g-info-block__button--top">

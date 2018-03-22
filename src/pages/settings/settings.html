@@ -5,7 +5,7 @@
 
       <!--HEADER-->
 
-      <header-page></header-page>
+      <header-page [logoWrapper]="logoWrapper"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
@@ -85,7 +85,9 @@
                   <div class="u2g-settings-form__photo">
                     <span class="u2g-settings-form__label u2g-settings-form__label--margin-top">{{'_PROFILE_PHOTO' | translate}}</span>
                     <div class="u2g-settings-form__image">
-                      <img [src]="userPhoto" alt="Profile photo">
+                      <div class="over">
+                        <img class="mainImage" [src]="userPhoto" alt="Profile photo">
+                      </div>
                     </div>
                     <div class="u2g-settings-form__button-wrapper">
                       <label class="u2g-button u2g-button--green">
@@ -303,37 +305,37 @@
                     <h4 class="u2g-form-group__notifications-title">{{'_EMAIL_NOTIFICATIONS' | translate}}</h4>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="newpackage" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_RECEIVING_OF_PACKAGE_IN_USA' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="invoicepay" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_INVOICE_PAYMENTS' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="sent" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_PACKAGE_SENT' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="invoicenotpay" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_INSUFFICIENT_FUNDS' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="shipped" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_PACKAGE_DELIVERED' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="companynews" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_COMPANY_NEWS_AND_PROMOTIONS' | translate}}
                     </label>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="addfund" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_ADD_FUNDS' | translate}}
                     </label>
                   </div>
@@ -341,7 +343,7 @@
                     <h4 class="u2g-form-group__notifications-title">{{'_SMS_NOTIFICATIONS' | translate}}</h4>
                     <label class="u2g-form-group__checkbox u2g-form-group__checkbox--notification">
                       <input formControlName="newpackage_sms" type="checkbox" checked>
-                      <span><i class="ion-checkmark-round"></i></span>
+                      <span><i class="material-icons">done</i></span>
                       {{'_RECEIVING_OF_PACKAGE_IN_USA' | translate}}
                     </label>
                   </div>
@@ -357,7 +359,7 @@
                 <div class="u2g-settings-form">
                   <div class="u2g-settings-form__branch">
                     <div class="u2g-settings-form__branch-notice">
-                      <i class="ion-close-round" (click)="hide()" ></i>
+                      <i class="material-icons"  (click)="hide()">clear</i>
                       <span>{{'_BRANCH_SETTINGS_HEAD' | translate}}</span>
                       <p>{{'_BRANCH_SETTINGS_BODY' | translate}}</p>
                     </div>

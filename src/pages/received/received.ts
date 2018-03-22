@@ -25,6 +25,8 @@ import {NativeStorage} from "@ionic-native/native-storage";
   templateUrl: 'received.html',
 })
 export class ReceivedPage implements OnInit {
+  public logoWrapper = 'Received';
+  public active = 'received';
   private sessionId: string;
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();

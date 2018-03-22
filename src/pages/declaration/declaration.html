@@ -5,7 +5,7 @@
 
       <!--HEADER-->
 
-      <header-page></header-page>
+      <header-page [logoWrapper]="logoWrapper"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
@@ -48,7 +48,7 @@
                 <span class="u2g-info-block__tracking-number-title">{{'_PRODUCT_LIST' | translate}}</span>
               </div>
               <div class="u2g-info-block__button-wrapper">
-                <button (click)="addProduct()" class="u2g-info-block__button u2g-info-block__button--top u2g-info-block__button--plus" data-popup="product-plus"><i class="ion-plus-round"></i></button>
+                <button (click)="addProduct()" class="u2g-info-block__button u2g-info-block__button--top u2g-info-block__button--plus" data-popup="product-plus"><i class="material-icons">add</i></button>
               </div>
               <form class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div *ngFor="let list of productList; index as index" class="u2g-info-block__product">

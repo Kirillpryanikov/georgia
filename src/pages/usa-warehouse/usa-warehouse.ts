@@ -29,7 +29,9 @@ const notice = {
   templateUrl: 'usa-warehouse.html',
 })
 export class UsaWarehousePage implements OnInit{
+  public active = 'usa-warehouse';
   private sessionId: string;
+  public logoWrapper = 'USA Warehouse';
   private listUsaWarehouse;
   private subscription: Subscription;
   private data;

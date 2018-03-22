@@ -32,7 +32,6 @@
           <div #u2ginfo class="u2g-content u2g-content--masonry">
             <div class="u2g-info-block" *ngFor="let tracking of listAwaitingTracking; index as index">
               <div class="u2g-info-block__tracking-number">
-                <span class="u2g-info-block__tracking-number-title">{{'_TRACKING' | translate}}</span>
                 <span class="u2g-info-block__tracking-number-value">{{tracking.tracking}}</span>
               </div>
               <div *ngIf="tracking.declared" class="u2g-info-block__button-wrapper">

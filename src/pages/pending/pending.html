@@ -5,11 +5,11 @@
 
       <!--HEADER-->
 
-      <header-page (branchSelection)="branchSelection($event)"></header-page>
+      <header-page [logoWrapper]="logoWrapper" (branchSelection)="branchSelection($event)"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
-      <sidebar-page></sidebar-page>
+      <sidebar-page [active]="active"></sidebar-page>
 
       <div class="u2g-container">
         <div class="u2g-content-wrapper">

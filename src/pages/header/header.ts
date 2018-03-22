@@ -22,10 +22,12 @@ import { Network} from "@ionic-native/network";
 @Component({
   selector: 'header-page',
   templateUrl: 'header.html',
+  inputs: ['logoWrapper'],
   outputs: ['branchSelection']
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId: string;
+  public logoWrapper;
   private data;
   private subscription: Subscription;
   private user: IUserHeader = {

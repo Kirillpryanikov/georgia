@@ -22,6 +22,7 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class TransactionPage implements OnInit{
   private listTransaction;
+  public logoWrapper = 'Transactions';
   private data;
   private subscription: Subscription;
   private sessionId: string;

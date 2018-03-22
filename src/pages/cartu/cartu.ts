@@ -23,6 +23,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class CartuPage implements OnInit, OnDestroy{
 
   private body = new URLSearchParams();
+  public logoWrapper = 'Cartu';
   private data: string;
   private unpaid_invoice: string;
   private amount: string;
