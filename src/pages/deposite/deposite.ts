@@ -18,7 +18,7 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 })
 export class DepositePage implements OnInit, OnDestroy{
 
-  public logoWrapper = 'Deposite';
+  public logoWrapper = '_DEPOSIT';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

@@ -5,11 +5,11 @@
 
       <!--HEADER-->
 
-      <header-page></header-page>
+      <header-page [logoWrapper]="logoWrapper"></header-page>
 
       <!--LEFT NAVIGATION SIDEBAR-->
 
-      <sidebar-page></sidebar-page>
+      <sidebar-page [active]="active"></sidebar-page>
 
       <div class="u2g-container">
 
@@ -47,15 +47,15 @@
               <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <label (click)="showWarningPopup(index, 'insurance')" class="u2g-info-block__list-item u2g-info-block__list-item--label risk-free-shipping_js">
                   <input type="checkbox" [ngModel]="-tracking.insurance">
-                  <span>{{'_RISK_FREE_SHIPPING' | translate}}</span>
+                  <span style="margin: 25px">{{'_RISK_FREE_SHIPPING' | translate}}</span>
                 </label>
                 <label (click)="showWarningPopup(index, 'cut_down')" class="u2g-info-block__list-item u2g-info-block__list-item--label cut-down-package_js">
                   <input type="checkbox" [ngModel]="-tracking.cut_down">
-                  <span>{{'_CUT_DOWN_PACKAGE' | translate}}</span>
+                  <span style="margin: 25px">{{'_CUT_DOWN_PACKAGE' | translate}}</span>
                 </label>
                 <label (click)="showWarningPopup(index, 'put_into_bag')" class="u2g-info-block__list-item u2g-info-block__list-item--label repack_js">
                   <input type="checkbox" [ngModel]="-tracking.put_into_bag">
-                  <span>{{'_REPACK' | translate}}</span>
+                  <span style="margin: 25px">{{'_REPACK' | translate}}</span>
                 </label>
               </div>
               <div (click)="showCommentPopup(index)" class="u2g-info-block__comment">

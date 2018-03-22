@@ -29,7 +29,7 @@ const notice = {
 export class DeclarationPage implements OnInit{
 
   productList: Array<any>;
-  public logoWrapper = 'Declaration';
+  public logoWrapper = '_DECLARATION';
   sessionId: string;
   total: number = 0;
   data: Object;

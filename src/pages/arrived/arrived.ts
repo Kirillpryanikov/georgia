@@ -29,7 +29,7 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
 export class ArrivedPage {
 
   private subscription: Subscription;
-  public logoWrapper = 'Arrived';
+  public logoWrapper = '_ARRIVED';
   public active = 'arrived';
   private data;
   private lang: string;

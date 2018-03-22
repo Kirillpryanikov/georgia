@@ -799,6 +799,7 @@
   text-transform: none;
   text-rendering: auto;
   line-height: 1;
+  outline: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -3161,6 +3162,10 @@ img {
 ::-moz-focus-outer, ::-moz-focus-inner {
   border: 0;
   padding: 0; }
+html{
+  overflow: hidden;
+  outline: none;
+}
 
 body {
   background: #f3f5f7;
@@ -3170,7 +3175,9 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.2;
   max-width: 100%;
-  overflow-x: hidden; }
+  overflow: hidden;
+  outline: none;
+}
 ion-content, body.overflow {
     overflow: hidden; }
 
@@ -4828,7 +4835,7 @@ select[data-ss-uuid] {
         width: 15px; }
     .u2g-info-block__list-item--label {
       cursor: pointer;
-      padding: 14px 10px 14px 52px; }
+    }
   .u2g-info-block__comment, .u2g-info-block__invoice {
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
@@ -7147,3 +7154,4 @@ input div {
   height: 30px;
   margin: 0 auto;
 }
+

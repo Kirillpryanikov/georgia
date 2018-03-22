@@ -1,3 +1,9 @@
 page-arrived {
-
+  .u2g-content--masonry .u2g-info-block__list-item > span {
+    margin: 20px 0 0 20px;
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+  }
 }

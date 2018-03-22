@@ -25,7 +25,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
   templateUrl: 'settings.html',
 })
 export class SettingsPage implements OnInit, OnDestroy{
-  public logoWrapper = 'Settings';
+  public logoWrapper = '_SETTINGS';
   private sessionId: string;
   private data: Object;
   private streetsList: Array<string>;

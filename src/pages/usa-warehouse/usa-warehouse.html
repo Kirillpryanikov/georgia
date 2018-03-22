@@ -28,12 +28,13 @@
                 </div>
                 <div *ngIf="!warehouse.declared" class="u2g-info-block__button-wrapper">
                   <a (click)="declaration($event, index)" class="u2g-info-block__button--red u2g-info-block__button u2g-info-block__button--top">
-                    <span>{{'_NON_DECLARED' | translate}}</span>
+                    <span >{{'_NON_DECLARED' | translate}}</span>
                   </a>
                 </div>
                 <div class="u2g-info-block__list u2g-info-block__list--bg-all">
                   <label (click)="showWarningPopup(index, 'insurance')" class="u2g-info-block__list-item u2g-info-block__list-item--label  risk-free-shipping_js">
-                    <input [ngModel]="-warehouse.insurance" type="checkbox"><span>{{'_RISK_FREE_SHIPPING' | translate}}</span>
+                    <input [ngModel]="-warehouse.insurance" type="checkbox">
+                    <span style="margin: 10px">{{'_RISK_FREE_SHIPPING' | translate}}</span>
                   </label>
                 </div>
                 <div (click)="showCommentPopup(index)" class="u2g-info-block__comment">

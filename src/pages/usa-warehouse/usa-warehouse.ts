@@ -31,7 +31,7 @@ const notice = {
 export class UsaWarehousePage implements OnInit{
   public active = 'usa-warehouse';
   private sessionId: string;
-  public logoWrapper = 'USA Warehouse';
+  public logoWrapper = '_USA_WAREHOUSE';
   private listUsaWarehouse;
   private subscription: Subscription;
   private data;

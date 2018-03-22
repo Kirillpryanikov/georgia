@@ -34,7 +34,7 @@ const notice = {
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
   private sessionId: string;
-  public logoWrapper = 'Awaiting tracking ID';
+  public logoWrapper = '_AWAITING_TRACKING_ID';
   public active = 'awaiting-tracking';
   private trackingForm: FormGroup;
   private listAwaitingTracking;
