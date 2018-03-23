@@ -6,6 +6,7 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 import { PopupService } from "@core/services";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import * as $ from 'jquery';
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -94,8 +95,21 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     };
     this.camera.getPicture(options).then((imageData) => {
       this.file = 'data:image/jpeg;base64,' + imageData;
+      if(this.file === ''){
+        $('.invoice-input_js').val('');
+
+        $('.u2g-file-name').text('');
+
+        $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+      }
+    }).catch((err) => {
+      console.log(err);
+      $('.invoice-input_js').val('');
+
+      $('.u2g-file-name').text('');
+
+      $('.remove-file_js').removeClass('u2g-remove-file--chosen');
     });
-    return 'invoice.jpg'
   }
 
   ngOnDestroy() {}
