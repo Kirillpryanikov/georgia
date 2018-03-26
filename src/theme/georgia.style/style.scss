@@ -4602,7 +4602,14 @@ select[data-ss-uuid] {
         -ms-flex-pack: distribute;
             justify-content: space-around; }
   .u2g-packages-account-status__item {
-    margin-right: 15px; } }
+    margin-right: 15px; }
+
+  @media screen and (max-width: 400px) {
+    .u2g-packages-account-status__item {
+      width: 60%;
+    }
+  }
+}
 
 /* ------------------------------------------- */
 /* GENERAL CONTENT */
