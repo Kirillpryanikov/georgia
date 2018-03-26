@@ -16,14 +16,14 @@
           <div class="u2g-invoice__button-wrapper">
             <label class="u2g-button u2g-button--green u2g-invoice__button">
               <input (change)="addFile($event)" type="file" name="file" class="invoice-input_js">
-              <svg viewBox="0 0 47 43">
+                <svg viewBox="0 0 47 43">
                 <defs>
                   <style>
                     .cls-11{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}
                   </style>
                 </defs>
                 <path class="cls-11" d="M32.6,12.5L14,31a12,12,0,0,0,0,17,12.21,12.21,0,0,0,17.14,0l20-19.87c3.34-3.32,3-8.39-.36-11.71A8.4,8.4,0,0,0,39,16.07L19.56,35.39a4.89,4.89,0,0,0,.18,6.92,5,5,0,0,0,7,.18L43.31,26" transform="translate(-8.5 -10.5)"/></svg>
-              <span>{{'_FILE_UPLOAD' | translate}}</span>
+                <span style="letter-spacing: -0.1em">{{'_FILE_UPLOAD' | translate}}</span>
             </label>
             <label class="u2g-button u2g-button--green u2g-invoice__button u2g-invoice__button--snapshot">
               <input (click)="createPhotoInvoice()" name="file" accept="image/*" capture="camera" class="invoice-input_photo_js">
@@ -34,11 +34,15 @@
                   <path d="M20,8h19c0.553,0,1-0.447,1-1s-0.447-1-1-1H20c-0.553,0-1,0.447-1,1S19.447,8,20,8z" fill="#FFFFFF"/>
                 </g>
               </svg>
-              <span>{{'_SNAP_SHOT' | translate}}</span>
+              <span>
+                <span>{{'_SNAP_SHOT' | translate}}</span>
+              </span>
             </label>
           </div>
           <div class="u2g-popup__buttons">
-            <button [disabled]="!file" (click)="upload()" class="u2g-button  u2g-popup__bottom-button">{{'_UPLOAD' | translate}}</button>
+            <button style="text-align: center" [disabled]="!file" (click)="upload()" class="u2g-button  u2g-popup__bottom-button">
+              <span class="text">{{'_UPLOAD' | translate}}</span>
+            </button>
           </div>
         </form>
       </div>

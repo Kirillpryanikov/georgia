@@ -8,9 +8,7 @@ import {AwaitingTrackingService, HeaderService, PendingService} from "@core/serv
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
-import {TranslateService} from "@ngx-translate/core";
 import {Subscription} from "rxjs/Subscription";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 /**
  * Generated class for the PendingPage page.
@@ -61,9 +59,9 @@ export class PendingPage implements OnInit{
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
-        this.getPending().pipe(debounceTime(0)).subscribe(() => {
-          this.initMasonry();
-        });
+        // this.getPending().pipe(debounceTime(0)).subscribe(() => {
+        //   this.initMasonry();
+        // });
         this.getInfo();
       });
   }
@@ -79,6 +77,9 @@ export class PendingPage implements OnInit{
 
   branchSelection(data) {
     this.branch_selection = data.message.branch_selection;
+    this.getPending().pipe(debounceTime(0)).subscribe(() => {
+      this.initMasonry();
+    });
   }
 
   showCommentPopup(index, _index) {

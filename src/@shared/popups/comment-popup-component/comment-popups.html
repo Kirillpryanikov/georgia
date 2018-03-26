@@ -11,8 +11,12 @@
           <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" class="u2g-comment__textarea"></textarea>
           <p class="u2g-popup__text u2g-popup__text--bold u2g-popup__text--right-align">{{'_ADDING_COMMENT_NOT_REQUIRED' | translate}}</p>
           <div class="u2g-popup__buttons">
-            <button [disabled]="!comment" (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">{{'_SAVE' | translate}}</button>
-            <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">{{'_CANCEL' | translate}}</button>
+            <button [disabled]="!comment" (click)="ok()" class="u2g-button u2g-button--green u2g-popup__bottom-button">
+              <span class="text">{{'_SAVE' | translate}}</span>
+            </button>
+            <button (click)="close()" class="u2g-button u2g-popup__bottom-button u2g-close-popup_js">
+              <span class="text">{{'_CANCEL' | translate}}</span>
+            </button>
           </div>
         </form>
       </div>

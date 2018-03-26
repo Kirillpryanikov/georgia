@@ -44,10 +44,10 @@ export class ScriptService {
   }
 
   offClick() {
-    $(document).off('click', '.u2g-overlay', function() {});
-    $(document).off('click', '.u2g-close-popup_js', function() {});
-    $(document).off('click', '.u2g-close-popup_js', function() {});
-    $(document).off('click', '[data-popup]', function(e) {})
+    $(document).off('touchstart', '.u2g-overlay', function() {});
+    $(document).off('touchstart', '.u2g-close-popup_js', function() {});
+    $(document).off('touchstart', '.u2g-close-popup_js', function() {});
+    $(document).off('touchstart', '[data-popup]', function(e) {})
   }
 
   private hidePopup(){

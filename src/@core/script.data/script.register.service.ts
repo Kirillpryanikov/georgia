@@ -9,7 +9,7 @@ const nonGeorgian = $('.js-non-georgian');
 export class ScriptRegisterService {
 
   checkbox() {
-    $(document).on('click', '.js-switch', function (event) {
+    $(document).on('touchstart', '.js-switch', function (event) {
       var checkbox = $(this).find('input[type="checkbox"]');
       event.preventDefault();
       if (checkbox.is(':not(:checked)')) {
@@ -39,18 +39,18 @@ export class ScriptRegisterService {
   }
 
   offClick() {
-    $(document).off('click', '.js-switch');
+    $(document).off('touchstart', '.js-switch');
   }
 
   dropdown() {
     const that = this;
-    $(document).on('click', '[data-show-element]', function () {
+    $(document).on('touchstart', '[data-show-element]', function () {
       $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
       $(this).addClass('u2g-showed');
     });
 
-    $(document).on('mouseup', function (e) {
+    $(document).on('touchstart', function (e) {
 
       var showItem = $('.u2g-show');
 

@@ -94,11 +94,15 @@
                         <svg width="14" height="14" viewBox="0 0 14 14">
                           <image id="if--arrow--up--upload--391748" width="14" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYOHyPE7dUjAAAAmUlEQVQY032OsQ3CMBBFnyOnZQm6LJAmEm0kCrZgBjIBnoEp3CDRItGwAB1LuEj7U8RKDoP4Lvz93935nDAKwMm8tZ4gSQpr8olGjRZbFBQVszOwz0FUzIUH29mLBaK9nBA+73WzS3Odr4o/8gzA+QcZwNOa4Gl8y/LnrGJCRaKh/hpa05CcOu68eRWwYcvOCTqObAqYuPCYAH79a3BtEp49AAAAAElFTkSuQmCC"/>
                         </svg>
-                        <input style="display: none;" type="file" (change)="uploadPhoto($event)">{{'_UPLOAD_IMAGE' | translate}}</label>
-                      <button type="button" class="u2g-button u2g-button--remove-image" (click)="removePhoto()"><svg width="13" height="16" viewBox="0 0 13 16">
-                        <image id="if--10--294964" width="13" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAQAAABnqj2yAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYPDxOpNJ3pAAAAy0lEQVQY063MrUoEARSG4WfGQURwXVyTybDBS9igYJIBy9qMZjF4B1azfbMXIIJgEZkgGCwGBcN0WZhdEVZYPQZHxb/m+4UD7znnE+r0oowyyui9m0zbugS5BZDbRThO4sqSJ9+ZdCuq2P4o/cxWVBmmLf74mieJyqzfGCSx7MS+4ovO7chThbFrI01nVl1oGrkxVqT1XUcXe6Z0dd5U6k/+fZXV88g5Njw6MLACSdB371Lf0ItUQ0vHnFYSrNnU1jBjwrMHQ3cOnb4CgfNMECUoUQsAAAAASUVORK5CYII="/>
-                      </svg>
-                        {{'_REMOVE_AVATAR' | translate}}</button>
+                        <input style="display: none;" type="file" (change)="uploadPhoto($event)">
+                        <span>{{'_UPLOAD_IMAGE' | translate}}</span>
+                      </label>
+                      <label class="u2g-button u2g-button--remove-image" (click)="removePhoto()">
+                        <svg width="13" height="16" viewBox="0 0 13 16">
+                          <image id="if--10--294964" width="13" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAQAAABnqj2yAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYPDxOpNJ3pAAAAy0lEQVQY063MrUoEARSG4WfGQURwXVyTybDBS9igYJIBy9qMZjF4B1azfbMXIIJgEZkgGCwGBcN0WZhdEVZYPQZHxb/m+4UD7znnE+r0oowyyui9m0zbugS5BZDbRThO4sqSJ9+ZdCuq2P4o/cxWVBmmLf74mieJyqzfGCSx7MS+4ovO7chThbFrI01nVl1oGrkxVqT1XUcXe6Z0dd5U6k/+fZXV88g5Njw6MLACSdB371Lf0ItUQ0vHnFYSrNnU1jBjwrMHQ3cOnb4CgfNMECUoUQsAAAAASUVORK5CYII="/>
+                        </svg>
+                        <span>{{'_REMOVE_AVATAR' | translate}}</span>
+                      </label>
                     </div>
                   </div>
                   <div class="u2g-form-group">

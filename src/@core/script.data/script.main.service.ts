@@ -12,7 +12,7 @@ export class ScriptMainService {
 
   dropdown() {
     const that = this;
-    $(document).on('click', '[data-show-element]', function () {
+    $(document).on('touchstart', '[data-show-element]', function () {
       $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
       $(this).addClass('u2g-showed');
@@ -28,7 +28,7 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('click', function (e) {
+    $(document).on('touchstart', function (e) {
 
       var showItem = $('.u2g-show');
 
@@ -60,7 +60,7 @@ export class ScriptMainService {
   }
 
   tabsSetting() {
-    $('li:not(.tab-active_js)').on('click', function () {
+    $('li:not(.tab-active_js)').on('touchstart', function () {
       $(this).addClass('u2g-settings__tab-active').siblings().removeClass('u2g-settings__tab-active')
         .parents('.tabs-wrapper_js').find('.tab-content_js').hide().eq($(this).index()).fadeIn(0);
     });
@@ -108,7 +108,7 @@ export class ScriptMainService {
   }
 
   invoiceFileRemove() {
-    $(document).on('click', '.remove-file_js', function() {
+    $(document).on('touchstart', '.remove-file_js', function() {
 
       $('.invoice-input_js').val('');
 
@@ -120,7 +120,7 @@ export class ScriptMainService {
 
 
   radio() {
-    $(document).on('click', '.u2g-add-product__radio > input', function() {
+    $(document).on('touchstart', '.u2g-add-product__radio > input', function() {
       if($('#radio-description').is(':checked')) {
         $('.u2g-add-product__field--select').addClass('u2g-add-product__field--active');
         $('.u2g-add-product__field--code').removeClass('u2g-add-product__field--active');
@@ -133,7 +133,7 @@ export class ScriptMainService {
 
   //shipper field readonly
   readonly(){
-    $(document).on('click', '[name="shipper"]', function() {
+    $(document).on('touchstart', '[name="shipper"]', function() {
       var urlInput = $('#store-url');
 
       if($('#shipper-personal').is(':checked')) {

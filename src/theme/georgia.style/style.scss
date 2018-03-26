@@ -3901,7 +3901,7 @@ ion-content, body.overflow {
     .u2g-header__logo-wrapper {
       position: relative;
       background: #ffffff;
-      max-width: 216px; }
+      max-width: 40%; }
       .u2g-header__logo-wrapper:before {
         content: "";
         background: #f3f5f7;
@@ -4780,8 +4780,9 @@ select[data-ss-uuid] {
       -webkit-justify-content: center;
           -ms-flex-pack: center;
               justify-content: center;
-      height: 100%; }
+    }
       .u2g-info-block__button--top > span {
+        width: 100%;
         text-align: center; }
     .u2g-info-block__button--blue {
       background: #6a8cba; }
@@ -4955,7 +4956,6 @@ select[data-ss-uuid] {
       padding: 0 10px 0 20px; }
     .u2g-info-block--declaration .u2g-info-block__tracking-number-title {
       display: block;
-      margin-right: 5px;
       padding-top: 5px; }
     .u2g-info-block--declaration .u2g-info-block__list {
       display: -webkit-box;
@@ -5407,7 +5407,7 @@ select[data-ss-uuid] {
         -ms-flex-pack: center;
             justify-content: center;
     padding: 0 5px;
-    width: 26%; }
+    width: 40%; }
   .u2g-content--pending .u2g-info-block .u2g-button {
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -5890,7 +5890,7 @@ select[data-ss-uuid] {
     -webkit-justify-content: flex-end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-    max-width: 130px;
+    max-width: 200px;
     padding-bottom: 6px;
     width: 100%; }
     .u2g-settings-form__button-wrapper > label {
@@ -5913,11 +5913,11 @@ select[data-ss-uuid] {
     .u2g-settings-form__button-wrapper .u2g-button--remove-image {
       line-height: 29px;
       padding: 0 10px;
-      text-align: right; }
+    }
       .u2g-settings-form__button-wrapper .u2g-button--remove-image > svg {
         position: relative;
-        top: -1px;
-        margin-right: 8px; }
+        top: 2px;
+      }
   .u2g-settings-form__label {
     display: inline-block;
     font-size: 15px;
@@ -6539,7 +6539,9 @@ label.error {
   .u2g-popup__bottom-button {
     -webkit-border-radius: 19px;
             border-radius: 19px;
-    height: 38px; }
+    height: 38px;
+    width: 50%;
+  }
     .u2g-popup__bottom-button:last-child {
       margin-left: 20px; }
   .u2g-popup__close-button {
@@ -7155,3 +7157,23 @@ input div {
   margin: 0 auto;
 }
 
+.ios-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+i.material-icons {
+  margin: auto;
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+}
+
+.wrap-word {
+  word-wrap: break-word;
+  overflow: hidden;
+}

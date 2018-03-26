@@ -27,8 +27,20 @@
     <a (click)="received($event)" [ngClass]="{'u2g-nav__item--active': isActive('received')}" class="u2g-nav__item u2g-nav__item--received">{{'_RECEIVED' | translate}}<span class="u2g-nav__item-amount">{{notifications.received}}</span></a>
   </div>
   <div class="u2g-sidebar__links">
-    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/74/13/why-should-i-fill-in-the-declaration-form" class="u2g-sidebar__link u2g-sidebar__link--declarations" target="_blank">{{'_DECLARATIONS_INSTRUCTION' | translate}}</a>
-    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/62/11/conditions-of-cut-down-repackaging-service" class="u2g-sidebar__link u2g-sidebar__link--cut-down" target="_blank">{{'_CUT_DOWN_TERMS' | translate}}</a>
-    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/83/15/can-i-insure-my-parcels-with-your-company" class="u2g-sidebar__link u2g-sidebar__link--insurance" target="_blank">{{'_RISK_FREE_SHIPPING_CONDITION' | translate}}</a>
+    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/74/13/why-should-i-fill-in-the-declaration-form" class="u2g-sidebar__link u2g-sidebar__link--declarations" target="_blank">
+      <div class="wrap-word">
+        {{'_DECLARATIONS_INSTRUCTION' | translate}}
+      </div>
+    </a>
+    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/62/11/conditions-of-cut-down-repackaging-service" class="u2g-sidebar__link u2g-sidebar__link--cut-down" target="_blank">
+      <div class="wrap-word">
+        {{'_CUT_DOWN_TERMS' | translate}}
+      </div>
+    </a>
+    <a href="https://www.usa2georgia.com/support/index.php?/Knowledgebase/Article/View/83/15/can-i-insure-my-parcels-with-your-company" class="u2g-sidebar__link u2g-sidebar__link--insurance" target="_blank">
+      <div class="wrap-word">
+        {{'_RISK_FREE_SHIPPING_CONDITION' | translate}}
+      </div>
+    </a>
   </div>
 </div>
