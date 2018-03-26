@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let transaction of listTransaction | paginate: { itemsPerPage: 10, currentPage: p }">
+                <tr *ngFor="let transaction of listTransaction | paginate: { itemsPerPage: 7, currentPage: p }">
                   <td>{{transaction.date}}</td>
                   <td><a (click)="invoice($event, transaction.invoice)" >{{transaction.invoice}}</a></td>
                   <td></td>

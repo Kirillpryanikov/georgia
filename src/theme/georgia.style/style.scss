@@ -6360,10 +6360,12 @@ label.error {
               box-sizing: border-box;
       color: #ffffff;
       display: inline-block;
+      width: 100%;
       min-width: 89px;
       padding: 7px 5px;
       text-align: center; }
     .u2g-transactions__text--red > span {
+      width: 100%;
       background: #e47b7b; }
   .u2g-transactions::-webkit-scrollbar {
     height: 8px;
