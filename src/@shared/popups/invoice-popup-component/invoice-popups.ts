@@ -110,6 +110,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
 
       $('.remove-file_js').removeClass('u2g-remove-file--chosen');
     });
+    return 'invoice.jpg'
   }
 
   ngOnDestroy() {}
