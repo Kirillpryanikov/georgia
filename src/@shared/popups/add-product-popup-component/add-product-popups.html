@@ -51,7 +51,11 @@
             <span class="u2g-add-product__currency">USD</span>
           </div>
           <div class="u2g-popup__buttons">
-            <input [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js" value="{{'_ADD' | translate}}">
+            <button [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js">
+              <span class="text">
+                {{'_ADD' | translate}}
+              </span>
+            </button>
           </div>
         </form>
       </div>

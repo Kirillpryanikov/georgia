@@ -16,7 +16,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
  * Ionic pages and navigation.
  */
 const notice = {
-  rm: 'Please confirm you would like to remove the product',
+  rm: '_PARCEL_REMOVE_CONFIRMATION',
 };
 
 @IonicPage({
