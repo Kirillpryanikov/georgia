@@ -3668,7 +3668,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 22px;
+    line-height: 21px;
     padding: 0 5.75px;
     width: auto;
     top: -5px;
@@ -4460,7 +4460,7 @@ select[data-ss-uuid] {
     color: #e47b7b;
     cursor: pointer;
     height: 25px;
-    line-height: 27px;
+    line-height: 25px;
     margin-bottom: 31px;
     padding: 0 25px; }
 
@@ -6190,13 +6190,13 @@ select[data-ss-uuid] {
       width: 25px; }
     .u2g-form-group__checkbox--notification {
       cursor: pointer;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       min-width: 220px;
       width: 45%; }
       .u2g-form-group__checkbox--notification > span {
-        height: 20px;
+        height: 25px;
         margin-right: 13px;
-        width: 20px; }
+        width: 25px; }
   .u2g-form-group__notes {
     margin-top: 27px;
     margin-left: 15px;
@@ -6864,7 +6864,7 @@ label.error {
           box-sizing: border-box;
   font-size: 16px;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   padding: 40px 100px; }
   .invoice__container {
     display: -webkit-box;

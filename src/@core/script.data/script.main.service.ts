@@ -12,7 +12,7 @@ export class ScriptMainService {
 
   dropdown() {
     const that = this;
-    $(document).on('touchstart', '[data-show-element]', function () {
+    $(document).on('click', '[data-show-element]', function () {
       $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
       $(this).addClass('u2g-showed');
@@ -28,7 +28,7 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('touchstart', function (e) {
+    $(document).on('click', function (e) {
 
       var showItem = $('.u2g-show');
 
