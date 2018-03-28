@@ -70,7 +70,6 @@ export class Authorization implements OnInit, OnDestroy {
       remember: this.form.value.checkbox
     };
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
-      console.log()
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
         this.nativeStorage.setItem('remember', this.data.remember);
@@ -83,7 +82,7 @@ export class Authorization implements OnInit, OnDestroy {
   goToRegisterPage() {
     this.registerService.offClick();
 
-    this.navCtrl.setRoot('register-page');
+    this.navCtrl.push('register-page');
   }
 
   ngOnDestroy() {

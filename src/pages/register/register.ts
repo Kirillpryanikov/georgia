@@ -124,7 +124,6 @@ export class RegisterPage implements OnInit, OnDestroy {
       })
     };
     this.registrationService.register('register', this.data).subscribe(data => {
-      console.log(data)
     })
   }
 
