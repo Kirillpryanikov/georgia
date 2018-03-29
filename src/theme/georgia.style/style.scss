@@ -3668,7 +3668,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 17px;
+    line-height: 22px;
     padding: 0 5.75px;
     width: auto;
     top: -5px;
@@ -7130,6 +7130,10 @@ label.error {
   border-top-right-radius: 13px; }
 .error {
   color: rgba(228, 123, 123, 0.5);
+  //border-color: rgba(228, 123, 123, 0.5);
+  font-size: 15px;
+}
+.error-input {
   border-color: rgba(228, 123, 123, 0.5);
   font-size: 15px;
 }

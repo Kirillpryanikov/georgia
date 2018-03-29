@@ -27,30 +27,30 @@
       <div class="u2g-form-group">
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_FIRST_NAME' | translate}}</span> <sup>*</sup></label>
-            <input [ngClass]="{'error':(form.controls.first_name.errors && form.controls.first_name.dirty)}" type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="first_name" name="first name">
-            <span [ngClass]="{'error':(form.controls.first_name.errors && form.controls.first_name.dirty)}"
-              *ngIf="form.controls.first_name.errors?.required && form.controls.first_name.dirty">This field is required.</span>
+            <input [ngClass]="{'error-input':(form.controls.first_name.errors && submitted)}" type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="first_name" name="first name">
+            <span [ngClass]="{'error':(form.controls.first_name.errors && submitted)}"
+              *ngIf="form.controls.first_name.errors?.required && submitted">This field is required.</span>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_LAST_NAME' | translate}}</span> <sup>*</sup></label>
-            <input [ngClass]="{'error':(form.controls.last_name.errors && form.controls.last_name.dirty)}" type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="last_name" name="last name">
-            <span [ngClass]="{'error':(form.controls.last_name.errors && form.controls.last_name.dirty)}"
-              *ngIf="form.controls.last_name.errors?.required && form.controls.last_name.dirty">This field is required.</span>
+            <input [ngClass]="{'error-input':(form.controls.last_name.errors && submitted)}" type="text" class="u2g-form-group__field" data-rule-required="true" formControlName="last_name" name="last name">
+            <span [ngClass]="{'error':(form.controls.last_name.errors && submitted)}"
+              *ngIf="form.controls.last_name.errors?.required && submitted">This field is required.</span>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_FIRST_NAME_GEORGIAN' | translate}}</span> <sup>*</sup></label>
-            <input [ngClass]="{'error':(form.controls.first_name_georgian.errors && form.controls.first_name_georgian.dirty)}" type="text" class="u2g-form-group__field" formControlName="first_name_georgian" name="first name georgian" data-rule-required="true">
-            <span [ngClass]="{'error':(form.controls.first_name_georgian.errors && form.controls.first_name_georgian.dirty)}"
-              *ngIf="form.controls.first_name_georgian.errors?.required && form.controls.first_name_georgian.dirty">This field is required.</span>
+            <input [ngClass]="{'error-input':(form.controls.first_name_georgian.errors && submitted)}" type="text" class="u2g-form-group__field" formControlName="first_name_georgian" name="first name georgian" data-rule-required="true">
+            <span [ngClass]="{'error':(form.controls.first_name_georgian.errors && submitted)}"
+              *ngIf="form.controls.first_name_georgian.errors?.required && submitted">This field is required.</span>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_LAST_NAME_GEORGIAN' | translate}}</span> <sup>*</sup></label>
-            <input [ngClass]="{'error':(form.controls.last_name_georgian.errors && form.controls.last_name_georgian.dirty)}" type="text" class="u2g-form-group__field" formControlName="last_name_georgian" name="last name georgian" data-rule-required="true">
-            <span [ngClass]="{'error':(form.controls.last_name_georgian.errors && form.controls.last_name_georgian.dirty)}"
-              *ngIf="form.controls.last_name_georgian.errors?.required && form.controls.last_name_georgian.dirty">This field is required.</span>
+            <input [ngClass]="{'error-input':(form.controls.last_name_georgian.errors && submitted)}" type="text" class="u2g-form-group__field" formControlName="last_name_georgian" name="last name georgian" data-rule-required="true">
+            <span [ngClass]="{'error':(form.controls.last_name_georgian.errors && submitted)}"
+              *ngIf="form.controls.last_name_georgian.errors?.required && submitted">This field is required.</span>
         </div>
 
         <div *ngIf="!nonGeorgian" class="u2g-form-group__field-group js-organization">
@@ -77,25 +77,25 @@
             <span *ngIf="nonGeorgian">ID/{{"_PASSPORT_NUMBER" | translate}}</span>
             <sup>*</sup>
           </label>
-            <input [ngClass]="{'error':(form.controls.id_number_11.errors && form.controls.id_number_11.dirty)}" type="tel" class="u2g-form-group__field" name="id-number-11" data-rule-required="true" formControlName="id_number_11">
-            <div [ngClass]="{'error':(form.controls.id_number_11.errors && form.controls.id_number_11.dirty)}">
-              <span *ngIf="form.controls.id_number_11.errors?.required && form.controls.id_number_11.dirty">This field is required.</span>
+            <input [ngClass]="{'error-input':(form.controls.id_number_11.errors && submitted)}" type="tel" class="u2g-form-group__field" name="id-number-11" data-rule-required="true" formControlName="id_number_11">
+            <div [ngClass]="{'error':(form.controls.id_number_11.errors && submitted)}">
+              <span *ngIf="form.controls.id_number_11.errors?.required && submitted">This field is required.</span>
             </div>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_EMAIL' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.controls.email.errors && form.controls.email.dirty)}" type="email" class="u2g-form-group__field" id="email" formControlName="email" name="email" data-rule-required="true">
-          <div [ngClass]="{'error':(form.controls.email.errors && form.controls.email.dirty)}">
-            <span *ngIf="form.controls.email.errors?.email && form.controls.email.dirty">Please enter a valid email address.</span>
+          <input [ngClass]="{'error-input':(form.controls.email.errors && submitted)}" type="email" class="u2g-form-group__field" id="email" formControlName="email" name="email" data-rule-required="true">
+          <div [ngClass]="{'error':(form.controls.email.errors && submitted)}">
+            <span *ngIf="form.controls.email.errors?.email && submitted">Please enter a valid email address.</span>
           </div>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_CELL_PHONE' | translate}} (5XX XX XX XX)</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.controls.phone.errors && form.controls.phone.dirty)}" type="tel" class="u2g-form-group__field" formControlName="phone" name="phone" data-rule-required="true">
-          <div [ngClass]="{'error':(form.controls.phone.errors && form.controls.phone.dirty)}">
-            <span *ngIf="form.controls.phone.errors?.required && form.controls.phone.dirty">This field is required.</span>
+          <input [ngClass]="{'error-input':(form.controls.phone.errors && submitted)}" type="tel" class="u2g-form-group__field" formControlName="phone" name="phone" data-rule-required="true">
+          <div [ngClass]="{'error':(form.controls.phone.errors && submitted)}">
+            <span *ngIf="form.controls.phone.errors?.required && submitted">This field is required.</span>
           </div>
         </div>
 
@@ -195,33 +195,33 @@
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_ADDRESSSTR' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.controls.address_1.errors && form.controls.address_1.dirty)}" type="text" (click)="autocomplete()" class="u2g-form-group__field" id="store-url" formControlName="address_1" name="address 1" data-rule-required="true">
-          <div [ngClass]="{'error':(form.controls.address_1.errors && form.controls.address_1.dirty)}">
-            <span *ngIf="form.controls.address_1.errors?.required && form.controls.address_1.dirty">This field is required.</span>
+          <input [ngClass]="{'error-input':(form.controls.address_1.errors && submitted)}" type="text" (click)="autocomplete()" class="u2g-form-group__field" id="store-url" formControlName="address_1" name="address 1" data-rule-required="true">
+          <div [ngClass]="{'error':(form.controls.address_1.errors && submitted)}">
+            <span *ngIf="form.controls.address_1.errors?.required && submitted">This field is required.</span>
           </div>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_ADDRESSAPT' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.controls.address_2.errors && form.controls.address_2.dirty)}" type="text" class="u2g-form-group__field" formControlName="address_2" data-rule-required="true" name="address 2">
-          <div [ngClass]="{'error':(form.controls.address_2.errors && form.controls.address_2.dirty)}">
-            <span *ngIf="form.controls.address_2.errors?.required && form.controls.address_2.dirty">This field is required.</span>
+          <input [ngClass]="{'error-input':(form.controls.address_2.errors && submitted)}" type="text" class="u2g-form-group__field" formControlName="address_2" data-rule-required="true" name="address 2">
+          <div [ngClass]="{'error':(form.controls.address_2.errors && submitted)}">
+            <span *ngIf="form.controls.address_2.errors?.required && submitted">This field is required.</span>
           </div>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_PASSWORD' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.controls.password.errors && form.controls.password.dirty)}" id="password" type="password" class="u2g-form-group__field" formControlName="password" data-rule-required="true" name="password">
-          <div [ngClass]="{'error':(form.controls.password.errors && form.controls.password.dirty)}">
-            <span *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</span>
+          <input [ngClass]="{'error-input':(form.controls.password.errors && submitted)}" id="password" type="password" class="u2g-form-group__field" formControlName="password" data-rule-required="true" name="password">
+          <div [ngClass]="{'error':(form.controls.password.errors && submitted)}">
+            <span *ngIf="form.controls.password.errors?.required && submitted">This field is required.</span>
           </div>
         </div>
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_CONFIRM_NEW_PASSWORD' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error':(form.errors?.comparePassword && form.controls.confirm_password.dirty)}" id="confirm_password" type="password" class="u2g-form-group__field"  formControlName="confirm_password"  name="confirm_password" aria-invalid="true">
-          <div [ngClass]="{'error':(form.errors?.comparePassword && form.controls.confirm_password.dirty)}">
-            <span *ngIf="form.errors?.comparePassword && form.controls.confirm_password.dirty">Match Password.</span>
+          <input  [ngClass]="{'error-input':(form.errors?.comparePassword && submitted)}" id="confirm_password" type="password" class="u2g-form-group__field"  formControlName="confirm_password"  name="confirm_password" aria-invalid="true">
+          <div [ngClass]="{'error':(form.errors?.comparePassword && submitted)}">
+            <span *ngIf="form.errors?.comparePassword && submitted">Match Password.</span>
           </div>
         </div>
 
@@ -238,7 +238,7 @@
         </div>
 
         <div class="u2g-form-group__field-group u2g-form-group__field-group--button">
-          <input type="submit" [disabled]="form.invalid" value="{{'_SIGN_IN' | translate}}" class="u2g-button u2g-button--green">
+          <input type="submit" value="{{'_SIGN_IN' | translate}}" class="u2g-button u2g-button--green">
         </div>
 
       </div>

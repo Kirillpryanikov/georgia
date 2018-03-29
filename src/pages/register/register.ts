@@ -20,6 +20,7 @@ export class RegisterPage implements OnInit, OnDestroy {
   private streetsList: Array<string>;
   private registrationObservable: Subscription;
   private data;
+  private submitted: boolean = false;
   private non_georgian_citizen = 0;
   private organization = "INDIVIDUAL";
 
@@ -74,9 +75,13 @@ export class RegisterPage implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.register();
-    this.registerScriptService.offClick();
-    this.navCtrl.push('authorization-page');
+    this.submitted = true;
+    console.log(this.form.invalid)
+    if(!this.form.invalid){
+      this.register();
+      this.registerScriptService.offClick();
+      this.navCtrl.push('authorization-page');
+    }
   }
 
   register() {
@@ -124,7 +129,6 @@ export class RegisterPage implements OnInit, OnDestroy {
       })
     };
     this.registrationService.register('register', this.data).subscribe(data => {
-      console.log(data)
     })
   }
 
