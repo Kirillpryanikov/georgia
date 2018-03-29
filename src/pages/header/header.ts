@@ -80,7 +80,7 @@ export class HeaderPage implements OnInit, OnDestroy{
         this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
       }
       else
-        this.user.userPhoto = 'img/placeholder_user.png';
+        this.user.userPhoto = './img/placeholder_user.png';
     });
   }
 
