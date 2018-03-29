@@ -76,7 +76,11 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   getAvatar() {
     this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
-      this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
+      if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+        this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
+      }
+      else
+        this.user.userPhoto = 'img/placeholder_user.png';
     });
   }
 

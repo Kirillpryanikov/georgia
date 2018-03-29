@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import {INotificationSettings} from "@IFolder/INotificationSettings";
 import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 /**
  * Generated class for the SettingsPage page.
@@ -31,6 +32,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   private streetsList: Array<string>;
   private subscription: Subscription;
   private branch: string;
+  private extention: string = '';
   userForm: FormGroup;
   passwordForm: FormGroup;
   notificationForm: FormGroup;
@@ -103,12 +105,14 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.reader.readAsDataURL(this.file);
       this.reader.onloadend = () => {
         this.userPhoto = this.reader.result;
+        this.extention = this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
         this.data = {
           sessionId: this.sessionId,
           base64data: this.userPhoto.split(',')[1],
           extention: this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
         };
-        this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
+        if(this.extention === 'jpg' || this.extention === 'jpeg' || this.extention === 'png')
+          this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
         })
       }
     }
@@ -117,7 +121,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   removePhoto() {
     if(this.userPhoto) {
       this.settingService.removeAvatar('removeAvatar', {sessionId: this.sessionId}).subscribe(data => {
-        this.userPhoto = null;
+        this.userPhoto = 'img/placeholder_user.png';
       })
     }
 
@@ -237,7 +241,12 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   getAvatar() {
     this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
-      this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
+      if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+        console.log('if');
+        this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
+      }
+      else
+        this.userPhoto = 'img/placeholder_user.png';
     });
   }
 

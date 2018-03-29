@@ -5093,7 +5093,9 @@ select[data-ss-uuid] {
       display: -ms-flexbox;
       display: flex;
       height: 60px;
-      padding-right: 24px; }
+      padding-right: 24px;
+      padding-left: 24px;
+    }
       .u2g-content--masonry .u2g-info-block__list-item > span {
         -webkit-box-flex: 2;
         -webkit-flex-grow: 2;
