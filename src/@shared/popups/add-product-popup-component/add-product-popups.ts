@@ -126,7 +126,8 @@ export class AddProductPopups implements OnInit, AfterViewInit {
   createFormAddProduct(): void {
     this.productForm = this.fb.group({
       unit_price: ['', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
       ])],
       code: ['', Validators.compose([
         Validators.required

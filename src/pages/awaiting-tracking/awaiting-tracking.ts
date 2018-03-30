@@ -66,7 +66,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   ionViewDidLoad() {
-    // window.location.reload();
+
   }
 
   initMasonry() {
@@ -166,11 +166,12 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     };
     this.subscription = this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
       this.subscription.unsubscribe();
+      this.getAwaiting();
     });
-    this.getAwaiting();
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 }
