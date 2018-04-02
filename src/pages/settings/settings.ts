@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IUserSetings } from "@IFolder/IUserSettings";
@@ -9,9 +9,13 @@ import 'rxjs/add/operator/map';
 import {INotificationSettings} from "@IFolder/INotificationSettings";
 import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
+
 import {HeaderService} from "@core/services";
 
+import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+const notice = {
+  change_psw: '_CHANGE_PASSWORD_CONFIRM'
+};
 /**
  * Generated class for the SettingsPage page.
  *
@@ -249,13 +253,22 @@ export class SettingsPage implements OnInit, OnDestroy{
       });
     }
     if(e === 'psw'){
-      this.data = {
-        sessionId: this.sessionId,
-        data: JSON.stringify({password_change: this.passwordForm.value})
-      };
-      this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
-        this.subscription.unsubscribe();
-      })
+      const modal = this.modalController.create(WarningPopups, {notice: notice.change_psw});
+      modal.onDidDismiss(data => {
+        if(!data) {
+          return false;
+        }
+        this.data = {
+          sessionId: this.sessionId,
+          data: JSON.stringify({password_change: this.passwordForm.value})
+        };
+        this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+          this.nativeStorage.remove('sessionId');
+          this.navCtrl.setRoot('authorization-page');
+          this.subscription.unsubscribe();
+        })
+      });
+      modal.present();
     }
     if(e === 'ntf'){
       this.data = {

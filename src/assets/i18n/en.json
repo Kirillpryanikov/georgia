@@ -255,8 +255,8 @@
   "_TOTAL_AMOUNT":"Total Amount",
   "_PASSWORD":"Password",
   "_KEEP_LOGED_IN":"Keep loged in",
-  "_SIGN_IN":"sign in",
-  "_REGISTER":"register",
+  "_SIGN_IN":"Sign in",
+  "_REGISTER":"Register",
   "_ENGLISH":"English",
   "_GEORGIAN":"Georgian",
   "_CUT_DOWN_PACKAGE":"Cut down package",
@@ -264,11 +264,11 @@
   "_CREDIT_CART":"credit cart",
   "_OTHER_PAYMENT_METHOD":"other payment method",
   "_BANK_PAYMENT":"bank payment",
-  "_FIRST_NAME_GEORGIAN":"first name georgian",
-  "_LAST_NAME_GEORGIAN":"last name georgian",
+  "_FIRST_NAME_GEORGIAN":"First name georgian",
+  "_LAST_NAME_GEORGIAN":"Last name georgian",
   "_ORGANIZATION":"Organization",
   "_PROFILE_PHOTO":"profile photo",
-  "_SAVE_CHANGE":"save change",
+  "_SAVE_CHANGE":"Save change",
   "_ADD_PRODUCT":"Add Product",
   "_SNAP_SHOT":"snapshot",
   "_CHANGE_SAVED":"change saved",
@@ -390,6 +390,8 @@
   "_NUMBER":"numder",
   "_DIGIT":"digit",
   "_PASSPORT_NUMBER":"Passport number",
+
+  "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!"
   "_CHECK_INTERNET":"Please, check your internet connection",
   "_PIN_CODE": "create PIN code"
 }

@@ -47,6 +47,7 @@
         <a (click)="goToRegisterPage()" class="u2g-button">{{'_REGISTER' | translate}}</a>
       </div>
       <div *ngIf="hashKey && pin" (click)="goToPinPage()" class="u2g-button-pin">Enter with PIN</div>
+      <p class="error">{{msg}}</p>
 
     </form>
     <div class="u2g-multilang-wrapper">
