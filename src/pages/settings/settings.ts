@@ -233,9 +233,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   createFormChangePin() {
     this.pinForm = this.fb.group({
       pin: ['', Validators.compose([
-        Validators.maxLength(4),
-        Validators.minLength(4),
-        Validators.pattern(/^[0-9]$/)
+        Validators.pattern(/[0-9]{4}/)
       ])],
       confirm_pin: ['', Validators.compose([
         Validators.required
