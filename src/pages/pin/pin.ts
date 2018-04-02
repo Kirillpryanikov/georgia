@@ -80,7 +80,7 @@ export class PinPage implements OnInit{
     this.form = this.fb.group({
       pin: ['', Validators.compose([
         Validators.maxLength(4),
-        Validators.minLength(4),
+        Validators.pattern(/\d{4}/),
         Validators.required
       ])],
       checkbox: false

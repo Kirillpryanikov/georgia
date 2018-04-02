@@ -13,6 +13,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 import {HeaderService} from "@core/services";
 
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 const notice = {
   change_psw: '_CHANGE_PASSWORD_CONFIRM'
 };
@@ -152,11 +153,13 @@ export class SettingsPage implements OnInit, OnDestroy{
     }
   }
 
-  private comparePin(AC: AbstractControl) {
-    if(AC.get('pin').value != AC.get('confirm_pin').value) {
-      AC.get('confirm_pin').setErrors({MatchPassword: true})
-    } else {
-      return null;
+  private comparePin(pin, confirm_pin) {
+    return (group: FormGroup) => {
+      if(group.controls[pin].value === group.controls[confirm_pin].value) {
+        return null;
+      } else {
+        return {'comparePin': true}
+      }
     }
   }
 
@@ -233,13 +236,14 @@ export class SettingsPage implements OnInit, OnDestroy{
   createFormChangePin() {
     this.pinForm = this.fb.group({
       pin: ['', Validators.compose([
-        Validators.pattern(/[0-9]{4}/)
+        Validators.maxLength(4),
+        Validators.pattern(/\d{4}/)
       ])],
       confirm_pin: ['', Validators.compose([
         Validators.required
       ])]
     }, {
-      validator: this.comparePin
+      validator: this.comparePin('pin', 'confirm_pin')
     });
   }
 
@@ -287,6 +291,7 @@ export class SettingsPage implements OnInit, OnDestroy{
     if(e === 'pin'){
       this.nativeStorage.setItem('hashKey', this.hashKey);
       this.nativeStorage.setItem('pin', this.pinForm.value.pin);
+      this.modalController.create(SuccessPopups).present();
     }
   }
 

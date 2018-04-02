@@ -26,7 +26,10 @@
 
       <div class="u2g-form-group__field-group">
         <label class="u2g-form-group__label"><span>{{"_PIN_CODE" | translate}}</span></label>
-        <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="pin">
+        <input [ngClass]="{'error-input':(form.controls.pin.errors && form.controls.pin.dirty)}" id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="pin">
+        <div [ngClass]="{'error':(form.controls.pin.errors && form.controls.pin.dirty)}">
+          <span *ngIf="form.controls.pin.errors && form.controls.pin.dirty">Only 4 digits</span>
+        </div>
       </div>
 
       <div class="u2g-form-group__field-group ">

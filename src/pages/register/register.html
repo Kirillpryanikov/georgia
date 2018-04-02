@@ -213,7 +213,7 @@
           <label class="u2g-form-group__label"><span>{{'_PASSWORD' | translate}}</span> <sup>*</sup></label>
           <input [ngClass]="{'error-input':(form.controls.password.errors && submitted)}" id="password" type="password" class="u2g-form-group__field" formControlName="password" data-rule-required="true" name="password">
           <div [ngClass]="{'error':(form.controls.password.errors && submitted)}">
-            <span *ngIf="form.controls.password.errors?.required && submitted">This field is required.</span>
+            <span *ngIf="form.controls.password.errors?.required && submitted">This field is required</span>
           </div>
         </div>
 
@@ -221,7 +221,7 @@
           <label class="u2g-form-group__label"><span>{{'_CONFIRM_NEW_PASSWORD' | translate}}</span> <sup>*</sup></label>
           <input  [ngClass]="{'error-input':(form.errors?.comparePassword && submitted)}" id="confirm_password" type="password" class="u2g-form-group__field"  formControlName="confirm_password"  name="confirm_password" aria-invalid="true">
           <div [ngClass]="{'error':(form.errors?.comparePassword && submitted)}">
-            <span *ngIf="form.errors?.comparePassword && submitted">Match Password.</span>
+            <span *ngIf="form.errors?.comparePassword && submitted">Match Password</span>
           </div>
         </div>
 
