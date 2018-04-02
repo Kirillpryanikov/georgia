@@ -46,6 +46,7 @@
         <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">{{'_SIGN_IN' | translate}}</button>
         <a (click)="goToRegisterPage()" class="u2g-button">{{'_REGISTER' | translate}}</a>
       </div>
+      <p class="error">{{msg}}</p>
 
     </form>
     <div class="u2g-multilang-wrapper">

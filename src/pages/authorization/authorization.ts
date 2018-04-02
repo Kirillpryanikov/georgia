@@ -19,6 +19,7 @@ export class Authorization implements OnInit, OnDestroy {
   @ViewChild('jsorganization') jsOrganization: ElementRef;
   private form: FormGroup;
   private lang: string = 'en';
+  private msg;
   private authObservable: Subscription;
   private data;
   private subscription: Subscription;
@@ -77,6 +78,8 @@ export class Authorization implements OnInit, OnDestroy {
         this.nativeStorage.setItem('remember', this.data.remember);
         this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});
         this.subscription.unsubscribe();
+      } else {
+        this.msg = data.message.message;
       }
     })
   }

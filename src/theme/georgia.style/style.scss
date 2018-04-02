@@ -3163,7 +3163,7 @@ img {
   border: 0;
   padding: 0; }
 html{
-  overflow: hidden;
+  overflow: scroll;
   outline: none;
 }
 
@@ -3175,11 +3175,11 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.2;
   max-width: 100%;
-  overflow: hidden;
+  overflow: scroll;
   outline: none;
 }
 ion-content, body.overflow {
-    overflow: hidden; }
+    overflow: scroll; }
 
 .u2g-page-wrapper {
   position: relative;
@@ -3238,7 +3238,7 @@ ion-content, body.overflow {
   -webkit-flex-grow: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
-  overflow: hidden;
+  overflow: scroll;
   padding: 18px 5.6% 40px 3.9%; }
   .u2g-container--simple-page {
     padding-bottom: 200px;
@@ -3542,7 +3542,7 @@ ion-content, body.overflow {
     cursor: pointer;
     display: block;
     font-size: 0;
-    overflow: hidden; }
+    overflow: hidden }
   .u2g-multilang__switcher, .u2g-multilang__select-item {
     position: relative; }
     .u2g-multilang__switcher:after, .u2g-multilang__select-item:after {
@@ -5604,7 +5604,7 @@ select[data-ss-uuid] {
           border-radius: 6px;
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
           box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
-  overflow: hidden; }
+  overflow: scroll; }
   .u2g-payment-method__heading {
     display: -webkit-box;
     display: -webkit-flex;
@@ -5671,7 +5671,7 @@ select[data-ss-uuid] {
     height: -webkit-calc(100% - 100px);
     height: calc(100% - 100px);
     letter-spacing: 0.007em;
-    overflow: hidden;
+    overflow: scroll;
     padding: 25px 20px 60px 36px;
     position: relative; }
     .u2g-payment-method__info--block {
@@ -5967,7 +5967,7 @@ select[data-ss-uuid] {
         font-size: 14px;
         font-weight: normal;
         margin-right: 25px;
-        max-width: 163px; }
+        max-width: 80; }
   .u2g-settings-form__note, .u2g-settings-form__branch-select-title {
     font-size: 15px;
     font-weight: bold;
@@ -6868,7 +6868,7 @@ label.error {
           box-sizing: border-box;
   font-size: 16px;
   height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
   padding: 40px 100px; }
   .invoice__container {
     display: -webkit-box;
@@ -7153,7 +7153,7 @@ input div {
   width: 132px;
   height: 132px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: scroll;
 }
 .profileImage {
   border-radius: 50%;
