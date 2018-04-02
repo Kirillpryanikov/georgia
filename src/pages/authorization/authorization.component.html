@@ -46,7 +46,7 @@
         <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">{{'_SIGN_IN' | translate}}</button>
         <a (click)="goToRegisterPage()" class="u2g-button">{{'_REGISTER' | translate}}</a>
       </div>
-      <div *ngIf="hashKey && pin" (click)="goToPinPage()" class="u2g-button-pin">Enter with PIN</div>
+      <div *ngIf="hashKey && pin" (click)="goToPinPage()" class="u2g-button-pin">Login with PIN</div>
       <p class="error">{{msg}}</p>
 
     </form>
