@@ -387,8 +387,8 @@
   "Different electronic and consumer products":"Different electronic and consumer products",
 
   "_ALL_INVOICES_MUST_BE_PAID":"Please clear all outstanding invoices and add the balance 3 GEL, in order to request courier service!",
-  "_NUMBER":"numder",
-  "_DIGIT":"digit",
+  "_NUMBER":"Number",
+  "_DIGIT":"Digit",
   "_PASSPORT_NUMBER":"Passport number",
 
   "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!",
