@@ -391,7 +391,7 @@
   "_DIGIT":"digit",
   "_PASSPORT_NUMBER":"Passport number",
 
-  "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!"
+  "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!",
   "_CHECK_INTERNET":"Please, check your internet connection",
   "_PIN_CODE": "create PIN code"
 }

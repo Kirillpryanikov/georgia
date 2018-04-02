@@ -83,7 +83,8 @@ export class SettingsPage implements OnInit, OnDestroy{
               private reader: FileReader,
               private settingService: SettingService,
               private nativeStorage: NativeStorage,
-              private headerService: HeaderService) {
+              private headerService: HeaderService,
+              private modalController: ModalController) {
   }
 
   ngOnInit() {
@@ -233,7 +234,8 @@ export class SettingsPage implements OnInit, OnDestroy{
     this.pinForm = this.fb.group({
       pin: ['', Validators.compose([
         Validators.maxLength(4),
-        Validators.minLength(4)
+        Validators.minLength(4),
+        Validators.pattern(/^[0-9]$/)
       ])],
       confirm_pin: ['', Validators.compose([
         Validators.required
