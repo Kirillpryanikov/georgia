@@ -260,7 +260,7 @@
   "_ENGLISH":"English",
   "_GEORGIAN":"Georgian",
   "_CUT_DOWN_PACKAGE":"Cut down package",
-  "_REPACK":"repack",
+  "_REPACK":"Repack",
   "_CREDIT_CART":"credit cart",
   "_OTHER_PAYMENT_METHOD":"other payment method",
   "_BANK_PAYMENT":"bank payment",
@@ -272,7 +272,7 @@
   "_ADD_PRODUCT":"Add Product",
   "_SNAP_SHOT":"snapshot",
   "_CHANGE_SAVED":"change saved",
-  "_OK":"ok",
+  "_OK":"Ok",
   "_PERSONAL":"personal",
 
   "TBILISI":"Tbilisi",
@@ -390,5 +390,6 @@
   "_NUMBER":"numder",
   "_DIGIT":"digit",
   "_PASSPORT_NUMBER":"Passport number",
-  "_CHECK_INTERNET":"Please, check your internet connection"
+  "_CHECK_INTERNET":"Please, check your internet connection",
+  "_PIN_CODE": "create PIN code"
 }

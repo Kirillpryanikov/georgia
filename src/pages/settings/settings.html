@@ -298,6 +298,27 @@
                     </div>
                   </div>
                 </form>
+
+              <!--          CHANGE PIN-->
+
+                <form [formGroup]="pinForm" (submit)="submit('pin')" class="u2g-settings-form u2g-settings-form--password" data-form-validate="true">
+                  <h3 class="u2g-settings-form__note">PIN</h3>
+                  <div class="u2g-form-group">
+                    <div class="u2g-form-group__field-group">
+                      <label class="u2g-form-group__label"><span>New PIN</span> <sup>*</sup></label>
+                      <input formControlName="pin" type="password" class="u2g-form-group__field" data-rule-required="true">
+                    </div>
+                    <div class="u2g-form-group__field-group">
+                      <label class="u2g-form-group__label"><span>Confirm PIN</span> <sup>*</sup></label>
+                      <input formControlName="confirm_pin" type="password" class="u2g-form-group__field" data-rule-required="true">
+                    </div>
+                    <div class="u2g-form-group__field-group">
+                      <input [disabled]="pinForm.invalid" type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
+                    </div>
+                  </div>
+                </form>
+
+
               </div>
 
               <!--          NOTIFICATION MANAGEMENT-->

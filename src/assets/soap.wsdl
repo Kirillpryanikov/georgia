@@ -9,6 +9,15 @@
   <wsdl:message name="loginResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
+  <wsdl:message name="keyLoginRequest">
+    <wsdl:part name="secret" type="xsd:string"/>
+    <wsdl:part name="key" type="xsd:string"/>
+    <wsdl:part name="language" type="xsd:string"/>
+    <wsdl:part name="remember" type="xsd:boolean"/>
+  </wsdl:message>
+  <wsdl:message name="keyLoginResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:message name="logoutRequest">
     <wsdl:part name="sessionId" type="xsd:string"/>
   </wsdl:message>
@@ -300,6 +309,10 @@
       <wsdl:input message="tns:loginRequest"/>
       <wsdl:output message="tns:loginResponse"/>
     </wsdl:operation>
+    <wsdl:operation name="keyLogin">
+      <wsdl:input message="tns:keyLoginRequest"/>
+      <wsdl:output message="tns:keyLoginResponse"/>
+    </wsdl:operation>
     <wsdl:operation name="logout">
       <wsdl:input message="tns:logoutRequest"/>
       <wsdl:output message="tns:logoutResponse"/>
@@ -473,6 +486,15 @@
     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="login">
       <soap:operation soapAction="http://www.example.org/utils/login"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="keyLogin">
+      <soap:operation soapAction="http://www.example.org/utils/keyLogin"/>
       <wsdl:input>
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
       </wsdl:input>

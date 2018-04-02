@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthorizationService } from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {debounceTime} from "rxjs/operators";
 
 @IonicPage({
   name: 'authorization-page'
@@ -21,6 +22,8 @@ export class Authorization implements OnInit, OnDestroy {
   private lang: string = 'en';
   private authObservable: Subscription;
   private data;
+  private hashKey: string;
+  private pin: string;
   private subscription: Subscription;
 
   constructor(private navCtrl: NavController,
@@ -32,6 +35,16 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    this.nativeStorage.getItem('hashKey')
+      .then(res => {
+        this.hashKey = res;
+        console.log(res)
+      });
+    this.nativeStorage.getItem('pin')
+      .then(res => {
+        this.pin = res;
+        console.log(res)
+      });
     this.initForm();
   }
 
@@ -71,7 +84,6 @@ export class Authorization implements OnInit, OnDestroy {
     };
     console.log(this.data);
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
-      console.log(data);
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
         this.nativeStorage.setItem('remember', this.data.remember);
@@ -83,8 +95,12 @@ export class Authorization implements OnInit, OnDestroy {
 
   goToRegisterPage() {
     this.registerService.offClick();
-
     this.navCtrl.push('register-page');
+  }
+
+  goToPinPage() {
+    this.registerService.offClick();
+    this.navCtrl.push('page-pin');
   }
 
   ngOnDestroy() {

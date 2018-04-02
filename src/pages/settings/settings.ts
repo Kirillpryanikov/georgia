@@ -10,6 +10,7 @@ import {INotificationSettings} from "@IFolder/INotificationSettings";
 import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {HeaderService} from "@core/services";
 
 /**
  * Generated class for the SettingsPage page.
@@ -27,6 +28,7 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
 })
 export class SettingsPage implements OnInit, OnDestroy{
   public logoWrapper = '_SETTINGS';
+  private hashKey: string;
   private sessionId: string;
   private data: Object;
   private streetsList: Array<string>;
@@ -36,6 +38,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   userForm: FormGroup;
   passwordForm: FormGroup;
   notificationForm: FormGroup;
+  pinForm: FormGroup;
   file: any;
 
   user: IUserSetings = {
@@ -75,7 +78,8 @@ export class SettingsPage implements OnInit, OnDestroy{
               private fb: FormBuilder,
               private reader: FileReader,
               private settingService: SettingService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private headerService: HeaderService) {
   }
 
   ngOnInit() {
@@ -85,7 +89,9 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.getStreets();
         this.getAvatar();
         this.getCustomerSettings();
+        this.getHashKey();
       });
+    this.createFormChangePin();
     this.createFormChangeCustomer();
     this.createFormChangePassword();
     this.createFormChangeNotification();
@@ -97,6 +103,12 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   ionViewDidLoad() {
     this.tabsSetting();
+  }
+
+  getHashKey(){
+    this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.hashKey = data.message.profile.key;
+    })
   }
 
   uploadPhoto(e) {
@@ -130,6 +142,14 @@ export class SettingsPage implements OnInit, OnDestroy{
   private comparePassword(AC: AbstractControl) {
     if(AC.get('new_password').value != AC.get('retry_new_password').value) {
       AC.get('retry_new_password').setErrors({MatchPassword: true})
+    } else {
+      return null;
+    }
+  }
+
+  private comparePin(AC: AbstractControl) {
+    if(AC.get('pin').value != AC.get('confirm_pin').value) {
+      AC.get('confirm_pin').setErrors({MatchPassword: true})
     } else {
       return null;
     }
@@ -205,6 +225,20 @@ export class SettingsPage implements OnInit, OnDestroy{
     });
   }
 
+  createFormChangePin() {
+    this.pinForm = this.fb.group({
+      pin: ['', Validators.compose([
+        Validators.maxLength(4),
+        Validators.minLength(4)
+      ])],
+      confirm_pin: ['', Validators.compose([
+        Validators.required
+      ])]
+    }, {
+      validator: this.comparePin
+    });
+  }
+
   submit(e) {
     if(e === 'user'){
       this.data = {
@@ -237,12 +271,15 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.subscription.unsubscribe();
       })
     }
+    if(e === 'pin'){
+      this.nativeStorage.setItem('hashKey', this.hashKey);
+      this.nativeStorage.setItem('pin', this.pinForm.value.pin);
+    }
   }
 
   getAvatar() {
     this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
       if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
-        console.log('if');
         this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
       }
       else
@@ -315,7 +352,8 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
 }
