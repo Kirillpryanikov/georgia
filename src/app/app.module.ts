@@ -13,7 +13,8 @@ import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { MyApp } from './app.component';
 import { FormsModule } from "@angular/forms";
-import {Network} from "@ionic-native/network";
+import { Network } from "@ionic-native/network";
+import {Keyboard} from "@ionic-native/keyboard";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -48,6 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
     Network,
     StatusBar,
     SplashScreen,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

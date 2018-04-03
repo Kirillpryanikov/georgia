@@ -18,6 +18,7 @@ export class ScriptMainService {
       $(this).addClass('u2g-showed');
 
       $('.u2g-overlay').css({'display' : 'block'});
+      $('.scroll-content').css({'overflow': 'hidden'});
 
       $('body').addClass('overflow');
 
@@ -86,6 +87,8 @@ export class ScriptMainService {
     $('.u2g-showed').removeClass('u2g-showed');
 
     $('.u2g-overlay').css({'display' : 'none'});
+
+    $('.scroll-content').css({'overflow': 'auto'});
 
     $('.u2g-page-wrapper--right').removeClass('u2g-page-wrapper--right');
 

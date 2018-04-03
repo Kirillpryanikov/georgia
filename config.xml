@@ -96,6 +96,11 @@
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="This app needs read/write-access photo library access" />
     </plugin>
     <allow-navigation href="http://192.168.0.106:8100" />
+    <plugin name="cordova-plugin-native-keyboard" spec="^1.5.1">
+        <variable name="LICENSE" value="TRIAL" />
+    </plugin>
+    <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.4" />
 </widget>

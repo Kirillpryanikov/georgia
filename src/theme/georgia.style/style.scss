@@ -5967,7 +5967,7 @@ select[data-ss-uuid] {
         font-size: 14px;
         font-weight: normal;
         margin-right: 25px;
-        max-width: 80; }
+        max-width: 80%; }
   .u2g-settings-form__note, .u2g-settings-form__branch-select-title {
     font-size: 15px;
     font-weight: bold;
@@ -6870,7 +6870,7 @@ label.error {
           box-sizing: border-box;
   font-size: 16px;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   padding: 40px 100px; }
   .invoice__container {
     display: -webkit-box;
@@ -7201,4 +7201,16 @@ div.u2g-button-pin {
   font-size: 14px;
   color: #488aff;
   text-align: center;
+}
+
+.scroll-content {
+  -webkit-overflow-scrolling: auto;
+}
+
+div.scroll-content {
+  margin-top: 10px;
+}
+
+.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content {
+  padding-top: 0;
 }

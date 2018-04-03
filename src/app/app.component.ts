@@ -6,7 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NativeStorage } from "@ionic-native/native-storage";
+import { Keyboard } from '@ionic-native/keyboard';
 import { HeaderService} from "@core/services";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -21,8 +23,10 @@ export class MyApp implements OnInit{
               private globalization: Globalization,
               private mainService: ScriptMainService,
               private headerService: HeaderService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private Keyboard: Keyboard) {
     platform.ready().then(() => {
+      this.Keyboard.hideKeyboardAccessoryBar(false);
       this.initLanguage();
       statusBar.styleDefault();
       splashScreen.hide();

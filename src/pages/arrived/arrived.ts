@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
@@ -10,7 +10,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {TranslateService} from "@ngx-translate/core";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -26,7 +26,7 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
   selector: 'page-arrived',
   templateUrl: 'arrived.html',
 })
-export class ArrivedPage {
+export class ArrivedPage implements OnDestroy{
 
   private subscription: Subscription;
   public logoWrapper = '_ARRIVED';
@@ -108,14 +108,21 @@ export class ArrivedPage {
       action: 'CHECK'
     };
     this.subscription = this.arrivedService.retrieveCourier('retrieveCourier', this.data).subscribe(data => {
-      if(data.message.status === 'FAIL') {
-        const modal = this.modalController.create(CourierNotSuccessPopups);
+      console.log(data);
+      if(data.error){
+        const modal = this.modalController.create(ErrorPopups);
         modal.present();
         this.block = false;
-      } else{
-        const modal = this.modalController.create(CourierSuccessPopups);
-        modal.present();
-        this.block = false;
+      } else {
+        if(data.message.status === 'FAIL') {
+          const modal = this.modalController.create(CourierNotSuccessPopups);
+          modal.present();
+          this.block = false;
+        } else{
+          const modal = this.modalController.create(CourierSuccessPopups);
+          modal.present();
+          this.block = false;
+        }
       }
       this.subscription.unsubscribe();
     });
@@ -144,6 +151,11 @@ export class ArrivedPage {
         this.initMasonry();
       });
     });
+  }
+
+  ngOnDestroy() {
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
 }

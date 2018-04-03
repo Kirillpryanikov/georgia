@@ -34,9 +34,13 @@ export class ArrivedService {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
           this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
-            .subscribe(response => {
+            .subscribe(
+              response => {
               this.retrieveCourierMessage.next({ message: JSON.parse(response)});
-            })
+            },
+              err => {
+                this.retrieveCourierMessage.next({ error: err})
+              })
         });
       });
     });
