@@ -6500,7 +6500,9 @@ label.error {
             justify-content: space-between;
     padding: 18px; }
   .u2g-popup__title {
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    line-height: 30px;
+  }
   .u2g-popup__content {
     background: #ffffff;
     padding: 40px 40px 20px; }
