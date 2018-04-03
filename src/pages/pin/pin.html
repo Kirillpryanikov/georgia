@@ -25,13 +25,11 @@
     <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
 
       <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>{{'_EMAIL' | translate}}</span></label>
-        <input type="email" class="u2g-form-group__field" id="email" name="email" formControlName="email" data-rule-required="true">
-      </div>
-
-      <div class="u2g-form-group__field-group">
-        <label class="u2g-form-group__label"><span>{{'_PASSWORD' | translate}}</span></label>
-        <input id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="password">
+        <label class="u2g-form-group__label"><span>{{"_PIN_CODE" | translate}}</span></label>
+        <input [ngClass]="{'error-input':(form.controls.pin.errors && form.controls.pin.dirty)}" id="password" type="password" class="u2g-form-group__field" data-rule-required="true" formControlName="pin">
+        <div [ngClass]="{'error':(form.controls.pin.errors && form.controls.pin.dirty)}">
+          <span *ngIf="form.controls.pin.errors && form.controls.pin.dirty">Only 4 digits</span>
+        </div>
       </div>
 
       <div class="u2g-form-group__field-group ">
@@ -44,9 +42,7 @@
 
       <div class="u2g-form-group__field-group">
         <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">{{'_SIGN_IN' | translate}}</button>
-        <a (click)="goToRegisterPage()" class="u2g-button">{{'_REGISTER' | translate}}</a>
       </div>
-      <div *ngIf="hashKey && pin" (click)="goToPinPage()" class="u2g-button-pin">Login with PIN</div>
       <p class="error">{{msg}}</p>
 
     </form>

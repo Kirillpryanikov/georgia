@@ -298,6 +298,35 @@
                     </div>
                   </div>
                 </form>
+
+              <!--          CHANGE PIN-->
+
+                <form [formGroup]="pinForm" (submit)="submit('pin')" class="u2g-settings-form u2g-settings-form--password" data-form-validate="true">
+                  <h3 class="u2g-settings-form__note">{{"_PIN_CODE" | translate}}</h3>
+                  <div class="u2g-form-group">
+                    <div class="u2g-form-group__field-group">
+                      <label class="u2g-form-group__label">
+                        <span>New PIN</span> <sup>*</sup>
+                      </label>
+                      <input [ngClass]="{'error-input':(pinForm.controls.pin.errors && pinForm.controls.pin.dirty)}" formControlName="pin" type="password" class="u2g-form-group__field" data-rule-required="true">
+                      <div [ngClass]="{'error':(pinForm.controls.pin.errors && pinForm.controls.pin.dirty)}">
+                        <span *ngIf="pinForm.controls.pin.errors && pinForm.controls.pin.dirty">Only 4 digits</span>
+                      </div>
+                    </div>
+                    <div class="u2g-form-group__field-group">
+                      <label class="u2g-form-group__label"><span>Confirm PIN</span> <sup>*</sup></label>
+                      <input [ngClass]="{'error-input':(pinForm.errors?.comparePin && pinForm.controls.confirm_pin.dirty)}" formControlName="confirm_pin" type="password" class="u2g-form-group__field" data-rule-required="true">
+                      <div [ngClass]="{'error':(pinForm.errors?.comparePin && pinForm.controls.confirm_pin.dirty)}">
+                        <span *ngIf="pinForm.errors?.comparePin">Match Password</span>
+                      </div>
+                    </div>
+                    <div class="u2g-form-group__field-group">
+                      <input [disabled]="pinForm.invalid" type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
+                    </div>
+                  </div>
+                </form>
+
+
               </div>
 
               <!--          NOTIFICATION MANAGEMENT-->

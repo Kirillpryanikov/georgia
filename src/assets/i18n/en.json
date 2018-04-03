@@ -272,7 +272,7 @@
   "_ADD_PRODUCT":"Add Product",
   "_SNAP_SHOT":"snapshot",
   "_CHANGE_SAVED":"change saved",
-  "_OK":"ok",
+  "_OK":"Ok",
   "_PERSONAL":"personal",
 
   "TBILISI":"Tbilisi",
@@ -387,10 +387,11 @@
   "Different electronic and consumer products":"Different electronic and consumer products",
 
   "_ALL_INVOICES_MUST_BE_PAID":"Please clear all outstanding invoices and add the balance 3 GEL, in order to request courier service!",
-  "_NUMBER":"numder",
-  "_DIGIT":"digit",
+  "_NUMBER":"Number",
+  "_DIGIT":"Digit",
   "_PASSPORT_NUMBER":"Passport number",
-  "_CHECK_INTERNET":"Please, check your internet connection",
 
-  "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!"
+  "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!",
+  "_CHECK_INTERNET":"Please, check your internet connection",
+  "_PIN_CODE": "Create PIN code"
 }

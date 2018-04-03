@@ -8,6 +8,7 @@ import {Subject} from "rxjs/Subject";
 export class AuthorizationService {
   private client: Client;
   private loginMessage = new Subject<any>();
+  private keyLoginMessage = new Subject<any>();
   constructor(private http: HttpClient,
               private soap: SOAPService){}
 
@@ -24,6 +25,21 @@ export class AuthorizationService {
       });
     });
     return this.loginMessage.asObservable();
+  }
+
+  keyLogin(remote_function, data) {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+            .subscribe(response => {
+              this.keyLoginMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.keyLoginResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.keyLoginMessage.asObservable();
   }
 
 }

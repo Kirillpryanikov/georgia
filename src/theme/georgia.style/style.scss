@@ -3163,7 +3163,7 @@ img {
   border: 0;
   padding: 0; }
 html{
-  overflow: scroll;
+  overflow: auto;
   outline: none;
 }
 
@@ -3175,11 +3175,11 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.2;
   max-width: 100%;
-  overflow: scroll;
+  overflow: auto;
   outline: none;
 }
 ion-content, body.overflow {
-    overflow: scroll; }
+    overflow: auto; }
 
 .u2g-page-wrapper {
   position: relative;
@@ -3193,7 +3193,7 @@ ion-content, body.overflow {
     //max-height: calc(100% - 270px);
     -webkit-transition-delay: .15s;
             transition-delay: .15s;
-    overflow: hidden; }
+    overflow: auto; }
 
 /*BUTTON*/
 .u2g-button {
@@ -3238,7 +3238,7 @@ ion-content, body.overflow {
   -webkit-flex-grow: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
-  overflow: scroll;
+  overflow: auto;
   padding: 18px 5.6% 40px 3.9%; }
   .u2g-container--simple-page {
     padding-bottom: 200px;
@@ -5353,7 +5353,7 @@ select[data-ss-uuid] {
 /* PENDING CONTENT */
 /* ------------------------------------------- */
 .u2g-content--pending .u2g-info-block {
-  overflow: visible;
+  overflow: auto;
   max-width: -webkit-calc((100% / 3) - 24px);
   max-width: calc((100% / 3) - 24px);
   width: 100%; }
@@ -5604,7 +5604,7 @@ select[data-ss-uuid] {
           border-radius: 6px;
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
           box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
-  overflow: scroll; }
+  overflow: auto; }
   .u2g-payment-method__heading {
     display: -webkit-box;
     display: -webkit-flex;
@@ -5671,7 +5671,7 @@ select[data-ss-uuid] {
     height: -webkit-calc(100% - 100px);
     height: calc(100% - 100px);
     letter-spacing: 0.007em;
-    overflow: scroll;
+    overflow: auto;
     padding: 25px 20px 60px 36px;
     position: relative; }
     .u2g-payment-method__info--block {
@@ -6571,7 +6571,7 @@ label.error {
       height: 90px;
       width: 90px; }
   .u2g-popup__product {
-    overflow: visible; }
+    overflow: auto; }
     .u2g-popup__product .u2g-popup__header {
       -webkit-border-top-left-radius: 6px;
               border-top-left-radius: 6px;
@@ -7155,7 +7155,7 @@ input div {
   width: 132px;
   height: 132px;
   margin: 0 auto;
-  overflow: scroll;
+  overflow: auto;
 }
 .profileImage {
   border-radius: 50%;
@@ -7195,4 +7195,10 @@ i.material-icons {
 .wrap-word {
   word-wrap: break-word;
   overflow: hidden;
+}
+
+div.u2g-button-pin {
+  font-size: 14px;
+  color: #488aff;
+  text-align: center;
 }

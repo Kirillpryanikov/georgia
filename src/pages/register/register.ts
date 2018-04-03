@@ -76,7 +76,6 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   submit() {
     this.submitted = true;
-    console.log(this.form.invalid)
     if(!this.form.invalid){
       this.register();
       this.registerScriptService.offClick();
