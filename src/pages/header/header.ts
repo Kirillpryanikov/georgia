@@ -66,6 +66,9 @@ export class HeaderPage implements OnInit, OnDestroy{
         this.getAvatar();
         this.getInfo();
         this.getNotifications();
+      })
+      .catch(() => {
+        this.logout(null);
       });
   }
 
@@ -155,7 +158,8 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   logout(e) {
-    e.preventDefault();
+    if(e)
+      e.preventDefault();
     this.nativeStorage.remove('sessionId');
     this.navCtrl.setRoot('authorization-page');
   }

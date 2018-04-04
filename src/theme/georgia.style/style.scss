@@ -5879,8 +5879,8 @@ select[data-ss-uuid] {
     display: -ms-flexbox;
     display: flex;
     height: 117px;
-    margin-left: 33px;
-    margin-right: 23px;
+    margin-left: -15px !important;
+    margin-right: 10px;
     width: 117px; }
     .u2g-settings-form__image > img {
       width: 100%; }
@@ -5903,7 +5903,7 @@ select[data-ss-uuid] {
             justify-content: flex-end;
     max-width: 200px;
     padding-bottom: 6px;
-    width: 100%; }
+    width: 64%; }
     .u2g-settings-form__button-wrapper > label {
       -webkit-align-self: flex-end;
           -ms-flex-item-align: end;
@@ -7213,4 +7213,13 @@ div.scroll-content {
 
 .ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content {
   padding-top: 0;
+}
+
+img.mainImage {
+  height: 90px;
+  width: 90px;
+}
+
+.button_stng {
+  font-size: 13px;
 }
