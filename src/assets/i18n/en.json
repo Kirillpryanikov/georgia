@@ -270,7 +270,7 @@
   "_PROFILE_PHOTO":"profile photo",
   "_SAVE_CHANGE":"Save change",
   "_ADD_PRODUCT":"Add Product",
-  "_SNAP_SHOT":"snapshot",
+  "_SNAP_SHOT":"Snapshot",
   "_CHANGE_SAVED":"change saved",
   "_OK":"Ok",
   "_PERSONAL":"personal",
@@ -372,11 +372,11 @@
   "Computers, laptops, computer parts":"Computers, laptops, computer parts",
   "Medicine":"Medicine",
   "Glass products":"Glass products",
-  "Music instruments parts":"Music instruments &amp; parts",
+  "Music instruments parts":"Music instruments parts",
   "Plants":"Plants",
   "Printing products, books, brochures":"Printing products, books, brochures",
-  "Photo Video Equipment":"Photo &amp; Video Equipment",
-  "Perfumery Cosmetics":"Perfumery &amp; Cosmetics",
+  "Photo Video Equipment":"Photo Video Equipment",
+  "Perfumery Cosmetics":"Perfumery Cosmetics",
   "Watches":"Watches",
   "Toys and Sport Equipment":"Toys and Sport Equipment",
   "Supplements":"Supplements",
@@ -393,5 +393,5 @@
 
   "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!",
   "_CHECK_INTERNET":"Please, check your internet connection",
-  "_PIN_CODE": "Create PIN code"
+  "_PIN_CODE": "PIN code"
 }
