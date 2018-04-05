@@ -121,6 +121,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       };
       this.listAwaitingTracking.splice(index,1);
       this.subscription = this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
+        this.initMasonry();
         this.subscription.unsubscribe();
       });
     });

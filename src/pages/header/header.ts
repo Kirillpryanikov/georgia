@@ -100,7 +100,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;
       this.user.userBalance = data.message.profile.balance;
-      this.lang = data.message.profile.panel_language;
+      this.lang = data.message.profile.panel_language || 'en';
       this.translate.use(this.lang);
       this.subscription.unsubscribe();
     })
