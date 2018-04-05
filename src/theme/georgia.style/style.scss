@@ -5671,7 +5671,7 @@ select[data-ss-uuid] {
     height: -webkit-calc(100% - 100px);
     height: calc(100% - 100px);
     letter-spacing: 0.007em;
-    overflow: auto;
+    overflow: hidden;
     padding: 25px 20px 60px 36px;
     position: relative; }
     .u2g-payment-method__info--block {
@@ -6501,7 +6501,7 @@ label.error {
     padding: 18px; }
   .u2g-popup__title {
     text-transform: uppercase;
-    line-height: 30px;
+    line-height: 29px;
   }
   .u2g-popup__content {
     background: #ffffff;

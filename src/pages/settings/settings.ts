@@ -14,6 +14,7 @@ import {HeaderService} from "@core/services";
 
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 const notice = {
   change_psw: '_CHANGE_PASSWORD_CONFIRM'
 };
@@ -254,6 +255,16 @@ export class SettingsPage implements OnInit, OnDestroy{
         data: JSON.stringify({profile: this.userForm.value})
       };
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
+        if(data.message.status === 'FAIL') {
+          const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
+          modal.present();
+          this.subscription.unsubscribe();
+        }
+        if(data.message.status === 'OK') {
+          const modal = this.modalController.create(SuccessPopups);
+          modal.present();
+          this.subscription.unsubscribe();
+        }
       });
     }
     if(e === 'psw'){
@@ -269,7 +280,6 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
           this.nativeStorage.remove('sessionId');
           this.navCtrl.setRoot('authorization-page');
-          this.subscription.unsubscribe();
         })
       });
       modal.present();
@@ -285,7 +295,6 @@ export class SettingsPage implements OnInit, OnDestroy{
         })
       };
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
-        this.subscription.unsubscribe();
       })
     }
     if(e === 'pin'){
