@@ -5353,7 +5353,7 @@ select[data-ss-uuid] {
 /* PENDING CONTENT */
 /* ------------------------------------------- */
 .u2g-content--pending .u2g-info-block {
-  overflow: auto;
+  overflow: hidden;
   max-width: -webkit-calc((100% / 3) - 24px);
   max-width: calc((100% / 3) - 24px);
   width: 100%; }
