@@ -10,7 +10,7 @@
         <p class="u2g-popup__text">{{'_UPLOAD_DESCRIPTION' | translate}}</p>
         <form class="u2g-invoice">
           <div class="u2g-file-name-wrapper">
-            <span class="u2g-remove-file remove-file_js"><i class="ion-close"></i></span>
+            <span class="u2g-remove-file remove-file_js" (click)="removeUploadInvoice()"><i style="font-size: 5px" class="material-icons">clear</i></span>
             <span class="u2g-file-name u2g-popup__text u2g-popup__text--bold"></span>
           </div>
           <div class="u2g-invoice__button-wrapper">

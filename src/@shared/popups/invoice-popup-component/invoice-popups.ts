@@ -7,6 +7,7 @@ import { PopupService } from "@core/services";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as $ from 'jquery'
+import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -17,6 +18,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private file: string = '';
   private data;
   private sessionId: string;
+  private filename: string;
+  private subscription: Subscription;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
@@ -35,6 +38,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
+        this.getListOfUploadedInvoices();
       });
     this.mainService.invoiceFileAdd();
     this.mainService.invoiceFileRemove();
@@ -65,9 +69,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       base64data: this.file.split(',')[1],
       extention: this.file.split(',')[0].split(/,|\/|:|;/)[2]
     };
-    console.log(this.data);
-    this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
-      console.log(data);
+    this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+      this.subscription.unsubscribe();
     });
     this.close(true);
   }
@@ -103,15 +106,44 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         $('.remove-file_js').removeClass('u2g-remove-file--chosen');
       }
     }).catch((err) => {
-      console.log(err);
       $('.invoice-input_js').val('');
 
       $('.u2g-file-name').text('');
 
       $('.remove-file_js').removeClass('u2g-remove-file--chosen');
     });
-    return 'invoice.jpg'
   }
+
+  removeUploadInvoice() {
+    this.file = '';
+    $('.invoice-input_js').val('');
+    $('.u2g-file-name').text('');
+    $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+    this.data = {
+      sessionId: this.sessionId,
+      packageId: this.navParams.data.package_id,
+      filename: this.filename
+    };
+    this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
+    })
+  }
+
+  getListOfUploadedInvoices() {
+    this.data = {
+      sessionId: this.sessionId,
+      packageId: this.navParams.data.package_id,
+    };
+    this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
+      if(data.message.files.length > 0) {
+        this.filename = data.message.files[0];
+        $('.u2g-file-name').text(data.message.files[0]);
+        $('.remove-file_js').addClass('u2g-remove-file--chosen');
+      }
+      this.subscription.unsubscribe();
+    })
+  }
+
+
 
   ngOnDestroy() {}
 }

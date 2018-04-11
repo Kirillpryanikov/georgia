@@ -160,7 +160,6 @@ export class ScriptMainService {
     });
   }
 
-
   radio() {
     $(document).on('click', '.u2g-add-product__radio > input', function() {
       if($('#radio-description').is(':checked')) {

@@ -14,8 +14,12 @@ export class PopupService {
   private getInfoMessage = new Subject<any>();
   private getUnpaidInvoicesMessage = new Subject<any>();
   private retrieveCourierMessage = new Subject<any>();
+  private getListOfUploadedInvoicesMessage = new Subject<any>();
+  private removeInvoiceMessage = new Subject<any>();
   constructor(private http: HttpClient,
-              private soap: SOAPService){}
+              private soap: SOAPService){
+
+  }
 
   /**
    *
@@ -117,4 +121,35 @@ export class PopupService {
     });
     return this.retrieveCourierMessage.asObservable();
   }
+
+  getListOfUploadedInvoices(remote_function, data): Observable<any> {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+            .subscribe(response => {
+              this.getListOfUploadedInvoicesMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getListOfUploadedInvoicesResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.getListOfUploadedInvoicesMessage.asObservable();
+  }
+
+  removeInvoice(remote_function, data): Observable<any> {
+    this.http.get('./assets/soap.wsdl',{responseType:"text"}).subscribe(response => {
+      this.soap.createClient(response).then((client: Client) => {
+        this.client = client;
+        this.client.operation(remote_function, data).then(operation => {
+          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+            .subscribe(response => {
+              this.removeInvoiceMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.removeInvoiceResponse.json.$value)});
+            })
+        });
+      });
+    });
+    return this.removeInvoiceMessage.asObservable();
+  }
+
 }
