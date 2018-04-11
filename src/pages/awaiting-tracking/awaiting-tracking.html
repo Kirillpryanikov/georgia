@@ -21,7 +21,7 @@
             <p class="u2g-tracking-number__description">{{'_AWAITING_TRACKING_DESC' | translate}}</p>
             <form [formGroup]="trackingForm" (submit)="addTracking()" class="u2g-tracking-number__form">
               <div class="u2g-tracking-number__field-wrapper">
-                <input formControlName="trackingNumber" type="text" class="u2g-tracking-number__field" placeholder="{{'_ADD_YOUR_TRACKING_NUMBER' | translate}}">
+                <input formControlName="trackingNumber" #addTrackingNumber type="text" class="u2g-tracking-number__field" placeholder="{{'_ADD_YOUR_TRACKING_NUMBER' | translate}}">
                 <span>
                   <button [disabled]="trackingForm.invalid" type="submit" class="u2g-tracking-number__button u2g-button">
                     <span class="text">{{'_ADD' | translate}}</span>
