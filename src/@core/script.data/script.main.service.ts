@@ -117,7 +117,11 @@ export class ScriptMainService {
   autocomplete(availableTags, change) {
     $( "#store-url" ).autocomplete({
       source: availableTags,
-      change: change
+      select: change,
+      open: function(event, ui) {
+        console.log(ui);
+        $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
+      }
     });
   }
 
@@ -158,7 +162,7 @@ export class ScriptMainService {
 
 
   radio() {
-    $(document).on('touchstart', '.u2g-add-product__radio > input', function() {
+    $(document).on('click', '.u2g-add-product__radio > input', function() {
       if($('#radio-description').is(':checked')) {
         $('.u2g-add-product__field--select').addClass('u2g-add-product__field--active');
         $('.u2g-add-product__field--code').removeClass('u2g-add-product__field--active');
