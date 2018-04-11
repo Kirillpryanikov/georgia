@@ -21,7 +21,7 @@
             <select formControlName="code" name="product-select" class="u2g-select u2g-add-product__select product-input_js">
               <option value="9603">{{'Other consumer products' | translate}}</option>
               <option value="8708">{{'Auto Parts' | translate}}</option>
-              <option value="71171999000">{{'Bijouterie, jewellery' | translate}}</option>
+              <option value="71171999000">{{'Bijouterie,jewellery' | translate}}</option>
               <option value="9405">{{'Lighting, chandeliers, headlights, lighting equipments' | translate}}</option>
               <option value="8205">{{'Tools' | translate}}</option>
               <option value="8471">{{'Computers, laptops, computer parts' | translate}}</option>
@@ -29,7 +29,7 @@
               <option value="7013">{{'Glass products' | translate}}</option>
               <option value="9207">{{'Music instruments parts' | translate}}</option>
               <option value="0602">{{'Plants' | translate}}</option>
-              <option value="4901">{{'Printing products, books, brochures' | translate}}</option>
+              <option value="4901">{{'Printing products,books,brochures' | translate}}</option>
               <option value="8525">{{'Photo Video Equipment' | translate}}</option>
               <option value="3304">{{'Perfumery Cosmetics' | translate}}</option>
               <option value="9102">{{'Watches' | translate}}</option>
@@ -49,6 +49,9 @@
             <span class="u2g-add-product__price">{{'_PRICE' | translate}}</span>
             <input formControlName="unit_price" type="text" name="price" class="u2g-add-product__price-field product-price_js">
             <span class="u2g-add-product__currency">USD</span>
+          </div>
+          <div [ngClass]="{'error':(productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty)}">
+            <span *ngIf="productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty">Only digits</span>
           </div>
           <div class="u2g-popup__buttons">
             <button [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js">

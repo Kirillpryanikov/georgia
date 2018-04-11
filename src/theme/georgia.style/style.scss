@@ -3238,7 +3238,7 @@ ion-content, body.overflow {
   -webkit-flex-grow: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
-  overflow: auto;
+  //overflow: auto;
   padding: 18px 5.6% 40px 3.9%; }
   .u2g-container--simple-page {
     padding-bottom: 200px;
@@ -3668,7 +3668,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 22px;
+    line-height: 17px;
     padding: 0 5.75px;
     width: auto;
     top: -5px;
@@ -4039,9 +4039,9 @@ ion-content, body.overflow {
     transition: left .8s ease-in; }
   .u2g-sidebar__logo {
     width: 100%;
-    max-width: 200px;
-    padding: 10px 25px;
-    margin: 10px auto 0; }
+    max-width: 400px;
+    padding: 15px 25px;
+    margin: 30px auto 0; }
   .u2g-sidebar__links {
     display: -webkit-box;
     display: -webkit-flex;
@@ -4123,11 +4123,11 @@ ion-content, body.overflow {
     .u2g-nav__item--received {
       background: url(../img/received.svg) no-repeat 30px 50%;
       background-size: 31px; }
-    .u2g-nav__item:hover, .u2g-nav__item--active {
+    .u2g-nav__item:active, .u2g-nav__item--active {
       background-color: #f3f5f7; }
-      .u2g-nav__item:hover:before, .u2g-nav__item--active:before {
+      .u2g-nav__item:active:before, .u2g-nav__item--active:before {
         left: 0; }
-      .u2g-nav__item:hover .u2g-nav__item-amount, .u2g-nav__item--active .u2g-nav__item-amount {
+      .u2g-nav__item:active .u2g-nav__item-amount, .u2g-nav__item--active .u2g-nav__item-amount {
         background: #e47b7b;
         color: #ffffff; }
   .u2g-nav__item-amount {
@@ -4191,7 +4191,7 @@ ion-content, body.overflow {
     padding-top: 14px;
     padding-bottom: 14px; } }
 
-ion-select[data-ss-uuid] {
+select[data-ss-uuid] {
   display: none;
   pointer-events: none; }
 
@@ -5879,8 +5879,8 @@ ion-select[data-ss-uuid] {
     display: -ms-flexbox;
     display: flex;
     height: 117px;
-    margin-left: 33px;
-    margin-right: 23px;
+    margin-left: -15px !important;
+    margin-right: 10px;
     width: 117px; }
     .u2g-settings-form__image > img {
       width: 100%; }
@@ -5903,7 +5903,7 @@ ion-select[data-ss-uuid] {
             justify-content: flex-end;
     max-width: 200px;
     padding-bottom: 6px;
-    width: 100%; }
+    width: 64%; }
     .u2g-settings-form__button-wrapper > label {
       -webkit-align-self: flex-end;
           -ms-flex-item-align: end;
@@ -5967,7 +5967,7 @@ ion-select[data-ss-uuid] {
         font-size: 14px;
         font-weight: normal;
         margin-right: 25px;
-        max-width: 80; }
+        max-width: 80%; }
   .u2g-settings-form__note, .u2g-settings-form__branch-select-title {
     font-size: 15px;
     font-weight: bold;
@@ -6647,7 +6647,7 @@ label.error {
 
 .u2g-add-product__select {
   width: 100%;
-  padding-right: 14px; }
+  padding-right: 40px; }
 
 .u2g-add-product .style-select {
   border: 1px solid #f3f5f7;
@@ -6870,7 +6870,7 @@ label.error {
           box-sizing: border-box;
   font-size: 16px;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   padding: 40px 100px; }
   .invoice__container {
     display: -webkit-box;
@@ -7201,4 +7201,28 @@ div.u2g-button-pin {
   font-size: 14px;
   color: #488aff;
   text-align: center;
+}
+
+.scroll-content {
+  -webkit-overflow-scrolling: auto;
+}
+
+div.scroll-content {
+  margin-top: 10px;
+}
+
+.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content {
+  padding-top: 0;
+}
+
+img.mainImage {
+  height: 90px;
+  width: 90px;
+}
+
+.button_stng {
+  font-size: 13px;
+}
+svg {
+  height: auto;
 }

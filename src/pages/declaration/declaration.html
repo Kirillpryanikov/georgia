@@ -36,7 +36,7 @@
                   <span>{{'_PERSONAL_PACKAGE' | translate}}</span>
                 </label>
                 <div class="u2g-info-block__list-item u2g-info-block__list-item--input">
-                  <input formControlName="code" (click)="autocomplete()" id="store-url" type="text" placeholder="{{'_ADD_STORE_URL' | translate}}">
+                  <input formControlName="code" (keyup)="autocomplete()" id="store-url" type="text" placeholder="{{'_ADD_STORE_URL' | translate}}">
                 </div>
               </div>
             </form>

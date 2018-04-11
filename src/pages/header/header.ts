@@ -66,7 +66,7 @@ export class HeaderPage implements OnInit, OnDestroy{
         this.getAvatar();
         this.getInfo();
         this.getNotifications();
-      });
+      })
   }
 
   showErrorPopup() {
@@ -80,7 +80,7 @@ export class HeaderPage implements OnInit, OnDestroy{
         this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
       }
       else
-        this.user.userPhoto = 'img/placeholder_user.png';
+        this.user.userPhoto = './img/placeholder_user.png';
     });
   }
 
@@ -90,7 +90,7 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   getInfo() {
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      if(data.message.status === 'EXPIRED'){
+      if(data.message.status === "EXPIRED"){
         this.nativeStorage.remove('sessionId');
         this.navCtrl.setRoot('authorization-page');
         return;

@@ -12,11 +12,9 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from "rxjs/Subject";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
-/**
- * Временное решение, пока не получил ответа по поводу языков/
- * @type {{insurance: string; cut_down: string}}
- */
 const notice = {
   insurance: '_CHANGE_INSURANCE_CONFIRMATION',
   cut_down: '_CUT_DOWN_CONFIRMATION',
@@ -33,6 +31,7 @@ const notice = {
 })
 export class AwaitingTrackingPage implements OnInit, OnDestroy{
   @ViewChild('u2ginfo') u2ginfo: ElementRef;
+  @ViewChild('addTrackingNumber') addTrackingNumber: ElementRef;
   private sessionId: string;
   public logoWrapper = '_AWAITING_TRACKING_ID';
   public active = 'awaiting-tracking';
@@ -146,8 +145,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   createFormAddTracking() {
     this.trackingForm = this.fb.group({
       trackingNumber: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10)
+        Validators.required
       ])]
     })
   }
@@ -165,8 +163,17 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       sessionId: this.sessionId,
       tracking: this.trackingForm.value.trackingNumber
     };
+    this.addTrackingNumber.nativeElement.value = '';
     this.subscription = this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
-      this.subscription.unsubscribe();
+      if(data.message.status === 'OK') {
+        const modal = this.modalController.create(SuccessPopups);
+        modal.present();
+        this.subscription.unsubscribe();
+      } else {
+        const modal = this.modalController.create(ErrorPopups, {notice:data.message.message});
+        modal.present();
+        this.subscription.unsubscribe();
+      }
       this.getAwaiting();
     });
   }

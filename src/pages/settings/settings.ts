@@ -310,7 +310,7 @@ export class SettingsPage implements OnInit, OnDestroy{
         this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
       }
       else
-        this.userPhoto = 'img/placeholder_user.png';
+        this.userPhoto = './img/placeholder_user.png';
     });
   }
 
