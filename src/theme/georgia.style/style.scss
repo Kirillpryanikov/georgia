@@ -3668,7 +3668,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 17px;
+    line-height: 21px;
     padding: 0 5.75px;
     width: auto;
     top: -5px;
@@ -5927,7 +5927,7 @@ select[data-ss-uuid] {
     }
       .u2g-settings-form__button-wrapper .u2g-button--remove-image > svg {
         position: relative;
-        top: 2px;
+        top: 3px;
       }
   .u2g-settings-form__label {
     display: inline-block;
@@ -7205,10 +7205,11 @@ div.u2g-button-pin {
 
 .scroll-content {
   -webkit-overflow-scrolling: auto;
+  overflow: hidden;
 }
 
 div.scroll-content {
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content {

@@ -18,7 +18,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private file: string = '';
   private data;
   private sessionId: string;
-  private filename: string;
+  private filename: any;
   private subscription: Subscription;
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -125,6 +125,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       filename: this.filename
     };
     this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
+      this.filename = false;
     })
   }
 
