@@ -18,7 +18,7 @@ export class ScriptMainService {
       $(this).addClass('u2g-showed');
 
       $('.u2g-overlay').css({'display' : 'block'});
-      $('.scroll-content').css({'overflow': 'hidden'});
+      $('.scroll-content').css({'overflow': 'hidden', '-webkit-overflow-scrolling': 'auto'});
 
       $('body').addClass('overflow');
 
@@ -29,7 +29,7 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('click', function (e) {
+    $(document).on('toucstart', function (e) {
 
       var showItem = $('.u2g-show');
 
@@ -88,7 +88,7 @@ export class ScriptMainService {
 
     $('.u2g-overlay').css({'display' : 'none'});
 
-    $('.scroll-content').css({'overflow': 'auto'});
+    $('.scroll-content').css({'overflow': 'auto', '-webkit-overflow-scrolling': 'touch'});
 
     $('.u2g-page-wrapper--right').removeClass('u2g-page-wrapper--right');
 
