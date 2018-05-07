@@ -108,6 +108,12 @@ export class SettingsPage implements OnInit, OnDestroy{
     this.mainService.tabsSetting();
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   ionViewDidLoad() {
     this.tabsSetting();
   }

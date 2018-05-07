@@ -39,12 +39,10 @@ export class Authorization implements OnInit, OnDestroy {
     this.nativeStorage.getItem('hashKey')
       .then(res => {
         this.hashKey = res;
-        console.log(res)
       });
     this.nativeStorage.getItem('pin')
       .then(res => {
         this.pin = res;
-        console.log(res)
       });
     this.initForm();
   }
@@ -83,7 +81,6 @@ export class Authorization implements OnInit, OnDestroy {
       language: this.lang,
       remember: this.form.value.checkbox
     };
-    console.log(this.data);
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);

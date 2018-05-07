@@ -119,7 +119,6 @@ export class ScriptMainService {
       source: availableTags,
       select: change,
       open: function(event, ui) {
-        console.log(ui);
         $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
       }
     });

@@ -14,6 +14,7 @@
       <div class="u2g-container u2g-container--simple-page">
 
         <div class="u2g-content-wrapper">
+          <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
           <div class="u2g-content u2g-content--declaration">
 
             <!--CHOICE SHIPPER-->

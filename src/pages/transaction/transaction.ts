@@ -42,10 +42,15 @@ export class TransactionPage implements OnInit{
       });
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   getTransactions() {
     this.transactionService.getTransactions('getTransactions', {sessionId: this.sessionId}).subscribe(data => {
       this.listTransaction = data.message.data;
-      console.log(data)
     })
   }
 
@@ -74,14 +79,14 @@ export class TransactionPage implements OnInit{
   goTo(e) {
     switch (e){
       case 'INVOICE_PAYMENT':
-        this.navCtrl.push('deposite-page');
+        this.navCtrl.setRoot('deposite-page');
         break;
       case 'EXPRESS_COURIER_SERVICE_CHARGE':
       case 'COURIER_SERVICE_CHARGE':
         this.expressCourier();
         break;
       case 'ADD_FUND':
-        this.navCtrl.push('page-awaiting-tracking');
+        this.navCtrl.setRoot('page-awaiting-tracking');
         break;
     }
   }

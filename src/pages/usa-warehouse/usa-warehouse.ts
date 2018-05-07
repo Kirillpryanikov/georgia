@@ -57,6 +57,12 @@ export class UsaWarehousePage implements OnInit{
 
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   initMasonry() {
     this.mainService.initMasonry();
   }
@@ -115,7 +121,6 @@ export class UsaWarehousePage implements OnInit{
 
   getWarehouse() {
     this.subscription = this.usaWarehouseService.getUsaWarehouse('getUsaWarehouse', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data);
       this.listUsaWarehouse = data.message.usa_warehouse;
       setTimeout(() => {
         this.initMasonry();

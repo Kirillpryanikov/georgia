@@ -37,7 +37,7 @@ export class ArrivedPage implements OnDestroy{
   private listArrived;
   private block: boolean = false;
   private keys = [];
-  private ListCities = {};
+  private ListCities = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -131,21 +131,13 @@ export class ArrivedPage implements OnDestroy{
   getArrived() {
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
       const keys = Object.keys(data.message.arrived);
+      for (let i in keys){
+        if(keys[i] === "COURIER")
+          this.keys.push(keys[i])
+      }
 
-      const tmp1_2 = keys.filter(key => !key.match('PREPARING')).map(key => data.message.arrived[key]);
-
-      const tmp2 = tmp1_2.map(val => Object.keys(val).map(key => val[key]));
-
-      this.listArrived = [].concat(...tmp2);
-
-      this.ListCities = keys.filter(key => key.match('PREPARING_')).reduce((obj, city) => {obj[city.split('_')[1]] = []; return obj}, {});
-
-      Object.keys(this.ListCities).forEach(city => {
-        const tmp = `PREPARING_${city}`;
-        this.ListCities[city].push(...Object.keys(data.message.arrived[tmp]).map(key => data.message.arrived[tmp][key]));
-      });
-
-      this.keys = Object.keys(this.ListCities);
+      this.listArrived = Object.keys(data.message.arrived.NONE).map(key => data.message.arrived.NONE[key]);
+      this.ListCities = Object.keys(data.message.arrived.COURIER).map(key => data.message.arrived.COURIER[key]);
 
       setTimeout(() => {
         this.initMasonry();

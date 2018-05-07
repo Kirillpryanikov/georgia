@@ -23,6 +23,8 @@ export class AddProductPopups implements OnInit, AfterViewInit {
     unit_price: 0,
     unit_count: 0
   };
+  quantity;
+  price;
 
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -112,7 +114,10 @@ export class AddProductPopups implements OnInit, AfterViewInit {
         break;
     }
     this.product.code = this.productForm.value.code;
-    this.product.unit_price = parseFloat(this.productForm.value.unit_price);
+    if(this.productForm.value.unit_price)
+      this.product.unit_price = parseFloat(this.productForm.value.unit_price);
+    else
+      this.product.unit_price = this.quantity * this.price;
     this.product.unit_count++;
     this.scriptService.closePopup();
     this.viewCtrl.dismiss(this.product);
@@ -126,11 +131,16 @@ export class AddProductPopups implements OnInit, AfterViewInit {
   createFormAddProduct(): void {
     this.productForm = this.fb.group({
       unit_price: ['', Validators.compose([
-        Validators.required,
         Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
       ])],
       code: ['', Validators.compose([
         Validators.required
+      ])],
+      price: ['', Validators.compose([
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
+      ])],
+      quantity: ['', Validators.compose([
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
       ])]
     });
   }

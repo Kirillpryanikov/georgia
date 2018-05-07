@@ -47,17 +47,21 @@ export class TbcPage implements OnInit, OnDestroy{
       amount: this.amount * 100
     };
     this.tbcService.generateTBCBankTransaction('generateTBCBankTransaction', this.data).subscribe(data => {
-      console.log(data);
       if(data.message.status === 'OK') {
         this.data = {
           trans_id: data.message.tbcbank_transaction_id,
           pay_amount: this.amount * 100
         };
         this.tbcService.pay(this.data).subscribe(data => {
-          console.log(data);
         });
       }
     })
+  }
+
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
   }
 
   getUnpaidInvoices() {
