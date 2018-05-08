@@ -17,7 +17,7 @@ export class ScriptMainService {
 
       $(this).addClass('u2g-showed');
 
-      $('.u2g-overlay').css({'display' : 'block'});
+      $('.u2g-overlay_1').css({'display' : 'block'});
       $('.scroll-content').css({'overflow': 'hidden', '-webkit-overflow-scrolling': 'auto'});
 
       $('body').addClass('overflow');
@@ -55,7 +55,7 @@ export class ScriptMainService {
 
       $(this).addClass('u2g-showed');
 
-      $('.u2g-overlay').css({'display' : 'block'});
+      $('.u2g-overlay_1').css({'display' : 'block'});
 
       $('body').addClass('overflow');
 
@@ -90,7 +90,7 @@ export class ScriptMainService {
 
     $('.u2g-showed').removeClass('u2g-showed');
 
-    $('.u2g-overlay').css({'display' : 'none'});
+    $('.u2g-overlay_1').css({'display' : 'none'});
 
     $('.scroll-content').css({'overflow': 'auto', '-webkit-overflow-scrolling': 'touch'});
 
