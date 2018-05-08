@@ -135,6 +135,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       packageId: this.navParams.data.package_id,
     };
     this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
+      console.log(data);
       if(data.message.files.length > 0) {
         this.filename = data.message.files[0];
         $('.u2g-file-name').text(data.message.files[0]);
@@ -143,8 +144,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       this.subscription.unsubscribe();
     })
   }
-
-
 
   ngOnDestroy() {}
 }
