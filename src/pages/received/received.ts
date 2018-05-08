@@ -56,6 +56,12 @@ export class ReceivedPage implements OnInit {
     this.mainService.initMasonry();
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   invoice(e, index) {
     e.preventDefault();
     this.navCtrl.push('invoice-page',{invoice: this.listReceived[index].invoice});
@@ -68,7 +74,6 @@ export class ReceivedPage implements OnInit {
 
   getReceived(): Observable<any> {
     this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data);
       this.listReceived = data.message.received;
       this.subject.next();
     });

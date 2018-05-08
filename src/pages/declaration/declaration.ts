@@ -61,8 +61,14 @@ export class DeclarationPage implements OnInit{
     this.mainService.readonly();
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   addProduct(): void {
-    const modal = this.modalController.create(AddProductPopups);
+    const modal = this.modalController.create(AddProductPopups, {shipper: this.form.controls.shipper.value});
     modal.onDidDismiss(data => {
       if(data){
         this.productList.push(data);
@@ -95,7 +101,6 @@ export class DeclarationPage implements OnInit{
       shipper: this.shipper,
       declarationDetailsJson: JSON.stringify(this.productList)
     };
-    console.log(this.data);
     this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
       if(data.message.status === "OK")
         this.modalController.create(SuccessPopups).present();

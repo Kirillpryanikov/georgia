@@ -40,7 +40,6 @@ export class ScriptService {
   checkboxSelect(el: ElementRef) {
     this.renderer.addClass(el, 'u2g-check');
     this.renderer.addClass(el, 'u2g-select');
-    console.log('el :::: ', el)
   }
 
   offClick() {

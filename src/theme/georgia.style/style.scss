@@ -3244,7 +3244,8 @@ ion-content, body.overflow {
     padding-bottom: 200px;
     padding-right: 3.4%; }
     .u2g-container--simple-page .u2g-content {
-      margin-right: 0; }
+      margin-right: 0;
+    }
 
 .u2g-content-item-shadow, .u2g-packages-address, .u2g-packages-account-status, .u2g-tracking-number__form, .u2g-info-block {
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
@@ -3457,6 +3458,8 @@ ion-content, body.overflow {
   display: flex;
   height: 70px;
   width: 100%;
+  position: fixed;
+  z-index: 999;
   /*LOGO*/
   /*OLD VERSION LINK*/
   /*SETTINGS*/ }
@@ -4632,7 +4635,8 @@ select[data-ss-uuid] {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
-            justify-content: space-between; }
+            justify-content: space-between;
+  margin-top: 10px}
   .u2g-content-panel--end {
     -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
@@ -5734,7 +5738,9 @@ select[data-ss-uuid] {
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
           box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
   padding: 50px;
-  width: 100%; }
+  width: 100%;
+  margin-top: 25px;
+}
 
 .u2g-payment-form {
   display: -webkit-box;
@@ -7102,7 +7108,8 @@ label.error {
     min-height: auto; } }
 
 .u2g-content--masonry .u2g-info-block--packages-being {
-  border: 1px solid #85c099; }
+  border: 1px solid #85c099;
+}
 .u2g-content--masonry .u2g-info-block--packages-being .u2g-info-block {
   position: static !important;
   width: 100%;
@@ -7225,4 +7232,12 @@ img.mainImage {
 }
 svg {
   height: auto;
+}
+
+.u2g-content-wrapper {
+  margin-top: 55px;
+}
+
+.breadcrumbs {
+  font-size: 12px;
 }

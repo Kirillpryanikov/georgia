@@ -45,9 +45,19 @@
           <div class="u2g-add-product__field u2g-add-product__field--code">
             <input formControlName="code" type="text" class="u2g-add-product__code product-input_js">
           </div>
-          <div class="u2g-add-product__field">
+          <div *ngIf="navParams.data.shipper === 'true'" class="u2g-add-product__field">
+            <span class="u2g-add-product__price">{{'_QUANTITY' | translate}}</span>
+            <input formControlName="quantity" type="text" [(ngModel)]="quantity" class="u2g-add-product__price-field product-price_js">
+          </div>
+          <div *ngIf="navParams.data.shipper === 'true'" class="u2g-add-product__field">
             <span class="u2g-add-product__price">{{'_PRICE' | translate}}</span>
-            <input formControlName="unit_price" type="text" name="price" class="u2g-add-product__price-field product-price_js">
+            <input formControlName="price" [(ngModel)]="price" class="u2g-add-product__price-field product-price_js">
+            <span class="u2g-add-product__currency">USD</span>
+          </div>
+          <div class="u2g-add-product__field">
+            <span class="u2g-add-product__price">{{'_TOTAL' | translate}}</span>
+            <input *ngIf="navParams.data.shipper === 'true'" disabled value="{{(quantity * price) || 0}}" type="text" class="u2g-add-product__price-field product-price_js">
+            <input *ngIf="navParams.data.shipper !== 'true'" formControlName="unit_price" type="text" class="u2g-add-product__price-field product-price_js">
             <span class="u2g-add-product__currency">USD</span>
           </div>
           <div [ngClass]="{'error':(productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty)}">

@@ -66,6 +66,12 @@ export class PendingPage implements OnInit{
       });
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   initMasonry() {
     this.mainService.initMasonry();
   }

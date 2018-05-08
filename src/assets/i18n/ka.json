@@ -397,6 +397,8 @@
   "_PIN_CODE": "შექმნა PIN კოდი",
 
   "_CHANGE_PASSWORD_CONFIRM": "გთხოვთ, დაადასტუროთ პაროლის შეცვლა!",
-  "_LOGIN_WITH_PIN": "შესვლა PIN- ით"
+  "_LOGIN_WITH_PIN": "შესვლა PIN- ით",
+  "_QANTITY":"რაოდენობა"
+
 
 }

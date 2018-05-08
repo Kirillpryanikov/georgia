@@ -36,7 +36,7 @@ export class ArrivedService {
           this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
             .subscribe(
               response => {
-              this.retrieveCourierMessage.next({ message: JSON.parse(response)});
+              this.retrieveCourierMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.retrieveCourierResponse.json.$value)});
             },
               err => {
                 this.retrieveCourierMessage.next({ error: err})

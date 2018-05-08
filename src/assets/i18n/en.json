@@ -394,5 +394,6 @@
   "_CHANGE_PASSWORD_CONFIRM": "Please confirm you'd like to change password!",
   "_CHECK_INTERNET":"Please, check your internet connection",
   "_PIN_CODE": "PIN code",
-  "_LOGIN_WITH_PIN": "Login with PIN"
+  "_LOGIN_WITH_PIN": "Login with PIN",
+  "_QANTITY":"Quantity"
 }

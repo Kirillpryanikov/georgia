@@ -31,10 +31,8 @@ export class MyApp implements OnInit{
       statusBar.styleDefault();
       splashScreen.hide();
       this.nativeStorage.getItem('remember').then(res => {
-        console.log('res',res);
         this.rememberMe = res;
         if(!this.rememberMe) {
-          console.log('remove');
           this.nativeStorage.remove('sessionId');
         }
       });

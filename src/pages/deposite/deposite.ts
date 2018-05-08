@@ -39,6 +39,12 @@ export class DepositePage implements OnInit, OnDestroy{
     this.navCtrl.push('cartu-page');
   }
 
+  navTo(e, page) {
+    e.preventDefault();
+    if(this.navCtrl.getActive().id !== page)
+      this.navCtrl.setRoot(page);
+  }
+
   ngOnDestroy(){
 
   }

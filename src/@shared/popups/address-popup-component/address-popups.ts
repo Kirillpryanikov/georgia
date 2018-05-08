@@ -69,7 +69,6 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
   getInfo() {
     this.popupService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
       this.user = data.message.profile;
-      console.log(data);
     })
   }
 

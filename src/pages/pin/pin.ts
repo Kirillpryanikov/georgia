@@ -63,7 +63,6 @@ export class PinPage implements OnInit{
                 remember: this.form.value.checkbox
               };
               this.subscription = this.authService.keyLogin('keyLogin', this.data).subscribe(data => {
-                console.log(data);
                 this.nativeStorage.setItem('sessionId', data.message.session_id);
                 this.nativeStorage.setItem('remember', this.data.remember);
                 this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});

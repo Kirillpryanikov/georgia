@@ -13,7 +13,7 @@
 
       <div class="u2g-container u2g-container--arrived u2g-container--simple-page">
         <div class="u2g-content-wrapper">
-
+          <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name.slice(0, -4)}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
           <div class="u2g-content-panel u2g-content-panel--space-between">
             <button [disabled]="block" (click)="expressCourier()" class="u2g-button u2g-button--express-courier" data-popup="courier-enough-balance">{{'_EXPRESS_RETRIEVE_BUTTON' | translate}}</button>
           </div>
@@ -60,8 +60,8 @@
               </div>
             </div>
           </div>
-          <div *ngFor="let city of keys" class="u2g-info-block u2g-info-block--packages-being" data-packages="Packages are being prepared Abasha to send!">
-            <div *ngFor="let arrived of ListCities[city]; index as index" class="u2g-info-block">
+          <div *ngFor="let city of keys" class="u2g-info-block u2g-info-block--packages-being" data-packages="Courier Process!">
+            <div *ngFor="let arrived of ListCities; index as index" class="u2g-info-block">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>
                 <span class="u2g-info-block__tracking-number-value">{{arrived.hawb}}</span>
