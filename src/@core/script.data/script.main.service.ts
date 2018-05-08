@@ -26,11 +26,13 @@ export class ScriptMainService {
         $(this).addClass('u2g-menu-toggle--open');
 
         $('.u2g-page-wrapper').addClass('u2g-page-wrapper--right');
+        $('.u2g-page-header').addClass('u2g-page-wrapper--right');
+
+
       }
     });
 
     $(document).on('toucstart', function (e) {
-
       var showItem = $('.u2g-show');
 
       if(showItem.length > 0) {
@@ -61,6 +63,8 @@ export class ScriptMainService {
         $(this).addClass('u2g-menu-toggle--open');
 
         $('.u2g-page-wrapper').addClass('u2g-page-wrapper--right');
+        $('.u2g-page-header').addClass('u2g-page-wrapper--right');
+
       }
     });
 
