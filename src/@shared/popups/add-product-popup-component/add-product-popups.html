@@ -5,7 +5,7 @@
         <div class="u2g-popup__title">{{'_ADD_PARCEL' | translate}}</div>
         <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="material-icons">clear</i></button>
       </div>
-      <div class="u2g-popup__content">
+      <div *ngIf="navParams.data.shipper !== 'true'" class="u2g-popup__content">
         <form [formGroup]="productForm" (submit)="addProduct()" id="add-product" class="u2g-add-product">
           <div class="u2g-add-product__radio-wrapper">
             <label class="u2g-add-product__radio">
@@ -45,19 +45,9 @@
           <div class="u2g-add-product__field u2g-add-product__field--code">
             <input formControlName="code" type="text" class="u2g-add-product__code product-input_js">
           </div>
-          <div *ngIf="navParams.data.shipper === 'true'" class="u2g-add-product__field">
-            <span class="u2g-add-product__price">{{'_QUANTITY' | translate}}</span>
-            <input formControlName="quantity" type="text" [(ngModel)]="quantity" class="u2g-add-product__price-field product-price_js">
-          </div>
-          <div *ngIf="navParams.data.shipper === 'true'" class="u2g-add-product__field">
-            <span class="u2g-add-product__price">{{'_PRICE' | translate}}</span>
-            <input formControlName="price" [(ngModel)]="price" class="u2g-add-product__price-field product-price_js">
-            <span class="u2g-add-product__currency">USD</span>
-          </div>
           <div class="u2g-add-product__field">
             <span class="u2g-add-product__price">{{'_TOTAL' | translate}}</span>
-            <input *ngIf="navParams.data.shipper === 'true'" disabled value="{{(quantity * price) || 0}}" type="text" class="u2g-add-product__price-field product-price_js">
-            <input *ngIf="navParams.data.shipper !== 'true'" formControlName="unit_price" type="text" class="u2g-add-product__price-field product-price_js">
+            <input formControlName="unit_price" type="text" class="u2g-add-product__price-field product-price_js">
             <span class="u2g-add-product__currency">USD</span>
           </div>
           <div [ngClass]="{'error':(productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty)}">
@@ -65,6 +55,73 @@
           </div>
           <div class="u2g-popup__buttons">
             <button [disabled]="productForm.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js">
+              <span class="text">
+                {{'_ADD' | translate}}
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="navParams.data.shipper === 'true'" class="u2g-popup__content">
+        <form [formGroup]="productFormShipper" (submit)="addProduct()" id="add-product" class="u2g-add-product">
+          <div class="u2g-add-product__radio-wrapper">
+            <label class="u2g-add-product__radio">
+              <input id="radio-description" type="radio" name="product" checked>
+              <span>{{'_DESCRIPTION' | translate}}</span>
+            </label>
+            <label class="u2g-add-product__radio">
+              <input id="radio-code" type="radio" name="product">
+              <span>{{'_CODE' | translate}}</span>
+            </label>
+          </div>
+          <div class="u2g-add-product__field u2g-add-product__field--select u2g-add-product__field--active">
+            <select formControlName="code" name="product-select" class="u2g-select u2g-add-product__select product-input_js">
+              <option value="9603">{{'Other consumer products' | translate}}</option>
+              <option value="8708">{{'Auto Parts' | translate}}</option>
+              <option value="71171999000">{{'Bijouterie,jewellery' | translate}}</option>
+              <option value="9405">{{'Lighting, chandeliers, headlights, lighting equipments' | translate}}</option>
+              <option value="8205">{{'Tools' | translate}}</option>
+              <option value="8471">{{'Computers, laptops, computer parts' | translate}}</option>
+              <option value="3004">{{'Medicine' | translate}}</option>
+              <option value="7013">{{'Glass products' | translate}}</option>
+              <option value="9207">{{'Music instruments parts' | translate}}</option>
+              <option value="0602">{{'Plants' | translate}}</option>
+              <option value="4901">{{'Printing products,books,brochures' | translate}}</option>
+              <option value="8525">{{'Photo Video Equipment' | translate}}</option>
+              <option value="3304">{{'Perfumery Cosmetics' | translate}}</option>
+              <option value="9102">{{'Watches' | translate}}</option>
+              <option value="9504">{{'Toys and Sport Equipment' | translate}}</option>
+              <option value="2106">{{'Supplements' | translate}}</option>
+              <option value="6204">{{'Clothing' | translate}}</option>
+              <option value="8517">{{'Phone, network equipment' | translate}}</option>
+              <option value="6403">{{'Footwear' | translate}}</option>
+              <option value="4202">{{'Bags' | translate}}</option>
+              <option value="8543">{{'Different electronic and consumer products' | translate}}</option>
+            </select>
+          </div>
+          <div class="u2g-add-product__field u2g-add-product__field--code">
+            <input formControlName="code" type="text" class="u2g-add-product__code product-input_js">
+          </div>
+          <div class="u2g-add-product__field">
+            <span class="u2g-add-product__price">{{'_QUANTITY' | translate}}</span>
+            <input formControlName="quantity" type="text" [(ngModel)]="quantity" class="u2g-add-product__price-field product-price_js">
+          </div>
+          <div class="u2g-add-product__field">
+            <span class="u2g-add-product__price">{{'_PRICE' | translate}}</span>
+            <input formControlName="price" [(ngModel)]="price" class="u2g-add-product__price-field product-price_js">
+            <span class="u2g-add-product__currency">USD</span>
+          </div>
+          <div class="u2g-add-product__field">
+            <span class="u2g-add-product__price">{{'_TOTAL' | translate}}</span>
+            <input disabled value="{{(quantity * price) || 0}}" type="text" class="u2g-add-product__price-field product-price_js">
+            <span class="u2g-add-product__currency">USD</span>
+          </div>
+          <div [ngClass]="{'error':(productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty)}">
+            <span *ngIf="productForm.controls.unit_price.errors && productForm.controls.unit_price.dirty">Only digits</span>
+          </div>
+          <div class="u2g-popup__buttons">
+            <button [disabled]="productFormShipper.invalid" type="submit" class="u2g-button u2g-button--green u2g-popup__bottom-button add-product_js">
               <span class="text">
                 {{'_ADD' | translate}}
               </span>

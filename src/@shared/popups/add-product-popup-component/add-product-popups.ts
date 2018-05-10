@@ -17,6 +17,7 @@ export class AddProductPopups implements OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
   productForm: FormGroup;
+  productFormShipper: FormGroup;
   product = {
     code:'',
     description: '',
@@ -39,6 +40,7 @@ export class AddProductPopups implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.mainService.radio();
     this.createFormAddProduct();
+    this.createFormShipper();
   }
 
   ionViewWillLeave(): void {
@@ -131,18 +133,29 @@ export class AddProductPopups implements OnInit, AfterViewInit {
   createFormAddProduct(): void {
     this.productForm = this.fb.group({
       unit_price: ['', Validators.compose([
-        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/),
+        Validators.required
       ])],
-      code: ['', Validators.compose([
+      code: ['9603', Validators.compose([
+        Validators.required
+      ])],
+    });
+  }
+
+  createFormShipper():void {
+    this.productFormShipper = this.fb.group({
+      code: ['9603', Validators.compose([
         Validators.required
       ])],
       price: ['', Validators.compose([
-        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/),
+        Validators.required
       ])],
       quantity: ['', Validators.compose([
-        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/)
+        Validators.pattern(/^[0-9]{1,10}(\.[0-9]{0,2})?$/),
+        Validators.required
       ])]
-    });
+    })
   }
 
   @HostListener('document:click', ['$event.target.tagName'])

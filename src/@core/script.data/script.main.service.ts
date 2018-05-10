@@ -13,22 +13,27 @@ export class ScriptMainService {
   dropdown() {
     const that = this;
     $(document).on('touchstart', '[data-show-element]', function () {
-      $('.' + $(this).data('show-element')).toggleClass('u2g-show');
+      if($('.' + $(this).data('show-element')).hasClass('u2g-show')){
+        that.hideDropdown();
+      }
+      else{
+        $('.' + $(this).data('show-element')).toggleClass('u2g-show');
 
-      $(this).addClass('u2g-showed');
+        $(this).addClass('u2g-showed');
 
-      $('.u2g-overlay').css({'display' : 'block'});
-      $('.scroll-content').css({'overflow': 'hidden', '-webkit-overflow-scrolling': 'auto'});
+        $('.u2g-overlay').css({'display' : 'block'});
+        $('.scroll-content').css({'overflow': 'hidden', '-webkit-overflow-scrolling': 'auto'});
 
-      $('body').addClass('overflow');
+        $('body').addClass('overflow');
 
-      if ($(this).hasClass('u2g-menu-toggle')) {
-        $(this).addClass('u2g-menu-toggle--open');
+        if ($(this).hasClass('u2g-menu-toggle')) {
+          $(this).addClass('u2g-menu-toggle--open');
 
-        $('.u2g-page-wrapper').addClass('u2g-page-wrapper--right');
-        $('.u2g-page-header').addClass('u2g-page-wrapper--right');
+          $('.u2g-page-wrapper').addClass('u2g-page-wrapper--right');
+          $('.u2g-page-header').addClass('u2g-page-wrapper--right');
 
 
+        }
       }
     });
 

@@ -98,10 +98,13 @@ export class DeclarationPage implements OnInit{
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id,
-      shipper: this.shipper,
+      shipper: this.shipper || this.form.value.code,
       declarationDetailsJson: JSON.stringify(this.productList)
     };
+    console.log(this.data);
     this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
+      console.log(data)
+      console.log(this.form.value.code)
       if(data.message.status === "OK")
         this.modalController.create(SuccessPopups).present();
       this.subscription.unsubscribe();
