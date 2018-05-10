@@ -3331,8 +3331,17 @@ ion-content, body.overflow {
   height: 100%;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
+  left: 0;
+  z-index: 9; }
+.u2g-overlay_1 {
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 270px;
   z-index: 9; }
 
 /*DROPDOWN ITEM CLASS*/

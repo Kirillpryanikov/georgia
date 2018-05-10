@@ -49,7 +49,9 @@
                   <p class="u2g-payment-method__info-description">
                     <span class="u2g-payment-method__value u2g-payment-method__value--left">1.8% -</span>{{'_TBC_COMMISION_FEE_3' | translate}}
                   </p>
-                  <a (click)="payment_tbc($event)" class="u2g-button u2g-payment-method__button">{{'_INVOICE_PAYMENT' | translate}}</a>
+                  <button (click)="payment_tbc($event)" class="u2g-button u2g-payment-method__button">
+                    <span class="text">{{'_INVOICE_PAYMENT' | translate}}</span>
+                  </button>
                 </div>
               </div>
 
@@ -73,7 +75,9 @@
                     {{'_COMMISION_FEE' | translate}} <br>
                     <span class="u2g-payment-method__value">1.8%</span>
                   </p>
-                  <a (click)="payment_cartu($event)" class="u2g-button u2g-payment-method__button">{{'_INVOICE_PAYMENT' | translate}}</a>
+                  <button (click)="payment_cartu($event)" class="u2g-button u2g-payment-method__button">
+                    <span class="text">{{'_INVOICE_PAYMENT' | translate}}</span>
+                  </button>
                   <svg height="100%" class="u2g-payment-method__bg" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 8016 8016" width="50"><defs><style type="text/css">
                     .fil0 {fill:none}
                     .fil2 {fill:#464D5C;fill-rule:nonzero}
