@@ -8,6 +8,7 @@ import { SuccessPopups } from "@shared/popups/success-popup-component/success-po
 import { Subscription } from "rxjs/Subscription";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -101,12 +102,11 @@ export class DeclarationPage implements OnInit{
       shipper: this.shipper || this.form.value.code,
       declarationDetailsJson: JSON.stringify(this.productList)
     };
-    console.log(this.data);
     this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
-      console.log(data)
-      console.log(this.form.value.code)
       if(data.message.status === "OK")
         this.modalController.create(SuccessPopups).present();
+      else
+        this.modalController.create(ErrorPopups, {notice: data.message.message}).present();
       this.subscription.unsubscribe();
     });
   }

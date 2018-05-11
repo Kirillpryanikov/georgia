@@ -3686,7 +3686,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 17px;
+    line-height: 21px;
     padding: 0 5.75px;
     width: auto;
     top: -5px;
@@ -3779,7 +3779,6 @@ ion-content, body.overflow {
             border-radius: 14px;
     padding: 0 22px;
     height: 28px;
-    line-height: 28px;
     position: absolute;
     bottom: 0;
     left: -webkit-calc(50% + 12px);
@@ -3787,7 +3786,10 @@ ion-content, body.overflow {
     -webkit-transform: translateX(-50%) translateY(50%);
         -ms-transform: translateX(-50%) translateY(50%);
             transform: translateX(-50%) translateY(50%);
-    white-space: nowrap; }
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
   .u2g-profile-info__barcode {
     background: #ffffff;
     font-size: 0;
@@ -5924,31 +5926,32 @@ select[data-ss-uuid] {
             justify-content: flex-end;
     max-width: 200px;
     padding-bottom: 6px;
-    width: 64%; }
+}
     .u2g-settings-form__button-wrapper > label {
       -webkit-align-self: flex-end;
           -ms-flex-item-align: end;
               align-self: flex-end;
       -webkit-box-sizing: border-box;
               box-sizing: border-box;
-      display: block;
-      line-height: 29px;
       margin-bottom: 10px;
       padding: 0 10px;
       text-align: center;
       white-space: nowrap;
-      width: 100%; }
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
       .u2g-settings-form__button-wrapper > label > svg {
         position: relative;
-        top: 3px;
-        left: -3px; }
+        top: -1px;
+      }
     .u2g-settings-form__button-wrapper .u2g-button--remove-image {
       line-height: 29px;
       padding: 0 10px;
     }
       .u2g-settings-form__button-wrapper .u2g-button--remove-image > svg {
         position: relative;
-        top: 2px;
+        top: -1px;
       }
   .u2g-settings-form__label {
     display: inline-block;
@@ -7240,6 +7243,8 @@ img.mainImage {
 
 .button_stng {
   font-size: 13px;
+  margin: auto;
+  padding-left: 5px;
 }
 svg {
   height: auto;
