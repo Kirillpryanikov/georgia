@@ -5020,7 +5020,9 @@ select[data-ss-uuid] {
     .u2g-info-block--declaration .u2g-info-block__list-item--label {
       border-bottom: 0;
       width: 50%;
-      max-width: 250px; }
+      max-width: 250px;
+      margin-top: 20px;
+    }
       .u2g-info-block--declaration .u2g-info-block__list-item--label > input[type="radio"] + span:after {
         background-image: none;
         -webkit-border-radius: 50%;
