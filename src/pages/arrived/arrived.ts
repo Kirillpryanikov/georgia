@@ -37,7 +37,7 @@ export class ArrivedPage implements OnDestroy{
   private listArrived;
   private block: boolean = false;
   private keys = [];
-  private ListCities = [];
+  private listCourier = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -61,10 +61,9 @@ export class ArrivedPage implements OnDestroy{
     this.mainService.initMasonry();
   }
 
-  showCommentPopup(city, index, _index) {
-    console.log(city);
-    if(city){
-      const modal = this.modalController.create(CommentPopups, {package_id: this.ListCities[city][index].trackings[_index].id});
+  showCommentPopup(courier, index, _index) {
+    if(courier){
+      const modal = this.modalController.create(CommentPopups, {package_id: this.listCourier[index].trackings[_index].id});
       modal.present();
     }
     else{
@@ -73,9 +72,9 @@ export class ArrivedPage implements OnDestroy{
     }
   }
 
-  showInvoicePopup(city, index, _index) {
-    if(city){
-      const modal = this.modalController.create(InvoicePopups, {package_id: this.ListCities[city][index].trackings[_index].id});
+  showInvoicePopup(courier, index, _index) {
+    if(courier){
+      const modal = this.modalController.create(InvoicePopups, {package_id: this.listCourier[index].trackings[_index].id});
       modal.present();
     }else{
       const modal = this.modalController.create(InvoicePopups, {package_id: this.listArrived[index].trackings[_index].id});
@@ -91,9 +90,9 @@ export class ArrivedPage implements OnDestroy{
     })
   }
 
-  showInvoiceInfoPopup(city, index) {
-    if(city){
-      const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.ListCities[city][index].invoice});
+  showInvoiceInfoPopup(courier, index) {
+    if(courier){
+      const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.listCourier[index].invoice});
       modal.present();
     }else{
       const modal = this.modalController.create(InvoiceInfoPopups,{invoice: this.listArrived[index].invoice});
@@ -137,7 +136,7 @@ export class ArrivedPage implements OnDestroy{
       }
 
       this.listArrived = Object.keys(data.message.arrived.NONE).map(key => data.message.arrived.NONE[key]);
-      this.ListCities = Object.keys(data.message.arrived.COURIER).map(key => data.message.arrived.COURIER[key]);
+      this.listCourier = Object.keys(data.message.arrived.COURIER).map(key => data.message.arrived.COURIER[key]);
 
       setTimeout(() => {
         this.initMasonry();

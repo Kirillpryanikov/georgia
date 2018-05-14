@@ -135,7 +135,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       packageId: this.navParams.data.package_id,
     };
     this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
-      if(data.message.files.length > 0) {
+      if(data.message.files && data.message.files.length > 0) {
         this.filename = data.message.files[0];
         $('.u2g-file-name').text(data.message.files[0]);
         $('.remove-file_js').addClass('u2g-remove-file--chosen');
