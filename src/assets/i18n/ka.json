@@ -398,7 +398,19 @@
 
   "_CHANGE_PASSWORD_CONFIRM": "გთხოვთ, დაადასტუროთ პაროლის შეცვლა!",
   "_LOGIN_WITH_PIN": "შესვლა PIN- ით",
-  "_QANTITY":"რაოდენობა"
+  "_QANTITY":"რაოდენობა",
+
+  "UsaWarehousePage":"ამერიკის საწყობი",
+  "AwaitingTrackingPage":"დაამატეთ მისაღები ამანათი",
+  "PendingPage":"გამოგზავნილი",
+  "Arrived":"ჩამოსული",
+  "ReceivedPage":"მიღებული",
+  "DeclarationPage":"დეკლარირება",
+  "TransactionPage":"ტრანზაქციები",
+  "SettingsPage":"პარამეტრები",
+  "DepositePage":"ბალანსის შევსება",
+  "TbcPage":"TBC",
+  "CartuPage":"Cartu"
 
 
 }

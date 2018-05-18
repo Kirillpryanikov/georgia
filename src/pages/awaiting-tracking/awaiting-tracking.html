@@ -16,7 +16,7 @@
 
         <div class="u2g-content-wrapper">
 
-          <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
+          <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name | translate}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
 
           <div class="u2g-tracking-number">
             <p class="u2g-tracking-number__description">{{'_AWAITING_TRACKING_DESC' | translate}}</p>

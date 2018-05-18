@@ -395,5 +395,17 @@
   "_CHECK_INTERNET":"Please, check your internet connection",
   "_PIN_CODE": "PIN code",
   "_LOGIN_WITH_PIN": "Login with PIN",
-  "_QANTITY":"Quantity"
+  "_QANTITY":"Quantity",
+
+  "UsaWarehousePage":"USA Warehouse",
+  "AwaitingTrackingPage":"Awaiting Tracking ID",
+  "PendingPage":"Pending",
+  "Arrived":"Arrived Packages",
+  "ReceivedPage":"Received",
+  "DeclarationPage":"Declaration",
+  "TransactionPage":"Transaction",
+  "SettingsPage":"Settings",
+  "DepositePage":"Deposite",
+  "TbcPage":"TBC",
+  "CartuPage":"Cartu"
 }

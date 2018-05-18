@@ -3221,8 +3221,7 @@ ion-content, body.overflow {
           box-shadow: 0px 3px 8px 0px rgba(46, 55, 63, 0.17);
   color: #ffffff;
   cursor: pointer;
-  height: 29px;
-  padding: 0 18px;
+  padding: 5px 18px;
   font-size: 15px; }
   .u2g-button--green {
     background: #85c099; }
@@ -3459,7 +3458,7 @@ ion-content, body.overflow {
 
 @media (max-width: 576px) {
   .u2g-button--express-courier {
-    padding: 0 20px; } }
+    padding: 5px 20px; } }
 
 /* ------------------------------------------- */
 /* HEADER */
@@ -3686,8 +3685,7 @@ ion-content, body.overflow {
     position: absolute;
     text-align: center;
     height: 21px;
-    line-height: 21px;
-    padding: 0 5.75px;
+    padding: 4px 5.75px;
     width: auto;
     top: -5px;
     right: -10px; }
@@ -3768,17 +3766,17 @@ ion-content, body.overflow {
     width: -webkit-calc(100% - 90px);
     width: calc(100% - 90px); }
   .u2g-profile-info__name {
-    font-size: 15px;
+    font-size: 12px;
     letter-spacing: 0.04em; }
   .u2g-profile-info__email {
-    font-size: 13px;
+    font-size: 12px;
     white-space: nowrap; }
   .u2g-profile-info__user-code {
     background: #e47b7b;
     -webkit-border-radius: 14px;
             border-radius: 14px;
-    padding: 0 22px;
-    height: 28px;
+    padding: 5px 22px;
+    //height: 28px;
     position: absolute;
     bottom: 0;
     left: -webkit-calc(50% + 12px);
@@ -3789,6 +3787,7 @@ ion-content, body.overflow {
     white-space: nowrap;
     display: flex;
     align-items: center;
+    font-size: 15px;
   }
   .u2g-profile-info__barcode {
     background: #ffffff;
@@ -5264,7 +5263,7 @@ select[data-ss-uuid] {
 
 @media (max-width: 992px) {
   .u2g-info-block__button--top {
-    width: 75px; } }
+    width: auto; } }
 
 @media (min-width: 820px) and (max-width: 992px) {
   .u2g-info-block {
@@ -5454,7 +5453,7 @@ select[data-ss-uuid] {
     display: -ms-flexbox;
     display: flex;
     font-size: 10px;
-    padding: 0 16px; }
+    padding: 5px 16px; }
   .u2g-content--pending .u2g-info-block__comment > span, .u2g-content--pending .u2g-info-block__invoice > span {
     display: none; }
   .u2g-content--pending .u2g-info-block__comment--small, .u2g-content--pending .u2g-info-block__invoice--small {
@@ -5948,7 +5947,7 @@ select[data-ss-uuid] {
         top: -1px;
       }
     .u2g-settings-form__button-wrapper .u2g-button--remove-image {
-      line-height: 29px;
+      //line-height: 29px;
       padding: 0 10px;
     }
       .u2g-settings-form__button-wrapper .u2g-button--remove-image > svg {
@@ -7247,6 +7246,8 @@ img.mainImage {
   font-size: 13px;
   margin: auto;
   padding-left: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 svg {
   height: auto;

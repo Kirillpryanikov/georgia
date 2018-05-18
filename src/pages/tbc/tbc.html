@@ -13,7 +13,7 @@
       <div class="u2g-container u2g-container--simple-page">
         <div class="u2g-content-wrapper">
 
-        <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
+        <a (click)="navTo($event, bread.id)" class="breadcrumbs" *ngFor="let bread of this.navCtrl.getViews(); index as index">{{bread.name | translate}} <span *ngIf="this.navCtrl.getViews().length !== index+1"> -> </span></a>
 
         <div class="u2g-content">
           <!--   PAYMENT FORM-->
@@ -24,7 +24,9 @@
               <p class="u2g-payment-form__note"><span>{{'_TBC_UNPAID_INVOICE_TOTAL_2' |translate}}:</span> {{'_TBC_UNPAID_INVOICE_TOTAL_3' |translate}}</p>
               <span class="u2g-payment-form__text">{{'_ENTER_AMOUNT_GEL' | translate}}: </span>
               <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
-              <input [disabled]="!amount" (click)="generateTBCBankTransaction()" type="button" class="u2g-button" value="{{'_PAYMENT' | translate}}">
+              <button [disabled]="!amount" (click)="generateTBCBankTransaction()" type="button" class="u2g-button" style="height: 30px">
+                <span class="text">{{'_PAYMENT' | translate}}</span>
+              </button>
             </form>
           </div>
         </div>
