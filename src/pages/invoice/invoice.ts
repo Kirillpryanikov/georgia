@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import { InvoiceService } from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
 
@@ -19,6 +19,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 })
 export class InvoicePage implements OnInit{
   private data;
+  private backButton: boolean = false;
   private sessionId: string;
   private discount = {
     amount: 0,
@@ -44,17 +45,25 @@ export class InvoicePage implements OnInit{
     weight_kg: ''
   };
   constructor(public navCtrl: NavController,
+              private platform: Platform,
               public navParams: NavParams,
               private invoiceService: InvoiceService,
               private nativeStorage: NativeStorage) {
   }
 
   ngOnInit() {
+    if(this.platform.is('android')){
+      this.backButton = true;
+    }
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
         this.getInvoice();
       });
+  }
+
+  back() {
+    this.navCtrl.pop();
   }
 
   getInvoice() {
