@@ -52,7 +52,7 @@ export class InvoicePage implements OnInit{
   }
 
   ngOnInit() {
-    if(this.platform.is('android')){
+    if(this.platform.is('ios')){
       this.backButton = true;
     }
     this.nativeStorage.getItem('sessionId')

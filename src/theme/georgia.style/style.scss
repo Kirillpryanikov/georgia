@@ -3767,10 +3767,14 @@ ion-content, body.overflow {
     width: calc(100% - 90px); }
   .u2g-profile-info__name {
     font-size: 12px;
-    letter-spacing: 0.04em; }
+    letter-spacing: 0.04em;
+    line-height: 1.5em;
+  }
   .u2g-profile-info__email {
     font-size: 12px;
-    white-space: nowrap; }
+    white-space: nowrap;
+    line-height: 1.5em;
+  }
   .u2g-profile-info__user-code {
     background: #e47b7b;
     -webkit-border-radius: 14px;
