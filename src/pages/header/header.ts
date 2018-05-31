@@ -60,7 +60,6 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.getAvatar();
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
