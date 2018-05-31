@@ -117,6 +117,11 @@ export class DeclarationPage implements OnInit{
       packageId: this.navParams.data.package_id
     };
     this.subscription = this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
+      if(data.message.declaration.shipper.length > 3){
+        this.form.patchValue({
+          code: data.message.declaration.shipper,
+        });
+      }
       if(data.message.declaration) {
         this.productList = data.message.declaration.goods;
         for(let i = 0; i < this.productList.length; i++) {

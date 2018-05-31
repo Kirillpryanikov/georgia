@@ -14,6 +14,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Subject } from "rxjs/Subject";
 import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {HeaderService} from "@core/services";
 
 const notice = {
   insurance: '_CHANGE_INSURANCE_CONFIRMATION',
@@ -38,6 +39,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private trackingForm: FormGroup;
   private listAwaitingTracking;
   private data;
+  private ntf;
   private subscription: Subscription;
   private subject = new Subject<any>();
 
@@ -49,7 +51,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private scriptService: ScriptService,
               private popupService: PopupService,
               private mainService: ScriptMainService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private headerService: HeaderService) {
 
   }
 
@@ -60,6 +63,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
         this.getAwaiting().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();
         });
+        this.getInfo();
       });
     this.createFormAddTracking();
   }
@@ -120,6 +124,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       };
       this.listAwaitingTracking.splice(index,1);
       this.subscription = this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
+        this.getInfo();
         this.initMasonry();
         this.subscription.unsubscribe();
       });
@@ -158,6 +163,12 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     return this.subject.asObservable();
   }
 
+  getInfo() {
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.ntf = data.message.counts.awaiting;
+    });
+  }
+
   addTracking() {
     this.data = {
       sessionId: this.sessionId,
@@ -175,6 +186,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
         this.subscription.unsubscribe();
       }
       this.getAwaiting();
+      this.getInfo();
+      this.initMasonry();
     });
   }
 

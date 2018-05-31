@@ -3450,7 +3450,11 @@ ion-content, body.overflow {
     max-width: 100%;
     min-height: -webkit-calc(100vh - 55px);
     min-height: calc(100vh - 55px);
-    padding: 15px; }
+    padding: 15px;
+    height: 100vh;
+    display: block;
+    overflow: auto;
+  }
   .u2g-overflow {
     overflow: hidden; }
   .u2g-breadcramb > span {

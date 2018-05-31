@@ -59,8 +59,8 @@
               </div>
             </div>
           </div>
-          <div class="u2g-info-block u2g-info-block--packages-being" data-packages="Courier Process!">
-            <div *ngFor="let arrived of listCourier; index as index" class="u2g-info-block">
+          <!--<div class="u2g-info-block u2g-info-block&#45;&#45;packages-being" data-packages="Courier Process!">-->
+            <div *ngFor="let arrived of listCourier; index as index" class="u2g-info-block" style="border: 2px solid red">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>
                 <span class="u2g-info-block__tracking-number-value">{{arrived.hawb}}</span>
@@ -68,6 +68,7 @@
               <div class="u2g-info-block__button-wrapper">
                 <button (click)="showInvoiceInfoPopup(true, index)" data-popup="invoice-table" class="u2g-info-block__button u2g-info-block__button--top"><span>{{'_VIEW_INVOICE' | translate}}</span></button>
               </div>
+              <div class="u2g-info-block__list u2g-info-block__list--bg-all">{{'_COURIER_PROCESS' | translate}}</div>
               <div *ngFor="let tracking of arrived.trackings; index as _index" class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div class="u2g-info-block__list-item">
                   <span>{{tracking.tracking}}</span>
@@ -98,7 +99,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          <!--</div>-->
         </div>
       </div>
       <div class="u2g-overlay"></div>

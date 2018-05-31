@@ -129,6 +129,7 @@ export class ArrivedPage implements OnDestroy{
 
   getArrived() {
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
+      console.log(data);
       const keys = Object.keys(data.message.arrived);
       for (let i in keys){
         if(keys[i] === "COURIER")

@@ -19,12 +19,13 @@ import {NativeStorage} from "@ionic-native/native-storage";
 @Component({
   selector: 'sidebar-page',
   templateUrl: 'sidebar.html',
-  inputs: ['active']
+  inputs: ['active', 'ntf']
 })
 export class SidebarPage implements OnInit, OnDestroy{
   private sessionId: string;
   private subscription: Subscription;
   public active: string;
+  public ntf;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
     usaWarehouse: 0,

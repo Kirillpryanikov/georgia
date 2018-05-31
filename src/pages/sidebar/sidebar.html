@@ -20,7 +20,7 @@
     </svg>
   </a>
   <div class="u2g-nav">
-    <a (click)="awaitingPackages($event)" [ngClass]="{'u2g-nav__item--active': isActive('awaiting-tracking')}" class="u2g-nav__item u2g-nav__item--awaiting-packages">{{'_AWAITING' | translate}}<span class="u2g-nav__item-amount">{{notifications.awaitingPackages}}</span></a>
+    <a (click)="awaitingPackages($event)" [ngClass]="{'u2g-nav__item--active': isActive('awaiting-tracking')}" class="u2g-nav__item u2g-nav__item--awaiting-packages">{{'_AWAITING' | translate}}<span class="u2g-nav__item-amount">{{ntf || notifications.awaitingPackages}}</span></a>
     <a (click)="usaWarehouse($event)" [ngClass]="{'u2g-nav__item--active': isActive('usa-warehouse')}" class="u2g-nav__item u2g-nav__item--warehouse">{{'_USA_WAREHOUSE' | translate}}<span class="u2g-nav__item-amount">{{notifications.usaWarehouse}}</span></a>
     <a (click)="pending($event)" [ngClass]="{'u2g-nav__item--active': isActive('pending')}" class="u2g-nav__item u2g-nav__item--pending">{{'_PENDING' | translate}}<span class="u2g-nav__item-amount">{{notifications.pending}}</span></a>
     <a (click)="arrived($event)" [ngClass]="{'u2g-nav__item--active': isActive('arrived')}" class="u2g-nav__item u2g-nav__item--arrived">{{'_ARRIVED' | translate}}<span class="u2g-nav__item-amount">{{notifications.arrived}}</span></a>

@@ -60,6 +60,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.getAvatar();
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
@@ -75,13 +76,26 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   getAvatar() {
-    this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
-      if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
-        this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
-      }
-      else
-        this.user.userPhoto = './img/placeholder_user.png';
-    });
+    if(localStorage.getItem('userAvatar') !== null){
+      this.user.userPhoto = localStorage.getItem('userAvatar');
+      this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+        if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+          this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
+          localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
+        }
+        else
+          this.user.userPhoto = './img/placeholder_user.png';
+      });
+    } else {
+      this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+        if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+          this.user.userPhoto = 'data:image/png;base64,' + data.message.file;
+          localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
+        }
+        else
+          this.user.userPhoto = './img/placeholder_user.png';
+      });
+    }
   }
 
   getBranchSelection(data) {
@@ -89,21 +103,31 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   getInfo() {
-    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      if(data.message.status === "EXPIRED"){
-        this.nativeStorage.remove('sessionId');
-        this.navCtrl.setRoot('authorization-page');
-        return;
-      }
-      this.getBranchSelection(data);
-      this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
-      this.user.email = data.message.profile.email;
-      this.user.userCode = data.message.profile.suite;
-      this.user.userBalance = data.message.profile.balance;
-      this.lang = data.message.profile.panel_language || 'en';
-      this.translate.use(this.lang);
-      this.subscription.unsubscribe();
-    })
+    if(localStorage.getItem('lang') !== null) {
+      this.lang = localStorage.getItem('lang');
+      this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+        this.lang = data.message.profile.panel_language || 'en';
+        this.getBranchSelection(data);
+        localStorage.setItem('lang', data.message.profile.panel_language || 'en')
+      })
+    } else {
+      this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+        if(data.message.status === "EXPIRED"){
+          this.nativeStorage.remove('sessionId');
+          this.navCtrl.setRoot('authorization-page');
+          return;
+        }
+        this.getBranchSelection(data);
+        this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
+        this.user.email = data.message.profile.email;
+        this.user.userCode = data.message.profile.suite;
+        this.user.userBalance = data.message.profile.balance;
+        this.lang = data.message.profile.panel_language || 'en';
+        this.translate.use(this.lang);
+        localStorage.setItem('lang', data.message.profile.panel_language || 'en');
+        this.subscription.unsubscribe();
+      })
+    }
   }
 
   getNotifications() {
