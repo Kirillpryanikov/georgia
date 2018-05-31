@@ -108,7 +108,20 @@ export class HeaderPage implements OnInit, OnDestroy{
       this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
         this.lang = data.message.profile.panel_language || 'en';
         this.getBranchSelection(data);
-        localStorage.setItem('lang', data.message.profile.panel_language || 'en')
+        if(data.message.status === "EXPIRED"){
+          this.nativeStorage.remove('sessionId');
+          this.navCtrl.setRoot('authorization-page');
+          return;
+        }
+        this.getBranchSelection(data);
+        this.user.userName = data.message.profile.first_name + ' ' + data.message.profile.last_name;
+        this.user.email = data.message.profile.email;
+        this.user.userCode = data.message.profile.suite;
+        this.user.userBalance = data.message.profile.balance;
+        this.lang = data.message.profile.panel_language || 'en';
+        this.translate.use(this.lang);
+        localStorage.setItem('lang', data.message.profile.panel_language || 'en');
+        this.subscription.unsubscribe();
       })
     } else {
       this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
