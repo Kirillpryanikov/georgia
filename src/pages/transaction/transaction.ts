@@ -26,6 +26,7 @@ export class TransactionPage implements OnInit{
   private data;
   private subscription: Subscription;
   private sessionId: string;
+  private active = 'transaction';
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private transactionService: TransactionService,

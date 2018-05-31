@@ -117,9 +117,13 @@ export class DeclarationPage implements OnInit{
       packageId: this.navParams.data.package_id
     };
     this.subscription = this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
-      if(data.message.declaration.shipper.length > 3){
+      if(data.message.declaration.shipper && (data.message.declaration.shipper.length > 3)){
         this.form.patchValue({
           code: data.message.declaration.shipper,
+        });
+      } else{
+        this.form.patchValue({
+          shipper: 'false',
         });
       }
       if(data.message.declaration) {

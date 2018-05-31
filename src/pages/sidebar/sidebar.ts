@@ -6,9 +6,10 @@ import {
 } from "@core/services";
 
 import { ISidebarNotification }  from "@IFolder/ISidebarNotification";
-import { NavController } from "ionic-angular";
+import {ModalController, NavController} from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -42,7 +43,8 @@ export class SidebarPage implements OnInit, OnDestroy{
               private arrivedService: ArrivedService,
               private pendingSevice: PendingService,
               private headerService: HeaderService,
-              private nativeStorage: NativeStorage) {}
+              private nativeStorage: NativeStorage,
+              private modalController: ModalController) {}
 
   ngOnInit() {
     this.nativeStorage.getItem('sessionId')
@@ -75,6 +77,27 @@ export class SidebarPage implements OnInit, OnDestroy{
   received(e) {
     e.preventDefault();
     this.navCtrl.setRoot('received-page');
+  }
+
+  usaAddress(e) {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(AddressPopups);
+    modal.present();  }
+
+  transactions(e) {
+    e.preventDefault();
+    this.navCtrl.setRoot('transaction-page')
+  }
+
+  settings(e) {
+    e.preventDefault();
+    this.navCtrl.setRoot('settings-page')
+  }
+
+  logout(e) {
+    e.preventDefault();
+    this.nativeStorage.remove('sessionId');
+    this.navCtrl.setRoot('authorization-page');
   }
 
   isActive(item) {
