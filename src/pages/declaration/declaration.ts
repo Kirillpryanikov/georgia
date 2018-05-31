@@ -9,6 +9,8 @@ import { Subscription } from "rxjs/Subscription";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import * as $ from 'jquery';
+
 
 /**
  * Generated class for the DeclarationPage page.
@@ -74,6 +76,7 @@ export class DeclarationPage implements OnInit{
       if(data){
         this.productList.push(data);
         this.total+=data.unit_price;
+        $('.u2g-overlay').css({'display' : 'none'});
       }
     });
     modal.present();
