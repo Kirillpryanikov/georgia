@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
@@ -27,7 +27,7 @@ const notice = {
   selector: 'page-declaration',
   templateUrl: 'declaration.html',
 })
-export class DeclarationPage implements OnInit{
+export class DeclarationPage implements OnInit, OnDestroy{
 
   productList: Array<any> = [];
   public logoWrapper = '_DECLARATION';
@@ -126,7 +126,7 @@ export class DeclarationPage implements OnInit{
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id
     };
-    this.subscription = this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
+    this.declarationService.getDeclaration('getDeclaration', this.data).subscribe(data => {
       if(data.message.declaration.shipper && (data.message.declaration.shipper.length > 3)){
         this.form.patchValue({
           code: data.message.declaration.shipper,
@@ -142,7 +142,6 @@ export class DeclarationPage implements OnInit{
           this.total+=parseFloat(this.productList[i].unit_price);
         }
       }
-      this.subscription.unsubscribe();
     });
   }
 
@@ -166,6 +165,12 @@ export class DeclarationPage implements OnInit{
       }
     });
     modal.present();
+  }
+
+  ngOnDestroy() {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
 }
