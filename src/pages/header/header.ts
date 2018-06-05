@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import { ModalController, NavController } from "ionic-angular";
+import {ModalController, NavController, Platform} from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
 import { HeaderService, SettingService} from "@core/services";
 
@@ -27,9 +27,10 @@ import { Network} from "@ionic-native/network";
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId: string;
-  public logoWrapper;
+  private logoWrapper;
   private data;
   private subscription: Subscription;
+  private platformIOS;
   private user: IUserHeader = {
     userId: '',
     userPhoto: '',
@@ -47,6 +48,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   public branchSelection = new EventEmitter<any>();
 
   constructor(public mainService: ScriptMainService,
+              public platform: Platform,
               public navCtrl: NavController,
               private translate: TranslateService,
               private headerService: HeaderService,
@@ -60,7 +62,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    // this.getInfo();
+    this.platformIOS = this.platform.is('ios');
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
