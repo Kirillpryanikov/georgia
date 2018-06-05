@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
-import { DeclarationService } from "@core/services";
+import {DeclarationService, HeaderService} from "@core/services";
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { SuccessPopups } from "@shared/popups/success-popup-component/success-popups";
 import { Subscription } from "rxjs/Subscription";
@@ -29,7 +29,7 @@ const notice = {
 })
 export class DeclarationPage implements OnInit{
 
-  productList: Array<any>;
+  productList: Array<any> = [];
   public logoWrapper = '_DECLARATION';
   sessionId: string;
   total: number = 0;
@@ -38,6 +38,7 @@ export class DeclarationPage implements OnInit{
   subscription: Subscription;
   shipper: string;
   shipperList: Array<string>;
+  is_organization: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -45,7 +46,8 @@ export class DeclarationPage implements OnInit{
               private declarationService: DeclarationService,
               private mainService: ScriptMainService,
               private fb: FormBuilder,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private headerService: HeaderService) {
   }
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class DeclarationPage implements OnInit{
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
+        this.getInfo();
         this.getDeclaration();
         this.getShipers();
       });
@@ -62,6 +65,13 @@ export class DeclarationPage implements OnInit{
     this.mainService.readonly();
   }
 
+  getInfo() {
+    this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+      this.is_organization = data.message.profile.is_organization;
+      this.subscription.unsubscribe();
+    })
+  }
+
   navTo(e, page) {
     e.preventDefault();
     if(this.navCtrl.getActive().id !== page)
@@ -69,7 +79,7 @@ export class DeclarationPage implements OnInit{
   }
 
   addProduct(): void {
-    const modal = this.modalController.create(AddProductPopups, {shipper: this.form.controls.shipper.value});
+    const modal = this.modalController.create(AddProductPopups, {is_organization: this.is_organization});
     modal.onDidDismiss(data => {
       if(data){
         this.productList.push(data);

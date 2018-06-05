@@ -1,6 +1,6 @@
 import {
   Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener,
-  EventEmitter
+  EventEmitter, OnDestroy
 } from '@angular/core';
 import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
@@ -41,6 +41,14 @@ export class AddProductPopups implements OnInit, AfterViewInit {
     this.mainService.radio();
     this.createFormAddProduct();
     this.createFormShipper();
+    this.backBtn();
+  }
+
+  backBtn() {
+    this.platform.registerBackButtonAction(() => {
+      console.log(this.navCtrl.getViews());
+      this.close();
+    }, 999);
   }
 
   ionViewWillLeave(): void {

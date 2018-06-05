@@ -114,7 +114,7 @@ export class ArrivedPage implements OnDestroy{
         this.block = false;
       } else {
         if(data.message.status === 'FAIL') {
-          const modal = this.modalController.create(CourierNotSuccessPopups);
+          const modal = this.modalController.create(CourierNotSuccessPopups, {msg: data.message.message});
           modal.present();
           this.block = false;
         } else{

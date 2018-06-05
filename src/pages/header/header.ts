@@ -60,12 +60,12 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.getInfo();
+    // this.getInfo();
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
         this.getAvatar();
-        this.getInfo();
+        this.getInfo(null);
         this.getNotifications();
       })
   }
@@ -102,9 +102,29 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.branchSelection.emit(data);
   }
 
-  getInfo() {
+  getInfo(a) {
+    if(!a){
+      if(localStorage.getItem('lang') !== null){
+        this.lang = localStorage.getItem('lang');
+        this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+          this.lang = data.message.profile.panel_language || 'en';
+          localStorage.setItem('lang', this.lang);
+        });
+      }else {
+        this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+          this.lang = data.message.profile.panel_language || 'en';
+          localStorage.setItem('lang', this.lang);
+        });
+      }
+    }else {
+      this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+        this.lang = data.message.profile.panel_language || 'en';
+      });
+    }
+
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      this.lang = data.message.profile.panel_language || 'en';
+      // console.log(data);
+      // this.lang = data.message.profile.panel_language || 'en';
       this.getBranchSelection(data);
       if(data.message.status === "EXPIRED"){
         this.nativeStorage.remove('sessionId');
@@ -143,7 +163,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       language: language
     };
     this.headerService.changeLanguage('changeLanguage', this.data).subscribe(() => {
-      this.getInfo();
+      this.getInfo(1);
     })
   }
 

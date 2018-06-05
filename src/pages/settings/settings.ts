@@ -131,12 +131,13 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.reader.readAsDataURL(this.file);
       this.reader.onloadend = () => {
         this.userPhoto = this.reader.result;
-        this.extention = this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
+        this.extention = this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2];
         this.data = {
           sessionId: this.sessionId,
           base64data: this.userPhoto.split(',')[1],
           extention: this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
         };
+        localStorage.setItem('userAvatar', 'data:image/png;base64,' + this.userPhoto.split(',')[1],);
         if(this.extention === 'jpg' || this.extention === 'jpeg' || this.extention === 'png')
           this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
         })

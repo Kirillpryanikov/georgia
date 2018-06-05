@@ -3477,7 +3477,7 @@ ion-content, body.overflow {
   width: 100%;
   position: fixed;
   z-index: 999;
-  padding-top: 20px;
+  //padding-top: 20px;
   /*LOGO*/
   /*OLD VERSION LINK*/
   /*SETTINGS*/ }
@@ -4068,7 +4068,7 @@ ion-content, body.overflow {
     width: 100%;
     max-width: 400px;
     padding: 15px 25px;
-    margin: 50px auto 0; }
+    margin: 10px auto 0; }
   .u2g-sidebar__links {
     display: -webkit-box;
     display: -webkit-flex;
@@ -4181,7 +4181,9 @@ ion-content, body.overflow {
   .u2g-nav {
     height: auto;
     padding-top: 0;
-    width: 100%; }
+    width: 100%;
+    padding-bottom: 70px;
+  }
     .u2g-nav.show {
       left: 0; }
     .u2g-nav__item {
@@ -7282,4 +7284,11 @@ svg {
   color: #e47b7b;
   margin: 30px;
   text-align: center;
+}
+
+.u2g-nav > .u2g-profile-info__nav-item > svg {
+  left: 20px;
+}
+.u2g-nav > .u2g-profile-info__nav-item {
+  border-top: none;
 }

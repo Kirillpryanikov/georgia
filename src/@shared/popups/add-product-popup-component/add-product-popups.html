@@ -5,7 +5,7 @@
         <div class="u2g-popup__title">{{'_ADD_PARCEL' | translate}}</div>
         <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="material-icons">clear</i></button>
       </div>
-      <div *ngIf="navParams.data.shipper !== 'true'" class="u2g-popup__content">
+      <div *ngIf="!navParams.data.is_organization" class="u2g-popup__content">
         <form [formGroup]="productForm" (submit)="addProduct()" id="add-product" class="u2g-add-product">
           <div class="u2g-add-product__radio-wrapper">
             <label class="u2g-add-product__radio">
@@ -63,7 +63,7 @@
         </form>
       </div>
 
-      <div *ngIf="navParams.data.shipper === 'true'" class="u2g-popup__content">
+      <div *ngIf="navParams.data.is_organization" class="u2g-popup__content">
         <form [formGroup]="productFormShipper" (submit)="addProduct()" id="add-product" class="u2g-add-product">
           <div class="u2g-add-product__radio-wrapper">
             <label class="u2g-add-product__radio">
