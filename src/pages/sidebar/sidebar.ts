@@ -10,6 +10,7 @@ import {ModalController, NavController} from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
+import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -27,6 +28,7 @@ export class SidebarPage implements OnInit, OnDestroy{
   private subscription: Subscription;
   public active: string;
   public ntf;
+  public userBalance;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
     usaWarehouse: 0,
@@ -57,6 +59,12 @@ export class SidebarPage implements OnInit, OnDestroy{
   awaitingPackages(e) {
     e.preventDefault();
     this.navCtrl.setRoot('page-awaiting-tracking');
+  }
+
+  details() {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(DetailsPopups);
+    modal.present();
   }
 
   usaWarehouse(e) {
@@ -111,6 +119,7 @@ export class SidebarPage implements OnInit, OnDestroy{
       this.notifications.pending = data.message.counts.pending;
       this.notifications.received = data.message.counts.received;
       this.notifications.usaWarehouse = data.message.counts.usa_warehouse;
+      this.userBalance = data.message.profile.balance;
     });
   }
 

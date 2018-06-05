@@ -125,8 +125,6 @@ export class HeaderPage implements OnInit, OnDestroy{
     }
 
     this.subscription = this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      // console.log(data);
-      // this.lang = data.message.profile.panel_language || 'en';
       this.getBranchSelection(data);
       if(data.message.status === "EXPIRED"){
         this.nativeStorage.remove('sessionId');

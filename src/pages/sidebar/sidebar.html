@@ -20,6 +20,15 @@
     </svg>
   </a>
   <div class="u2g-nav">
+    <div class="u2g-profile-info__barcode" style="padding: 0">
+      <img src="img/barcode.png" alt="barcode">
+    </div>
+    <div class="u2g-profile-info__nav-item u2g-profile-info__nav-item--details">
+      <span style="padding-left: 13px">{{userBalance}} {{'_GEL_SYMBOL' | translate}}</span>
+      <button (click)="details()" class="u2g-button u2g-button--green" data-popup="details">
+        <span class="text">{{'_DETAILS' | translate}}</span>
+      </button>
+    </div>
     <a (click)="awaitingPackages($event)" [ngClass]="{'u2g-nav__item--active': isActive('awaiting-tracking')}" class="u2g-nav__item u2g-nav__item--awaiting-packages">{{'_AWAITING' | translate}}<span class="u2g-nav__item-amount">{{ntf || notifications.awaitingPackages}}</span></a>
     <a (click)="usaWarehouse($event)" [ngClass]="{'u2g-nav__item--active': isActive('usa-warehouse')}" class="u2g-nav__item u2g-nav__item--warehouse">{{'_USA_WAREHOUSE' | translate}}<span class="u2g-nav__item-amount">{{notifications.usaWarehouse}}</span></a>
     <a (click)="pending($event)" [ngClass]="{'u2g-nav__item--active': isActive('pending')}" class="u2g-nav__item u2g-nav__item--pending">{{'_PENDING' | translate}}<span class="u2g-nav__item-amount">{{notifications.pending}}</span></a>
