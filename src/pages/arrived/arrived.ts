@@ -11,6 +11,7 @@ import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-compone
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {TranslateService} from "@ngx-translate/core";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 
 /**
  * Generated class for the ArrivedPage page.
@@ -117,8 +118,12 @@ export class ArrivedPage implements OnDestroy{
           const modal = this.modalController.create(CourierNotSuccessPopups, {msg: data.message.message});
           modal.present();
           this.block = false;
-        } else{
+        } else if(data.message.status === 'PROCESS'){
           const modal = this.modalController.create(CourierSuccessPopups, {msg: data.message.address, chargeable: data.message.chargeable});
+          modal.present();
+          this.block = false;
+        } else {
+          const modal = this.modalController.create(WarningPopups, {notice: data.message.message});
           modal.present();
           this.block = false;
         }
