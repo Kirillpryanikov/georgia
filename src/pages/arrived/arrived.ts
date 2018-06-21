@@ -118,7 +118,7 @@ export class ArrivedPage implements OnDestroy{
           modal.present();
           this.block = false;
         } else{
-          const modal = this.modalController.create(CourierSuccessPopups);
+          const modal = this.modalController.create(CourierSuccessPopups, {msg: data.message.address, chargeable: data.message.chargeable});
           modal.present();
           this.block = false;
         }

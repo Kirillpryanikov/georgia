@@ -2,9 +2,10 @@
   <div #popup class="u2g-popup-wrapper">
     <div id="courier-enough-balance" class="u2g-popup">
       <div class="u2g-popup__content">
-        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_1' | translate}}<span class="u2g-popup__text--bold"> ..., KPMG</span></p>
+        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_1' | translate}}<span class="u2g-popup__text--bold">{{navParams.data.msg}}</span></p>
         <p class="u2g-popup__text u2g-popup__text--bold-red">{{'_CUSTOMS_AND_EXPRESS_COURIER_2' | translate}}</p>
-        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_3' | translate}}</p>
+        <p class="u2g-popup__text">{{'_CUSTOMS_AND_EXPRESS_COURIER_3' | translate}}{{navParams.data.chargeable}}{{'_CUSTOMS_AND_EXPRESS_COURIER_4' | translate}}</p>
+        <p class="u2g-popup__text"></p>
         <div class="u2g-popup__buttons">
           <button (click)="retrieveCourier()" class="u2g-button u2g-button--green u2g-popup__bottom-button">
             <span class="text">{{'_AGREE' | translate}}</span>
