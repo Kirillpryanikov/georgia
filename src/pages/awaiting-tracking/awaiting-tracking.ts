@@ -41,6 +41,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private data;
   private ntf;
   private subscription: Subscription;
+  private disableCheck: boolean;
   private subject = new Subject<any>();
 
   constructor(private navCtrl: NavController,
@@ -78,8 +79,10 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
 
   showWarningPopup(index, checkbox) {
     if(this.listAwaitingTracking[index][checkbox] === '1') {
-      if(checkbox === 'insurance')
+      if(checkbox === 'insurance'){
+        this.disableCheck = true;
         return false;
+      }
       this.listAwaitingTracking[index][checkbox] = '0';
       this.data = {
         sessionId: this.sessionId,
