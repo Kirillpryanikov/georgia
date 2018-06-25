@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
 import { AwaitingTrackingService } from '@core/services/awaiting-tracking';
@@ -12,9 +12,9 @@ import { ScriptMainService } from "@core/script.data/script.main.service";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from "rxjs/Subject";
-import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
-import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
-import {HeaderService} from "@core/services";
+import { SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import { ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import { HeaderService} from "@core/services";
 
 const notice = {
   insurance: '_CHANGE_INSURANCE_CONFIRMATION',
@@ -38,6 +38,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   public active = 'awaiting-tracking';
   private trackingForm: FormGroup;
   private listAwaitingTracking;
+  private isAndroid: boolean;
   private data;
   private ntf;
   private subscription: Subscription;
@@ -50,11 +51,12 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private modalController: ModalController,
               private awaitingService: AwaitingTrackingService,
               private scriptService: ScriptService,
+              private platform: Platform,
               private popupService: PopupService,
               private mainService: ScriptMainService,
               private nativeStorage: NativeStorage,
               private headerService: HeaderService) {
-
+    this.isAndroid= this.platform.is('android');
   }
 
   ngOnInit() {
