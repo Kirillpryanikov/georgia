@@ -7264,7 +7264,7 @@ svg {
 }
 
 .u2g-content-wrapper {
-  margin-top: 60px;
+  margin-top: 45px;
 }
 
 .breadcrumbs {
@@ -7303,4 +7303,9 @@ svg {
 
 .android_content_wrapper {
   margin-top: 45px;
+}
+
+.u2g-info-block__list-item:first-child > input[type="checkbox"]:checked + span:after {
+  background: #c9ced6 url(../img/label-checked.png) no-repeat center center;
+  border: 0;
 }
