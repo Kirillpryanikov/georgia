@@ -26,10 +26,7 @@ export class MyApp implements OnInit{
               private nativeStorage: NativeStorage,
               private Keyboard: Keyboard) {
     platform.ready().then(() => {
-      this.Keyboard.hideKeyboardAccessoryBar(false);
-      this.initLanguage();
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.splashScreen.hide();
       this.nativeStorage.getItem('remember').then(res => {
         this.rememberMe = res;
         if(!this.rememberMe) {
@@ -38,11 +35,14 @@ export class MyApp implements OnInit{
       });
       setTimeout(() => {
         this.isAuth();
-      },100);
+      },10);
+      this.Keyboard.hideKeyboardAccessoryBar(false);
     });
   }
 
   ngOnInit() {
+    this.initLanguage();
+    this.statusBar.styleDefault();
     this.initDropdown();
   }
 

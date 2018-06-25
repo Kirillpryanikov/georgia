@@ -27,7 +27,6 @@ import { Network} from "@ionic-native/network";
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId: string;
-  private logoWrapper;
   private data;
   private subscription: Subscription;
   private platformIOS;

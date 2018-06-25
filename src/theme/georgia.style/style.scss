@@ -3920,7 +3920,7 @@ ion-content, body.overflow {
             align-content: center;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    height: 55px;
+    //height: 55px;
     padding-right: 11px; }
     .u2g-header__logo {
       margin-top: -2px;
@@ -7264,7 +7264,7 @@ svg {
 }
 
 .u2g-content-wrapper {
-  margin-top: 45px;
+  margin-top: 60px;
 }
 
 .breadcrumbs {
@@ -7295,4 +7295,12 @@ svg {
 
 .ios-header-padding {
   padding-top: 15px;
+}
+
+.android_platform_header {
+  height: 55px;
+}
+
+.android_content_wrapper {
+  margin-top: 45px;
 }
