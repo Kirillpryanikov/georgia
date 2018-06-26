@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { ScriptMainService } from "@core/script.data/script.main.service";
-import {ModalController, NavController, Platform} from "ionic-angular";
+import { ModalController, NavController, Platform } from "ionic-angular";
 import { TranslateService } from "@ngx-translate/core";
-import { HeaderService, SettingService} from "@core/services";
+import { HeaderService, SettingService } from "@core/services";
 
 import { IUserHeader } from "@IFolder/IUserHeader";
 import { INotification }  from "@IFolder/INotification";
@@ -196,6 +196,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   logout(e) {
     e.preventDefault();
     this.nativeStorage.remove('sessionId');
+    localStorage.removeItem('userAvatar');
     this.navCtrl.setRoot('authorization-page');
   }
 
