@@ -22,7 +22,8 @@ export class AddProductPopups implements OnInit, AfterViewInit {
     code:'',
     description: '',
     unit_price: 0,
-    unit_count: 0
+    unit_count: 0,
+    fixed_price:''
   };
   quantity;
   price;
@@ -46,7 +47,6 @@ export class AddProductPopups implements OnInit, AfterViewInit {
 
   backBtn() {
     this.platform.registerBackButtonAction(() => {
-      console.log(this.navCtrl.getViews());
       this.close();
     }, 999);
   }
@@ -128,6 +128,7 @@ export class AddProductPopups implements OnInit, AfterViewInit {
       this.product.unit_price = parseFloat(this.productForm.value.unit_price);
     else
       this.product.unit_price = this.quantity * this.price;
+    this.product.fixed_price = this.product.unit_price.toFixed(2);
     this.product.unit_count++;
     this.scriptService.closePopup();
     this.viewCtrl.dismiss(this.product);
