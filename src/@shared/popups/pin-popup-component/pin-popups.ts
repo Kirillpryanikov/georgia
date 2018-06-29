@@ -2,26 +2,29 @@ import {
   Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
   HostListener
 } from '@angular/core';
-import { Platform, ViewController, NavParams } from 'ionic-angular';
+import {Platform, ViewController, NavParams, NavController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import {PopupService} from "@core/services";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
-  selector: 'error-popup',
-  templateUrl: './error-popups.html',
+  selector: 'pin-popup',
+  templateUrl: './pin-popups.html',
   styleUrls: ['/pin-popups.scss'],
 })
-export class ErrorPopups implements OnDestroy, AfterViewInit {
+export class PinPopups implements OnDestroy, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
+  dontShow: boolean;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
               private navParams: NavParams,
+              private navCtrl: NavController,
               private nativePageTransitions: NativePageTransitions,
-              private popupService: PopupService) {
+              private nativeStorage: NativeStorage) {
 
   }
 
@@ -43,9 +46,16 @@ export class ErrorPopups implements OnDestroy, AfterViewInit {
     this.scriptService.setPositionCenter(this.popup);
   }
 
-  close(data?: boolean) {
+  close() {
+    this.nativeStorage.setItem('dontShow', this.dontShow);
     this.scriptService.closePopup();
-    this.viewCtrl.dismiss(data);
+    this.viewCtrl.dismiss();
+  }
+
+  setup() {
+    this.scriptService.closePopup();
+    this.viewCtrl.dismiss();
+    this.navCtrl.push('settings-page');
   }
 
   ngOnDestroy() {}

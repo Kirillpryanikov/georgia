@@ -299,7 +299,7 @@
                   <div class="u2g-form-group">
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label">
-                        <span>New PIN</span> <sup>*</sup>
+                        <span>{{"_NEW_PIN" | translate}}</span> <sup>*</sup>
                       </label>
                       <input [ngClass]="{'error-input':(pinForm.controls.pin.errors && pinForm.controls.pin.dirty)}" formControlName="pin" type="password" class="u2g-form-group__field" data-rule-required="true">
                       <div [ngClass]="{'error':(pinForm.controls.pin.errors && pinForm.controls.pin.dirty)}">
@@ -307,7 +307,7 @@
                       </div>
                     </div>
                     <div class="u2g-form-group__field-group">
-                      <label class="u2g-form-group__label"><span>Confirm PIN</span> <sup>*</sup></label>
+                      <label class="u2g-form-group__label"><span>{{"_CONFIRM_PIN" | translate}}</span> <sup>*</sup></label>
                       <input [ngClass]="{'error-input':(pinForm.errors?.comparePin && pinForm.controls.confirm_pin.dirty)}" formControlName="confirm_pin" type="password" class="u2g-form-group__field" data-rule-required="true">
                       <div [ngClass]="{'error':(pinForm.errors?.comparePin && pinForm.controls.confirm_pin.dirty)}">
                         <span *ngIf="pinForm.errors?.comparePin">Match Password</span>

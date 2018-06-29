@@ -15,6 +15,7 @@ import { Subject } from "rxjs/Subject";
 import { SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 import { ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 import { HeaderService} from "@core/services";
+import { PinPopups } from "@shared/popups/pin-popup-component/pin-popups";
 
 const notice = {
   insurance: '_CHANGE_INSURANCE_CONFIRMATION',
@@ -62,6 +63,22 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   ngOnInit() {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
+        this.nativeStorage.getItem('pin').catch(() => {
+          this.nativeStorage.getItem('dontShow').then((data) => {
+            console.log(data);
+            if(!data){
+              this.nativeStorage.getItem('isAuthorise').catch(() => {
+                this.modalController.create(PinPopups).present();
+                this.nativeStorage.setItem('isAuthorise', true)
+              });
+            }
+          }).catch(() => {
+            this.nativeStorage.getItem('isAuthorise').catch(() => {
+              this.modalController.create(PinPopups).present();
+              this.nativeStorage.setItem('isAuthorise', true)
+            });
+          })
+        });
         this.sessionId = res;
         this.getAwaiting().pipe(debounceTime(0)).subscribe(() => {
           this.initMasonry();

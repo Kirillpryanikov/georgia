@@ -7325,3 +7325,14 @@ svg {
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
   box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
 }
+
+.u2g-popup__checkbox {
+  border-top: 1px solid #d9dfe3;
+  margin-top: 20px;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.u2g-popup__content .u2g-info-block__list-item > input[type="checkbox"] + span:after{
+  top: -1px !important;
+}

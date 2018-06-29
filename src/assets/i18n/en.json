@@ -409,5 +409,12 @@
   "DepositePage":"Deposite",
   "TbcPage":"TBC",
   "CartuPage":"Cartu",
-  "_NO_PACKAGE_FOUND":"No package found"
+  "_NO_PACKAGE_FOUND":"No package found",
+  "_PIN_SETUP_TITLE":"Setup pin-code login",
+  "_PIN_SETUP_TEXT":"Pin-code Login helps you to get quick access on your account",
+  "_SETUP":"Setup",
+  "_NOT_NOW":"Not now",
+  "_DONT_SHOW_ANYMORE":"Don't show me anymore",
+  "_NEW_PIN":"New PIN",
+  "_CONFIRM_PIN":"Confirm PIN"
 }
