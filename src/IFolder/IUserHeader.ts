@@ -5,4 +5,5 @@ export interface IUserHeader {
   email: string;
   userCode: string;
   userBalance: string;
+  sms_code: string;
 }

@@ -10,36 +10,23 @@ import {PopupService} from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
-  selector: 'details-popup',
-  templateUrl: './details-popups.html',
+  selector: 'barcode-popup',
+  templateUrl: './barcode-popups.html',
   styleUrls: ['/barcode-popups.scss'],
 })
-export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
+export class BarcodePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
-  private sessionId: string;
-  private unused_credits: number;
-  private amount_due: number;
-  private total_invoice: number;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
-              private mainService: ScriptMainService,
-              private popupService: PopupService,
-              private nativeStorage: NativeStorage) {}
+              private nativePageTransitions: NativePageTransitions) {}
 
   ngOnInit() {
-    this.nativeStorage.getItem('sessionId')
-      .then(res => {
-        this.sessionId = res;
-        this.getInfo();
-      });
-    this.mainService.invoiceFileAdd();
-    this.mainService.invoiceFileRemove();
+
   }
 
   ionViewWillLeave() {
@@ -63,29 +50,6 @@ export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
   close() {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss();
-  }
-
-  payNow(e) {
-    e.preventDefault();
-    this.close();
-    this.navCtrl.setRoot('deposite-page');
-  }
-
-  getInfo() {
-    this.popupService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-      this.unused_credits = parseFloat(data.message.profile.balance);
-      this.getUnpaidInvoices();
-    })
-  }
-
-  getUnpaidInvoices() {
-    this.popupService.getUnpaidInvoices('getUnpaidInvoices', {sessionId: this.sessionId}).subscribe(data => {
-      if(parseFloat(data.message.total_unpaid) > 0)
-        this.amount_due = -parseFloat(data.message.total_unpaid);
-      else
-        this.amount_due = parseFloat(data.message.total_unpaid);
-      this.total_invoice = Math.abs(this.amount_due) + this.unused_credits;
-    });
   }
 
   ngOnDestroy() {}

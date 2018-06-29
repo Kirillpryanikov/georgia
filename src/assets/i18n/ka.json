@@ -275,7 +275,7 @@
   "_ADD_PRODUCT":"პროდუქციის დამატება",
   "_SNAP_SHOT":"ფოტო",
   "_CHANGE_SAVED":"ცვლილების დამახსოვრება",
-  "_OK":"ok",
+  "_OK":"Ok",
   "_PERSONAL":"პირადი",
 
   "TBILISI":"თბილისი",
@@ -419,8 +419,6 @@
   "_NOT_NOW":"მოგვიანებით",
   "_DONT_SHOW_ANYMORE":"აღარ შემომთავაზო",
   "_NEW_PIN":"ახალი PIN",
-  "_CONFIRM_PIN":"დაადასტურეთ PIN"
-
-
-
+  "_CONFIRM_PIN":"დაადასტურეთ PIN",
+  "_BARCODE":"შტრიხკოდი"
 }

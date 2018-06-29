@@ -20,7 +20,7 @@
     </svg>
   </a>
   <div class="u2g-nav">
-    <div class="u2g-profile-info__barcode" style="padding: 5px">
+    <div *ngIf="sms_code" class="u2g-profile-info__barcode" style="padding: 5px" (click)="showBarcode()">
       <img src="img/barcode.png" alt="barcode">
     </div>
     <div class="u2g-profile-info__nav-item u2g-profile-info__nav-item--details">

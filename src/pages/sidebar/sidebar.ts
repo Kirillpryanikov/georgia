@@ -11,6 +11,7 @@ import {Subscription} from "rxjs/Subscription";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {AddressPopups} from "@shared/popups/address-popup-component/address-popups";
 import {DetailsPopups} from "@shared/popups/details-popup-component/details-popups";
+import {BarcodePopups} from "@shared/popups/barcode-popup-component/barcode-popups";
 
 /**
  * Generated class for the SidebarComponent component.
@@ -29,6 +30,7 @@ export class SidebarPage implements OnInit, OnDestroy{
   public active: string;
   public ntf;
   public userBalance;
+  public sms_code;
   notifications: ISidebarNotification = {
     awaitingPackages: 0,
     usaWarehouse: 0,
@@ -120,7 +122,14 @@ export class SidebarPage implements OnInit, OnDestroy{
       this.notifications.received = data.message.counts.received;
       this.notifications.usaWarehouse = data.message.counts.usa_warehouse;
       this.userBalance = data.message.profile.balance;
+      this.sms_code = data.message.profile.sms_code;
     });
+  }
+
+  showBarcode() {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(BarcodePopups, {sms_code: this.sms_code});
+    modal.present();
   }
 
   ngOnDestroy() {

@@ -12,6 +12,8 @@ import { Subscription } from "rxjs/Subscription";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { ErrorPopups } from "@shared/popups/error-popup-component/error-popups";
 import { Network} from "@ionic-native/network";
+import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {BarcodePopups} from "@shared/popups/barcode-popup-component/barcode-popups";
 
 /**
  * Generated class for the HeaderComponent component.
@@ -36,7 +38,8 @@ export class HeaderPage implements OnInit, OnDestroy{
     userName: '',
     email: '',
     userCode: '',
-    userBalance: ''
+    userBalance: '',
+    sms_code: ''
   };
   private notification: INotification = {
     notifications: 0,
@@ -108,6 +111,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       if(localStorage.getItem('lang') !== null){
         this.lang = localStorage.getItem('lang');
         this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
+          console.log('USERINFO', data);
           this.lang = data.message.profile.panel_language || 'en';
           localStorage.setItem('lang', this.lang);
         });
@@ -135,6 +139,7 @@ export class HeaderPage implements OnInit, OnDestroy{
       this.user.email = data.message.profile.email;
       this.user.userCode = data.message.profile.suite;
       this.user.userBalance = data.message.profile.balance;
+      this.user.sms_code = data.message.profile.sms_code;
       this.translate.use(this.lang);
       this.subscription.unsubscribe();
     })
@@ -199,6 +204,12 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.nativeStorage.remove('sessionId');
     localStorage.removeItem('userAvatar');
     this.navCtrl.setRoot('authorization-page');
+  }
+
+  showBarcode() {
+    this.mainService.hideDropdown();
+    const modal = this.modalController.create(BarcodePopups, {sms_code: this.user.sms_code});
+    modal.present();
   }
 
   ngOnDestroy() {

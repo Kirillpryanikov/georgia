@@ -173,8 +173,8 @@
             </div>
             <span class="u2g-profile-info__user-code">{{user.userCode}}</span>
           </div>
-          <div class="u2g-profile-info__barcode">
-            <img src="img/barcode.png" alt="barcode">
+          <div  (click)="showBarcode()" class="u2g-profile-info__barcode">
+            <img *ngIf="user.sms_code" src="img/barcode.png" alt="barcode">
           </div>
           <nav class="u2g-profile-info__nav">
             <div class="u2g-profile-info__nav-item u2g-profile-info__nav-item--details">

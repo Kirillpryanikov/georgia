@@ -1,0 +1,29 @@
+<ion-content>
+  <div #popup class="u2g-popup-wrapper">
+  <div id="details" class="u2g-popup">
+    <div class="u2g-popup__header">
+      <div class="u2g-popup__title">{{'_BARCODE' | translate}}</div>
+      <button (click)="close()" class="u2g-popup__close-button u2g-close-popup_js"><i class="material-icons">clear</i></button>
+    </div>
+    <div class="u2g-popup__content">
+      <div class="u2g-packages-account-status__info">
+        <div class="u2g-packages-account-status__items-wrapper">
+          <div style="    font-size: 20px; font-weight: bold">{{navParams.data.sms_code}}</div>
+          <div style="width: 100%; padding: 0" class="u2g-profile-info__barcode">
+            <img style="width: 100%; height: 20vh" src="img/barcode.png" alt="barcode">
+            <h1 style="font-size: 20px; margin: 0;" class="u2g-popup__text u2g-popup__text--align-center u2g-popup__text--bold">USA2GEORGIA</h1>
+            <h1 style="font-size: 20px; margin: 0;" class="u2g-popup__text u2g-popup__text--align-center u2g-popup__text--bold">Terminal</h1>
+          </div>
+          <div class="u2g-popup__buttons u2g-popup__buttons--align-center">
+            <button (click)="close()" class="u2g-button u2g-button--green u2g-popup__bottom-button u2g-yes-button_js">
+              <span class="text">
+                 {{'_OK' | translate}}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ion-content>

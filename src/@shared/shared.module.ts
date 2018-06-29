@@ -16,6 +16,7 @@ import { CourierNotSuccessPopups } from "@shared/popups/courier-not-success-popu
 import {TranslateModule} from "@ngx-translate/core";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 import {PinPopups} from "@shared/popups/pin-popup-component/pin-popups";
+import {BarcodePopups} from "@shared/popups/barcode-popup-component/barcode-popups";
 
 const MODULES = [
   SharedComponentModule
@@ -32,7 +33,8 @@ const DECLARATIONS = [
   CourierSuccessPopups,
   CourierNotSuccessPopups,
   ErrorPopups,
-  PinPopups
+  PinPopups,
+  BarcodePopups
 ];
 
 @NgModule({
