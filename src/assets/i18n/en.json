@@ -408,5 +408,6 @@
   "SettingsPage":"Settings",
   "DepositePage":"Deposite",
   "TbcPage":"TBC",
-  "CartuPage":"Cartu"
+  "CartuPage":"Cartu",
+  "_NO_PACKAGE_FOUND":"Non package found"
 }

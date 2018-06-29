@@ -17,6 +17,9 @@
           <!--INFO BLOCKS WRAPPER / CONTENT -->
 
           <div class="u2g-content u2g-content--masonry">
+            <div class="non_packages" *ngIf="listReceived && !listReceived.length">
+              {{"_NO_PACKAGE_FOUND" | translate}}
+            </div>
             <div *ngFor="let received of listReceived; index as index" class="u2g-info-block u2g-info-block--received">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>

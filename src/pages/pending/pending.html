@@ -16,7 +16,9 @@
 
           <!--INFO BLOCKS WRAPPER / CONTENT -->
           <div class="u2g-content u2g-content--masonry u2g-content--pending">
-
+            <div class="non_packages" *ngIf="listPending && !listPending.length">
+              {{"_NO_PACKAGE_FOUND" | translate}}
+            </div>
             <div *ngFor="let pending of listPending; index as index" class="u2g-info-block">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>

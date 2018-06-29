@@ -133,6 +133,14 @@
   <wsdl:message name="getReceivedResponse">
     <wsdl:part name="json" type="xsd:string"/>
   </wsdl:message>
+  <wsdl:message name="getReceivedPartialRequest">
+    <wsdl:part name="sessionId" type="xsd:string"/>
+    <wsdl:part name="from" type="xsd:int"/>
+    <wsdl:part name="count" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="getReceivedPartialResponse">
+    <wsdl:part name="json" type="xsd:string"/>
+  </wsdl:message>
   <wsdl:message name="getCourierInvoiceRequest">
     <wsdl:part name="sessionId" type="xsd:string"/>
     <wsdl:part name="transactionId" type="xsd:string"/>
@@ -380,6 +388,10 @@
     <wsdl:operation name="getReceived">
       <wsdl:input message="tns:getReceivedRequest"/>
       <wsdl:output message="tns:getReceivedResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedPartial">
+      <wsdl:input message="tns:getReceivedPartialRequest"/>
+      <wsdl:output message="tns:getReceivedPartialResponse"/>
     </wsdl:operation>
     <wsdl:operation name="getCourierInvoice">
       <wsdl:input message="tns:getCourierInvoiceRequest"/>
@@ -639,6 +651,15 @@
     </wsdl:operation>
     <wsdl:operation name="getReceived">
       <soap:operation soapAction="http://www.example.org/utils/getReceived"/>
+      <wsdl:input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedPartial">
+      <soap:operation soapAction="http://www.example.org/utils/getReceivedPartial"/>
       <wsdl:input>
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
       </wsdl:input>
