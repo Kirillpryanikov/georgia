@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
@@ -9,6 +9,7 @@ import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
 import {Subscription} from "rxjs/Subscription";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the PendingPage page.
@@ -30,7 +31,7 @@ const notice = {
   selector: 'page-pending',
   templateUrl: 'pending.html',
 })
-export class PendingPage implements OnInit{
+export class PendingPage {
   private sessionId: string;
   public logoWrapper = '_PENDING';
   public active = 'pending';
@@ -40,6 +41,8 @@ export class PendingPage implements OnInit{
   private subject = new Subject<any>();
   private branch_selection;
   private lang: string;
+  private load;
+  private temp: boolean = true;
   private subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -48,20 +51,15 @@ export class PendingPage implements OnInit{
               private pendingService: PendingService,
               private awaitingService: AwaitingTrackingService,
               private headerService: HeaderService,
+              private loadingCtrl: LoadingController,
+              private translate: TranslateService,
               private nativeStorage: NativeStorage) {
-  }
-
-  ngOnInit() {
-
   }
 
   ionViewDidLoad() {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
-        // this.getPending().pipe(debounceTime(0)).subscribe(() => {
-        //   this.initMasonry();
-        // });
         this.getInfo();
       });
   }
@@ -142,16 +140,25 @@ export class PendingPage implements OnInit{
   }
 
   getPending() {
-    this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
+    if(this.temp){
+      this.load = this.loadingCtrl.create({
+        spinner: 'dots'
+      });
+      this.load.present();
+    }
+    this.subscription = this.pendingService.getPending('getPending', {sessionId: this.sessionId}).subscribe(data => {
       const obj = data.message.in_transit.reduce((object, value) => {
         object[value.hawb] = value; return object
       }, {});
       this.branch_selection.forEach(val => {obj[val.hawb].locked = val.locked});
       this.branch_selection.forEach(val => {obj[val.hawb].branch = val.branch});
       this.listPending = Object.keys(obj).map(key => obj[key]);
-
+      this.subscription.unsubscribe();
       this.subject.next();
     });
+    if(this.temp)
+      this.load.dismiss();
+    this.temp = false;
     return this.subject.asObservable();
   }
 
@@ -163,6 +170,11 @@ export class PendingPage implements OnInit{
     };
     this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe((data) => {
     })
+  }
+
+  ngOnDestroy() {
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
 }

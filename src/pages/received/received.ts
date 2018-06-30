@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
@@ -9,6 +9,7 @@ import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the ReceivedPage page.
@@ -28,6 +29,7 @@ export class ReceivedPage implements OnInit {
   public logoWrapper = '_RECEIVED';
   public active = 'received';
   private sessionId: string;
+  private load;
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();
   constructor(public navCtrl: NavController,
@@ -35,6 +37,8 @@ export class ReceivedPage implements OnInit {
               private mainService: ScriptMainService,
               private modalController: ModalController,
               private receivedService: ReceivedService,
+              private loadingCtrl: LoadingController,
+              private translate: TranslateService,
               private nativeStorage: NativeStorage) {
   }
 
@@ -46,10 +50,6 @@ export class ReceivedPage implements OnInit {
           this.initMasonry();
         })
       });
-  }
-
-  ionViewWillEnter() {
-
   }
 
   initMasonry() {
@@ -73,10 +73,15 @@ export class ReceivedPage implements OnInit {
   }
 
   getReceived(): Observable<any> {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
       this.listReceived = data.message.received;
       this.subject.next();
     });
+    this.load.dismiss();
     return this.subject.asObservable();
   }
 }

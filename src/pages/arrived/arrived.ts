@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
@@ -38,6 +38,7 @@ export class ArrivedPage implements OnDestroy{
   private listArrived;
   private block: boolean = false;
   private keys = [];
+  private load;
   private listCourier = [];
 
   constructor(public navCtrl: NavController,
@@ -47,6 +48,7 @@ export class ArrivedPage implements OnDestroy{
               private modalController: ModalController,
               private arrivedService: ArrivedService,
               private headerService: HeaderService,
+              private loadingCtrl: LoadingController,
               private nativeStorage: NativeStorage) {
   }
 
@@ -133,6 +135,10 @@ export class ArrivedPage implements OnDestroy{
   }
 
   getArrived() {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
       console.log(data);
       const keys = Object.keys(data.message.arrived);
@@ -147,6 +153,7 @@ export class ArrivedPage implements OnDestroy{
       setTimeout(() => {
         this.initMasonry();
       });
+      this.load.dismiss();
     });
   }
 

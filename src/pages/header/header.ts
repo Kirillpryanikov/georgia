@@ -111,7 +111,6 @@ export class HeaderPage implements OnInit, OnDestroy{
       if(localStorage.getItem('lang') !== null){
         this.lang = localStorage.getItem('lang');
         this.headerService.getInfo('getInfo', {sessionId: this.sessionId}).subscribe(data => {
-          console.log('USERINFO', data);
           this.lang = data.message.profile.panel_language || 'en';
           localStorage.setItem('lang', this.lang);
         });

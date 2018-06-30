@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController, Platform, LoadingController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { WarningPopups } from '@shared/popups/warning-popup-component/warning-popups';
 import { AwaitingTrackingService } from '@core/services/awaiting-tracking';
@@ -16,6 +16,7 @@ import { SuccessPopups} from "@shared/popups/success-popup-component/success-pop
 import { ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 import { HeaderService} from "@core/services";
 import { PinPopups } from "@shared/popups/pin-popup-component/pin-popups";
+import {TranslateService} from "@ngx-translate/core";
 
 const notice = {
   insurance: '_CHANGE_INSURANCE_CONFIRMATION',
@@ -44,6 +45,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private ntf;
   private subscription: Subscription;
   private disableCheck: boolean;
+  private load;
   private subject = new Subject<any>();
 
   constructor(private navCtrl: NavController,
@@ -56,6 +58,8 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
               private popupService: PopupService,
               private mainService: ScriptMainService,
               private nativeStorage: NativeStorage,
+              private loadingCtrl: LoadingController,
+              private translate: TranslateService,
               private headerService: HeaderService) {
     this.isAndroid= this.platform.is('android');
   }
@@ -85,10 +89,6 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
         this.getInfo();
       });
     this.createFormAddTracking();
-  }
-
-  ionViewDidLoad() {
-
   }
 
   initMasonry() {
@@ -177,10 +177,15 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   }
 
   getAwaiting() {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.subscription = this.awaitingService.getAwaiting('getAwaiting', {sessionId: this.sessionId}).subscribe(data => {
       this.listAwaitingTracking = data.message.awaiting;
       this.subject.next();
     });
+    this.load.dismiss();
     return this.subject.asObservable();
   }
 

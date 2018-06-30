@@ -26,7 +26,6 @@ export class Authorization implements OnInit, OnDestroy {
   private hashKey: string;
   private pin: string;
   private load;
-  private loadingTranslate;
   private subscription: Subscription;
 
   constructor(private navCtrl: NavController,
@@ -39,9 +38,6 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    this.translate.get("_PLEASE_WAIT").subscribe(data => {
-      this.loadingTranslate = data;
-    });
     this.nativeStorage.getItem('hashKey')
       .then(res => {
         this.hashKey = res;
@@ -88,7 +84,6 @@ export class Authorization implements OnInit, OnDestroy {
       remember: this.form.value.checkbox
     };
     this.load = this.loadingCtrl.create({
-      content: this.loadingTranslate,
       spinner: 'dots'
     });
     this.load.present();

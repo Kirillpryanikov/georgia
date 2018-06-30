@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import { AddProductPopups } from "@shared/popups/add-product-popup-component/add-product-popups";
 import { WarningPopups } from "@shared/popups/warning-popup-component/warning-popups";
 import {DeclarationService, HeaderService} from "@core/services";
@@ -9,6 +9,7 @@ import { Subscription } from "rxjs/Subscription";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the DeclarationPage page.
@@ -37,6 +38,7 @@ export class DeclarationPage implements OnInit, OnDestroy{
   form: FormGroup;
   subscription: Subscription;
   shipper: string;
+  load;
   shipperList: Array<string>;
   is_organization: boolean;
 
@@ -46,6 +48,8 @@ export class DeclarationPage implements OnInit, OnDestroy{
               private declarationService: DeclarationService,
               private mainService: ScriptMainService,
               private fb: FormBuilder,
+              private loadingCtrl: LoadingController,
+              private translate: TranslateService,
               private nativeStorage: NativeStorage,
               private headerService: HeaderService) {
   }
@@ -122,6 +126,10 @@ export class DeclarationPage implements OnInit, OnDestroy{
   }
 
   getDeclaration(): void {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.data = {
       sessionId: this.sessionId,
       packageId: this.navParams.data.package_id
@@ -142,6 +150,7 @@ export class DeclarationPage implements OnInit, OnDestroy{
           this.total+=parseFloat(this.productList[i].unit_price);
         }
       }
+      this.load.dismiss();
     });
   }
 

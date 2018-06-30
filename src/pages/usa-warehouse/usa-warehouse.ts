@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {CommentPopups} from "@shared/popups/comment-popup-component/comment-popups";
 import {InvoicePopups} from "@shared/popups/invoice-popup-component/invoice-popups";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
@@ -7,6 +7,7 @@ import {AwaitingTrackingService, UsaWarehouseService} from "@core/services";
 import {Subscription} from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {NativeStorage} from "@ionic-native/native-storage";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the UsaWarehousePage page.
@@ -33,6 +34,7 @@ export class UsaWarehousePage implements OnInit{
   private sessionId: string;
   public logoWrapper = '_USA_WAREHOUSE';
   private listUsaWarehouse;
+  private load;
   private subscription: Subscription;
   private data;
 
@@ -42,6 +44,8 @@ export class UsaWarehousePage implements OnInit{
               private usaWarehouseService: UsaWarehouseService,
               private awaitingService: AwaitingTrackingService,
               private mainService: ScriptMainService,
+              private loadingCtrl: LoadingController,
+              private translate: TranslateService,
               private nativeStorage: NativeStorage) {
   }
 
@@ -51,10 +55,6 @@ export class UsaWarehousePage implements OnInit{
         this.sessionId = res;
         this.getWarehouse();
       });
-  }
-
-  ionViewDidLoad() {
-
   }
 
   navTo(e, page) {
@@ -120,11 +120,16 @@ export class UsaWarehousePage implements OnInit{
   }
 
   getWarehouse() {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.subscription = this.usaWarehouseService.getUsaWarehouse('getUsaWarehouse', {sessionId: this.sessionId}).subscribe(data => {
       this.listUsaWarehouse = data.message.usa_warehouse;
       setTimeout(() => {
         this.initMasonry();
-      })
+      });
+      this.load.dismiss();
     });
   }
 
