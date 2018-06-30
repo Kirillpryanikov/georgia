@@ -12,8 +12,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { ErrorPopups } from "@shared/popups/error-popup-component/error-popups";
 import { Network} from "@ionic-native/network";
-import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
-import {BarcodePopups} from "@shared/popups/barcode-popup-component/barcode-popups";
+import { BarcodePopups } from "@shared/popups/barcode-popup-component/barcode-popups";
 
 /**
  * Generated class for the HeaderComponent component.
