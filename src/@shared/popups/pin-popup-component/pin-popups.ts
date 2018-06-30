@@ -16,7 +16,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 export class PinPopups implements OnDestroy, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
 
-  dontShow: boolean;
+  dontShow: boolean = false;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,

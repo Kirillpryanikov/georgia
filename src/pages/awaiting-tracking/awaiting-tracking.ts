@@ -65,7 +65,6 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       .then(res => {
         this.nativeStorage.getItem('pin').catch(() => {
           this.nativeStorage.getItem('dontShow').then((data) => {
-            console.log(data);
             if(!data){
               this.nativeStorage.getItem('isAuthorise').catch(() => {
                 this.modalController.create(PinPopups).present();
