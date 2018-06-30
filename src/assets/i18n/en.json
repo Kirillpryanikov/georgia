@@ -417,5 +417,6 @@
   "_DONT_SHOW_ANYMORE":"Don't show me anymore",
   "_NEW_PIN":"New PIN",
   "_CONFIRM_PIN":"Confirm PIN",
-  "_BARCODE":"Barcode"
+  "_BARCODE":"Barcode",
+  "_PLEASE_WAIT":"Please wait..."
 }

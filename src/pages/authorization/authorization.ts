@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,6 +25,8 @@ export class Authorization implements OnInit, OnDestroy {
   private data;
   private hashKey: string;
   private pin: string;
+  private load;
+  private loadingTranslate;
   private subscription: Subscription;
 
   constructor(private navCtrl: NavController,
@@ -33,9 +35,13 @@ export class Authorization implements OnInit, OnDestroy {
               private translate: TranslateService,
               private registerService: ScriptRegisterService,
               private authService: AuthorizationService,
+              private loadingCtrl: LoadingController,
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    this.translate.get("_PLEASE_WAIT").subscribe(data => {
+      this.loadingTranslate = data;
+    });
     this.nativeStorage.getItem('hashKey')
       .then(res => {
         this.hashKey = res;
@@ -81,6 +87,11 @@ export class Authorization implements OnInit, OnDestroy {
       language: this.lang,
       remember: this.form.value.checkbox
     };
+    this.load = this.loadingCtrl.create({
+      content: this.loadingTranslate,
+      spinner: 'dots'
+    });
+    this.load.present();
     this.subscription = this.authService.login('login', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
         this.nativeStorage.setItem('sessionId', data.message.session_id);
@@ -90,6 +101,7 @@ export class Authorization implements OnInit, OnDestroy {
       } else {
         this.msg = data.message.message;
       }
+      this.load.dismiss();
     })
   }
 

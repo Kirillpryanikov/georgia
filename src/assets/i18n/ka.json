@@ -420,5 +420,7 @@
   "_DONT_SHOW_ANYMORE":"აღარ შემომთავაზო",
   "_NEW_PIN":"ახალი PIN",
   "_CONFIRM_PIN":"დაადასტურეთ PIN",
-  "_BARCODE":"შტრიხკოდი"
+  "_BARCODE":"შტრიხკოდი",
+  "_PLEASE_WAIT":"გთხოვთ მოიცადოთ..."
+
 }

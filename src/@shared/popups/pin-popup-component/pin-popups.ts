@@ -1,12 +1,8 @@
-import {
-  Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
-  HostListener
-} from '@angular/core';
-import {Platform, ViewController, NavParams, NavController} from 'ionic-angular';
+import { Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener } from '@angular/core';
+import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import {PopupService} from "@core/services";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { NativeStorage } from "@ionic-native/native-storage";
 
 @Component({
   selector: 'pin-popup',
