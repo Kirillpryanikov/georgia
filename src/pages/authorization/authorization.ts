@@ -1,12 +1,11 @@
 import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import {IonicPage, LoadingController, NavController} from 'ionic-angular';
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthorizationService } from '@core/services';
 import { Subscription } from "rxjs/Subscription";
-import {NativeStorage} from "@ionic-native/native-storage";
-import {debounceTime} from "rxjs/operators";
+import { NativeStorage } from "@ionic-native/native-storage";
 
 @IonicPage({
   name: 'authorization-page'

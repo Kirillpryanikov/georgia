@@ -59,6 +59,7 @@
     "jqueryui": "^1.11.1",
     "masonry-layout": "^4.2.1",
     "material-design-icons": "^3.0.1",
+    "ngx-barcode": "^0.2.4",
     "ngx-infinite-scroll": "^6.0.1",
     "ngx-pagination": "^3.1.0",
     "ngx-soap": "^0.2.2-beta4",

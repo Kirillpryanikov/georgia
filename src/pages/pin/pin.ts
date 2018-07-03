@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {AuthorizationService} from "@core/services";
@@ -28,6 +28,7 @@ export class PinPage implements OnInit{
   private data;
   private msg: string;
   private key;
+  private load;
   private subscription: Subscription;
 
   constructor(public navCtrl: NavController,
@@ -36,6 +37,7 @@ export class PinPage implements OnInit{
               private registerService: ScriptRegisterService,
               private fb: FormBuilder,
               private nativeStorage: NativeStorage,
+              private loadingCtrl: LoadingController,
               private authService: AuthorizationService) {
   }
 
@@ -50,6 +52,10 @@ export class PinPage implements OnInit{
   }
 
   login() {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     this.nativeStorage.getItem('pin')
       .then(res => {
         if(res === this.form.value.pin){
@@ -66,6 +72,7 @@ export class PinPage implements OnInit{
                 this.nativeStorage.setItem('sessionId', data.message.session_id);
                 this.nativeStorage.setItem('remember', this.data.remember);
                 this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});
+                this.load.dismiss();
                 this.subscription.unsubscribe();
               })
             });

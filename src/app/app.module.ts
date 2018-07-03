@@ -15,6 +15,8 @@ import { MyApp } from './app.component';
 import { FormsModule } from "@angular/forms";
 import { Network } from "@ionic-native/network";
 import {Keyboard} from "@ionic-native/keyboard";
+import { NgxBarcodeModule } from 'ngx-barcode';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,6 +27,7 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
   ],
   imports: [
+    NgxBarcodeModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
