@@ -51,7 +51,7 @@ export class PinPopups implements OnDestroy, AfterViewInit {
   setup() {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss();
-    this.navCtrl.push('settings-page');
+    this.navCtrl.push('page-set-pin');
   }
 
   ngOnDestroy() {}
