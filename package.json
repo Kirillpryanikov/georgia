@@ -99,8 +99,7 @@
       "ionic-plugin-keyboard": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ]
   },
   "config": {

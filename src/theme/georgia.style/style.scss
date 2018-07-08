@@ -7336,3 +7336,9 @@ svg {
 .u2g-popup__content .u2g-info-block__list-item > input[type="checkbox"] + span:after{
   top: -1px !important;
 }
+
+.form-inline {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
