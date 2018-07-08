@@ -35,7 +35,7 @@ export class ArrivedPage implements OnDestroy{
   private data;
   private lang: string;
   private sessionId: string;
-  private listArrived;
+  private listArrived = [];
   private block: boolean = false;
   private keys = [];
   private load;
@@ -141,15 +141,18 @@ export class ArrivedPage implements OnDestroy{
     this.load.present();
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
       console.log(data);
-      const keys = Object.keys(data.message.arrived);
-      for (let i in keys){
-        if(keys[i] === "COURIER")
-          this.keys.push(keys[i])
+      if(Object.keys(data.message.arrived).length){
+        const keys = Object.keys(data.message.arrived);
+        for (let i in keys){
+          if(keys[i] === "COURIER")
+            this.keys.push(keys[i]);
+        }
+        for(let i in keys){
+          if(keys[i] !== "COURIER")
+            this.listArrived = Object.keys(data.message.arrived[keys[i]]).map(key => data.message.arrived[keys[i]][key]);
+        }
+        this.listCourier = Object.keys(data.message.arrived.COURIER).map(key => data.message.arrived.COURIER[key]);
       }
-
-      this.listArrived = Object.keys(data.message.arrived.NONE).map(key => data.message.arrived.NONE[key]);
-      this.listCourier = Object.keys(data.message.arrived.COURIER).map(key => data.message.arrived.COURIER[key]);
-
       setTimeout(() => {
         this.initMasonry();
       });
