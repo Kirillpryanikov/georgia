@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import {Platform, ViewController, NavParams, ModalController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { PopupService } from "@core/services";
 import { NativeStorage } from "@ionic-native/native-storage";
@@ -20,7 +19,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private data;
   private sessionId: string;
   private filename: any;
-  private listFiles: any;
+  private listFiles: any = [];
+  private disable: boolean;
   private subscription: Subscription;
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -28,7 +28,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
               private viewCtrl: ViewController,
               private modalCtrl: ModalController,
               private navParams: NavParams,
-              private mainService: ScriptMainService,
               private reader: FileReader,
               private popupService: PopupService,
               private nativeStorage: NativeStorage,
@@ -42,7 +41,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         this.sessionId = res;
         this.getListOfUploadedInvoices();
       });
-    this.mainService.invoiceFileAdd();
   }
 
   @HostListener('document:click', ['$event.target.tagName'])
@@ -67,6 +65,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
       this.subscription.unsubscribe();
     });
+    this.disable = false;
     this.close(true);
   }
 
@@ -80,6 +79,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       this.reader.readAsDataURL(e.target.files[0]);
       this.reader.onloadend = () => {
         this.file = this.reader.result;
+        this.listFiles.push('invoice.jpg');
+        this.disable = true;
       }
     }
   }
@@ -93,33 +94,21 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     };
     this.camera.getPicture(options).then((imageData) => {
       this.file = 'data:image/jpeg;base64,' + imageData;
-      if(this.file === '') {
-        $('.invoice-input_js').val('');
-
-        $('.u2g-file-name').text('');
-
-        $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+      if(this.file !== '') {
+       this.listFiles.push('invoice.jpg');
+       this.disable = true;
       }
-    }).catch((err) => {
-      $('.invoice-input_js').val('');
-
-      $('.u2g-file-name').text('');
-
-      $('.remove-file_js').removeClass('u2g-remove-file--chosen');
     });
   }
 
-  removeUploadInvoice() {
+  removeUploadInvoice(index) {
     const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE"});
     modal.onDidDismiss(data => {
       if(data){
-        $('.invoice-input_js').val('');
-        $('.u2g-file-name').text('');
-        $('.remove-file_js').removeClass('u2g-remove-file--chosen');
         this.data = {
           sessionId: this.sessionId,
           packageId: this.navParams.data.package_id,
-          filename: this.filename
+          filename: this.listFiles[index]
         };
         this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
           this.filename = false;
@@ -136,12 +125,10 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       packageId: this.navParams.data.package_id,
     };
     this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
-      console.log(data);
       if(data.message.files && data.message.files.length > 0) {
-        // this.listFiles = data.message.files;
-        this.filename = data.message.files[0];
-        $('.u2g-file-name').text(data.message.files[0]);
-        $('.remove-file_js').addClass('u2g-remove-file--chosen');
+        this.listFiles = data.message.files;
+        if(this.listFiles.length >= 3)
+          this.disable = true;
       }
       this.subscription.unsubscribe();
     })

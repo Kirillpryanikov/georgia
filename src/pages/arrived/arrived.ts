@@ -110,7 +110,6 @@ export class ArrivedPage implements OnDestroy{
       action: 'CHECK'
     };
     this.subscription = this.arrivedService.retrieveCourier('retrieveCourier', this.data).subscribe(data => {
-      console.log(data);
       if(data.error){
         const modal = this.modalController.create(ErrorPopups);
         modal.present();
@@ -140,7 +139,6 @@ export class ArrivedPage implements OnDestroy{
     });
     this.load.present();
     this.subscription = this.arrivedService.getArrived('getArrived', {sessionId: this.sessionId}).subscribe(data => {
-      console.log(data);
       if(Object.keys(data.message.arrived).length){
         const keys = Object.keys(data.message.arrived);
         for (let i in keys){

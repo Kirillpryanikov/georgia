@@ -132,7 +132,6 @@ export class ReceivedPage implements OnInit {
   }
 
   test(e){
-    console.log(e);
     window.onscroll
   }
 }
