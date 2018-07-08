@@ -1,0 +1,32 @@
+<ion-header>
+  <header-page></header-page>
+</ion-header>
+<ion-content>
+  <body>
+  <ion-content>
+    <div class="u2g-page-wrapper">
+
+      <!--LEFT NAVIGATION SIDEBAR-->
+
+      <sidebar-page></sidebar-page>
+
+      <div class="u2g-container u2g-container--arrived u2g-container--simple-page">
+
+        <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
+
+          <div style="margin-top: 40vh" class="u2g-form-group__field-group">
+            <label style="text-align: center" class="u2g-form-group__label"><span>{{"_CONFIRM_PIN_CODE" | translate}}</span></label>
+            <input formControlName="first" type="password" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('4').focus()}" maxlength="1" autofocus>
+            <input formControlName="second" type="password" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('5').focus()}" id="4" maxlength="1" >
+            <input formControlName="third" type="password" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('6').focus()}" id="5" maxlength="1" >
+            <input formControlName="fourth" type="password" class="u2g-form-group__field form-inline" (keyup)="awaitingPage()" id="6" maxlength="1" >
+          </div>
+
+        </form>
+      </div>
+      <div class="u2g-overlay"></div>
+    </div>
+  </ion-content>
+  </body>
+</ion-content>
+

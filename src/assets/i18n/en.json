@@ -418,5 +418,8 @@
   "_NEW_PIN":"New PIN",
   "_CONFIRM_PIN":"Confirm PIN",
   "_BARCODE":"Barcode",
-  "_PLEASE_WAIT":"Please wait..."
+  "_PLEASE_WAIT":"Please wait...",
+  "_INPUT_PIN_CODE":"Input your PIN code",
+  "_CONFIRM_PIN_CODE":"Confirm your PIN code",
+  "_YOUR_PIN_CODE_NOT_CONFIRMED":"Your PIN code not confirmed"
 }

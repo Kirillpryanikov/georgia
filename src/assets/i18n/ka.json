@@ -421,6 +421,9 @@
   "_NEW_PIN":"ახალი PIN",
   "_CONFIRM_PIN":"დაადასტურეთ PIN",
   "_BARCODE":"შტრიხკოდი",
-  "_PLEASE_WAIT":"გთხოვთ მოიცადოთ..."
+  "_PLEASE_WAIT":"გთხოვთ მოიცადოთ...",
+  "_INPUT_PIN_CODE":"შეიყვანეთ თქვენი PIN კოდი",
+  "_CONFIRM_PIN_CODE":"დაადასტურეთ თქვენი PIN კოდი",
+  "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული"
 
 }

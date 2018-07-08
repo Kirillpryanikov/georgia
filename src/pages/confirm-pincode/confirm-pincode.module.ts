@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SetPincodePage } from './set-pincode';
+import { ConfirmPincodePage } from './confirm-pincode';
+import { SidebarPageModule } from "../sidebar/sidebar.module";
+import { HeaderPageModule } from "../header/header.module";
 import { TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import { createTranslateLoader} from "../../app/app.module";
-import { HeaderPageModule} from "../header/header.module";
-import { SidebarPageModule} from "../sidebar/sidebar.module";
 import { HttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
-    SetPincodePage,
+    ConfirmPincodePage,
   ],
   imports: [
     HeaderPageModule,
     SidebarPageModule,
-    IonicPageModule.forChild(SetPincodePage),
+    IonicPageModule.forChild(ConfirmPincodePage),
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -24,4 +24,4 @@ import { HttpClient} from "@angular/common/http";
     })
   ],
 })
-export class SetPincodePageModule {}
+export class ConfirmPincodePageModule {}
