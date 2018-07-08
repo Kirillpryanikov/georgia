@@ -9,14 +9,16 @@
         <p class="u2g-popup__text u2g-popup__text--bold">{{'_UPLOAD_INVOICE_WARNING' | translate}}</p>
         <p class="u2g-popup__text">{{'_UPLOAD_DESCRIPTION' | translate}}</p>
         <form class="u2g-invoice">
-          <div class="u2g-file-name-wrapper">
+          <div class="u2g-file-name-wrapper" *ngFor="let file of listFiles">
             <span class="u2g-remove-file remove-file_js" (click)="removeUploadInvoice()"><i style="font-size: 10px" class="material-icons">clear</i></span>
             <span class="u2g-file-name u2g-popup__text u2g-popup__text--bold"></span>
           </div>
           <div class="u2g-invoice__button-wrapper">
             <label class="u2g-button u2g-button--green u2g-invoice__button">
-              <input [disabled]="filename" (change)="addFile($event)" type="file" name="file" class="invoice-input_js">
-                <svg viewBox="0 0 47 43">
+              <!--<input [disabled]="filename" (change)="addFile($event)" type="file" name="file" class="invoice-input_js">-->
+              <input (change)="addFile($event)" type="file" name="file" class="invoice-input_js">
+
+              <svg viewBox="0 0 47 43">
                 <defs>
                   <style>
                     .cls-11{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}

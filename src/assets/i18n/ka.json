@@ -424,6 +424,7 @@
   "_PLEASE_WAIT":"გთხოვთ მოიცადოთ...",
   "_INPUT_PIN_CODE":"შეიყვანეთ თქვენი PIN კოდი",
   "_CONFIRM_PIN_CODE":"დაადასტურეთ თქვენი PIN კოდი",
-  "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული"
+  "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული",
+  "_DELETE_INVOICE":"გნებავთ წაშალოთ ეს ფაილი?"
 
 }

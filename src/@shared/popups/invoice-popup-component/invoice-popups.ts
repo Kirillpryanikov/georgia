@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit, Input } from '@angular/core';
-import { Platform, ViewController, NavParams } from 'ionic-angular';
+import {Platform, ViewController, NavParams, ModalController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ScriptMainService } from "@core/script.data/script.main.service";
@@ -8,6 +8,7 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as $ from 'jquery'
 import {Subscription} from "rxjs/Subscription";
+import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -19,13 +20,14 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private data;
   private sessionId: string;
   private filename: any;
+  private listFiles: any;
   private subscription: Subscription;
   constructor(private renderer: Renderer2,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
+              private modalCtrl: ModalController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
               private mainService: ScriptMainService,
               private reader: FileReader,
               private popupService: PopupService,
@@ -41,7 +43,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         this.getListOfUploadedInvoices();
       });
     this.mainService.invoiceFileAdd();
-    this.mainService.invoiceFileRemove();
   }
 
   @HostListener('document:click', ['$event.target.tagName'])
@@ -50,12 +51,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       this.close();
     if(e === 'ION-BACKDROP')
       this.scriptService.closePopup();
-  }
-
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
   }
 
   ngAfterViewInit() {
@@ -115,18 +110,24 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   removeUploadInvoice() {
+    const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE"});
+    modal.onDidDismiss(data => {
+      if(data){
+        $('.invoice-input_js').val('');
+        $('.u2g-file-name').text('');
+        $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+        this.data = {
+          sessionId: this.sessionId,
+          packageId: this.navParams.data.package_id,
+          filename: this.filename
+        };
+        this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
+          this.filename = false;
+        })
+      }
+    });
+    modal.present();
     this.file = '';
-    $('.invoice-input_js').val('');
-    $('.u2g-file-name').text('');
-    $('.remove-file_js').removeClass('u2g-remove-file--chosen');
-    this.data = {
-      sessionId: this.sessionId,
-      packageId: this.navParams.data.package_id,
-      filename: this.filename
-    };
-    this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
-      this.filename = false;
-    })
   }
 
   getListOfUploadedInvoices() {
@@ -135,7 +136,9 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       packageId: this.navParams.data.package_id,
     };
     this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
+      console.log(data);
       if(data.message.files && data.message.files.length > 0) {
+        // this.listFiles = data.message.files;
         this.filename = data.message.files[0];
         $('.u2g-file-name').text(data.message.files[0]);
         $('.remove-file_js').addClass('u2g-remove-file--chosen');
