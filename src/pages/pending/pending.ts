@@ -42,6 +42,7 @@ export class PendingPage {
   private branch_selection;
   private lang: string;
   private load;
+  private _temp;
   private temp: boolean = true;
   private subscription: Subscription;
   constructor(public navCtrl: NavController,
@@ -82,6 +83,7 @@ export class PendingPage {
   branchSelection(data) {
     this.branch_selection = data.message.branch_selection;
     this.getPending().pipe(debounceTime(0)).subscribe(() => {
+      this._temp = true;
       this.initMasonry();
     });
   }

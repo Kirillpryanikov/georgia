@@ -39,6 +39,7 @@ export class ArrivedPage implements OnDestroy{
   private block: boolean = false;
   private keys = [];
   private load;
+  private temp;
   private listCourier = [];
 
   constructor(public navCtrl: NavController,
@@ -155,6 +156,7 @@ export class ArrivedPage implements OnDestroy{
         this.initMasonry();
       });
       this.load.dismiss();
+      this.temp = true;
     });
   }
 

@@ -32,6 +32,7 @@ export class ReceivedPage implements OnInit {
   private sessionId: string;
   private load;
   private from;
+  private temp;
   private data = {};
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();
@@ -49,36 +50,13 @@ export class ReceivedPage implements OnInit {
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
-        this.getReceivedPartial(this.from);
+        // this.getReceivedPartial(this.from);
         this.getReceived().pipe(debounceTime(0)).subscribe(() => {
+          this.temp = true;
           this.initMasonry();
         })
       });
   }
-
-
-  // doInfinite(infiniteScroll) {
-  //   setTimeout(() => {
-  //     for(let i = 0; i < this.a; i++){
-  //       if(this.userContacts.length < this.userContactsTemp.length){
-  //         this.userContacts.push(this.userContactsTemp[this.userContacts.length]);
-  //         for(let j = 0; j < this.navParams.data.checkedGuardians.length; j++){
-  //           if(this.userContacts[i + this.a].id === this.navParams.data.checkedGuardians[j].id){
-  //             this.userContacts[i + this.a].ch = true;
-  //             this.countGuardians++;
-  //             this.checkedContacts.push(this.userContacts[i + this.a]);
-  //             this.nativeStorage.setItem('checkedContacts', this.checkedContacts);
-  //           }
-  //         }
-  //       } else {
-  //         infiniteScroll.enable(false);
-  //       }
-  //     }
-  //     infiniteScroll.complete();
-  //   }, 1500);
-  // }
-
-
 
   initMasonry() {
     this.mainService.initMasonry();
@@ -124,14 +102,10 @@ export class ReceivedPage implements OnInit {
       count: count
     };
     this.receivedService.getReceivedPartial('getReceivedPartial', this.data).subscribe(data => {
-      // this.listReceived = data.message.received;
       this.subject.next();
     });
     this.load.dismiss();
+    this.temp = true;
     return this.subject.asObservable();
-  }
-
-  test(e){
-    window.onscroll
   }
 }

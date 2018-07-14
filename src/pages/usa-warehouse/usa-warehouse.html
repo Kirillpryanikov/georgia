@@ -17,7 +17,7 @@
           <!--INFO BLOCKS WRAPPER / CONTENT -->
 
             <div #u2ginfo class="u2g-content u2g-content--warehouse u2g-content--masonry">
-              <div class="non_packages" *ngIf="listUsaWarehouse && !listUsaWarehouse.length">
+              <div class="non_packages" *ngIf="listUsaWarehouse && !listUsaWarehouse.length && temp">
                 {{"_NO_PACKAGE_FOUND" | translate}}
               </div>
               <div *ngFor="let warehouse of listUsaWarehouse; index as index" class="u2g-info-block">

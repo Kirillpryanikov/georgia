@@ -35,6 +35,7 @@ export class UsaWarehousePage implements OnInit{
   public logoWrapper = '_USA_WAREHOUSE';
   private listUsaWarehouse;
   private load;
+  private temp;
   private subscription: Subscription;
   private data;
 
@@ -130,6 +131,7 @@ export class UsaWarehousePage implements OnInit{
         this.initMasonry();
       });
       this.load.dismiss();
+      this.temp = true;
     });
   }
 

@@ -17,7 +17,7 @@
           <!--INFO BLOCKS WRAPPER / CONTENT -->
 
           <div class="u2g-content u2g-content--masonry">
-            <div class="non_packages" *ngIf="listReceived && !listReceived.length">
+            <div class="non_packages" *ngIf="listReceived && !listReceived.length && temp">
               {{"_NO_PACKAGE_FOUND" | translate}}
             </div>
             <div *ngFor="let received of listReceived; index as index" class="u2g-info-block u2g-info-block--received">

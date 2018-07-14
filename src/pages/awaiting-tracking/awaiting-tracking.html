@@ -35,7 +35,7 @@
           <!--INFO BLOCKS WRAPPER / CONTENT -->
 
           <div #u2ginfo class="u2g-content u2g-content--masonry">
-            <div class="non_packages" *ngIf="listAwaitingTracking && !listAwaitingTracking.length">
+            <div class="non_packages" *ngIf="listAwaitingTracking && !listAwaitingTracking.length && temp">
              {{"_NO_PACKAGE_FOUND" | translate}}
             </div>
             <div class="u2g-info-block" *ngFor="let tracking of listAwaitingTracking; index as index">

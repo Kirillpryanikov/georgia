@@ -46,6 +46,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private subscription: Subscription;
   private disableCheck: boolean;
   private load;
+  private temp;
   private subject = new Subject<any>();
 
   constructor(private navCtrl: NavController,
@@ -186,6 +187,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       this.subject.next();
     });
     this.load.dismiss();
+    this.temp = true;
     return this.subject.asObservable();
   }
 
