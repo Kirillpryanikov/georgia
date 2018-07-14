@@ -5,6 +5,7 @@ import {NativeStorage} from "@ionic-native/native-storage";
 import {CourierSuccessPopups} from "@shared/popups/courier-success-popup-component/courier-success-popups";
 import {CourierNotSuccessPopups} from "@shared/popups/courier-not-success-popup-component/courier-not-success-popups";
 import {Subscription} from "rxjs/Subscription";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 /**
  * Generated class for the TransactionPage page.
@@ -24,6 +25,7 @@ export class TransactionPage implements OnInit{
   private listTransaction;
   public logoWrapper = '_TRANSACTIONS';
   private data;
+  private block;
   private subscription: Subscription;
   private sessionId: string;
   private active = 'transaction';
@@ -56,17 +58,30 @@ export class TransactionPage implements OnInit{
   }
 
   expressCourier() {
+    this.block = true;
     this.data = {
       sessionId: this.sessionId,
       action: 'CHECK'
     };
     this.subscription = this.arrivedService.retrieveCourier('retrieveCourier', this.data).subscribe(data => {
-      if(data.message.status === 'FAIL') {
-        const modal = this.modalController.create(CourierNotSuccessPopups);
+      if(data.error){
+        const modal = this.modalController.create(ErrorPopups);
         modal.present();
-      } else{
-        const modal = this.modalController.create(CourierSuccessPopups);
-        modal.present();
+        this.block = false;
+      } else {
+        if(data.message.status === 'FAIL') {
+          const modal = this.modalController.create(CourierNotSuccessPopups, {msg: data.message.message});
+          modal.present();
+          this.block = false;
+        } else if(data.message.status === 'PROCESS'){
+          const modal = this.modalController.create(CourierSuccessPopups, {msg: data.message.address, chargeable: data.message.chargeable});
+          modal.present();
+          this.block = false;
+        } else {
+          const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
+          modal.present();
+          this.block = false;
+        }
       }
       this.subscription.unsubscribe();
     });
@@ -77,18 +92,18 @@ export class TransactionPage implements OnInit{
     this.navCtrl.push('invoice-page',{invoice: invoice});
   }
 
-  goTo(e) {
-    switch (e){
-      case 'INVOICE_PAYMENT':
-        this.navCtrl.setRoot('deposite-page');
-        break;
-      case 'EXPRESS_COURIER_SERVICE_CHARGE':
-      case 'COURIER_SERVICE_CHARGE':
-        this.expressCourier();
-        break;
-      case 'ADD_FUND':
-        this.navCtrl.setRoot('page-awaiting-tracking');
-        break;
-    }
-  }
+  // goTo(e) {
+  //   switch (e){
+  //     case 'INVOICE_PAYMENT':
+  //       this.navCtrl.setRoot('deposite-page');
+  //       break;
+  //     case 'EXPRESS_COURIER_SERVICE_CHARGE':
+  //     case 'COURIER_SERVICE_CHARGE':
+  //       this.expressCourier();
+  //       break;
+  //     case 'ADD_FUND':
+  //       this.navCtrl.setRoot('page-awaiting-tracking');
+  //       break;
+  //   }
+  // }
 }

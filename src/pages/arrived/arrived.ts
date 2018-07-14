@@ -124,7 +124,7 @@ export class ArrivedPage implements OnDestroy{
           modal.present();
           this.block = false;
         } else {
-          const modal = this.modalController.create(WarningPopups, {notice: data.message.message});
+          const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
           modal.present();
           this.block = false;
         }

@@ -3454,6 +3454,7 @@ ion-content, body.overflow {
 @media (max-width: 1366px) {
   .u2g-page-wrapper {
     min-height: 100vh;
+    overflow: hidden;
     width: 100%; }
   .u2g-container {
     max-width: 100%;
