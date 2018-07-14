@@ -21,7 +21,7 @@
   </a>
   <div class="u2g-nav">
     <div *ngIf="sms_code" class="u2g-profile-info__barcode" style="padding: 5px" (click)="showBarcode()">
-      <ngx-barcode *ngIf="sms_code" [bc-value]="sms_code" [bc-display-value]="false"></ngx-barcode>
+      <ngx-barcode *ngIf="sms_code" [bc-height]="50" [bc-value]="sms_code" [bc-display-value]="false"></ngx-barcode>
     </div>
     <div class="u2g-profile-info__nav-item u2g-profile-info__nav-item--details">
       <span style="padding-left: 13px">{{userBalance}} {{'_GEL_SYMBOL' | translate}}</span>

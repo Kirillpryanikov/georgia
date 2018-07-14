@@ -174,7 +174,7 @@
             <span class="u2g-profile-info__user-code">{{user.userCode}}</span>
           </div>
           <div  (click)="showBarcode()" class="u2g-profile-info__barcode">
-            <ngx-barcode *ngIf="user.sms_code" [bc-value]="user.sms_code" [bc-display-value]="false"></ngx-barcode>
+            <ngx-barcode *ngIf="user.sms_code" [bc-height]="50" [bc-value]="user.sms_code" [bc-display-value]="false"></ngx-barcode>
           </div>
           <nav class="u2g-profile-info__nav">
             <div class="u2g-profile-info__nav-item u2g-profile-info__nav-item--details">

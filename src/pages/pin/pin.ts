@@ -77,7 +77,8 @@ export class PinPage implements OnInit{
               })
             });
         } else {
-          this.msg = 'Wrong PIN Code'
+          this.msg = 'Wrong PIN Code';
+          this.load.dismiss();
         }
       });
   }

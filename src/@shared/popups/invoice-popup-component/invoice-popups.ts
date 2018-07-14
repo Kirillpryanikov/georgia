@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import {Platform, ViewController, NavParams, ModalController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { ScriptMainService } from "@core/script.data/script.main.service";
 import { PopupService } from "@core/services";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import * as $ from 'jquery'
 import {Subscription} from "rxjs/Subscription";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 @Component({
@@ -17,6 +15,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
   private file: string = '';
   private data;
+  public temp: boolean = false;
   private sessionId: string;
   private filename: any;
   private listFiles: any = [];
@@ -102,21 +101,24 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   removeUploadInvoice(index) {
-    const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE"});
-    modal.onDidDismiss(data => {
-      if(data){
-        this.data = {
-          sessionId: this.sessionId,
-          packageId: this.navParams.data.package_id,
-          filename: this.listFiles[index]
-        };
-        this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
-          this.filename = false;
-        })
-      }
-    });
-    modal.present();
-    this.file = '';
+    this.temp = true;
+    setTimeout(() => {
+      const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE"});
+      modal.onDidDismiss(data => {
+        if(data){
+          this.data = {
+            sessionId: this.sessionId,
+            packageId: this.navParams.data.package_id,
+            filename: this.listFiles[index]
+          };
+          this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
+            this.filename = false;
+          })
+        }
+      });
+      modal.present();
+      this.file = '';
+    }, 100);
   }
 
   getListOfUploadedInvoices() {

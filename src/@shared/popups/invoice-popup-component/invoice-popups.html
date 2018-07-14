@@ -10,7 +10,7 @@
         <p class="u2g-popup__text">{{'_UPLOAD_DESCRIPTION' | translate}}</p>
         <form class="u2g-invoice">
           <div class="u2g-file-name-wrapper" *ngFor="let file of listFiles; index as index">
-            <span class="u2g-remove-file remove-file_js u2g-remove-file--chosen" (click)="removeUploadInvoice(index)"><i style="font-size: 10px" class="material-icons">clear</i></span>
+            <span  class="u2g-remove-file remove-file_js u2g-remove-file--chosen" (click)="removeUploadInvoice(index)"><i style="font-size: 10px" class="material-icons">clear</i></span>
             <span class="u2g-file-name u2g-popup__text u2g-popup__text--bold">{{file}}</span>
           </div>
           <div class="u2g-invoice__button-wrapper">
@@ -48,5 +48,6 @@
         </form>
       </div>
     </div>
+    <div [ngClass]="{'u2g-overlay': temp}"></div>
   </div>
 </ion-content>
