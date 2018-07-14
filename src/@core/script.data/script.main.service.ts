@@ -84,7 +84,9 @@ export class ScriptMainService {
         }
 
         if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          that.hideDropdown();
+          setTimeout(() => {
+            that.hideDropdown();
+          },300)
         }
       }
     });

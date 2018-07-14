@@ -139,7 +139,7 @@ export class DeclarationPage implements OnInit, OnDestroy{
         this.form.patchValue({
           code: data.message.declaration.shipper,
         });
-      } else {
+      } else if(data.message.declaration.shipper_id === '-2'){
         this.form.patchValue({
           shipper: 'false',
         });
