@@ -16,6 +16,7 @@ import { FormsModule } from "@angular/forms";
 import { Network } from "@ionic-native/network";
 import {Keyboard} from "@ionic-native/keyboard";
 import { NgxBarcodeModule } from 'ngx-barcode';
+import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -49,6 +50,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     Globalization,
+    FingerprintAIO,
     Network,
     StatusBar,
     SplashScreen,

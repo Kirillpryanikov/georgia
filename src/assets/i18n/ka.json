@@ -426,7 +426,6 @@
   "_CONFIRM_PIN_CODE":"დაადასტურეთ თქვენი PIN კოდი",
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული",
   "_DELETE_INVOICE":"გნებავთ წაშალოთ ეს ფაილი?",
-  "_DELETE_IMAGE":"გსურთ გამოსახულების წაშლა?"
-
-
+  "_DELETE_IMAGE":"გსურთ გამოსახულების წაშლა?",
+  "_LOGIN_FINGER_PRINT":"შესვლა თითის ბეჭდვა"
 }

@@ -423,5 +423,6 @@
   "_CONFIRM_PIN_CODE":"Confirm your PIN code",
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"Your PIN code not confirmed",
   "_DELETE_INVOICE":"Do you want remove this file?",
-  "_DELETE_IMAGE":"Do you want remove avatar?"
+  "_DELETE_IMAGE":"Do you want remove avatar?",
+  "_LOGIN_FINGER_PRINT":"Login finger print"
 }

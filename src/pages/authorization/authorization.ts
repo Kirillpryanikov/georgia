@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthorizationService } from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import { NativeStorage } from "@ionic-native/native-storage";
+import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 
 @IonicPage({
   name: 'authorization-page'
@@ -26,8 +27,11 @@ export class Authorization implements OnInit, OnDestroy {
   private pin: string;
   private load;
   private subscription: Subscription;
+  private finger;
+  private key;
 
   constructor(private navCtrl: NavController,
+              private faio: FingerprintAIO,
               private fb: FormBuilder,
               private render: Renderer2,
               private translate: TranslateService,
@@ -37,6 +41,13 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    this.faio.isAvailable()
+      .then(data => {
+        this.finger = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     this.nativeStorage.getItem('hashKey')
       .then(res => {
         this.hashKey = res;
@@ -99,6 +110,30 @@ export class Authorization implements OnInit, OnDestroy {
     })
   }
 
+  loginFinger() {
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
+    this.nativeStorage.getItem('hashKey')
+      .then(res => {
+        this.key = res;
+        this.data = {
+          secret: '6LcbGCsUAAATUM-mRB1xmIGEAbaSfebzeUlPpsuZ',
+          key: this.key,
+          language: this.lang,
+          remember: this.form.value.checkbox
+        };
+        this.subscription = this.authService.keyLogin('keyLogin', this.data).subscribe(data => {
+          this.nativeStorage.setItem('sessionId', data.message.session_id);
+          this.nativeStorage.setItem('remember', this.data.remember);
+          this.navCtrl.setRoot('page-awaiting-tracking', {lang: this.lang});
+          this.load.dismiss();
+          this.subscription.unsubscribe();
+        })
+      });
+  }
+
   goToRegisterPage() {
     this.registerService.offClick();
     this.navCtrl.push('register-page');
@@ -107,6 +142,22 @@ export class Authorization implements OnInit, OnDestroy {
   goToPinPage() {
     this.registerService.offClick();
     this.navCtrl.push('page-pin');
+  }
+
+  fingerPrint(){
+    this.faio.show({
+      clientId: 'Fingerprint-Demo',
+      clientSecret: 'password', //Only necessary for Android
+      disableBackup:true,  //Only for Android(optional)
+      localizedFallbackTitle: 'Use Pin', //Only for iOS
+      localizedReason: 'Please authenticate' //Only for iOS
+    })
+      .then(() => {
+        this.loginFinger();
+      })
+      .catch((error) => {
+        console.log('err', error);
+      });
   }
 
   ngOnDestroy() {
