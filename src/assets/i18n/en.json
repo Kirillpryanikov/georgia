@@ -422,5 +422,6 @@
   "_INPUT_PIN_CODE":"Input your PIN code",
   "_CONFIRM_PIN_CODE":"Confirm your PIN code",
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"Your PIN code not confirmed",
-  "_DELETE_INVOICE":"Do you want remove this file?"
+  "_DELETE_INVOICE":"Do you want remove this file?",
+  "_DELETE_IMAGE":"Do you want remove avatar?"
 }

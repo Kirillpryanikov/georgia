@@ -146,12 +146,18 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   removePhoto() {
-    if(this.userPhoto) {
-      this.settingService.removeAvatar('removeAvatar', {sessionId: this.sessionId}).subscribe(data => {
-        this.userPhoto = 'img/placeholder_user.png';
-      })
-    }
-
+    const modal = this.modalController.create(WarningPopups, {notice: "_DELETE_IMAGE"});
+    modal.onDidDismiss((data) => {
+      if(data) {
+        localStorage.removeItem('userAvatar');
+        if(this.userPhoto) {
+          this.settingService.removeAvatar('removeAvatar', {sessionId: this.sessionId}).subscribe(data => {
+            this.userPhoto = 'img/placeholder_user.png';
+          })
+        }
+      }
+    });
+    modal.present();
   }
 
   private comparePassword(AC: AbstractControl) {
@@ -313,13 +319,26 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   getAvatar() {
-    this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
-      if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
-        this.userPhoto = 'data:image/' + data.message.extention + ';base64,' + data.message.file;
-      }
-      else
-        this.userPhoto = './img/placeholder_user.png';
-    });
+    if(localStorage.getItem('userAvatar') !== null){
+      this.userPhoto = localStorage.getItem('userAvatar');
+      this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+        if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+          this.userPhoto = 'data:image/png;base64,' + data.message.file;
+          localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
+        }
+        else
+          this.userPhoto = './img/placeholder_user.png';
+      });
+    } else {
+      this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
+        if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
+          this.userPhoto = 'data:image/png;base64,' + data.message.file;
+          localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
+        }
+        else
+          this.userPhoto = './img/placeholder_user.png';
+      });
+    }
   }
 
   getCustomerSettings() {
