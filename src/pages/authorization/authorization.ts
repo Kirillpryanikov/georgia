@@ -29,6 +29,7 @@ export class Authorization implements OnInit, OnDestroy {
   private subscription: Subscription;
   private finger;
   private key;
+  public set_finger: boolean;
 
   constructor(private navCtrl: NavController,
               private faio: FingerprintAIO,
@@ -51,6 +52,10 @@ export class Authorization implements OnInit, OnDestroy {
     this.nativeStorage.getItem('hashKey')
       .then(res => {
         this.hashKey = res;
+      });
+    this.nativeStorage.getItem('set_finger')
+      .then(res => {
+        this.set_finger = res;
       });
     this.nativeStorage.getItem('pin')
       .then(res => {

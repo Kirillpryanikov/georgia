@@ -69,18 +69,20 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.nativeStorage.getItem('pin').catch(() => {
-          this.nativeStorage.getItem('dontShow').then((data) => {
-            if(!data){
+          this.nativeStorage.getItem('set_finger').catch(() => {
+            this.nativeStorage.getItem('dontShow').then((data) => {
+              if(!data){
+                this.nativeStorage.getItem('isAuthorise').catch(() => {
+                  this.modalController.create(PinPopups).present();
+                  this.nativeStorage.setItem('isAuthorise', true)
+                });
+              }
+            }).catch(() => {
               this.nativeStorage.getItem('isAuthorise').catch(() => {
                 this.modalController.create(PinPopups).present();
                 this.nativeStorage.setItem('isAuthorise', true)
               });
-            }
-          }).catch(() => {
-            this.nativeStorage.getItem('isAuthorise').catch(() => {
-              this.modalController.create(PinPopups).present();
-              this.nativeStorage.setItem('isAuthorise', true)
-            });
+            })
           })
         });
         this.sessionId = res;

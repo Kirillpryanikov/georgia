@@ -21,6 +21,7 @@
             <span class="text">{{'_NOT_NOW' | translate}}</span>
           </button>
         </div>
+        <button *ngIf="finger" (click)="fingerPrint()" type="button" style="margin: auto; margin-top: 15px; height: 40px; border-radius: 20px" class="u2g-button u2g-button--green">{{'_LOGIN_FINGER_PRINT' | translate}}</button>
         <div style="font-weight: bold; font-size: 14px" class="u2g-popup__checkbox u2g-popup__buttons--align-center">
           <label class="u2g-info-block__list-item u2g-info-block__list-item--label cut-down-package_js">
             <input type="checkbox" [(ngModel)]="dontShow">
