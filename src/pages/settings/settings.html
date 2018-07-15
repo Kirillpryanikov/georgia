@@ -294,9 +294,9 @@
 
               <!--          CHANGE PIN-->
 
-                <form [formGroup]="pinForm" (submit)="submit('pin')" class="u2g-settings-form u2g-settings-form--password" data-form-validate="true">
-                  <h3 class="u2g-settings-form__note">{{"_PIN_CODE" | translate}}</h3>
-                  <div class="u2g-form-group">
+                <form [formGroup]="pinForm" style="max-width: 100%" (submit)="submit('pin')" class="sign sign--in u2g-settings-form u2g-settings-form--password" data-form-validate="true">
+                  <h3 *ngIf="is_pin && !is_finger" class="u2g-settings-form__note">{{"_PIN_CODE" | translate}}</h3>
+                  <div *ngIf="is_pin && !is_finger" class="u2g-form-group">
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label">
                         <span>{{"_NEW_PIN" | translate}}</span> <sup>*</sup>
@@ -317,9 +317,21 @@
                       <input [disabled]="pinForm.invalid" type="submit" value="{{'_SAVE_CHANGE' | translate}}" class="u2g-button">
                     </div>
                   </div>
+                  <div *ngIf="!is_finger" class="u2g-form-group__field-group ">
+                    <label for="pin" class="u2g-form-group__label"><span>{{'_LOGIN_WITH_PIN' | translate}}</span></label>
+                    <label class="u2g-switch">
+                      <input [(ngModel)]="is_pin" [ngModelOptions]="{standalone: true}" type="checkbox" id="pin">
+                      <span style="border-radius: 50px"></span>
+                    </label>
+                  </div>
+                  <div *ngIf="!is_pin" class="u2g-form-group__field-group ">
+                    <label for="finger" class="u2g-form-group__label"><span>{{'_LOGIN_FINGER_PRINT' | translate}}</span></label>
+                    <label class="u2g-switch">
+                      <input [(ngModel)]="is_finger" [ngModelOptions]="{standalone: true}" type="checkbox" id="finger">
+                      <span style="border-radius: 50px"></span>
+                    </label>
+                  </div>
                 </form>
-
-
               </div>
 
               <!--          NOTIFICATION MANAGEMENT-->

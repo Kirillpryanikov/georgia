@@ -46,6 +46,8 @@ export class SettingsPage implements OnInit, OnDestroy{
   notificationForm: FormGroup;
   pinForm: FormGroup;
   file: any;
+  is_pin: boolean = true;
+  is_finger: boolean;
   private active = 'setting';
 
   user: IUserSetings = {
