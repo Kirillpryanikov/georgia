@@ -81,6 +81,7 @@ export class PinPopups implements OnDestroy, AfterViewInit, OnInit {
 
   fingerPrint() {
     this.nativeStorage.setItem('set_finger', true);
+    this.nativeStorage.setItem('is_finger', true)
     this.close();
   }
 

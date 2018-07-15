@@ -30,6 +30,8 @@ export class Authorization implements OnInit, OnDestroy {
   private finger;
   private key;
   public set_finger: boolean;
+  is_pin;
+  is_finger;
 
   constructor(private navCtrl: NavController,
               private faio: FingerprintAIO,
@@ -42,6 +44,12 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    this.nativeStorage.getItem('is_pin').then(data => {
+      this.is_pin = data;
+    });
+    this.nativeStorage.getItem('is_finger').then(data => {
+      this.is_finger = data;
+    });
     this.faio.isAvailable()
       .then(data => {
         this.finger = data;

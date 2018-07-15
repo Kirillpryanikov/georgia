@@ -83,6 +83,7 @@ export class ConfirmPincodePage implements OnInit{
       this.pin = this.form.value.first + this.form.value.second + this.form.value.third + this.form.value.fourth;
       this.nativeStorage.setItem('hashKey', this.hashKey);
       this.nativeStorage.setItem('pin', this.pin);
+      this.nativeStorage.setItem('is_pin', true);
       const modal = this.modalCtrl.create(SuccessPopups);
       modal.present();
       this.navCtrl.setRoot('page-awaiting-tracking');

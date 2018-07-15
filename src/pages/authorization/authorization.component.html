@@ -46,8 +46,8 @@
         <button type="submit" [disabled]="form.invalid" class="u2g-button u2g-button--green">{{'_SIGN_IN' | translate}}</button>
         <a (click)="goToRegisterPage()" class="u2g-button">{{'_REGISTER' | translate}}</a>
       </div>
-      <button type="button" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green" *ngIf="hashKey && pin" (click)="goToPinPage()">{{'_LOGIN_WITH_PIN' | translate}}</button>
-      <button type="button" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green" *ngIf="hashKey && finger && set_finger" (click)="fingerPrint()">{{'_LOGIN_FINGER_PRINT' | translate}}</button>
+      <button type="button" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green" *ngIf="hashKey && pin && is_pin" (click)="goToPinPage()">{{'_LOGIN_WITH_PIN' | translate}}</button>
+      <button type="button" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green" *ngIf="hashKey && finger && set_finger && is_finger" (click)="fingerPrint()">{{'_LOGIN_FINGER_PRINT' | translate}}</button>
 
       <p class="error">{{msg}}</p>
 

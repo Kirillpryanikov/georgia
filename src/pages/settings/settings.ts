@@ -46,7 +46,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   notificationForm: FormGroup;
   pinForm: FormGroup;
   file: any;
-  is_pin: boolean = true;
+  is_pin: boolean;
   is_finger: boolean;
   private active = 'setting';
 
@@ -93,6 +93,12 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.nativeStorage.getItem('is_pin').then(data => {
+      this.is_pin = data;
+    });
+    this.nativeStorage.getItem('is_finger').then(data => {
+      this.is_finger = data;
+    });
     this.nativeStorage.getItem('sessionId')
       .then(res => {
         this.sessionId = res;
@@ -405,6 +411,16 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   hide() {
     this.mainService.hide();
+  }
+
+  setPin(e) {
+    this.nativeStorage.setItem('is_pin', e.target.checked);
+    this.nativeStorage.setItem('is_finger', false);
+  }
+
+  setFinger(e) {
+    this.nativeStorage.setItem('is_finger', e.target.checked);
+    this.nativeStorage.setItem('is-pin', false);
   }
 
   ngOnDestroy() {
