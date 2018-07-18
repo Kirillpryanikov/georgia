@@ -2,12 +2,14 @@ import {
   Component, OnDestroy, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener,
   OnInit
 } from '@angular/core';
-import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
+import {Platform, ViewController, NavParams, NavController, ModalController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { NativeStorage } from "@ionic-native/native-storage";
 import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 import {HeaderService} from "@core/services";
+import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 @Component({
   selector: 'pin-popup',
@@ -24,6 +26,7 @@ export class PinPopups implements OnDestroy, AfterViewInit, OnInit {
   constructor(private renderer: Renderer2,
               private faio: FingerprintAIO,
               private headerService: HeaderService,
+              private modalController: ModalController,
               private platform: Platform,
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
@@ -81,8 +84,10 @@ export class PinPopups implements OnDestroy, AfterViewInit, OnInit {
 
   fingerPrint() {
     this.nativeStorage.setItem('set_finger', true);
-    this.nativeStorage.setItem('is_finger', true)
+    this.nativeStorage.setItem('is_finger', true);
     this.close();
+    const modal = this.modalController.create(ErrorPopups, {notice: "_FINGER_LOGIN_HAS_BEEN_SET"});
+    modal.present();
   }
 
   getHashKey(){

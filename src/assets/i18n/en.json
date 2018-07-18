@@ -424,5 +424,6 @@
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"Your PIN code not confirmed",
   "_DELETE_INVOICE":"Do you want remove this file?",
   "_DELETE_IMAGE":"Do you want remove avatar?",
-  "_LOGIN_FINGER_PRINT":"Login finger print"
+  "_LOGIN_FINGER_PRINT":"Fingerprint login",
+  "_FINGER_LOGIN_HAS_BEEN_SET":"Fingerprint login has been set"
 }

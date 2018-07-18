@@ -33,7 +33,7 @@
           <div class="u2g-notifications__title">
             <span>{{'_NOTIFICATIONS' | translate}}</span>
           </div>
-          <a (click)="arrived($event)" class="u2g-notifications__item">
+          <a (click)="arrived($event)" class="u2g-notifications__item" *ngIf="notification.unpaid_invoice > 0">
             <svg height="22px" width="22px" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <g>
@@ -89,7 +89,7 @@
                 </svg>
             <div>{{'_YOU_HAVE' | translate}} <span>{{notification.unpaid_invoice}}</span> {{'_UNPAID_INVOICES' | translate}}</div>
           </a>
-          <a (click)="awaiting($event)" class="u2g-notifications__item">
+          <a (click)="awaiting($event)" class="u2g-notifications__item" *ngIf="notification.undeclared_tracking > 0">
             <svg x="0px" y="0px"
 	 viewBox="0 0 480 480" height="22px" width="22px" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <g>
@@ -142,7 +142,10 @@
 	</g>
 </g>
                 </svg>
-            <div>{{'_UNDECLARE_COUNT_NOTIFICATION_1' | translate}} <span>{{notification.undeclared_tracking}}</span> {{'_UNDECLARE_COUNT_NOTIFICATION_2' | translate}}</div>
+            <div>{{'_UNDECLARE_COUNT_NOTIFICATION_1' | translate}}
+              <span>{{notification.undeclared_tracking}}</span>
+              {{'_UNDECLARE_COUNT_NOTIFICATION_2' | translate}}
+            </div>
           </a>
         </div>
       </div>

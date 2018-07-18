@@ -7321,7 +7321,7 @@ svg {
 }
 
 .non_packages {
-  line-height: 9vh;
+  padding: 10px;
   text-align: center;
   background: #ffffff;
   color:  #e47b7b;
@@ -7329,7 +7329,7 @@ svg {
   font-size: 20px;
   font-family: "Segoe UI", "Noto Sans", sans-serif;
   font-weight:  bold;
-  height: 10vh;
+  height: auto;
   width: 100%;
   border-radius: 10px;
   -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);

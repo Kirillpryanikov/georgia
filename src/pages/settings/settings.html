@@ -324,7 +324,7 @@
                       <span style="border-radius: 50px"></span>
                     </label>
                   </div>
-                  <div *ngIf="!is_pin" class="u2g-form-group__field-group ">
+                  <div *ngIf="!is_pin && finger" class="u2g-form-group__field-group ">
                     <label for="finger" class="u2g-form-group__label"><span>{{'_LOGIN_FINGER_PRINT' | translate}}</span></label>
                     <label class="u2g-switch">
                       <input (change)="setFinger($event)" [(ngModel)]="is_finger" [ngModelOptions]="{standalone: true}" type="checkbox" id="finger">

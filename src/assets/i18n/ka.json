@@ -427,5 +427,6 @@
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული",
   "_DELETE_INVOICE":"გნებავთ წაშალოთ ეს ფაილი?",
   "_DELETE_IMAGE":"გსურთ გამოსახულების წაშლა?",
-  "_LOGIN_FINGER_PRINT":"შესვლა თითის ბეჭდვა"
+  "_LOGIN_FINGER_PRINT":"თითის ანაბეჭდით შესვლა",
+  "_FINGER_LOGIN_HAS_BEEN_SET":"თითის ანაბეჭდით შესვლა გააქტიურდა"
 }

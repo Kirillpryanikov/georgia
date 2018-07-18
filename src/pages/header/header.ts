@@ -147,7 +147,12 @@ export class HeaderPage implements OnInit, OnDestroy{
     this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
       this.notification.unpaid_invoice = data.message.un_uploaded_invoices.count;
       this.notification.undeclared_tracking = data.message.undeclared_trackings.count;
-      this.notification.notifications = parseInt(data.message.un_uploaded_invoices.count) + parseInt(data.message.undeclared_trackings.count);
+      if(this.notification.unpaid_invoice > 0){
+        this.notification.notifications++;
+      }
+      if(this.notification.undeclared_tracking > 0){
+        this.notification.notifications++;
+      }
     })
   }
 

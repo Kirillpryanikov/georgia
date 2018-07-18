@@ -15,6 +15,7 @@ import {HeaderService} from "@core/services";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 const notice = {
   change_psw: '_CHANGE_PASSWORD_CONFIRM'
 };
@@ -48,6 +49,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   file: any;
   is_pin: boolean;
   is_finger: boolean;
+  finger;
   private active = 'setting';
 
   user: IUserSetings = {
@@ -82,6 +84,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   userPhoto: string = this.user.userPhoto;
 
   constructor(public navCtrl: NavController,
+              public faio: FingerprintAIO,
               public navParams: NavParams,
               private mainService: ScriptMainService,
               private fb: FormBuilder,
@@ -93,6 +96,13 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.faio.isAvailable()
+      .then(data => {
+        this.finger = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     this.nativeStorage.getItem('is_pin').then(data => {
       this.is_pin = data;
     });
