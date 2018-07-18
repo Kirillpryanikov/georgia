@@ -97,7 +97,7 @@
                         <input style="display: none;" type="file" (change)="uploadPhoto($event)">
                         <span class="button_stng">{{'_UPLOAD_IMAGE' | translate}}</span>
                       </label>
-                      <label class="u2g-button u2g-button--remove-image" (click)="removePhoto()">
+                      <label *ngIf="is_image" class="u2g-button u2g-button--remove-image" (click)="removePhoto()">
                         <svg width="13" height="16" viewBox="0 0 13 16">
                           <image id="if--10--294964" width="13" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAQAAABnqj2yAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhDBYPDxOpNJ3pAAAAy0lEQVQY063MrUoEARSG4WfGQURwXVyTybDBS9igYJIBy9qMZjF4B1azfbMXIIJgEZkgGCwGBcN0WZhdEVZYPQZHxb/m+4UD7znnE+r0oowyyui9m0zbugS5BZDbRThO4sqSJ9+ZdCuq2P4o/cxWVBmmLf74mieJyqzfGCSx7MS+4ovO7chThbFrI01nVl1oGrkxVqT1XUcXe6Z0dd5U6k/+fZXV88g5Njw6MLACSdB371Lf0ItUQ0vHnFYSrNnU1jBjwrMHQ3cOnb4CgfNMECUoUQsAAAAASUVORK5CYII="/>
                         </svg>

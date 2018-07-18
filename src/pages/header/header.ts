@@ -33,7 +33,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   private platformIOS;
   private user: IUserHeader = {
     userId: '',
-    userPhoto: '',
+    userPhoto: 'img/placeholder_user.png',
     userName: '',
     email: '',
     userCode: '',

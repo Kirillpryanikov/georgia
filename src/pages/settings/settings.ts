@@ -50,6 +50,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   is_pin: boolean;
   is_finger: boolean;
   finger;
+  is_image;
   private active = 'setting';
 
   user: IUserSetings = {
@@ -65,7 +66,7 @@ export class SettingsPage implements OnInit, OnDestroy{
     firstNameGeorgian: 'string',
     lastName: "string",
     lastNameGeorgian: 'string',
-    userPhoto: ''
+    userPhoto: 'img/placeholder_user.png'
   };
   password: IPassword = {
     currentPassword: '456',
@@ -156,9 +157,11 @@ export class SettingsPage implements OnInit, OnDestroy{
           extention: this.userPhoto.split(',')[0].split(/,|\/|:|;/)[2]
         };
         localStorage.setItem('userAvatar', 'data:image/png;base64,' + this.userPhoto.split(',')[1],);
-        if(this.extention === 'jpg' || this.extention === 'jpeg' || this.extention === 'png')
+        if(this.extention === 'jpg' || this.extention === 'jpeg' || this.extention === 'png'){
+          this.is_image = true;
           this.subscription = this.settingService.uploadAvatar('uploadAvatar', this.data).subscribe(data => {
-        })
+          })
+        }
       }
     }
   }
@@ -170,6 +173,7 @@ export class SettingsPage implements OnInit, OnDestroy{
         localStorage.removeItem('userAvatar');
         if(this.userPhoto) {
           this.settingService.removeAvatar('removeAvatar', {sessionId: this.sessionId}).subscribe(data => {
+            this.is_image = false;
             this.userPhoto = 'img/placeholder_user.png';
           })
         }
@@ -342,6 +346,8 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
         if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
           this.userPhoto = 'data:image/png;base64,' + data.message.file;
+          if(data.message.file)
+            this.is_image = true;
           localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
         }
         else
@@ -351,6 +357,8 @@ export class SettingsPage implements OnInit, OnDestroy{
       this.subscription = this.settingService.getAvatar('getAvatar', {sessionId: this.sessionId}).subscribe(data => {
         if(data.message.extention === 'jpg' || data.message.extention === 'jpeg' || data.message.extention === 'png') {
           this.userPhoto = 'data:image/png;base64,' + data.message.file;
+          if(data.message.file)
+            this.is_image = true;
           localStorage.setItem('userAvatar', 'data:image/png;base64,' + data.message.file);
         }
         else
