@@ -13,7 +13,7 @@ import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popu
 })
 export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
-  private file: string = '';
+  private file: Array<string> = [];
   private data;
   public temp: boolean = false;
   private sessionId: string;
@@ -55,16 +55,17 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
-    this.data = {
-      sessionId: this.sessionId,
-      packageId: this.navParams.data.package_id,
-      base64data: this.file.split(',')[1],
-      extention: this.file.split(',')[0].split(/,|\/|:|;/)[2]
-    };
-    this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
-      this.subscription.unsubscribe();
-    });
-    this.disable = false;
+    for(let i = 0; i < this.file.length; i++){
+      this.data = {
+        sessionId: this.sessionId,
+        packageId: this.navParams.data.package_id,
+        base64data: this.file[i].split(',')[1],
+        extention: this.file[i].split(',')[0].split(/,|\/|:|;/)[2]
+      };
+      this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+        this.subscription.unsubscribe();
+      });
+    }
     this.close(true);
   }
 
@@ -77,9 +78,10 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     if(e.target.files[0]) {
       this.reader.readAsDataURL(e.target.files[0]);
       this.reader.onloadend = () => {
-        this.file = this.reader.result;
+        this.file.push(this.reader.result);
         this.listFiles.push('invoice.jpg');
-        this.disable = true;
+        if(this.listFiles.length >= 3)
+          this.disable = true;
       }
     }
   }
@@ -92,10 +94,11 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       mediaType: this.camera.MediaType.PICTURE
     };
     this.camera.getPicture(options).then((imageData) => {
-      this.file = 'data:image/jpeg;base64,' + imageData;
-      if(this.file !== '') {
-       this.listFiles.push('invoice.jpg');
-       this.disable = true;
+      if(imageData) {
+        this.file.push('data:image/jpeg;base64,' + imageData);
+        this.listFiles.push('invoice.jpg');
+        if(this.listFiles.length >= 3)
+          this.disable = true;
       }
     });
   }
@@ -117,7 +120,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         }
       });
       modal.present();
-      this.file = '';
+      this.file.splice(index, 1);
     }, 100);
   }
 
