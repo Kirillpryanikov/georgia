@@ -106,8 +106,9 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   removeUploadInvoice(index) {
     this.temp = true;
     setTimeout(() => {
-      const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE"});
+      const modal = this.modalCtrl.create(WarningPopups, {notice: "_DELETE_INVOICE", remove: true});
       modal.onDidDismiss(data => {
+        this.temp = false;
         if(data){
           this.data = {
             sessionId: this.sessionId,
@@ -116,11 +117,11 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
           };
           this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
             this.filename = false;
+            this.listFiles.splice(index,1)
           })
         }
       });
       modal.present();
-      this.file.splice(index, 1);
     }, 100);
   }
 

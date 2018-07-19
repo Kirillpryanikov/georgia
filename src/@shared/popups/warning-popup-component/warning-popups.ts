@@ -46,7 +46,8 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
   }
 
   close(data?: boolean) {
-    this.scriptService.closePopup();
+    if(!this.navParams.data.remove)
+      this.scriptService.closePopup();
     this.viewCtrl.dismiss(data);
   }
 
