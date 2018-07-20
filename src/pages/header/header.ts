@@ -23,7 +23,7 @@ import { BarcodePopups } from "@shared/popups/barcode-popup-component/barcode-po
 @Component({
   selector: 'header-page',
   templateUrl: 'header.html',
-  inputs: ['logoWrapper'],
+  inputs: ['logoWrapper', 'imageProfile'],
   outputs: ['branchSelection']
 })
 export class HeaderPage implements OnInit, OnDestroy{
