@@ -151,7 +151,7 @@ export class HeaderPage implements OnInit, OnDestroy{
         this.notification.notifications++;
       }
       if(this.notification.undeclared_tracking > 0){
-        this.notification.notifications++;
+        this.notification.notifications = 1;
       }
     })
   }
