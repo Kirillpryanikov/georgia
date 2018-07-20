@@ -27,16 +27,18 @@
               <div *ngIf="!pending.locked" class="u2g-info-block__choose-branch">
                 <span>{{'_CHOOSE_BRANCH' | translate}}:</span>
                 <select [(ngModel)]="branch[index]" (change)="changeHawbBranch(pending.hawb, index)" class="u2g-select">
-                  <option value="OFFICE_3" selected>{{'_CUSTOMS_BRANCH_VAJ' | translate}}</option>
-                  <option value="OFFICE_1">{{'_CUSTOMS_BRANCH_MIC' | translate}}</option>
-                  <option value="OFFICE_2">{{'_CUSTOMS_BRANCH_DIG' | translate}}</option>
-                  <option value="OFFICE_4">{{'OFFICE_4' | translate}}</option>
-                  <option value="OFFICE_5">{{'OFFICE_5' | translate}}</option>
-                  <option value="OFFICE_6">{{'OFFICE_6' | translate}}</option>
+                  <option value="OFFICE_3" selected>{{'_OFFICE_1' | translate}}</option>
+                  <option value="OFFICE_1">{{'_OFFICE_2' | translate}}</option>
+                  <option value="OFFICE_2">{{'_OFFICE_3' | translate}}</option>
+                  <option value="OFFICE_4">{{'_OFFICE_4' | translate}}</option>
+                  <option value="OFFICE_5">{{'_OFFICE_5' | translate}}</option>
+                  <option value="OFFICE_6">{{'_OFFICE_6' | translate}}</option>
+                  <option value="OFFICE_7">{{'_OFFICE_6' | translate}}</option>
+                  <option value="HEAD">{{'_HEAD' | translate}}</option>
                 </select>
               </div>
               <div *ngIf="pending.locked" class="u2g-info-block__choose-branch">
-                <span>{{'_BRANCH' | translate}}: {{pending.branch | translate}}</span>
+                <span>{{'_BRANCH' | translate}}: {{'_'+pending.branch | translate}}</span>
               </div>
               <div class="u2g-info-block__list">
                 <div *ngFor="let pendings of pending.trackings; index as _index" class="u2g-info-block__list-item">
