@@ -39,6 +39,7 @@ export class DeclarationPage implements OnInit, OnDestroy{
   subscription: Subscription;
   shipper: string;
   load;
+  updateNotification;
   shipperList: Array<string>;
   is_organization: boolean;
 
@@ -117,12 +118,20 @@ export class DeclarationPage implements OnInit, OnDestroy{
       declarationDetailsJson: JSON.stringify(this.productList)
     };
     this. subscription = this.declarationService.declareTracking('declareTracking', this.data).subscribe(data => {
-      if(data.message.status === "OK")
+      if(data.message.status === "OK"){
         this.modalController.create(SuccessPopups).present();
+        this.getNotifications();
+      }
       else
         this.modalController.create(ErrorPopups, {notice: data.message.message}).present();
       this.subscription.unsubscribe();
     });
+  }
+
+  getNotifications() {
+    this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
+      this.updateNotification = data.message.undeclared_trackings.count;
+    })
   }
 
   getDeclaration(): void {

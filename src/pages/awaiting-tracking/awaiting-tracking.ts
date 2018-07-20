@@ -44,6 +44,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
   private data;
   private ntf;
   private subscription: Subscription;
+  private updateNotification;
   private disableCheck: boolean;
   private load;
   private temp;
@@ -148,6 +149,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
       };
       this.listAwaitingTracking.splice(index,1);
       this.subscription = this.awaitingService.removeTracking('removeTracking', this.data).subscribe(data => {
+        this.getNotifications();
         this.getInfo();
         this.initMasonry();
         this.subscription.unsubscribe();
@@ -199,6 +201,12 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     });
   }
 
+  getNotifications() {
+    this.headerService.getNotifications('getNotifications', {sessionId: this.sessionId}).subscribe(data => {
+      this.updateNotification = data.message.undeclared_trackings.count;
+    })
+  }
+
   addTracking() {
     this.data = {
       sessionId: this.sessionId,
@@ -207,6 +215,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
     this.addTrackingNumber.nativeElement.value = '';
     this.subscription = this.awaitingService.addTracking('addTracking', this.data).subscribe(data => {
       if(data.message.status === 'OK') {
+        this.getNotifications();
         const modal = this.modalController.create(SuccessPopups);
         modal.present();
         this.subscription.unsubscribe();
