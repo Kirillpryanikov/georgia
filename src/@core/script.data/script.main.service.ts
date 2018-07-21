@@ -13,6 +13,7 @@ export class ScriptMainService {
   dropdown() {
     const that = this;
     $(document).on('touchstart', '[data-show-element]', function () {
+
       if($('.' + $(this).data('show-element')).hasClass('u2g-show')){
         that.hideDropdown();
       }
@@ -37,20 +38,21 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('toucstart', function (e) {
-      var showItem = $('.u2g-show');
-
-      if(showItem.length > 0) {
-
-        if($(e.target).hasClass('u2g-showed')) {
-          return;
-        }
-
-        if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          that.hideDropdown();
-        }
-      }
-    });
+    // $(document).on('toucstart', function (e) {
+    //   console.log(12312466)
+    //   var showItem = $('.u2g-show');
+    //
+    //   if(showItem.length > 0) {
+    //
+    //     if($(e.target).hasClass('u2g-showed')) {
+    //       return;
+    //     }
+    //
+    //     if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
+    //       that.hideDropdown();
+    //     }
+    //   }
+    // });
   }
 
   dropdownLang() {
@@ -74,19 +76,22 @@ export class ScriptMainService {
     });
 
     $(document).on('touchstart', function (e) {
-
       var showItem = $('.u2g-show');
 
       if(showItem.length > 0) {
-
-        if($(e.target).hasClass('u2g-showed')) {
+        if($(e.target).hasClass('u2g-showed') && showItem.length <= 1) {
           return;
         }
 
         if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          setTimeout(() => {
-            that.hideDropdown();
-          },300)
+          $('.' + $(this).data('show-elem')).toggleClass('u2g-show');
+
+          $(this).addClass('u2g-showed');
+
+          $('.u2g-overlay').css({'display' : 'block'});
+
+          $('body').addClass('overflow');
+          that.hideDropdown();
         }
       }
     });
