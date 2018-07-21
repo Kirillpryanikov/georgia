@@ -16,7 +16,7 @@
 
           <!--INFO BLOCKS WRAPPER / CONTENT -->
 
-          <div class="u2g-content u2g-content--masonry">
+          <!--<div class="u2g-content u2g-content&#45;&#45;masonry">-->
             <div class="non_packages" *ngIf="listReceived && !listReceived.length && temp">
               {{"_NO_PACKAGE_FOUND" | translate}}
             </div>
@@ -31,8 +31,8 @@
               <div class="u2g-info-block__list">
                 <div *ngFor="let tracking of received.trackings; index as _index" class="u2g-info-block__list-item u2g-tracing-code">
                   <span class="u2g-tracking-code__title">1. {{'_TRACKING_CODE' | translate}}:</span>
-                  <span class="u2g-tracking-code__number">{{tracking.tracking}}</span>
-                  <div (click)="showCommentPopup(index, _index)" class="u2g-info-block__comment u2g-info-block__comment--small">
+                  <span style="padding-left: 15px" class="u2g-tracking-code__number">{{tracking.tracking}}</span>
+                  <div (click)="showCommentPopup(index, _index)" style="line-height: 70px" class="u2g-info-block__comment u2g-info-block__comment--small">
                     <svg viewBox="0 0 128 128"><g><path class="u2g-st0" d="M64,12.6c-34.7,0-63,21-63,46.8C1,70.1,6.1,80.7,15.3,89c0.8,0.7,1,1.8,0.7,2.7l-8.7,23.7L32.7,101   c0.7-0.4,1.4-0.4,2.1-0.2c9.1,3.5,18.9,5.3,29.1,5.3c34.7,0,63-21,63-46.8S98.7,12.6,64,12.6z M31.1,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2C41.2,65.4,36.7,69.9,31.1,69.9z M64,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C74.2,65.4,69.6,69.9,64,69.9z M96.9,69.9   c-5.6,0-10.2-4.6-10.2-10.2c0-5.6,4.6-10.2,10.2-10.2c5.6,0,10.2,4.6,10.2,10.2C107.1,65.4,102.6,69.9,96.9,69.9z"/></g></svg>
                   </div>
                 </div>
@@ -42,7 +42,10 @@
                 <span class="u2g-received-info__description">{{'_CHARGEABLE_WEIGHT' | translate}}</span>
               </div>
             </div>
-          </div>
+          <!--</div>-->
+          <button *ngIf="visible" (click)="loadMore()" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green">Load more</button>
+
+          <!--<button >LOAD MORE</button>-->
         </div>
       </div>
 

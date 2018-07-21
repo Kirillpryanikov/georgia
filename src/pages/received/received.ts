@@ -11,13 +11,6 @@ import {debounceTime} from 'rxjs/operators';
 import {NativeStorage} from "@ionic-native/native-storage";
 import {TranslateService} from "@ngx-translate/core";
 
-const count = 10;
-/**
- * Generated class for the ReceivedPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage({
   name:'received-page'
@@ -30,9 +23,11 @@ export class ReceivedPage implements OnInit {
   public logoWrapper = '_RECEIVED';
   public active = 'received';
   private sessionId: string;
+  private visible: boolean;
   private load;
-  private from;
-  private temp;
+  private from = 0;
+  private temp: boolean = false;
+  private count = 5;
   private data = {};
   private listReceived: Array<any> = [];
   private subject = new Subject<any>();
@@ -51,7 +46,7 @@ export class ReceivedPage implements OnInit {
       .then(res => {
         this.sessionId = res;
         // this.getReceivedPartial(this.from);
-        this.getReceived().pipe(debounceTime(0)).subscribe(() => {
+        this.getReceivedPartial(this.from).pipe(debounceTime(0)).subscribe(() => {
           this.temp = true;
           this.initMasonry();
         })
@@ -60,6 +55,13 @@ export class ReceivedPage implements OnInit {
 
   initMasonry() {
     this.mainService.initMasonry();
+  }
+
+  loadMore() {
+    this.getReceivedPartial(this.from).pipe(debounceTime(0)).subscribe(() => {
+      this.temp = true;
+      this.initMasonry();
+    })
   }
 
   navTo(e, page) {
@@ -78,20 +80,7 @@ export class ReceivedPage implements OnInit {
     modal.present();
   }
 
-  getReceived(): Observable<any> {
-    this.load = this.loadingCtrl.create({
-      spinner: 'dots'
-    });
-    this.load.present();
-    this.receivedService.getReceived('getReceived', {sessionId: this.sessionId}).subscribe(data => {
-      this.listReceived = data.message.received;
-      this.subject.next();
-    });
-    this.load.dismiss();
-    return this.subject.asObservable();
-  }
-
-  getReceivedPartial(from){
+  getReceivedPartial(from): Observable<any>{
     this.load = this.loadingCtrl.create({
       spinner: 'dots'
     });
@@ -99,13 +88,21 @@ export class ReceivedPage implements OnInit {
     this.data = {
       sessionId: this.sessionId,
       from: from,
-      count: count
+      count: this.count
     };
     this.receivedService.getReceivedPartial('getReceivedPartial', this.data).subscribe(data => {
+      if(data.message.received.length === 0){
+        this.visible = false;
+      }
+      for(let i = 0; i < data.message.received.length; i++) {
+        this.visible = true;
+        this.temp = true;
+        this.listReceived.push(data.message.received[i]);
+      }
       this.subject.next();
     });
     this.load.dismiss();
-    this.temp = true;
+    this.from = this.from + this.count;
     return this.subject.asObservable();
   }
 }
