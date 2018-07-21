@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import {PopupService} from "@core/services";
 
 @Component({
@@ -20,14 +19,7 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
               private popupService: PopupService) {}
-
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
-  }
 
   @HostListener('document:click', ['$event.target.tagName'])
   public documentClick(e) {

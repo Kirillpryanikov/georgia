@@ -6879,7 +6879,7 @@ label.error {
 
 @media (max-width: 576px) {
   .u2g-popup__content {
-    padding: 30px 30px 20px; } }
+    padding: 15px; } }
 
 @media (max-height: 400px) {
   .u2g-popup__content {
@@ -7352,4 +7352,8 @@ svg {
   display: inline-block !important;
   width: 20% !important;
   text-align: center !important;
+}
+
+.u2g-popup-wrapper.invoice_popup{
+  top: 60px !important;
 }

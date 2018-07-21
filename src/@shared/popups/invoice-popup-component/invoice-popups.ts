@@ -6,7 +6,6 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Subscription} from "rxjs/Subscription";
 import { WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
-import { NativePageTransitions} from "@ionic-native/native-page-transitions";
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -31,15 +30,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
               private reader: FileReader,
               private popupService: PopupService,
               private nativeStorage: NativeStorage,
-              private nativePageTransitions: NativePageTransitions,
               private camera: Camera) {
 
-  }
-
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
   }
 
   ngOnInit() {
