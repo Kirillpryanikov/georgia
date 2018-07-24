@@ -1,5 +1,5 @@
 <ion-header>
-  <header-page [logoWrapper]="logoWrapper" [imageProfile]="userPhoto"></header-page>
+  <header-page [logoWrapper]="logoWrapper" (streets)="_getStreets($event)" [imageProfile]="userPhoto"></header-page>
 </ion-header>
 <ion-content>
   <body>

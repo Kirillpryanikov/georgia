@@ -405,6 +405,12 @@ export class SettingsPage implements OnInit, OnDestroy{
     })
   }
 
+  _getStreets(language) {
+    this.settingService.getStreets('getStreets', {language: language}).subscribe(data => {
+      this.streetsList = Object.keys(data.message.data).map(key => data.message.data[key]);
+    })
+  }
+
   autocomplete(): void {
     this.mainService.autocomplete(this.streetsList, this.getValue.bind(this));
   }

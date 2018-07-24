@@ -24,7 +24,7 @@ import { BarcodePopups } from "@shared/popups/barcode-popup-component/barcode-po
   selector: 'header-page',
   templateUrl: 'header.html',
   inputs: ['logoWrapper', 'imageProfile', 'updateNotification'],
-  outputs: ['branchSelection']
+  outputs: ['branchSelection', 'streets']
 })
 export class HeaderPage implements OnInit, OnDestroy{
   private sessionId: string;
@@ -47,6 +47,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   };
   private lang: string;
   public branchSelection = new EventEmitter<any>();
+  public streets = new EventEmitter<any>();
 
   constructor(public mainService: ScriptMainService,
               public platform: Platform,
@@ -103,6 +104,10 @@ export class HeaderPage implements OnInit, OnDestroy{
 
   getBranchSelection(data) {
     this.branchSelection.emit(data);
+  }
+
+  street(language) {
+    this.streets.emit(language);
   }
 
   getInfo(a) {
@@ -162,6 +167,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   changeLanguage(language:string) {
+    this.street(language);
     this.mainService.hideDropdown();
     this.lang = language;
     this.translate.use(language);
