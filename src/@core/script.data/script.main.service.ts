@@ -164,16 +164,16 @@ export class ScriptMainService {
     });
   }
 
-  invoiceFileRemove() {
-    $(document).on('click', '.remove-file_js', function() {
-
-      $('.invoice-input_js').val('');
-
-      $('.u2g-file-name').text('');
-
-      $('.remove-file_js').removeClass('u2g-remove-file--chosen');
-    });
-  }
+  // invoiceFileRemove() {
+  //   $(document).on('click', '.remove-file_js', function() {
+  //
+  //     $('.invoice-input_js').val('');
+  //
+  //     $('.u2g-file-name').text('');
+  //
+  //     $('.remove-file_js').removeClass('u2g-remove-file--chosen');
+  //   });
+  // }
 
   radio() {
     $(document).on('click', '.u2g-add-product__radio > input', function() {

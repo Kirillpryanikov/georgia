@@ -20,6 +20,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private filename: any;
   private listFiles: any = [];
   private disable: boolean;
+  private addingFiles: Array<any> = [];
   private subscription: Subscription;
   constructor(private renderer: Renderer2,
               private platform: Platform,
@@ -55,13 +56,14 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
-    for(let i = 0; i < this.file.length; i++){
+    for(let i = 0; i < this.addingFiles.length; i++){
       this.data = {
         sessionId: this.sessionId,
         packageId: this.navParams.data.package_id,
-        base64data: this.file[i].split(',')[1],
-        extention: this.file[i].split(',')[0].split(/,|\/|:|;/)[2]
+        base64data: this.addingFiles[i].split(',')[1],
+        extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
       };
+      console.log(this.data)
       this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
         this.subscription.unsubscribe();
       });
@@ -80,6 +82,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       this.reader.onloadend = () => {
         this.file.push(this.reader.result);
         this.listFiles.push('invoice.jpg');
+        this.addingFiles.push(this.reader.result);
         if(this.listFiles.length >= 3)
           this.disable = true;
       }
@@ -117,8 +120,13 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
           };
           this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
             this.filename = false;
-            this.listFiles.splice(index,1)
-          })
+            if(this.listFiles.length >= 3)
+              this.disable = true;
+            else
+              this.disable = false;
+          });
+          this.listFiles.splice(index,1);
+          this.file.splice(index, 1);
         }
       });
       modal.present();
@@ -132,12 +140,15 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     };
     this.subscription = this.popupService.getListOfUploadedInvoices('getListOfUploadedInvoices', this.data).subscribe(data => {
       if(data.message.files && data.message.files.length > 0) {
-        this.listFiles = data.message.files;
+        for (let i in data.message.files) {
+          this.file.push(data.message.files[i]);
+          this.listFiles.push(data.message.files[i]);
+        }
         if(this.listFiles.length >= 3)
           this.disable = true;
       }
       this.subscription.unsubscribe();
-    })
+    });
   }
 
   ngOnDestroy() {}

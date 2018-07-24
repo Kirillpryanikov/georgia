@@ -40,7 +40,6 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
         this.getInfo();
       });
     this.mainService.invoiceFileAdd();
-    this.mainService.invoiceFileRemove();
   }
 
   ionViewWillLeave() {
