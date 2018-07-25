@@ -170,7 +170,7 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
 
   declaration(e, index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page', {package_id: this.listAwaitingTracking[index].package_id, tracking: this.listAwaitingTracking[index].tracking});
+    this.navCtrl.setRoot('declaration-page', {package_id: this.listAwaitingTracking[index].package_id, tracking: this.listAwaitingTracking[index].tracking});
   }
 
   createFormAddTracking() {

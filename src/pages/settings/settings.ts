@@ -443,6 +443,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   setFinger(e) {
+    this.nativeStorage.setItem('set_finger', true);
     this.nativeStorage.setItem('is_finger', e.target.checked);
     this.nativeStorage.setItem('is-pin', false);
   }

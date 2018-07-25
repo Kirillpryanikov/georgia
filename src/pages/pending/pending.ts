@@ -77,7 +77,7 @@ export class PendingPage {
 
   declaration(e, index, _index) {
     e.preventDefault();
-    this.navCtrl.push('declaration-page', {package_id: this.listPending[index].trackings[_index].id, tracking: this.listPending[index].trackings[_index].tracking});
+    this.navCtrl.setRoot('declaration-page', {package_id: this.listPending[index].trackings[_index].id, tracking: this.listPending[index].trackings[_index].tracking});
   }
 
   branchSelection(data) {

@@ -13,7 +13,6 @@ export class ScriptMainService {
   dropdown() {
     const that = this;
     $(document).on('touchstart', '[data-show-element]', function () {
-
       if($('.' + $(this).data('show-element')).hasClass('u2g-show')){
         that.hideDropdown();
       }
@@ -33,26 +32,30 @@ export class ScriptMainService {
           $('.u2g-page-wrapper').addClass('u2g-page-wrapper--right');
           $('.u2g-page-header').addClass('u2g-page-wrapper--right');
 
-
         }
       }
     });
 
-    // $(document).on('toucstart', function (e) {
-    //   console.log(12312466)
-    //   var showItem = $('.u2g-show');
-    //
-    //   if(showItem.length > 0) {
-    //
-    //     if($(e.target).hasClass('u2g-showed')) {
-    //       return;
-    //     }
-    //
-    //     if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-    //       that.hideDropdown();
-    //     }
-    //   }
-    // });
+    $(document).on('touchstart', function (e) {
+      var showItem = $('.u2g-show');
+
+      if(showItem.length > 0) {
+        if($(e.target).hasClass('u2g-showed') && showItem.length <= 1) {
+          return;
+        }
+
+        if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
+          $('.' + $(this).data('show-elem')).toggleClass('u2g-show');
+
+          $(this).addClass('u2g-showed');
+
+          $('.u2g-overlay').css({'display' : 'block'});
+
+          $('body').addClass('overflow');
+          that.hideDropdown();
+        }
+      }
+    });
   }
 
   dropdownLang() {
@@ -75,22 +78,16 @@ export class ScriptMainService {
       }
     });
 
-    $(document).on('touchstart', function (e) {
+    $(document).on('click', function (e) {
       var showItem = $('.u2g-show');
 
       if(showItem.length > 0) {
-        if($(e.target).hasClass('u2g-showed') && showItem.length <= 1) {
+
+        if($(e.target).hasClass('u2g-showed')) {
           return;
         }
 
         if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          $('.' + $(this).data('show-elem')).toggleClass('u2g-show');
-
-          $(this).addClass('u2g-showed');
-
-          $('.u2g-overlay').css({'display' : 'block'});
-
-          $('body').addClass('overflow');
           that.hideDropdown();
         }
       }

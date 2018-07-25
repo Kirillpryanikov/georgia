@@ -251,7 +251,7 @@
 </svg>
 		    </span>
         <div class="u2g-multilang__select">
-          <div class="u2g-multilang__select-item" (click)="changeLanguage('en')">
+          <div class="u2g-multilang__select-item" (click)="changeLanguage('en'); document.getElementById('store-url').blur(); document.getElementById('store-url').focus()">
             <span>{{'_ENGLISH' | translate}}</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
@@ -275,7 +275,7 @@
 </svg>
 
           </div>
-          <div class="u2g-multilang__select-item" (click)="changeLanguage('ka'); document.getElementById('store-url').blur()">
+          <div class="u2g-multilang__select-item" (click)="changeLanguage('ka'); document.getElementById('store-url').blur(); document.getElementById('store-url').focus()">
             <span>{{'_GEORGIAN' | translate}}</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
 <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
