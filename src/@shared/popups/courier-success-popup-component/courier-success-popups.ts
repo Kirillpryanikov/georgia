@@ -49,12 +49,6 @@ export class CourierSuccessPopups implements OnInit, AfterViewInit {
       });
   }
 
-  ionViewWillLeave(): void {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
-  }
-
   close(): void {
     this.scriptService.closePopup();
     this.viewCtrl.dismiss();

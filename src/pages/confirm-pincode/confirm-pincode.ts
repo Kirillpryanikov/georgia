@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ErrorPopups} from "../../@shared/popups/error-popup-component/error-popups";
-import {SuccessPopups} from "../../@shared/popups/success-popup-component/success-popups";
-import {HeaderService} from "../../@core/services";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import {HeaderService} from "@core/services";
 import {NativeStorage} from "@ionic-native/native-storage";
 
 @IonicPage({
@@ -89,6 +89,12 @@ export class ConfirmPincodePage implements OnInit{
       this.navCtrl.setRoot('page-awaiting-tracking');
     }
     else {
+      this.form.patchValue({
+        first:'',
+        second:'',
+        third:'',
+        fourth:''
+      });
       const modal = this.modalCtrl.create(ErrorPopups, {notice: "_YOUR_PIN_CODE_NOT_CONFIRMED"});
       modal.present();
     }

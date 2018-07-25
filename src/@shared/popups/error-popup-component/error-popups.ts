@@ -25,12 +25,6 @@ export class ErrorPopups implements OnDestroy, AfterViewInit {
 
   }
 
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { })
-      .catch(onError => { });
-  }
-
   @HostListener('document:click', ['$event.target.tagName'])
   public documentClick(e) {
     if(e === 'ION-CONTENT')

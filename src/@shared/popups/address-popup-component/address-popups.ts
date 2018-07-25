@@ -1,13 +1,9 @@
-import {
-  Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, Input,
-  HostListener
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener } from '@angular/core';
 import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { PopupService } from "@core/services";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { NativeStorage } from "@ionic-native/native-storage";
 
 @Component({
   selector: 'address-popup',
@@ -28,7 +24,6 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
               private viewCtrl: ViewController,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
               private mainService: ScriptMainService,
               private popupService: PopupService,
               private nativeStorage: NativeStorage) {}
@@ -40,12 +35,6 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
         this.getInfo();
       });
     this.mainService.invoiceFileAdd();
-  }
-
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
   }
 
   @HostListener('document:click', ['$event.target.tagName'])

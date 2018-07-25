@@ -41,12 +41,6 @@ export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
     this.mainService.invoiceFileAdd();
   }
 
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
-  }
-
   @HostListener('document:click', ['$event.target.tagName'])
   public documentClick(e) {
     if(e === 'ION-CONTENT')

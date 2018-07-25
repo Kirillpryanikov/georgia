@@ -1,10 +1,6 @@
-import {
-  Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener,
-  EventEmitter, OnDestroy
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener } from '@angular/core';
 import { Platform, ViewController, NavParams, NavController } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ScriptMainService } from "@core/script.data/script.main.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
@@ -34,7 +30,6 @@ export class AddProductPopups implements OnInit, AfterViewInit {
               private viewCtrl: ViewController,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
               private mainService: ScriptMainService,
               private fb: FormBuilder) {}
 
@@ -49,12 +44,6 @@ export class AddProductPopups implements OnInit, AfterViewInit {
     this.platform.registerBackButtonAction(() => {
       this.close();
     }, 999);
-  }
-
-  ionViewWillLeave(): void {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
   }
 
   addProduct(): void {

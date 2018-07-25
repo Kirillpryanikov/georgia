@@ -4,10 +4,9 @@ import {
 } from '@angular/core';
 import { Platform, ViewController, NavParams } from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { PopupService } from "@core/services";
 import { Subscription } from "rxjs/Subscription";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { NativeStorage} from "@ionic-native/native-storage";
 
 @Component({
   selector: 'comment-popup',
@@ -27,7 +26,6 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
               private scriptService: ScriptService,
               private viewCtrl: ViewController,
               private navParams: NavParams,
-              private nativePageTransitions: NativePageTransitions,
               private popupService: PopupService,
               private nativeStorage: NativeStorage) {
 
@@ -39,12 +37,6 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
         this.sessionId = res;
         this.getComment();
       });
-  }
-
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
   }
 
   @HostListener('document:click', ['$event.target.tagName'])

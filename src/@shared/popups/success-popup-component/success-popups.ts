@@ -35,12 +35,6 @@ export class SuccessPopups implements OnDestroy, OnInit, AfterViewInit {
     },2000);
   }
 
-  ionViewWillLeave() {
-    this.nativePageTransitions.flip({})
-      .then(onSuccess => { console.log('onSuccess') })
-      .catch(onError => { console.log('onError') });
-  }
-
   @HostListener('document:click', ['$event.target.tagName'])
   public documentClick(e) {
     if(e === 'ION-CONTENT')
