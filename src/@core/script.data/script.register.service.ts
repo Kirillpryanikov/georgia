@@ -42,30 +42,6 @@ export class ScriptRegisterService {
     $(document).off('touchstart', '.js-switch');
   }
 
-  dropdown() {
-    const that = this;
-    $(document).on('touchstart', '[data-show-element]', function () {
-      $('.' + $(this).data('show-element')).toggleClass('u2g-show');
-
-      $(this).addClass('u2g-showed');
-    });
-
-    $(document).on('touchstart', function (e) {
-
-      var showItem = $('.u2g-show');
-
-      if(showItem.length > 0) {
-
-        if($(e.target).hasClass('u2g-showed')) {
-          return;
-        }
-        if (!showItem.is(e.target) && showItem.has(e.target).length === 0) {
-          that.hideDropdown();
-        }
-      }
-    });
-  }
-
   hideDropdown() {
     $('.u2g-show').removeClass('u2g-show');
 

@@ -3597,7 +3597,8 @@ ion-content, body.overflow {
     top: -webkit-calc(100% + 15px);
     top: calc(100% + 15px);
     right: 0; }
-    .u2g-multilang__select.u2g-show {
+    .u2g-multilang__select.u2g-show,
+    .u2g-multilang__select.u2g-always-display {
       display: block; }
   .u2g-multilang__select-item {
     -webkit-box-align: center;

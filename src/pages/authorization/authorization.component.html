@@ -54,7 +54,7 @@
     </form>
     <div class="u2g-multilang-wrapper">
       <div class="u2g-multilang">
-        <span class="u2g-multilang__switcher" data-show-elem="u2g-multilang__select">
+        <span class="u2g-multilang__switcher" (click)="setLanguageMenu(true)">
 		      <svg *ngIf="lang === 'en'" version="1.1"viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">
             <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"/>
             <g>
@@ -93,7 +93,7 @@
               </g>
             </svg>
 		    </span>
-        <div class="u2g-multilang__select">
+        <div class="u2g-multilang__select u2g-always-display" *ngIf="changeLanguageFlag">
           <div class="u2g-multilang__select-item" (click)="changeLanguage('en')">
             <span>{{'_ENGLISH' | translate}}</span>
             <svg version="1.1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" height="30" width="30">

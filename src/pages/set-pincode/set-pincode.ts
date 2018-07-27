@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -11,6 +11,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class SetPincodePage implements OnInit{
   private form: FormGroup;
+
+  @ViewChild('inputFirstPin') inputFirstPin;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fb: FormBuilder) {
@@ -19,6 +22,16 @@ export class SetPincodePage implements OnInit{
   ngOnInit() {
     this.initForm();
   }
+
+  ionViewDidLoad() {
+    console.log('121212',this.inputFirstPin);
+    setTimeout(() => {
+      if (this.inputFirstPin) {
+        this.inputFirstPin.nativeElement.focus();
+      }
+    }, 800);
+  }
+
 
   initForm() {
     this.form = this.fb.group({
@@ -34,7 +47,7 @@ export class SetPincodePage implements OnInit{
       fourth:['', Validators.compose([
         Validators.required
       ])]
-    })
+    });
   }
 
   confirmPage() {

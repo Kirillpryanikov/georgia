@@ -52,7 +52,6 @@ export class MyApp implements OnInit{
 
   initDropdown() {
     this.mainService.dropdown();
-    this.mainService.dropdownLang();
   }
 
   isAuth() {

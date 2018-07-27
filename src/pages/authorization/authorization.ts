@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy, HostListener } from '@angular/core';
 import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
@@ -7,6 +7,7 @@ import { AuthorizationService } from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import {ScriptMainService} from "@core/script.data/script.main.service";
 
 @IonicPage({
   name: 'authorization-page'
@@ -32,6 +33,7 @@ export class Authorization implements OnInit, OnDestroy {
   public set_finger: boolean;
   is_pin;
   is_finger;
+  public changeLanguageFlag: boolean = false;
 
   constructor(private navCtrl: NavController,
               private faio: FingerprintAIO,
@@ -39,6 +41,7 @@ export class Authorization implements OnInit, OnDestroy {
               private render: Renderer2,
               private translate: TranslateService,
               private registerService: ScriptRegisterService,
+              private mainService: ScriptMainService,
               private authService: AuthorizationService,
               private loadingCtrl: LoadingController,
               private nativeStorage: NativeStorage) {}
@@ -80,9 +83,6 @@ export class Authorization implements OnInit, OnDestroy {
     this.registerService.checkbox();
   }
 
-  initDropdown() {
-    this.registerService.dropdown();
-  }
 
   initForm() {
     this.form = this.fb.group({
@@ -92,8 +92,14 @@ export class Authorization implements OnInit, OnDestroy {
     })
   }
 
+  setLanguageMenu(state: boolean) {
+    this.changeLanguageFlag = state;
+    console.log('test');
+    console.log(this);
+  }
+
   changeLanguage(language: string) {
-    this.registerService.hideDropdown();
+    this.changeLanguageFlag = false;
     this.lang = language;
     this.translate.use(language);
   }
@@ -176,5 +182,12 @@ export class Authorization implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.authObservable)
       this.authObservable.unsubscribe();
+  }
+
+  @HostListener('document:click') documentClick(e): void {
+
+    console.log('click event');
+    console.log(e);
+    this.setLanguageMenu(false);
   }
 }

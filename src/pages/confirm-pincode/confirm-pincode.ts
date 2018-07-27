@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
@@ -14,6 +14,9 @@ import {NativeStorage} from "@ionic-native/native-storage";
   templateUrl: 'confirm-pincode.html',
 })
 export class ConfirmPincodePage implements OnInit{
+
+  @ViewChild('inputConfirmPin') inputConfirmPin;
+
   private form: FormGroup;
   private hashKey: string;
   private sessionId: string;
@@ -33,6 +36,15 @@ export class ConfirmPincodePage implements OnInit{
         this.getHashKey();
       });
     this.initForm();
+  }
+
+  ionViewDidLoad() {
+    console.log('121212',this.inputConfirmPin);
+    setTimeout(() => {
+      if (this.inputConfirmPin) {
+        this.inputConfirmPin.nativeElement.focus();
+      }
+    }, 800);
   }
 
   initForm() {
@@ -85,8 +97,10 @@ export class ConfirmPincodePage implements OnInit{
       this.nativeStorage.setItem('pin', this.pin);
       this.nativeStorage.setItem('is_pin', true);
       const modal = this.modalCtrl.create(SuccessPopups);
+      modal.onDidDismiss(() => {
+        this.navCtrl.setRoot('page-awaiting-tracking');
+      });
       modal.present();
-      this.navCtrl.setRoot('page-awaiting-tracking');
     }
     else {
       this.form.patchValue({

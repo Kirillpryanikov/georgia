@@ -48,6 +48,7 @@ export class HeaderPage implements OnInit, OnDestroy{
   private lang: string;
   public branchSelection = new EventEmitter<any>();
   public streets = new EventEmitter<any>();
+  temp;
 
   constructor(public mainService: ScriptMainService,
               public platform: Platform,
@@ -160,6 +161,8 @@ export class HeaderPage implements OnInit, OnDestroy{
       }
     })
   }
+
+
 
   settings(e) {
     e.preventDefault();

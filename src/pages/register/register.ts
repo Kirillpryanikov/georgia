@@ -42,11 +42,11 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   ionViewCanEnter() {
     this.initForm();
-    this.initDropdown();
+    // this.initDropdown();
   }
 
   initDropdown() {
-    this.registerScriptService.dropdown();
+    // this.registerScriptService.dropdown();
   }
 
   initForm() {

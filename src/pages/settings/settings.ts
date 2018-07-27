@@ -408,7 +408,15 @@ export class SettingsPage implements OnInit, OnDestroy{
   _getStreets(language) {
     this.settingService.getStreets('getStreets', {language: language}).subscribe(data => {
       this.streetsList = Object.keys(data.message.data).map(key => data.message.data[key]);
-    })
+      setTimeout(() => {
+
+        setTimeout(() => {
+          document.getElementById('store-url').focus();
+        },300);
+
+        document.getElementById('store-url').blur();
+      }, 200);
+    });
   }
 
   autocomplete(): void {
