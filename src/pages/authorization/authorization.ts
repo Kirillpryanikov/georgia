@@ -188,8 +188,8 @@ export class Authorization implements OnInit, OnDestroy {
       this.authObservable.unsubscribe();
   }
 
-  @HostListener('document:click', ['$event']) documentClick(e): void {
-    if (e.target.classList.contains('u2g-multilang__switcher')) {
+  @HostListener('document:touchstart', ['$event']) documentClick(e): void {
+    if (e.target.classList.contains('u2g-multilang__switcher') || e.target.classList.contains('u2g-multilang__select-item')) {
       return;
     }
     this.zone.run(() => this.setLanguageMenu(false))
