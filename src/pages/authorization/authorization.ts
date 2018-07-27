@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, OnInit, OnDestroy, HostListener, NgZone } from '@angular/core';
 import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
@@ -36,6 +36,7 @@ export class Authorization implements OnInit, OnDestroy {
   public changeLanguageFlag: boolean = false;
 
   constructor(private navCtrl: NavController,
+              public zone: NgZone,
               private faio: FingerprintAIO,
               private fb: FormBuilder,
               private render: Renderer2,
@@ -47,6 +48,9 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
+    console.log('NG ON INIT');
+
+
     this.nativeStorage.getItem('is_pin').then(data => {
       this.is_pin = data;
     });
@@ -184,10 +188,10 @@ export class Authorization implements OnInit, OnDestroy {
       this.authObservable.unsubscribe();
   }
 
-  @HostListener('document:click') documentClick(e): void {
-
-    console.log('click event');
-    console.log(e);
-    this.setLanguageMenu(false);
+  @HostListener('document:click', ['$event']) documentClick(e): void {
+    if (e.target.classList.contains('u2g-multilang__switcher')) {
+      return;
+    }
+    this.zone.run(() => this.setLanguageMenu(false))
   }
 }

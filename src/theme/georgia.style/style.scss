@@ -5807,7 +5807,8 @@ select[data-ss-uuid] {
     margin-top: 0;
     margin-bottom: 20px;
     width: 100%; }
-    .u2g-payment-form__note > span {
+    .u2g-payment-form__note > div {
+      width: auto;
       color: #2f3d4a;
       font-weight: bold; }
   .u2g-payment-form__text {

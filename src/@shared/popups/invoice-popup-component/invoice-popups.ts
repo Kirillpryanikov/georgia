@@ -6,6 +6,7 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Subscription} from "rxjs/Subscription";
 import { WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 @Component({
   selector: 'invoice-popup',
   templateUrl: './invoice-popups.html',
@@ -56,6 +57,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
+    var j = 0;
     for(let i = 0; i < this.addingFiles.length; i++){
       this.data = {
         sessionId: this.sessionId,
@@ -63,12 +65,20 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         base64data: this.addingFiles[i].split(',')[1],
         extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
       };
-      console.log(this.data)
       this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+        j++;
+        if(j < 2){
+          this.temp = true;
+          const modal = this.modalCtrl.create(SuccessPopups);
+          modal.onDidDismiss(() => {
+            this.temp = false;
+            this.close(true);
+          });
+          modal.present();
+        }
         this.subscription.unsubscribe();
       });
     }
-    this.close(true);
   }
 
   close(data?: boolean) {
@@ -100,6 +110,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
       if(imageData) {
         this.file.push('data:image/jpeg;base64,' + imageData);
         this.listFiles.push('invoice.jpg');
+        this.addingFiles.push('data:image/jpeg;base64,' + imageData);
         if(this.listFiles.length >= 3)
           this.disable = true;
       }

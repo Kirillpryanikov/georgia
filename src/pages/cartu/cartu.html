@@ -24,7 +24,7 @@
               <span class="u2g-payment-form__text">{{'_ENTER_AMOUNT_GEL' | translate}}: </span>
               <input [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" type="text" class="u2g-payment-form__input">
               <button [disabled]="!amount" (click)="getCartuDescriptor()" class="u2g-button" style="height: 30px">{{'_PAYMENT' | translate}}</button>
-              <p class="u2g-payment-form__note">{{'_CARTU_PAYMENT_NOTE' | translate}}.</p>
+              <p class="u2g-payment-form__note">{{'_CARTU_PAYMENT_NOTE' | translate}}</p>
             </form>
           </div>
         </div>
