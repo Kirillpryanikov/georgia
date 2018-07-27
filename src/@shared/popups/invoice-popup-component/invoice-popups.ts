@@ -58,6 +58,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
 
   upload() {
     var j = 0;
+    this.temp = true;
     for(let i = 0; i < this.addingFiles.length; i++){
       this.data = {
         sessionId: this.sessionId,
@@ -66,8 +67,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
       };
       this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
-        j++;
-        if(j < 2){
+        this.temp = true;
+        if(j === 0){
           this.temp = true;
           const modal = this.modalCtrl.create(SuccessPopups);
           modal.onDidDismiss(() => {
@@ -76,6 +77,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
           });
           modal.present();
         }
+        j++;
         this.subscription.unsubscribe();
       });
     }
