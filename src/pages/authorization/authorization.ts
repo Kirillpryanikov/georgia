@@ -48,8 +48,6 @@ export class Authorization implements OnInit, OnDestroy {
               private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
-    console.log('NG ON INIT');
-
 
     this.nativeStorage.getItem('is_pin').then(data => {
       this.is_pin = data;
@@ -98,8 +96,6 @@ export class Authorization implements OnInit, OnDestroy {
 
   setLanguageMenu(state: boolean) {
     this.changeLanguageFlag = state;
-    console.log('test');
-    console.log(this);
   }
 
   changeLanguage(language: string) {

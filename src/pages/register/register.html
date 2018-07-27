@@ -240,6 +240,7 @@
         <div class="u2g-form-group__field-group u2g-form-group__field-group--button">
           <input type="submit" value="{{'_REGISTER' | translate}}" class="u2g-button u2g-button--green">
         </div>
+        <p *ngIf="msg" class="error">{{"_YOU_ARE_NOT_REGISTERED_ACCOUNT" | translate}}</p>
 
       </div>
     </form>

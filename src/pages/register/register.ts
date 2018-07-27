@@ -6,8 +6,6 @@ import {RegistrationService, SettingService} from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {TranslateService} from "@ngx-translate/core";
-import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
-import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 @IonicPage({
   name: 'register-page'
@@ -19,6 +17,7 @@ import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 })
 export class RegisterPage implements OnInit, OnDestroy {
   protected form: FormGroup;
+  public msg;
   private streetsList: Array<string>;
   private registrationObservable: Subscription;
   private data;
@@ -130,18 +129,11 @@ export class RegisterPage implements OnInit, OnDestroy {
       })
     };
     this.registrationService.register('register', this.data).subscribe(data => {
+      console.log(data);
       if(data.message.status === "FAIL"){
-        const modal = this.modalCtrl.create(ErrorPopups, {notice: '_YOU_ARE_NOT_REGISTERED_ACCOUNT'});
-        modal.onDidDismiss(() => {
-          this.navCtrl.setRoot('authorization-page');
-        });
-        modal.present();
+        this.msg = true;
       } else {
-        const modal = this.modalCtrl.create(SuccessPopups);
-        modal.onDidDismiss(() => {
-          this.navCtrl.setRoot('authorization-page');
-        });
-        modal.present();
+        this.navCtrl.setRoot('authorization-page');
       }
     })
   }
