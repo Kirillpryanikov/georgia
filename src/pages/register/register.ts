@@ -1,11 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { ScriptRegisterService } from '@core/script.data/script.register.service';
 import {RegistrationService, SettingService} from '@core/services';
 import { Subscription } from "rxjs/Subscription";
 import {ScriptMainService} from "@core/script.data/script.main.service";
 import {TranslateService} from "@ngx-translate/core";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
+import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 
 @IonicPage({
   name: 'register-page'
@@ -30,6 +32,7 @@ export class RegisterPage implements OnInit, OnDestroy {
               private viewController: ViewController,
               private registerScriptService: ScriptRegisterService,
               private fb: FormBuilder,
+              private modalCtrl: ModalController,
               private registrationService: RegistrationService,
               private settingService: SettingService,
               private mainService: ScriptMainService) {
@@ -79,7 +82,6 @@ export class RegisterPage implements OnInit, OnDestroy {
     if(!this.form.invalid){
       this.register();
       this.registerScriptService.offClick();
-      this.navCtrl.push('authorization-page');
     }
   }
 
@@ -128,6 +130,19 @@ export class RegisterPage implements OnInit, OnDestroy {
       })
     };
     this.registrationService.register('register', this.data).subscribe(data => {
+      if(data.message.status === "FAIL"){
+        const modal = this.modalCtrl.create(ErrorPopups, {notice: '_YOU_ARE_NOT_REGISTERED_ACCOUNT'});
+        modal.onDidDismiss(() => {
+          this.navCtrl.setRoot('authorization-page');
+        });
+        modal.present();
+      } else {
+        const modal = this.modalCtrl.create(SuccessPopups);
+        modal.onDidDismiss(() => {
+          this.navCtrl.setRoot('authorization-page');
+        });
+        modal.present();
+      }
     })
   }
 
