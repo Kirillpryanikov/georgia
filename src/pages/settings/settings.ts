@@ -416,6 +416,7 @@ export class SettingsPage implements OnInit, OnDestroy{
 
         document.getElementById('store-url').blur();
       }, 200);
+      this.autocomplete();
     });
   }
 
@@ -424,6 +425,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   }
 
   getValue(event, ui): void {
+
     if(ui.item)
       this.userForm.patchValue({street: ui.item.value});
   }
