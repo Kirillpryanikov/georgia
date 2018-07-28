@@ -70,7 +70,7 @@ export class UsaWarehousePage implements OnInit{
 
   declaration(e, index) {
     e.preventDefault();
-    this.navCtrl.setRoot('declaration-page',{package_id: this.listUsaWarehouse[index].package_id, tracking: this.listUsaWarehouse[index].tracking});
+    this.navCtrl.push('declaration-page',{package_id: this.listUsaWarehouse[index].package_id, tracking: this.listUsaWarehouse[index].tracking});
   }
 
   showWarningPopup(index, checkbox) {

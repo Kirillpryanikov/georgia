@@ -439,5 +439,6 @@
   "_DELETE_IMAGE":"Do you want remove avatar?",
   "_LOGIN_FINGER_PRINT":"Fingerprint login",
   "_FINGER_LOGIN_HAS_BEEN_SET":"Fingerprint login has been set",
-  "_YOU_ARE_NOT_REGISTERED_ACCOUNT":"You are not registered account!"
+  "_YOU_ARE_NOT_REGISTERED_ACCOUNT":"You are not registered account!",
+  "_LOAD_MORE":"Load more"
 }

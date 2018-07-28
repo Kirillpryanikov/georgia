@@ -14,7 +14,8 @@ import {SuccessPopups} from "@shared/popups/success-popup-component/success-popu
 })
 export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('popup') popup : ElementRef;
-  private file: Array<string> = [];
+  public file: Array<string> = [];
+  public disable_upload_btn: boolean;
   private data;
   public temp: boolean = false;
   private sessionId: string;
@@ -57,9 +58,9 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
-    var j = 0;
-    this.temp = true;
+    let j = 0;
     for(let i = 0; i < this.addingFiles.length; i++){
+      this.disable_upload_btn = true;
       this.data = {
         sessionId: this.sessionId,
         packageId: this.navParams.data.package_id,
@@ -67,6 +68,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
       };
       this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+        this.disable_upload_btn = false;
         this.temp = true;
         if(j === 0){
           this.temp = true;
@@ -76,8 +78,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
             this.close(true);
           });
           modal.present();
+          j++;
         }
-        j++;
         this.subscription.unsubscribe();
       });
     }
@@ -131,12 +133,13 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
             packageId: this.navParams.data.package_id,
             filename: this.listFiles[index]
           };
-          this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
+          this.subscription = this.popupService.removeInvoice('removeInvoice', this.data).subscribe(data => {
             this.filename = false;
             if(this.listFiles.length >= 3)
               this.disable = true;
             else
               this.disable = false;
+            this.subscription.unsubscribe();
           });
           this.listFiles.splice(index,1);
           this.file.splice(index, 1);
@@ -164,5 +167,8 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
     });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
 }

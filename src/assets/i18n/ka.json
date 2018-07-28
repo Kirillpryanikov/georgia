@@ -441,5 +441,7 @@
   "_DELETE_IMAGE":"გსურთ გამოსახულების წაშლა?",
   "_LOGIN_FINGER_PRINT":"თითის ანაბეჭდით შესვლა",
   "_FINGER_LOGIN_HAS_BEEN_SET":"თითის ანაბეჭდით შესვლა გააქტიურდა",
-  "_YOU_ARE_NOT_REGISTERED_ACCOUNT":"თქვენ არ ხართ რეგისტრირებული ანგარიში!"
+  "_YOU_ARE_NOT_REGISTERED_ACCOUNT":"თქვენ არ ხართ რეგისტრირებული ანგარიში!",
+  "_LOAD_MORE":"ეტის ჩატვირთვა"
+
 }

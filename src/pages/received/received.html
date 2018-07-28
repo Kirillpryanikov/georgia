@@ -20,7 +20,7 @@
             <div class="non_packages" *ngIf="listReceived && !listReceived.length && temp">
               {{"_NO_PACKAGE_FOUND" | translate}}
             </div>
-            <div *ngFor="let received of listReceived; index as index" class="u2g-info-block u2g-info-block--received">
+            <div style="max-width: 100%" *ngFor="let received of listReceived; index as index" class="u2g-info-block u2g-info-block--received">
               <div class="u2g-info-block__tracking-number">
                 <span class="u2g-info-block__tracking-number-title">{{'_AIR_WAY_BILL' | translate}}:</span>
                 <span class="u2g-info-block__tracking-number-value">{{received.hawb}}</span>
@@ -43,9 +43,7 @@
               </div>
             </div>
           <!--</div>-->
-          <button *ngIf="visible" (click)="loadMore()" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green">Load more</button>
-
-          <!--<button >LOAD MORE</button>-->
+          <button *ngIf="visible" (click)="loadMore()" style="margin: auto; height: 34px; border-radius: 17px" class="u2g-button u2g-button--green">{{"_LOAD_MORE" | translate}}</button>
         </div>
       </div>
 

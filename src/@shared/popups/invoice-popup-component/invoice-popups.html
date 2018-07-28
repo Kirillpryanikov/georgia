@@ -41,7 +41,7 @@
             </label>
           </div>
           <div class="u2g-popup__buttons">
-            <button style="text-align: center" [disabled]="!file" (click)="upload()" class="u2g-button  u2g-popup__bottom-button">
+            <button style="text-align: center" [disabled]="!file || disable_upload_btn" (click)="upload()" class="u2g-button  u2g-popup__bottom-button">
               <span class="text">{{'_UPLOAD' | translate}}</span>
             </button>
           </div>
@@ -49,5 +49,7 @@
       </div>
     </div>
     <div [ngClass]="{'u2g-overlay': temp, 'overlay_ov': temp}"></div>
+    <div [ngClass]="{'overlay_ov': temp}"></div>
+
   </div>
 </ion-content>

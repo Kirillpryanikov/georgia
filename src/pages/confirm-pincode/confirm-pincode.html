@@ -16,9 +16,9 @@
 
           <div style="margin-top: 40vh" class="u2g-form-group__field-group">
             <label style="text-align: center" class="u2g-form-group__label"><span>{{"_CONFIRM_PIN_CODE" | translate}}</span></label>
-            <input style="-webkit-text-security: disc" #inputConfirmPin formControlName="first" type="tel" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('4').focus()}" maxlength="1" >
-            <input style="-webkit-text-security: disc" formControlName="second" type="tel" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('5').focus()}" id="4" maxlength="1" >
-            <input style="-webkit-text-security: disc" formControlName="third" type="tel" class="u2g-form-group__field form-inline" onkeyup="{document.getElementById('6').focus()}" id="5" maxlength="1" >
+            <input style="-webkit-text-security: disc" #inputConfirmPin formControlName="first" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('4', $event)" maxlength="1" >
+            <input style="-webkit-text-security: disc" formControlName="second" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('5', $event)" id="4" maxlength="1" >
+            <input style="-webkit-text-security: disc" formControlName="third" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('6', $event)" id="5" maxlength="1" >
             <input style="-webkit-text-security: disc" formControlName="fourth" type="tel" class="u2g-form-group__field form-inline" (keyup)="awaitingPage()" id="6" maxlength="1" >
           </div>
 

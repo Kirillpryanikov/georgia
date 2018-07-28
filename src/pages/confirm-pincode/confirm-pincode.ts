@@ -90,6 +90,12 @@ export class ConfirmPincodePage implements OnInit{
     })
   }
 
+  focus_next(id, e) {
+    if(e.keyCode >= 48 && e.keyCode <= 57){
+      document.getElementById(id).focus();
+    }
+  }
+
   awaitingPage(){
     if(this.confirmPin()){
       this.pin = this.form.value.first + this.form.value.second + this.form.value.third + this.form.value.fourth;

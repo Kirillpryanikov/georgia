@@ -32,6 +32,11 @@ export class SetPincodePage implements OnInit{
     }, 800);
   }
 
+  focus_next(id, e) {
+    if(e.keyCode >= 48 && e.keyCode <= 57){
+      document.getElementById(id).focus();
+    }
+  }
 
   initForm() {
     this.form = this.fb.group({

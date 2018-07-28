@@ -7360,6 +7360,13 @@ svg {
   top: 60px !important;
 }
 
-overlay_ov{
+.overlay_ov{
   display: block;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 9;
 }
