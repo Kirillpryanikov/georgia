@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, HostListener, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { Platform, ViewController, NavParams, ModalController} from 'ionic-angular';
+import {Platform, ViewController, NavParams, ModalController, LoadingController} from 'ionic-angular';
 import { ScriptService } from '@core/script.data/script.scriptjs.service';
 import { PopupService } from "@core/services";
 import { NativeStorage } from "@ionic-native/native-storage";
@@ -22,6 +22,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   private filename: any;
   private listFiles: any = [];
   private disable: boolean;
+  private load;
   private addingFiles: Array<any> = [];
   private subscription: Subscription;
   constructor(private renderer: Renderer2,
@@ -31,6 +32,7 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
               private modalCtrl: ModalController,
               private navParams: NavParams,
               private reader: FileReader,
+              private loadingCtrl: LoadingController,
               private popupService: PopupService,
               private nativeStorage: NativeStorage,
               private camera: Camera) {
@@ -58,7 +60,10 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
-    let j = 0;
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots'
+    });
+    this.load.present();
     for(let i = 0; i < this.addingFiles.length; i++){
       this.disable_upload_btn = true;
       this.data = {
@@ -68,18 +73,9 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
         extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
       };
       this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+        this.load.dismiss();
         this.disable_upload_btn = false;
-        this.temp = true;
-        if(j === 0){
-          this.temp = true;
-          const modal = this.modalCtrl.create(SuccessPopups);
-          modal.onDidDismiss(() => {
-            this.temp = false;
-            this.close(true);
-          });
-          modal.present();
-          j++;
-        }
+        this.close();
         this.subscription.unsubscribe();
       });
     }
