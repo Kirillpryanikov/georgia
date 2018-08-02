@@ -211,10 +211,13 @@ export class HeaderPage implements OnInit, OnDestroy{
   }
 
   logout(e) {
-    e.preventDefault();
-    this.nativeStorage.remove('isAuthorise');
-    this.nativeStorage.remove('sessionId');
-    localStorage.removeItem('userAvatar');
+    this.mainService.hideDropdown();
+    setTimeout(() => {
+      e.preventDefault();
+      this.nativeStorage.remove('isAuthorise');
+      this.nativeStorage.remove('sessionId');
+      localStorage.removeItem('userAvatar');
+    });
     this.navCtrl.setRoot('authorization-page');
   }
 
