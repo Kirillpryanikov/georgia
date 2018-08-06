@@ -10,6 +10,7 @@ import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 import {HeaderService} from "@core/services";
 import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popups";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
+import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 
 @Component({
   selector: 'pin-popup',
@@ -80,7 +81,7 @@ export class PinPopups implements OnDestroy, AfterViewInit, OnInit {
     this.nativeStorage.setItem('set_finger', true);
     this.nativeStorage.setItem('is_finger', true);
     this.close();
-    const modal = this.modalController.create(ErrorPopups, {notice: "_FINGER_LOGIN_HAS_BEEN_SET"});
+    const modal = this.modalController.create(SuccessPopups, {notice: "_FINGER_LOGIN_HAS_BEEN_SET"});
     modal.present();
   }
 
