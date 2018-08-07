@@ -1,31 +1,55 @@
-<ion-header>
-  <header-page></header-page>
-</ion-header>
 <ion-content>
   <body>
   <ion-content>
     <div class="u2g-page-wrapper">
-
-      <!--LEFT NAVIGATION SIDEBAR-->
-
-      <sidebar-page></sidebar-page>
-
       <div class="u2g-container u2g-container--arrived u2g-container--simple-page">
+        <div class="u2g-single-logo" style="margin-top: 30px">
+          <svg style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 10652 581">
+            <defs>
+              <style type="text/css">
 
-        <form (ngSubmit)="login()" [formGroup]="form" class="sign sign--in">
+                .fil10 {fill:black;fill-rule:nonzero}
+                .fil11 {fill:#F53964;fill-rule:nonzero}
 
-          <div style="margin-top: 40vh" class="u2g-form-group__field-group">
-            <label style="text-align: center" class="u2g-form-group__label"><span>{{"_INPUT_PIN_CODE" | translate}}</span></label>
-            <input style="-webkit-text-security: disc" #inputFirstPin formControlName="first" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('1', $event)"  maxlength="1">
-            <input style="-webkit-text-security: disc" formControlName="second" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('2', $event)" id="1" maxlength="1" >
-            <input style="-webkit-text-security: disc" formControlName="third" type="tel" class="u2g-form-group__field form-inline" (keyup)="focus_next('3', $event)" id="2" maxlength="1" >
-            <input style="-webkit-text-security: disc" formControlName="fourth" type="tel" class="u2g-form-group__field form-inline" (keyup)="confirmPage($event)" id="3" maxlength="1" >
+              </style>
+            </defs>
+            <g>
+              <metadata></metadata>
+              <g id="_2035467692320">
+                <path class="fil10" d="M98 1l-98 0 0 415c0,43 15,79 45,109 30,30 66,45 109,45l602 0c43,0 79,-15 109,-45 30,-30 45,-66 45,-109l0 -415 -98 0 0 415c0,16 -5,29 -16,40 -11,10 -24,16 -40,16l-602 0c-15,0 -28,-6 -39,-16 -11,-11 -17,-24 -17,-40l0 -415zm1760 -1l-719 0c-41,0 -77,13 -109,38 -39,31 -58,74 -58,129 0,41 12,78 37,109 31,39 74,58 130,58l568 0c6,1 12,1 19,3 9,2 16,5 22,9 18,12 27,31 27,57 0,7 0,13 -2,19 -2,9 -5,17 -10,23 -11,18 -30,27 -56,27l-720 0 0 98 720 0c55,0 98,-19 129,-58 25,-32 37,-68 37,-109 0,-55 -19,-98 -58,-129 -31,-25 -67,-38 -108,-38l-568 0c-27,0 -46,-9 -57,-26 -5,-7 -8,-15 -10,-24 -1,-6 -2,-12 -2,-19 0,-26 9,-45 27,-57 6,-4 14,-7 23,-9 6,-1 12,-2 19,-3l719 0 0 -98zm889 397l0 173 98 0 0 -415c0,-43 -15,-79 -45,-109 -30,-30 -66,-45 -109,-45l-602 0c-43,0 -79,15 -109,45 -30,30 -45,66 -45,109l0 415 98 0 0 -173 714 0zm-714 -99l0 -143c0,-16 6,-29 16,-40 11,-11 25,-16 40,-16l602 0c16,0 29,5 40,16 11,11 16,24 16,40l0 143 -714 0z"></path>
+                <path class="fil11" d="M3379 472l0 -69c0,-26 8,-45 26,-56 7,-5 15,-8 23,-10 6,-2 13,-2 20,-2l537 0c55,0 98,-20 129,-59 25,-31 37,-68 37,-109 0,-55 -19,-98 -58,-129 -31,-25 -67,-37 -108,-37l-656 0 0 98 656 0c6,0 13,1 19,2 8,2 16,6 23,10 17,11 26,30 26,56 0,7 -1,14 -2,20 -2,8 -5,16 -10,23 -11,18 -30,27 -56,27l-538 0c-40,0 -77,12 -108,37 -39,31 -59,74 -59,129l0 118c0,14 5,25 15,35 9,10 21,14 34,14l773 0 0 -98 -723 0z"></path>
+                <path class="fil10" d="M5374 225l0 98 32 0 0 93c0,16 -5,29 -16,40 -11,10 -24,16 -39,16l-603 0c-15,0 -28,-6 -39,-16 -11,-11 -17,-24 -17,-40l0 -262c0,-15 6,-28 17,-39 11,-11 24,-17 39,-17l757 0 0 -98 -757 0c-42,0 -79,15 -109,46 -30,30 -45,66 -45,108l0 262c0,43 15,79 45,109 30,30 67,45 109,45l603 0c42,0 79,-15 109,-45 30,-30 45,-66 45,-109l0 -191 -131 0zm1141 113l0 -98 -835 0 0 -86c0,-15 5,-28 16,-39 11,-11 24,-17 39,-17l780 0 0 -98 -780 0c-42,0 -79,15 -109,46 -30,30 -45,66 -45,108l0 262c0,43 15,79 45,109 30,30 67,45 109,45l780 0 0 -98 -780 0c-15,0 -28,-6 -39,-16 -11,-11 -16,-24 -16,-40l0 -78 835 0zm987 -184c0,-42 -15,-78 -45,-108 -30,-31 -66,-46 -109,-46l-602 0c-43,0 -79,15 -109,46 -30,30 -45,66 -45,108l0 262c0,43 15,79 45,109 30,30 66,45 109,45l602 0c43,0 79,-15 109,-45 30,-30 45,-66 45,-109l0 -262zm-98 262c0,16 -6,29 -16,40 -11,10 -25,16 -40,16l-602 0c-16,0 -29,-6 -40,-16 -11,-11 -16,-24 -16,-40l0 -262c0,-15 5,-28 16,-39 11,-11 24,-17 40,-17l602 0c15,0 29,6 40,17 10,11 16,24 16,39l0 262zm273 -125l0 -172 1 -3c0,-3 1,-6 2,-8 4,-7 11,-10 21,-10l607 0c4,1 7,1 11,1 4,1 9,1 14,2 12,3 22,7 31,13 27,16 41,43 41,81 0,3 -1,7 -2,10 0,5 -1,9 -2,14 -2,12 -6,23 -12,32 -16,26 -43,40 -81,40l-631 0zm572 98l30 32 117 124 34 36 71 -68 -34 -35 -92 -99c33,-10 61,-30 84,-58 29,-37 44,-79 44,-126 0,-65 -23,-115 -68,-151 -37,-29 -79,-44 -127,-44l-607 0c-30,0 -56,9 -80,28 -28,22 -42,54 -42,94l0 448 98 0 0 -181 572 0zm1111 -164l0 98 32 0 0 93c0,16 -6,29 -17,40 -11,10 -24,16 -39,16l-602 0c-16,0 -29,-6 -40,-16 -11,-11 -16,-24 -16,-40l0 -262c0,-15 5,-28 16,-39 11,-11 24,-17 40,-17l756 0 0 -98 -756 0c-43,0 -79,15 -109,46 -30,30 -45,66 -45,108l0 262c0,43 15,79 45,109 30,30 66,45 109,45l602 0c43,0 79,-15 109,-45 30,-30 46,-66 46,-109l0 -191 -131 0zm207 345l98 0 0 -569 -98 0 0 569zm987 -173l0 173 98 0 0 -415c0,-43 -15,-79 -45,-109 -30,-30 -66,-45 -109,-45l-602 0c-43,0 -79,15 -109,45 -30,30 -45,66 -45,109l0 415 98 0 0 -173 714 0zm-714 -99l0 -143c0,-16 6,-29 16,-40 11,-11 25,-16 40,-16l602 0c16,0 29,5 40,16 11,11 16,24 16,40l0 143 -714 0z"></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div style="text-align: center; padding-top: 20px" class="u2g-form-group__label"><span>{{"_INPUT_PIN_CODE" | translate}}</span></div>
+
+        <div class="input_wrapper">
+          <div class="input_pin" id="{{'_'+ index}}" *ngFor="let i of [1,2,3,4]; index as index">
+
           </div>
-
-        </form>
+        </div>
+        <div class="keyboard">
+          <div class="key-row" *ngFor="let row of [[1,2,3], [3,4,5], [6,7,8], ['delete', 0, 'remove']]">
+            <div class="key" *ngFor="let key of row" (click)="writePin(key)">
+              <span *ngIf="key !== 'remove'">{{key}}</span>
+              <span *ngIf="key === 'remove'"><i class="material-icons pin_icons">backspace</i></span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 8vh">
+          <hr style="width: 50vw">
+          <div class="footter">
+            <div>
+              <i class="material-icons pin_icons">copyright</i>2018 USA2GEORGIA
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </ion-content>
   </body>
 </ion-content>
+
 

@@ -7370,3 +7370,69 @@ svg {
   left: 0;
   z-index: 9;
 }
+
+.keyboard {
+  margin-top: 10vh;
+}
+
+.key-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2vh;
+}
+
+.key{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #666666;
+  line-height: 50px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  font-weight:  bold;
+  -webkit-box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
+  box-shadow: 0px 9px 18px 0px rgba(122, 129, 136, 0.06);
+  background-color: white;
+  width: 27vw;
+  height: 50px;
+}
+
+.key:active{
+  border: 2px solid #fce8e8;
+}
+
+.input_pin{
+  font-size: 50px;
+  color: #ffffff;
+  text-align: center;
+  background-color: white;
+  width: 20vw;
+  height: 50px;
+  border-bottom: 2px #dce2ed solid;
+}
+
+.input_pin:before{
+  content: '*';
+}
+
+.input_wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10vh;
+}
+
+.footter {
+  display: flex;
+  justify-content: center;
+  color: #666666;
+}
+
+.pin_icons{
+  position: relative;
+  top: 6px;
+}

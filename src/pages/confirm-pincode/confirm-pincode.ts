@@ -17,16 +17,17 @@ export class ConfirmPincodePage implements OnInit{
 
   @ViewChild('inputConfirmPin') inputConfirmPin;
 
-  private form: FormGroup;
   private hashKey: string;
   private sessionId: string;
-  private pin: string;
+  private pin: string = '';
+  private count: number = 0;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
               public headerService: HeaderService,
-              public nativeStorage: NativeStorage,
-              private fb: FormBuilder) {
+              public nativeStorage: NativeStorage
+              ) {
   }
 
   ngOnInit() {
@@ -35,53 +36,6 @@ export class ConfirmPincodePage implements OnInit{
         this.sessionId = res;
         this.getHashKey();
       });
-    this.initForm();
-  }
-
-  ionViewDidLoad() {
-    console.log('121212',this.inputConfirmPin);
-    setTimeout(() => {
-      if (this.inputConfirmPin) {
-        this.inputConfirmPin.nativeElement.focus();
-      }
-    }, 800);
-  }
-
-  initForm() {
-    this.form = this.fb.group({
-      first:['', Validators.compose([
-        Validators.required
-      ])],
-      second:['', Validators.compose([
-        Validators.required
-      ])],
-      third:['', Validators.compose([
-        Validators.required
-      ])],
-      fourth:['', Validators.compose([
-        Validators.required
-      ])]
-    })
-  }
-
-  confirmPin() {
-    if(this.form.value.first === this.navParams.data.pin.first){
-      if(this.form.value.second === this.navParams.data.pin.second){
-        if(this.form.value.third === this.navParams.data.pin.third){
-          if(this.form.value.fourth === this.navParams.data.pin.fourth){
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-      } else {
-        return false
-      }
-    } else {
-      return false;
-    }
   }
 
   getHashKey(){
@@ -90,15 +44,9 @@ export class ConfirmPincodePage implements OnInit{
     })
   }
 
-  focus_next(id, e) {
-    if(e.keyCode >= 48 && e.keyCode <= 57){
-      document.getElementById(id).focus();
-    }
-  }
 
   awaitingPage(){
     if(this.confirmPin()){
-      this.pin = this.form.value.first + this.form.value.second + this.form.value.third + this.form.value.fourth;
       this.nativeStorage.setItem('hashKey', this.hashKey);
       this.nativeStorage.setItem('pin', this.pin);
       this.nativeStorage.setItem('is_pin', true);
@@ -109,16 +57,69 @@ export class ConfirmPincodePage implements OnInit{
       modal.present();
     }
     else {
-      this.form.patchValue({
-        first:'',
-        second:'',
-        third:'',
-        fourth:''
-      });
+      const b: any = document.getElementsByClassName('input_pin');
+      if(b){
+        this.pin = '';
+        this.count = 0;
+        for(let i = 0; i < b.length; i++){
+          b[i].style.color = '#ffffff';
+        }
+      }
       const modal = this.modalCtrl.create(ErrorPopups, {notice: "_YOUR_PIN_CODE_NOT_CONFIRMED"});
       modal.present();
     }
 
+  }
+
+  writePin(key){
+    switch (key){
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+      case 0:
+        const a = document.getElementById(`__${this.count}`);
+        if(a){
+          this.pin+=key;
+          a.style.color = '#666666';
+          this.count++;
+          if(this.pin.length === 4){
+            this.awaitingPage();
+          }
+        }
+        break;
+      case 'delete':
+        const b: any = document.getElementsByClassName('input_pin');
+        if(b){
+          this.pin = '';
+          this.count = 0;
+          for(let i = 0; i < b.length; i++){
+            b[i].style.color = '#ffffff';
+          }
+        }
+        break;
+      case 'remove':
+        if(this.count > 0)
+          this.count--;
+        const c = document.getElementById(`__${this.count}`);
+        if(c){
+          this.pin = this.pin.substring(0, this.pin.length - 1);
+          c.style.color = '#ffffff';
+        }
+        break;
+    }
+  }
+
+  confirmPin(){
+    if(this.pin === this.navParams.data.pin)
+      return true;
+    else
+      return false;
   }
 
 }

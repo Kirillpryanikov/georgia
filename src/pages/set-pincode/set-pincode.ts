@@ -10,54 +10,67 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   templateUrl: 'set-pincode.html',
 })
 export class SetPincodePage implements OnInit{
-  private form: FormGroup;
-
-  @ViewChild('inputFirstPin') inputFirstPin;
+  private count: number = 0;
+  private pin: string = '';
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private fb: FormBuilder) {
+              public navParams: NavParams) {
   }
 
   ngOnInit() {
-    this.initForm();
+
   }
 
   ionViewDidLoad() {
-    console.log('121212',this.inputFirstPin);
-    setTimeout(() => {
-      if (this.inputFirstPin) {
-        this.inputFirstPin.nativeElement.focus();
-      }
-    }, 800);
+
   }
 
-  focus_next(id, e) {
-    if(e.keyCode >= 48 && e.keyCode <= 57){
-      document.getElementById(id).focus();
+  writePin(key){
+    switch (key){
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+      case 0:
+        const a = document.getElementById(`_${this.count}`);
+        if(a){
+          this.pin+=key;
+          a.style.color = '#666666';
+          this.count++;
+          if(this.pin.length === 4){
+            this.confirmPage();
+          }
+        }
+        break;
+      case 'delete':
+        const b: any = document.getElementsByClassName('input_pin');
+        if(b){
+          this.pin = '';
+          this.count = 0;
+          for(let i = 0; i < b.length; i++){
+            b[i].style.color = '#ffffff';
+          }
+        }
+        break;
+      case 'remove':
+        if(this.count > 0)
+          this.count--;
+        const c = document.getElementById(`_${this.count}`);
+        if(c){
+          this.pin = this.pin.substring(0, this.pin.length - 1);
+          c.style.color = '#ffffff';
+        }
+        break;
     }
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      first:['', Validators.compose([
-        Validators.required
-      ])],
-      second:['', Validators.compose([
-        Validators.required
-      ])],
-      third:['', Validators.compose([
-        Validators.required
-      ])],
-      fourth:['', Validators.compose([
-        Validators.required
-      ])]
-    });
-  }
-
   confirmPage() {
-    if(this.form.valid)
-      this.navCtrl.push('page-confirm-pincode',{ pin: this.form.value});
+    this.navCtrl.push('page-confirm-pincode',{ pin: this.pin});
   }
 
 }
