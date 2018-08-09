@@ -47,13 +47,13 @@ export class SetPincodePage implements OnInit{
           }
         }
         break;
-      case 'delete':
+      case '_CLEAR':
         const b: any = document.getElementsByClassName('input_pin');
         if(b){
           this.pin = '';
           this.count = 0;
           for(let i = 0; i < b.length; i++){
-            b[i].style.color = '#ffffff';
+            b[i].style.color = 'rgba(0,0,0,0)';
           }
         }
         break;
@@ -63,7 +63,7 @@ export class SetPincodePage implements OnInit{
         const c = document.getElementById(`_${this.count}`);
         if(c){
           this.pin = this.pin.substring(0, this.pin.length - 1);
-          c.style.color = '#ffffff';
+          c.style.color = 'rgba(0,0,0,0)';
         }
         break;
     }
