@@ -232,7 +232,12 @@
 
                     <div class="u2g-form-group__field-group">
                       <label class="u2g-form-group__label"><span>{{'_ADDRESSSTR' | translate}}</span> <sup>*</sup></label>
-                      <input formControlName="street" (click)="autocomplete()" id="store-url" type="text" class="u2g-form-group__field" name="address 1" data-rule-required="true">
+                      <ng-select
+                        [ngModelOptions]="{standalone: true}"
+                        [items]="streetsList"
+                        [(ngModel)]="street"
+                      >
+                      </ng-select>
                     </div>
 
                     <div class="u2g-form-group__field-group">
@@ -418,9 +423,6 @@
           </div>
         </div>
       </div>
-
-
-
       <div class="u2g-overlay"></div>
     </div>
   </ion-content>

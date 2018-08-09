@@ -17,6 +17,9 @@ import { Network } from "@ionic-native/network";
 import {Keyboard} from "@ionic-native/keyboard";
 import { NgxBarcodeModule } from 'ngx-barcode';
 import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
+import { NgSelectModule } from '@ng-select/ng-select';
+
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -28,6 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
   ],
   imports: [
+    NgSelectModule,
     NgxBarcodeModule,
     BrowserModule,
     BrowserAnimationsModule,

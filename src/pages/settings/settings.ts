@@ -16,6 +16,10 @@ import {WarningPopups} from "@shared/popups/warning-popup-component/warning-popu
 import {SuccessPopups} from "@shared/popups/success-popup-component/success-popups";
 import {ErrorPopups} from "@shared/popups/error-popup-component/error-popups";
 import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
+import { CompleterService, CompleterData } from 'ng2-completer';
+
+
+
 const notice = {
   change_psw: '_CHANGE_PASSWORD_CONFIRM'
 };
@@ -38,6 +42,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   private hashKey: string;
   private sessionId: string;
   private data: Object;
+  private street;
   private streetsList: Array<string>;
   private subscription: Subscription;
   private branch: string;
@@ -229,9 +234,7 @@ export class SettingsPage implements OnInit, OnDestroy{
       city: ['', Validators.compose([
         Validators.required
       ])],
-      street: ['', Validators.compose([
-        Validators.required
-      ])],
+      street: [''],
       extra_address: ['', Validators.compose([
         Validators.required
       ])],
@@ -286,10 +289,12 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   submit(e) {
     if(e === 'user'){
+      this.userForm.value.street = this.street;
       this.data = {
         sessionId: this.sessionId,
         data: JSON.stringify({profile: this.userForm.value})
       };
+      console.log('data', this.data)
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
         if(data.message.status === 'FAIL') {
           const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
@@ -369,6 +374,8 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   getCustomerSettings() {
     this.subscription = this.settingService.getCustomerSettings('getCustomerSettings', {sessionId: this.sessionId}).subscribe(data => {
+      // this.street = data.message.data.profile.street;
+      console.log(data);
       this.userForm.patchValue({
         first_name: data.message.data.profile.first_name,
         last_name: data.message.data.profile.last_name,
@@ -378,7 +385,6 @@ export class SettingsPage implements OnInit, OnDestroy{
         city: data.message.data.profile.city,
         mobile: data.message.data.profile.mobile,
         email: data.message.data.profile.email,
-        street: data.message.data.profile.street,
         extra_address: data.message.data.profile.extra_address,
         no_courier: -data.message.data.profile.no_courier,
         non_georgian_citizen: -data.message.data.profile.non_georgian_citizen,
