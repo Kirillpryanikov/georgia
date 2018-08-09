@@ -195,7 +195,11 @@
 
         <div class="u2g-form-group__field-group">
           <label class="u2g-form-group__label"><span>{{'_ADDRESSSTR' | translate}}</span> <sup>*</sup></label>
-          <input [ngClass]="{'error-input':(form.controls.address_1.errors && submitted)}" type="text" (click)="autocomplete()" class="u2g-form-group__field" id="store-url" formControlName="address_1" name="address 1" data-rule-required="true">
+          <ng-select
+            [ngModelOptions]="{standalone: true}"
+            [items]="streetsList"
+            [(ngModel)]="street" >
+          </ng-select>
           <div [ngClass]="{'error':(form.controls.address_1.errors && submitted)}">
             <span *ngIf="form.controls.address_1.errors?.required && submitted">This field is required.</span>
           </div>

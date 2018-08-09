@@ -18,6 +18,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class RegisterPage implements OnInit, OnDestroy {
   protected form: FormGroup;
   public msg;
+  public street;
   private streetsList: Array<string>;
   private registrationObservable: Subscription;
   private data;
@@ -66,7 +67,7 @@ export class RegisterPage implements OnInit, OnDestroy {
       email: ['', Validators.email],
       phone: ['', [Validators.required]],
       city: ['', Validators.required],
-      address_1: ['', Validators.required],
+      address_1: [''],
       address_2: ['', Validators.required],
       password: ['', [Validators.required]],
       confirm_password: [''],
@@ -107,6 +108,7 @@ export class RegisterPage implements OnInit, OnDestroy {
         });
         break;
     }
+    this.form.value.address_1 = this.street;
     this.data = {
       customerInfo: JSON.stringify({
         firstName: this.form.value.first_name,
@@ -119,7 +121,6 @@ export class RegisterPage implements OnInit, OnDestroy {
         customerType: this.organization,
         organizationName: this.form.value.organization,
         city: this.form.value.city,
-        streetId: this.form.value.address_1,
         address: this.form.value.address_2,
         password: this.form.value.password,
         retryPassword: this.form.value.confirm_password,
@@ -128,6 +129,7 @@ export class RegisterPage implements OnInit, OnDestroy {
         defaultBranch: this.form.value.default_branch
       })
     };
+    console.log(this.data)
     this.registrationService.register('register', this.data).subscribe(data => {
       console.log(data);
       if(data.message.status === "FAIL"){

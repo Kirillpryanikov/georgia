@@ -43,7 +43,7 @@ export class SettingsPage implements OnInit, OnDestroy{
   private sessionId: string;
   private data: Object;
   private street;
-  private streetsList: Array<string>;
+  private streetsList: Array<any> = [];
   private subscription: Subscription;
   private branch: string;
   private extention: string = '';
@@ -294,7 +294,6 @@ export class SettingsPage implements OnInit, OnDestroy{
         sessionId: this.sessionId,
         data: JSON.stringify({profile: this.userForm.value})
       };
-      console.log('data', this.data)
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
         if(data.message.status === 'FAIL') {
           const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
@@ -374,8 +373,7 @@ export class SettingsPage implements OnInit, OnDestroy{
 
   getCustomerSettings() {
     this.subscription = this.settingService.getCustomerSettings('getCustomerSettings', {sessionId: this.sessionId}).subscribe(data => {
-      // this.street = data.message.data.profile.street;
-      console.log(data);
+      this.street = data.message.data.profile.street;
       this.userForm.patchValue({
         first_name: data.message.data.profile.first_name,
         last_name: data.message.data.profile.last_name,
@@ -408,32 +406,13 @@ export class SettingsPage implements OnInit, OnDestroy{
   getStreets() {
     this.settingService.getStreets('getStreets', {language: this.navParams.data.language}).subscribe(data => {
       this.streetsList = Object.keys(data.message.data).map(key => data.message.data[key]);
-    })
+    });
   }
 
   _getStreets(language) {
     this.settingService.getStreets('getStreets', {language: language}).subscribe(data => {
       this.streetsList = Object.keys(data.message.data).map(key => data.message.data[key]);
-      setTimeout(() => {
-
-        setTimeout(() => {
-          document.getElementById('store-url').focus();
-        },300);
-
-        document.getElementById('store-url').blur();
-      }, 200);
-      this.autocomplete();
     });
-  }
-
-  autocomplete(): void {
-    this.mainService.autocomplete(this.streetsList, this.getValue.bind(this));
-  }
-
-  getValue(event, ui): void {
-
-    if(ui.item)
-      this.userForm.patchValue({street: ui.item.value});
   }
 
   changeBranch(e) {
