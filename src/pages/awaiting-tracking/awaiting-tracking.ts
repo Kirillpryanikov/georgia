@@ -74,8 +74,11 @@ export class AwaitingTrackingPage implements OnInit, OnDestroy{
             this.nativeStorage.getItem('dontShow').then((data) => {
               if(!data){
                 this.nativeStorage.getItem('isAuthorise').catch(() => {
-                  this.modalController.create(PinPopups).present();
-                  this.nativeStorage.setItem('isAuthorise', true)
+                  setTimeout(() => {
+                    const modal = this.modalController.create(PinPopups);
+                    modal.present();
+                    this.nativeStorage.setItem('isAuthorise', true)
+                  }, 100);
                 });
               }
             }).catch(() => {
