@@ -35,7 +35,7 @@
             <div class="key" *ngFor="let key of row" (click)="writePin(key)">
               <span *ngIf="key !== 'remove' && key !== '_CLEAR'">{{key}}</span>
 
-              <span *ngIf="key === '_CLEAR'">{{key | translate}}</span>
+              <span style="font-size: 15px" *ngIf="key === '_CLEAR'">{{key | translate}}</span>
 
               <span *ngIf="key === 'remove'"><i class="material-icons pin_icons">backspace</i></span>
             </div>
