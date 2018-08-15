@@ -60,24 +60,26 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   upload() {
-    this.load = this.loadingCtrl.create({
-      spinner: 'dots'
-    });
-    this.load.present();
-    for(let i = 0; i < this.addingFiles.length; i++){
-      this.disable_upload_btn = true;
-      this.data = {
-        sessionId: this.sessionId,
-        packageId: this.navParams.data.package_id,
-        base64data: this.addingFiles[i].split(',')[1],
-        extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
-      };
-      this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
-        this.load.dismiss();
-        this.disable_upload_btn = false;
-        this.close();
-        this.subscription.unsubscribe();
+    if(this.addingFiles.length){
+      this.load = this.loadingCtrl.create({
+        spinner: 'dots'
       });
+      this.load.present();
+      for(let i = 0; i < this.addingFiles.length; i++){
+        this.disable_upload_btn = true;
+        this.data = {
+          sessionId: this.sessionId,
+          packageId: this.navParams.data.package_id,
+          base64data: this.addingFiles[i].split(',')[1],
+          extention: this.addingFiles[i].split(',')[0].split(/,|\/|:|;/)[2]
+        };
+        this.subscription = this.popupService.uploadInvoice('uploadInvoice', this.data).subscribe(data => {
+          this.load.dismiss();
+          this.disable_upload_btn = false;
+          this.close();
+          this.subscription.unsubscribe();
+        });
+      }
     }
   }
 

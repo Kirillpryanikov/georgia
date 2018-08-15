@@ -3192,7 +3192,7 @@ ion-content, body.overflow {
   -webkit-transition: left .4s;
   transition: left .4s; }
   .u2g-page-wrapper--right {
-    left: 270px;
+    left: 300px;
     max-width: 100%;
     //max-height: -webkit-calc(100% - 270px);
     //max-height: calc(100% - 270px);
@@ -3349,7 +3349,7 @@ ion-content, body.overflow {
   position: fixed;
   top: 0;
   width: 100%;
-  left: 270px;
+  left: 300px;
   z-index: 9; }
 
 /*DROPDOWN ITEM CLASS*/
@@ -3741,7 +3741,7 @@ ion-content, body.overflow {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 270px; }
+  width: 300px; }
   .u2g-profile-info.u2g-show, .u2g-show.u2g-notifications {
     display: -webkit-box;
     display: -webkit-flex;
@@ -4042,7 +4042,7 @@ ion-content, body.overflow {
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
-    width: 270px; } }
+    width: 300px; } }
 
 /* ------------------------------------------- */
 /* SIDEBAR */
@@ -4067,7 +4067,7 @@ ion-content, body.overflow {
           justify-content: space-between;
   min-height: auto;
   width: 100%;
-  max-width: 270px;
+  max-width: 300px;
   min-height: 100%;
   -webkit-transition: left .4s ease-out;
   transition: left .4s ease-out; }
@@ -6764,9 +6764,9 @@ label.error {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0;
+  padding: 10px;
   position: relative;
-  width: 125px; }
+  width: auto; }
   .u2g-invoice__button > input {
     display: block;
     display: none;

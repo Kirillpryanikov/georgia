@@ -29,10 +29,7 @@ export class SuccessPopups implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ionViewDidLoad() {
-    let that = this;
-    setTimeout(function () {
-      that.close();
-    },2000);
+
   }
 
   @HostListener('document:click', ['$event.target.tagName'])
