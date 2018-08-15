@@ -37,6 +37,10 @@ export class SetPincodePage implements OnInit{
       case 8:
       case 9:
       case 0:
+        if(this.count > 3){
+          this.pin = '';
+          this.count = 0;
+        }
         const a = document.getElementById(`_${this.count}`);
         if(a){
           this.pin+=key;
