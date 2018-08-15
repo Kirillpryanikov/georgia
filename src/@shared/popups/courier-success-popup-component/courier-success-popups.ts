@@ -80,4 +80,8 @@ export class CourierSuccessPopups implements OnInit, AfterViewInit {
     this.scriptService.setPositionCenter(this.popup);
   }
 
+  ngOnDestroy() {
+    this.close();
+  }
+
 }

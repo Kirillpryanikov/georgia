@@ -81,5 +81,7 @@ export class DetailsPopups implements OnDestroy, OnInit, AfterViewInit {
     });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

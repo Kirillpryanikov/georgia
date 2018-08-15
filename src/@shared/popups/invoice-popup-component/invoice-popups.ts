@@ -166,5 +166,6 @@ export class InvoicePopups implements OnDestroy, OnInit, AfterViewInit {
   ngOnDestroy() {
     if(this.subscription)
       this.subscription.unsubscribe();
+    this.close();
   }
 }

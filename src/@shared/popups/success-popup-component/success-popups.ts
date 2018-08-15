@@ -52,5 +52,7 @@ export class SuccessPopups implements OnDestroy, OnInit, AfterViewInit {
     this.viewCtrl.dismiss();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

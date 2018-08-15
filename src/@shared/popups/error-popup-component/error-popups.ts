@@ -42,5 +42,7 @@ export class ErrorPopups implements OnDestroy, AfterViewInit {
     this.viewCtrl.dismiss(data);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

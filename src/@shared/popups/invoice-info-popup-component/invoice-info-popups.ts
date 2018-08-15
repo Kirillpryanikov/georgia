@@ -91,5 +91,7 @@ export class InvoiceInfoPopups implements OnDestroy, OnInit, AfterViewInit {
     })
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

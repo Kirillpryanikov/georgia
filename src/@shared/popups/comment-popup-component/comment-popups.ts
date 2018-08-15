@@ -82,5 +82,6 @@ export class CommentPopups implements OnDestroy, AfterViewInit, OnInit {
   ngOnDestroy() {
     if(this.subscription)
       this.subscription.unsubscribe();
+    this.close();
   }
 }

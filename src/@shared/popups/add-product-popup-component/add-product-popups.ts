@@ -168,4 +168,8 @@ export class AddProductPopups implements OnInit, AfterViewInit {
     this.scriptService.setPositionCenter(this.popup);
   }
 
+  ngOnDestroy() {
+    this.close();
+  }
+
 }

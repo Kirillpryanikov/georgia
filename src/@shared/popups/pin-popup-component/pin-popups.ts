@@ -92,5 +92,7 @@ export class PinPopups implements OnDestroy, AfterViewInit, OnInit {
     })
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

@@ -43,5 +43,7 @@ export class WarningPopups implements OnDestroy, AfterViewInit {
     this.viewCtrl.dismiss(data);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }

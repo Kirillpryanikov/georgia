@@ -60,5 +60,7 @@ export class AddressPopups implements OnDestroy, OnInit, AfterViewInit {
     })
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.close();
+  }
 }
