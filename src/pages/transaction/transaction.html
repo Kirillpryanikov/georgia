@@ -24,7 +24,6 @@
                 <tr>
                   <td>{{'_DATE' | translate}}</td>
                   <td>{{'_INVOICE' |translate}}</td>
-                  <td>{{'_PAYMENT_METHODS' | translate}}</td>
                   <td>{{'_NET' | translate}}</td>
                   <td>{{'_BALANCE' | translate}}</td>
                   <td>{{'_TYPE' | translate}}</td>
@@ -34,7 +33,6 @@
                 <tr *ngFor="let transaction of listTransaction | paginate: { itemsPerPage: 7, currentPage: p }">
                   <td>{{transaction.date}}</td>
                   <td><a (click)="invoice($event, transaction.invoice)" >{{transaction.invoice}}</a></td>
-                  <td></td>
                   <td>{{transaction.net}}</td>
                   <td>{{transaction.balance}}</td>
                   <!--<td (click)="goTo(transaction.type)" *ngIf="transaction.type !== 'ADJUSTMENT'" class="u2g-transactions__text u2g-transactions__text&#45;&#45;red"><span>{{transaction.type_value}}</span></td>-->
