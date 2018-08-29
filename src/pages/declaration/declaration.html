@@ -52,7 +52,7 @@
               </div>
               <form class="u2g-info-block__list u2g-info-block__list--bg-all">
                 <div *ngFor="let list of productList; index as index" class="u2g-info-block__product">
-                  <span class="u2g-info-block__product-name">{{list.description}}</span>
+                  <span class="u2g-info-block__product-name">{{list.description | translate}}</span>
                   <span class="u2g-info-block__price">${{list.fixed_price || list.unit_price}}</span>
                   <button (click)="removeProduct(index)" class="u2g-info-block__remove" data-popup="remove-product">
                     <svg viewBox="0 0 512 512" width="16px" height="16px">
