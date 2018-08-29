@@ -155,6 +155,10 @@ export class PendingPage {
       this.branch_selection.forEach(val => {obj[val.hawb].locked = val.locked});
       this.branch_selection.forEach(val => {obj[val.hawb].branch = val.branch});
       this.listPending = Object.keys(obj).map(key => obj[key]);
+      for(let i = 0; i < data.message.in_transit.length; i++){
+        if(!data.message.in_transit[i].locked)
+          this.branch[i] = data.message.in_transit[i].branch;
+      }
       this.subscription.unsubscribe();
       this.subject.next();
     });
@@ -171,6 +175,7 @@ export class PendingPage {
       branch: this.branch[index]
     };
     this.pendingService.changeHawbBranch('changeHawbBranch', this.data).subscribe((data) => {
+      console.log(data);
     })
   }
 
