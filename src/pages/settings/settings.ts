@@ -335,7 +335,17 @@ export class SettingsPage implements OnInit, OnDestroy{
         })
       };
       this.subscription = this.settingService.changeCustomerSettings('changeCustomerSettings', this.data).subscribe(data => {
-      })
+        if(data.message.status === 'FAIL') {
+          const modal = this.modalController.create(ErrorPopups, {notice: data.message.message});
+          modal.present();
+          this.subscription.unsubscribe();
+        }
+        if(data.message.status === 'OK') {
+          const modal = this.modalController.create(SuccessPopups);
+          modal.present();
+          this.subscription.unsubscribe();
+        }
+      });
     }
     if(e === 'pin'){
       this.nativeStorage.setItem('hashKey', this.hashKey);

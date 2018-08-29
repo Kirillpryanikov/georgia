@@ -286,7 +286,7 @@
   "_SAVE_CHANGE":"დამახსოვრება",
   "_ADD_PRODUCT":"პროდუქციის დამატება",
   "_SNAP_SHOT":"ფოტო",
-  "_CHANGE_SAVED":"ცვლილების დამახსოვრება",
+  "_CHANGE_SAVED":"ცვლილება დამახსოვრებულია",
   "_OK":"Ok",
   "_PERSONAL":"პირადი",
 
@@ -407,9 +407,9 @@
   "_DIGIT":"ციფრი",
   "_PASSPORT_NUMBER":"პასპორტის ნომერი",
   "_CHECK_INTERNET":"გთხოვთ, შეამოწმოთ თქვენი ინტერნეტ კავშირი",
-  "_PIN_CODE": "შექმნა PIN კოდი",
+  "_PIN_CODE": "PIN კოდის შექმნა",
 
-  "_CHANGE_PASSWORD_CONFIRM": "გთხოვთ, დაადასტუროთ პაროლის შეცვლა!",
+  "_CHANGE_PASSWORD_CONFIRM": "გთხოვთ დაადასტუროთ პაროლის შეცვლა!",
   "_LOGIN_WITH_PIN": "შესვლა PIN- ით",
   "_QANTITY":"რაოდენობა",
 
@@ -438,10 +438,11 @@
   "_CONFIRM_PIN_CODE":"დაადასტურეთ თქვენი PIN კოდი",
   "_YOUR_PIN_CODE_NOT_CONFIRMED":"თქვენი PIN კოდი არ არის დადასტურებული",
   "_DELETE_INVOICE":"გნებავთ წაშალოთ ეს ფაილი?",
-  "_DELETE_IMAGE":"გსურთ გამოსახულების წაშლა?",
+  "_DELETE_IMAGE":"გსურთ ფოტოს წაშლა?",
   "_LOGIN_FINGER_PRINT":"თითის ანაბეჭდით შესვლა",
   "_FINGER_LOGIN_HAS_BEEN_SET":"თითის ანაბეჭდით შესვლა გააქტიურდა",
   "_YOU_ARE_NOT_REGISTERED_ACCOUNT":"თქვენ არ ხართ რეგისტრირებული ანგარიში!",
   "_LOAD_MORE":"მეტის ჩატვირთვა",
-  "_CLEAR":"წაშლა"
+  "_CLEAR":"წაშლა",
+  "_ONLY_4_DIGITS":"მხოლოდ 4 ციფრი"
 }
