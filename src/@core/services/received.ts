@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
 import { Client, SOAPService } from "ngx-soap";
 import { Subject } from "rxjs/Subject";
+import {CONFIG} from "../../config";
 
 @Injectable()
 export class ReceivedService {
@@ -17,7 +18,7 @@ export class ReceivedService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getReceivedMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getReceivedResponse.json.$value)});
             })
@@ -32,7 +33,7 @@ export class ReceivedService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getReceivedPartialMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getReceivedPartialResponse.json.$value)});
             })

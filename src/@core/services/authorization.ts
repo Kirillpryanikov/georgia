@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 import {Client, SOAPService} from "ngx-soap";
 import {Subject} from "rxjs/Subject";
+import { CONFIG } from "../../config";
+
 
 @Injectable()
 export class AuthorizationService {
@@ -17,7 +19,7 @@ export class AuthorizationService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.loginMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.loginResponse.json.$value)});
             })
@@ -32,7 +34,7 @@ export class AuthorizationService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text'})
             .subscribe(response => {
               this.keyLoginMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.keyLoginResponse.json.$value)});
             })

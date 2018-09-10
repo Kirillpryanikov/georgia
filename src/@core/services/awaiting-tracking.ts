@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from "rxjs/Subject";
 import { SOAPService, Client } from "ngx-soap";
 import { Observable } from "rxjs/Observable";
+import { CONFIG } from "../../config";
 
 @Injectable()
 export class AwaitingTrackingService {
@@ -22,7 +23,7 @@ export class AwaitingTrackingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getAwaitingMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getAwaitingResponse.json.$value)});
             })
@@ -37,7 +38,7 @@ export class AwaitingTrackingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.addTrackingMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.addTrackingResponse.json.$value)});
             })
@@ -52,7 +53,7 @@ export class AwaitingTrackingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.removeTrackingMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.removeTrackingResponse.json.$value)});
             })
@@ -67,7 +68,7 @@ export class AwaitingTrackingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.changePackageMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.changePackageSettingResponse.json.$value)});
             })

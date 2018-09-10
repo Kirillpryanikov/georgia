@@ -5,6 +5,8 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import {Client, SOAPService} from "ngx-soap";
 import {Subject} from "rxjs/Subject";
+import { CONFIG } from "../../config";
+
 
 @Injectable()
 export class HeaderService {
@@ -20,7 +22,7 @@ export class HeaderService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getNotificationMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getNotificationsResponse.json.$value)});
             })
@@ -35,7 +37,7 @@ export class HeaderService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getInfoMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getInfoResponse.json.$value)});
             })
@@ -50,7 +52,7 @@ export class HeaderService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.changeLanguageMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.changeLanguageResponse.json.$value)});
             })

@@ -4,6 +4,8 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import {SOAPService, Client} from "ngx-soap";
 import {Subject} from "rxjs/Subject";
+import { CONFIG } from "../../config";
+
 
 @Injectable()
 export class DeclarationService {
@@ -21,7 +23,7 @@ export class DeclarationService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getDeclarationMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getDeclarationResponse.json.$value)});
             })
@@ -36,7 +38,7 @@ export class DeclarationService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.declareTrackingMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.declareTrackingResponse.json.$value)});
             })
@@ -51,7 +53,7 @@ export class DeclarationService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getShippersMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getShippersResponse.json.$value)});
             })

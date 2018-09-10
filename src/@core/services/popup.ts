@@ -4,6 +4,8 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import { Client, SOAPService } from "ngx-soap";
 import {Subject} from "rxjs/Subject";
+import { CONFIG } from "../../config";
+
 
 @Injectable()
 export class PopupService {
@@ -37,7 +39,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.addComment.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.addTrackingCommentResponse.json.$value)});
             })
@@ -52,7 +54,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getComment.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getTrackingCommentResponse.json.$value)});
             })
@@ -67,7 +69,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.uploadInvoiceComment.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.uploadInvoiceResponse.json.$value)});
             })
@@ -82,7 +84,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getInfoMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getInfoResponse.json.$value)});
             })
@@ -97,7 +99,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getUnpaidInvoicesMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getUnpaidInvoicesResponse.json.$value)});
             })
@@ -112,7 +114,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.retrieveCourierMessage.next({ message: JSON.parse(response)});
             })
@@ -127,7 +129,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text'})
             .subscribe(response => {
               this.getListOfUploadedInvoicesMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getListOfUploadedInvoicesResponse.json.$value)});
             })
@@ -142,7 +144,7 @@ export class PopupService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text'})
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text'})
             .subscribe(response => {
               this.removeInvoiceMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.removeInvoiceResponse.json.$value)});
             })

@@ -1,910 +1,1007 @@
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/utils/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="clientWS" targetNamespace="http://www.example.org/utils/">
-  <wsdl:message name="loginRequest">
-    <wsdl:part name="secret" type="xsd:string"/>
-    <wsdl:part name="userName" type="xsd:string"/>
-    <wsdl:part name="password" type="xsd:string"/>
-    <wsdl:part name="language" type="xsd:string"/>
-    <wsdl:part name="remember" type="xsd:boolean"/>
-  </wsdl:message>
-  <wsdl:message name="loginResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="keyLoginRequest">
-    <wsdl:part name="secret" type="xsd:string"/>
-    <wsdl:part name="key" type="xsd:string"/>
-    <wsdl:part name="language" type="xsd:string"/>
-    <wsdl:part name="remember" type="xsd:boolean"/>
-  </wsdl:message>
-  <wsdl:message name="keyLoginResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="logoutRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="logoutResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="addTrackingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="tracking" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="addTrackingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="addTrackingCommentRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-    <wsdl:part name="comment" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="addTrackingCommentResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getTrackingCommentRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="getTrackingCommentResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="removeTrackingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="removeTrackingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changePackageSettingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:string"/>
-    <wsdl:part name="key" type="xsd:string"/>
-    <wsdl:part name="value" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changePackageSettingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="declareTrackingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-    <wsdl:part name="shipper" type="xsd:string"/>
-    <wsdl:part name="declarationDetailsJson" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="declareTrackingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeLanguageRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="language" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeLanguageResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInfoRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInfoResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCartuDescriptorRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCartuDescriptorResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getDeclarationRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="getDeclarationResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInboxRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInboxResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getAwaitingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getAwaitingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUsaWarehouseRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUsaWarehouseResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getPendingRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getPendingResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getArrivedRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getArrivedResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getReceivedRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getReceivedResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getReceivedPartialRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="from" type="xsd:int"/>
-    <wsdl:part name="count" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="getReceivedPartialResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCourierInvoiceRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="transactionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCourierInvoiceResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInvoiceRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="invoice" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getInvoiceResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="officeTransferRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="action" type="xsd:string"/>
-    <wsdl:part name="branch" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="officeTransferResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="retrieveCourierRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="action" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="retrieveCourierResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCustomerSettingsRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getCustomerSettingsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeCustomerSettingsRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="data" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeCustomerSettingsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getTransactionsRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getTransactionsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeHawbBranchRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="hawb" type="xsd:string"/>
-    <wsdl:part name="branch" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="changeHawbBranchResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUnpaidInvoicesRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUnpaidInvoicesResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getShippersRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getShippersResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getStreetsRequest">
-    <wsdl:part name="language" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getStreetsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="doAgreeRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="doAgreeResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="checkTransactionRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="identifier" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="checkTransactionResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="generateTBCBankTransactionRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="amount" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="generateTBCBankTransactionResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUndeclaredTrackingsRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUndeclaredTrackingsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="registerRequest">
-    <wsdl:part name="customerInfo" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="registerResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="resetPasswordRequest">
-    <wsdl:part name="email" type="xsd:string"/>
-    <wsdl:part name="language" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="resetPasswordResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getNotificationsRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getNotificationsResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="uploadInvoiceRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-    <wsdl:part name="base64data" type="xsd:string"/>
-    <wsdl:part name="extention" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="uploadInvoiceResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUploadedInvoiceRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-    <wsdl:part name="filename" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getUploadedInvoiceResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getAvatarRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getAvatarResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="getListOfUploadedInvoicesRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-  </wsdl:message>
-  <wsdl:message name="getListOfUploadedInvoicesResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="removeInvoiceRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="packageId" type="xsd:int"/>
-    <wsdl:part name="filename" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="removeInvoiceResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="uploadAvatarRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-    <wsdl:part name="base64data" type="xsd:string"/>
-    <wsdl:part name="extention" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="uploadAvatarResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="removeAvatarRequest">
-    <wsdl:part name="sessionId" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:message name="removeAvatarResponse">
-    <wsdl:part name="json" type="xsd:string"/>
-  </wsdl:message>
-  <wsdl:portType name="ClientWSPortType">
-    <wsdl:operation name="login">
-      <wsdl:input message="tns:loginRequest"/>
-      <wsdl:output message="tns:loginResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="keyLogin">
-      <wsdl:input message="tns:keyLoginRequest"/>
-      <wsdl:output message="tns:keyLoginResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="logout">
-      <wsdl:input message="tns:logoutRequest"/>
-      <wsdl:output message="tns:logoutResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="addTracking">
-      <wsdl:input message="tns:addTrackingRequest"/>
-      <wsdl:output message="tns:addTrackingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="addTrackingComment">
-      <wsdl:input message="tns:addTrackingCommentRequest"/>
-      <wsdl:output message="tns:addTrackingCommentResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getTrackingComment">
-      <wsdl:input message="tns:getTrackingCommentRequest"/>
-      <wsdl:output message="tns:getTrackingCommentResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="removeTracking">
-      <wsdl:input message="tns:removeTrackingRequest"/>
-      <wsdl:output message="tns:removeTrackingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getCartuDescriptor">
-      <wsdl:input message="tns:getCartuDescriptorRequest"/>
-      <wsdl:output message="tns:getCartuDescriptorResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="changePackageSetting">
-      <wsdl:input message="tns:changePackageSettingRequest"/>
-      <wsdl:output message="tns:changePackageSettingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="declareTracking">
-      <wsdl:input message="tns:declareTrackingRequest"/>
-      <wsdl:output message="tns:declareTrackingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="changeLanguage">
-      <wsdl:input message="tns:changeLanguageRequest"/>
-      <wsdl:output message="tns:changeLanguageResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getInfo">
-      <wsdl:input message="tns:getInfoRequest"/>
-      <wsdl:output message="tns:getInfoResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getDeclaration">
-      <wsdl:input message="tns:getDeclarationRequest"/>
-      <wsdl:output message="tns:getDeclarationResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getInbox">
-      <wsdl:input message="tns:getInboxRequest"/>
-      <wsdl:output message="tns:getInboxResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getAwaiting">
-      <wsdl:input message="tns:getAwaitingRequest"/>
-      <wsdl:output message="tns:getAwaitingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getUsaWarehouse">
-      <wsdl:input message="tns:getUsaWarehouseRequest"/>
-      <wsdl:output message="tns:getUsaWarehouseResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getPending">
-      <wsdl:input message="tns:getPendingRequest"/>
-      <wsdl:output message="tns:getPendingResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getArrived">
-      <wsdl:input message="tns:getArrivedRequest"/>
-      <wsdl:output message="tns:getArrivedResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getReceived">
-      <wsdl:input message="tns:getReceivedRequest"/>
-      <wsdl:output message="tns:getReceivedResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getReceivedPartial">
-      <wsdl:input message="tns:getReceivedPartialRequest"/>
-      <wsdl:output message="tns:getReceivedPartialResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getCourierInvoice">
-      <wsdl:input message="tns:getCourierInvoiceRequest"/>
-      <wsdl:output message="tns:getCourierInvoiceResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getInvoice">
-      <wsdl:input message="tns:getInvoiceRequest"/>
-      <wsdl:output message="tns:getInvoiceResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="officeTransfer">
-      <wsdl:input message="tns:officeTransferRequest"/>
-      <wsdl:output message="tns:officeTransferResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="retrieveCourier">
-      <wsdl:input message="tns:retrieveCourierRequest"/>
-      <wsdl:output message="tns:retrieveCourierResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getCustomerSettings">
-      <wsdl:input message="tns:getCustomerSettingsRequest"/>
-      <wsdl:output message="tns:getCustomerSettingsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="changeCustomerSettings">
-      <wsdl:input message="tns:changeCustomerSettingsRequest"/>
-      <wsdl:output message="tns:changeCustomerSettingsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getTransactions">
-      <wsdl:input message="tns:getTransactionsRequest"/>
-      <wsdl:output message="tns:getTransactionsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="changeHawbBranch">
-      <wsdl:input message="tns:changeHawbBranchRequest"/>
-      <wsdl:output message="tns:changeHawbBranchResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getUnpaidInvoices">
-      <wsdl:input message="tns:getUnpaidInvoicesRequest"/>
-      <wsdl:output message="tns:getUnpaidInvoicesResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getShippers">
-      <wsdl:input message="tns:getShippersRequest"/>
-      <wsdl:output message="tns:getShippersResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getStreets">
-      <wsdl:input message="tns:getStreetsRequest"/>
-      <wsdl:output message="tns:getStreetsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="doAgree">
-      <wsdl:input message="tns:doAgreeRequest"/>
-      <wsdl:output message="tns:doAgreeResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="checkTransaction">
-      <wsdl:input message="tns:checkTransactionRequest"/>
-      <wsdl:output message="tns:checkTransactionResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="generateTBCBankTransaction">
-      <wsdl:input message="tns:generateTBCBankTransactionRequest"/>
-      <wsdl:output message="tns:generateTBCBankTransactionResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getUndeclaredTrackings">
-      <wsdl:input message="tns:getUndeclaredTrackingsRequest"/>
-      <wsdl:output message="tns:getUndeclaredTrackingsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="register">
-      <wsdl:input message="tns:registerRequest"/>
-      <wsdl:output message="tns:registerResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="resetPassword">
-      <wsdl:input message="tns:resetPasswordRequest"/>
-      <wsdl:output message="tns:resetPasswordResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getNotifications">
-      <wsdl:input message="tns:getNotificationsRequest"/>
-      <wsdl:output message="tns:getNotificationsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="uploadInvoice">
-      <wsdl:input message="tns:uploadInvoiceRequest"/>
-      <wsdl:output message="tns:uploadInvoiceResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getUploadedInvoice">
-      <wsdl:input message="tns:getUploadedInvoiceRequest"/>
-      <wsdl:output message="tns:getUploadedInvoiceResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getAvatar">
-      <wsdl:input message="tns:getAvatarRequest"/>
-      <wsdl:output message="tns:getAvatarResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getListOfUploadedInvoices">
-      <wsdl:input message="tns:getListOfUploadedInvoicesRequest"/>
-      <wsdl:output message="tns:getListOfUploadedInvoicesResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="removeInvoice">
-      <wsdl:input message="tns:removeInvoiceRequest"/>
-      <wsdl:output message="tns:removeInvoiceResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="uploadAvatar">
-      <wsdl:input message="tns:uploadAvatarRequest"/>
-      <wsdl:output message="tns:uploadAvatarResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="removeAvatar">
-      <wsdl:input message="tns:removeAvatarRequest"/>
-      <wsdl:output message="tns:removeAvatarResponse"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="ClientWSPort" type="tns:ClientWSPortType">
-    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="login">
-      <soap:operation soapAction="http://www.example.org/utils/login"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="keyLogin">
-      <soap:operation soapAction="http://www.example.org/utils/keyLogin"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="logout">
-      <soap:operation soapAction="http://www.example.org/utils/logout"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="addTracking">
-      <soap:operation soapAction="http://www.example.org/utils/addTracking"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="addTrackingComment">
-      <soap:operation soapAction="http://www.example.org/utils/addTrackingComment"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getTrackingComment">
-      <soap:operation soapAction="http://www.example.org/utils/getTrackingComment"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="removeTracking">
-      <soap:operation soapAction="http://www.example.org/utils/removeTracking"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="changePackageSetting">
-      <soap:operation soapAction="http://www.example.org/utils/changePackageSetting"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="declareTracking">
-      <soap:operation soapAction="http://www.example.org/utils/declareTracking"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="changeLanguage">
-      <soap:operation soapAction="http://www.example.org/utils/changeLanguage"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getInfo">
-      <soap:operation soapAction="http://www.example.org/utils/getInfo"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getDeclaration">
-      <soap:operation soapAction="http://www.example.org/utils/getDeclaration"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getInbox">
-      <soap:operation soapAction="http://www.example.org/utils/getInbox"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAwaiting">
-      <soap:operation soapAction="http://www.example.org/utils/getAwaiting"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getUsaWarehouse">
-      <soap:operation soapAction="http://www.example.org/utils/getUsaWarehouse"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getPending">
-      <soap:operation soapAction="http://www.example.org/utils/getPending"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getArrived">
-      <soap:operation soapAction="http://www.example.org/utils/getArrived"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getReceived">
-      <soap:operation soapAction="http://www.example.org/utils/getReceived"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getReceivedPartial">
-      <soap:operation soapAction="http://www.example.org/utils/getReceivedPartial"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCourierInvoice">
-      <soap:operation soapAction="http://www.example.org/utils/getCourierInvoice"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getInvoice">
-      <soap:operation soapAction="http://www.example.org/utils/getInvoice"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="officeTransfer">
-      <soap:operation soapAction="http://www.example.org/utils/officeTransfer"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="retrieveCourier">
-      <soap:operation soapAction="http://www.example.org/utils/retrieveCourier"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCustomerSettings">
-      <soap:operation soapAction="http://www.example.org/utils/getCustomerSettings"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="changeCustomerSettings">
-      <soap:operation soapAction="http://www.example.org/utils/changeCustomerSettings"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getTransactions">
-      <soap:operation soapAction="http://www.example.org/utils/getTransactions"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="changeHawbBranch">
-      <soap:operation soapAction="http://www.example.org/utils/changeHawbBranch"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getUnpaidInvoices">
-      <soap:operation soapAction="http://www.example.org/utils/getUnpaidInvoices"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getShippers">
-      <soap:operation soapAction="http://www.example.org/utils/getShippers"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getStreets">
-      <soap:operation soapAction="http://www.example.org/utils/getStreets"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="doAgree">
-      <soap:operation soapAction="http://www.example.org/utils/doAgree"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="checkTransaction">
-      <soap:operation soapAction="http://www.example.org/utils/checkTransaction"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="generateTBCBankTransaction">
-      <soap:operation soapAction="http://www.example.org/utils/generateTBCBankTransaction"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getUndeclaredTrackings">
-      <soap:operation soapAction="http://www.example.org/utils/getUndeclaredTrackings"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="register">
-      <soap:operation soapAction="http://www.example.org/utils/register"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="resetPassword">
-      <soap:operation soapAction="http://www.example.org/utils/resetPassword"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getNotifications">
-      <soap:operation soapAction="http://www.example.org/utils/getNotifications"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="uploadInvoice">
-      <soap:operation soapAction="http://www.example.org/utils/uploadInvoice"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getUploadedInvoice">
-      <soap:operation soapAction="http://www.example.org/utils/getUploadedInvoice"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAvatar">
-      <soap:operation soapAction="http://www.example.org/utils/getAvatar"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getListOfUploadedInvoices">
-      <soap:operation soapAction="http://www.example.org/utils/getListOfUploadedInvoices"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="removeInvoice">
-      <soap:operation soapAction="http://www.example.org/utils/removeInvoice"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="uploadAvatar">
-      <soap:operation soapAction="http://www.example.org/utils/uploadAvatar"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="removeAvatar">
-      <soap:operation soapAction="http://www.example.org/utils/removeAvatar"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCartuDescriptor">
-      <soap:operation soapAction="http://www.example.org/utils/getCartuDescriptor"/>
-      <wsdl:input>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.example.org/utils/" use="encoded"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="ClientWS">
-    <wsdl:port binding="tns:ClientWSPort" name="ClientWSPort">
-      <soap:address location="https://www.usa2georgia.com/shipping_new/public/ws/client.php"/>
-    </wsdl:port>
-  </wsdl:service>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/utils/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="clientWS"
+	targetNamespace="http://www.example.org/utils/">
+	<wsdl:message name="loginRequest">
+		<wsdl:part name="secret" type="xsd:string"></wsdl:part>
+		<wsdl:part name="userName" type="xsd:string"></wsdl:part>
+		<wsdl:part name="password" type="xsd:string"></wsdl:part>
+		<wsdl:part name="language" type="xsd:string"></wsdl:part>
+		<wsdl:part name="remember" type="xsd:boolean"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="loginResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="keyLoginRequest">
+		<wsdl:part name="secret" type="xsd:string"></wsdl:part>
+		<wsdl:part name="key" type="xsd:string"></wsdl:part>
+		<wsdl:part name="language" type="xsd:string"></wsdl:part>
+		<wsdl:part name="remember" type="xsd:boolean"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="keyLoginResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="logoutRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="logoutResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addTrackingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="tracking" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addTrackingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addTrackingCommentRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+		<wsdl:part name="comment" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addTrackingCommentResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getTrackingCommentRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getTrackingCommentResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeTrackingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeTrackingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changePackageSettingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="key" type="xsd:string"></wsdl:part>
+		<wsdl:part name="value" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changePackageSettingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="declareTrackingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+		<wsdl:part name="shipper" type="xsd:string"></wsdl:part>
+		<wsdl:part name="declarationDetailsJson" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="declareTrackingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeLanguageRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="language" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeLanguageResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>        
+	<wsdl:message name="getInfoRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInfoResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="getCartuDescriptorRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCartuDescriptorResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>        
+	<wsdl:message name="getDeclarationRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDeclarationResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInboxRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInboxResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAwaitingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAwaitingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUsaWarehouseRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUsaWarehouseResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPendingRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPendingResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getArrivedRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getArrivedResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getReceivedRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getReceivedResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getReceivedPartialRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="from" type="xsd:int"></wsdl:part>
+		<wsdl:part name="count" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getReceivedPartialResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCourierInvoiceRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="transactionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCourierInvoiceResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInvoiceRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="invoice" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInvoiceResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="officeTransferRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="action" type="xsd:string"></wsdl:part>
+		<wsdl:part name="branch" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="officeTransferResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="retrieveCourierRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="action" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="retrieveCourierResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCustomerSettingsRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCustomerSettingsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeCustomerSettingsRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="data" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeCustomerSettingsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getTransactionsRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getTransactionsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeHawbBranchRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="hawb" type="xsd:string"></wsdl:part>
+		<wsdl:part name="branch" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="changeHawbBranchResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUnpaidInvoicesRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUnpaidInvoicesResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getShippersRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getShippersResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getStreetsRequest">
+		<wsdl:part name="language" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getStreetsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="doAgreeRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="doAgreeResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkTransactionRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="identifier" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkTransactionResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="generateTBCBankTransactionRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+		<wsdl:part name="amount" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="generateTBCBankTransactionResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUndeclaredTrackingsRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUndeclaredTrackingsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="registerRequest">
+		<wsdl:part name="customerInfo" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="registerResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordRequest">
+		<wsdl:part name="email" type="xsd:string"></wsdl:part>
+		<wsdl:part name="language" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getNotificationsRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getNotificationsResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="uploadInvoiceRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+                <wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+                <wsdl:part name="base64data" type="xsd:string"></wsdl:part>
+                <wsdl:part name="extention" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadInvoiceResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="getUploadedInvoiceRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+                <wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+                <wsdl:part name="filename" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getUploadedInvoiceResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="getAvatarRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAvatarResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="getListOfUploadedInvoicesRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+                <wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getListOfUploadedInvoicesResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>        
+        <wsdl:message name="removeInvoiceRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+                <wsdl:part name="packageId" type="xsd:int"></wsdl:part>
+                <wsdl:part name="filename" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeInvoiceResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="uploadAvatarRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+                <wsdl:part name="base64data" type="xsd:string"></wsdl:part>
+                <wsdl:part name="extention" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadAvatarResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:message name="removeAvatarRequest">
+		<wsdl:part name="sessionId" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeAvatarResponse">
+		<wsdl:part name="json" type="xsd:string"></wsdl:part>
+	</wsdl:message>
+        <wsdl:portType name="ClientWSPortType">
+		<wsdl:operation name="login">
+			<wsdl:input message="tns:loginRequest"></wsdl:input>
+			<wsdl:output message="tns:loginResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="keyLogin">
+			<wsdl:input message="tns:keyLoginRequest"></wsdl:input>
+			<wsdl:output message="tns:keyLoginResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="logout">
+			<wsdl:input message="tns:logoutRequest"></wsdl:input>
+			<wsdl:output message="tns:logoutResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addTracking">
+			<wsdl:input message="tns:addTrackingRequest"></wsdl:input>
+			<wsdl:output message="tns:addTrackingResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addTrackingComment">
+			<wsdl:input message="tns:addTrackingCommentRequest"></wsdl:input>
+			<wsdl:output message="tns:addTrackingCommentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTrackingComment">
+			<wsdl:input message="tns:getTrackingCommentRequest"></wsdl:input>
+			<wsdl:output message="tns:getTrackingCommentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="removeTracking">
+			<wsdl:input message="tns:removeTrackingRequest"></wsdl:input>
+			<wsdl:output message="tns:removeTrackingResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getCartuDescriptor">
+			<wsdl:input message="tns:getCartuDescriptorRequest"></wsdl:input>
+			<wsdl:output message="tns:getCartuDescriptorResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="changePackageSetting">
+			<wsdl:input message="tns:changePackageSettingRequest"></wsdl:input>
+			<wsdl:output message="tns:changePackageSettingResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="declareTracking">
+			<wsdl:input message="tns:declareTrackingRequest"></wsdl:input>
+			<wsdl:output message="tns:declareTrackingResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeLanguage">
+			<wsdl:input message="tns:changeLanguageRequest"></wsdl:input>
+			<wsdl:output message="tns:changeLanguageResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfo">
+			<wsdl:input message="tns:getInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:getInfoResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDeclaration">
+			<wsdl:input message="tns:getDeclarationRequest"></wsdl:input>
+			<wsdl:output message="tns:getDeclarationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInbox">
+			<wsdl:input message="tns:getInboxRequest"></wsdl:input>
+			<wsdl:output message="tns:getInboxResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAwaiting">
+			<wsdl:input message="tns:getAwaitingRequest"></wsdl:input>
+			<wsdl:output message="tns:getAwaitingResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUsaWarehouse">
+			<wsdl:input message="tns:getUsaWarehouseRequest"></wsdl:input>
+			<wsdl:output message="tns:getUsaWarehouseResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPending">
+			<wsdl:input message="tns:getPendingRequest"></wsdl:input>
+			<wsdl:output message="tns:getPendingResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getArrived">
+			<wsdl:input message="tns:getArrivedRequest"></wsdl:input>
+			<wsdl:output message="tns:getArrivedResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getReceived">
+			<wsdl:input message="tns:getReceivedRequest"></wsdl:input>
+			<wsdl:output message="tns:getReceivedResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getReceivedPartial">
+			<wsdl:input message="tns:getReceivedPartialRequest"></wsdl:input>
+			<wsdl:output message="tns:getReceivedPartialResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCourierInvoice">
+			<wsdl:input message="tns:getCourierInvoiceRequest"></wsdl:input>
+			<wsdl:output message="tns:getCourierInvoiceResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInvoice">
+			<wsdl:input message="tns:getInvoiceRequest"></wsdl:input>
+			<wsdl:output message="tns:getInvoiceResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="officeTransfer">
+			<wsdl:input message="tns:officeTransferRequest"></wsdl:input>
+			<wsdl:output message="tns:officeTransferResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCourier">
+			<wsdl:input message="tns:retrieveCourierRequest"></wsdl:input>
+			<wsdl:output message="tns:retrieveCourierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCustomerSettings">
+			<wsdl:input message="tns:getCustomerSettingsRequest"></wsdl:input>
+			<wsdl:output message="tns:getCustomerSettingsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeCustomerSettings">
+			<wsdl:input message="tns:changeCustomerSettingsRequest"></wsdl:input>
+			<wsdl:output message="tns:changeCustomerSettingsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransactions">
+			<wsdl:input message="tns:getTransactionsRequest"></wsdl:input>
+			<wsdl:output message="tns:getTransactionsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeHawbBranch">
+			<wsdl:input message="tns:changeHawbBranchRequest"></wsdl:input>
+			<wsdl:output message="tns:changeHawbBranchResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUnpaidInvoices">
+			<wsdl:input message="tns:getUnpaidInvoicesRequest"></wsdl:input>
+			<wsdl:output message="tns:getUnpaidInvoicesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getShippers">
+			<wsdl:input message="tns:getShippersRequest"></wsdl:input>
+			<wsdl:output message="tns:getShippersResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getStreets">
+			<wsdl:input message="tns:getStreetsRequest"></wsdl:input>
+			<wsdl:output message="tns:getStreetsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="doAgree">
+			<wsdl:input message="tns:doAgreeRequest"></wsdl:input>
+			<wsdl:output message="tns:doAgreeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkTransaction">
+			<wsdl:input message="tns:checkTransactionRequest"></wsdl:input>
+			<wsdl:output message="tns:checkTransactionResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="generateTBCBankTransaction">
+			<wsdl:input message="tns:generateTBCBankTransactionRequest"></wsdl:input>
+			<wsdl:output message="tns:generateTBCBankTransactionResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUndeclaredTrackings">
+			<wsdl:input message="tns:getUndeclaredTrackingsRequest"></wsdl:input>
+			<wsdl:output message="tns:getUndeclaredTrackingsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="register">
+			<wsdl:input message="tns:registerRequest"></wsdl:input>
+			<wsdl:output message="tns:registerResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword">
+			<wsdl:input message="tns:resetPasswordRequest"></wsdl:input>
+			<wsdl:output message="tns:resetPasswordResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNotifications">
+			<wsdl:input message="tns:getNotificationsRequest"></wsdl:input>
+			<wsdl:output message="tns:getNotificationsResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="uploadInvoice">
+			<wsdl:input message="tns:uploadInvoiceRequest"></wsdl:input>
+			<wsdl:output message="tns:uploadInvoiceResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getUploadedInvoice">
+			<wsdl:input message="tns:getUploadedInvoiceRequest"></wsdl:input>
+			<wsdl:output message="tns:getUploadedInvoiceResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getAvatar">
+			<wsdl:input message="tns:getAvatarRequest"></wsdl:input>
+			<wsdl:output message="tns:getAvatarResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getListOfUploadedInvoices">
+			<wsdl:input message="tns:getListOfUploadedInvoicesRequest"></wsdl:input>
+			<wsdl:output message="tns:getListOfUploadedInvoicesResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="removeInvoice">
+			<wsdl:input message="tns:removeInvoiceRequest"></wsdl:input>
+			<wsdl:output message="tns:removeInvoiceResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="uploadAvatar">
+			<wsdl:input message="tns:uploadAvatarRequest"></wsdl:input>
+			<wsdl:output message="tns:uploadAvatarResponse"></wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="removeAvatar">
+			<wsdl:input message="tns:removeAvatarRequest"></wsdl:input>
+			<wsdl:output message="tns:removeAvatarResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ClientWSPort" type="tns:ClientWSPortType">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="login">
+			<soap:operation soapAction="http://www.example.org/utils/login" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="keyLogin">
+			<soap:operation soapAction="http://www.example.org/utils/keyLogin" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="logout">
+			<soap:operation soapAction="http://www.example.org/utils/logout" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addTracking">
+			<soap:operation soapAction="http://www.example.org/utils/addTracking" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addTrackingComment">
+			<soap:operation soapAction="http://www.example.org/utils/addTrackingComment" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTrackingComment">
+			<soap:operation soapAction="http://www.example.org/utils/getTrackingComment" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="removeTracking">
+			<soap:operation soapAction="http://www.example.org/utils/removeTracking" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changePackageSetting">
+			<soap:operation soapAction="http://www.example.org/utils/changePackageSetting" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="declareTracking">
+			<soap:operation soapAction="http://www.example.org/utils/declareTracking" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeLanguage">
+			<soap:operation soapAction="http://www.example.org/utils/changeLanguage" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfo">
+			<soap:operation soapAction="http://www.example.org/utils/getInfo" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDeclaration">
+			<soap:operation soapAction="http://www.example.org/utils/getDeclaration" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInbox">
+			<soap:operation soapAction="http://www.example.org/utils/getInbox" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+				<wsdl:operation name="getAwaiting">
+			<soap:operation soapAction="http://www.example.org/utils/getAwaiting" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+				<wsdl:operation name="getUsaWarehouse">
+			<soap:operation soapAction="http://www.example.org/utils/getUsaWarehouse" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPending">
+			<soap:operation soapAction="http://www.example.org/utils/getPending" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getArrived">
+			<soap:operation soapAction="http://www.example.org/utils/getArrived" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getReceived">
+			<soap:operation soapAction="http://www.example.org/utils/getReceived" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getReceivedPartial">
+			<soap:operation soapAction="http://www.example.org/utils/getReceivedPartial" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCourierInvoice">
+			<soap:operation soapAction="http://www.example.org/utils/getCourierInvoice" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInvoice">
+			<soap:operation soapAction="http://www.example.org/utils/getInvoice" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="officeTransfer">
+			<soap:operation soapAction="http://www.example.org/utils/officeTransfer" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCourier">
+			<soap:operation soapAction="http://www.example.org/utils/retrieveCourier" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCustomerSettings">
+			<soap:operation soapAction="http://www.example.org/utils/getCustomerSettings" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeCustomerSettings">
+			<soap:operation soapAction="http://www.example.org/utils/changeCustomerSettings" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransactions">
+			<soap:operation soapAction="http://www.example.org/utils/getTransactions" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changeHawbBranch">
+			<soap:operation soapAction="http://www.example.org/utils/changeHawbBranch" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUnpaidInvoices">
+			<soap:operation soapAction="http://www.example.org/utils/getUnpaidInvoices" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getShippers">
+			<soap:operation soapAction="http://www.example.org/utils/getShippers" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getStreets">
+			<soap:operation soapAction="http://www.example.org/utils/getStreets" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="doAgree">
+			<soap:operation soapAction="http://www.example.org/utils/doAgree" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkTransaction">
+			<soap:operation soapAction="http://www.example.org/utils/checkTransaction" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="generateTBCBankTransaction">
+			<soap:operation soapAction="http://www.example.org/utils/generateTBCBankTransaction" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUndeclaredTrackings">
+			<soap:operation soapAction="http://www.example.org/utils/getUndeclaredTrackings" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="register">
+			<soap:operation soapAction="http://www.example.org/utils/register" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword">
+			<soap:operation soapAction="http://www.example.org/utils/resetPassword" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNotifications">
+			<soap:operation soapAction="http://www.example.org/utils/getNotifications" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="uploadInvoice">
+			<soap:operation soapAction="http://www.example.org/utils/uploadInvoice" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getUploadedInvoice">
+			<soap:operation soapAction="http://www.example.org/utils/getUploadedInvoice" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getAvatar">
+			<soap:operation soapAction="http://www.example.org/utils/getAvatar" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getListOfUploadedInvoices">
+			<soap:operation soapAction="http://www.example.org/utils/getListOfUploadedInvoices" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="removeInvoice">
+			<soap:operation soapAction="http://www.example.org/utils/removeInvoice" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="uploadAvatar">
+			<soap:operation soapAction="http://www.example.org/utils/uploadAvatar" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="removeAvatar">
+			<soap:operation soapAction="http://www.example.org/utils/removeAvatar" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getCartuDescriptor">
+			<soap:operation soapAction="http://www.example.org/utils/getCartuDescriptor" />
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.example.org/utils/" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+                
+	</wsdl:binding>
+	<wsdl:service name="ClientWS">
+		<wsdl:port binding="tns:ClientWSPort" name="ClientWSPort">
+			<soap:address location="https://www.usa2georgia.com/shipping_new/public/ws/client.php" />
+		</wsdl:port>
+	</wsdl:service>
+
 </wsdl:definitions>

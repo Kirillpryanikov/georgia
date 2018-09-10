@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
 import {Client, SOAPService} from "ngx-soap";
 import {Subject} from "rxjs/Subject";
+import {CONFIG} from "../../config";
 
 @Injectable()
 export class SettingService {
@@ -22,7 +23,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getCustomerSettingsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getCustomerSettingsResponse.json.$value)});
             })
@@ -37,7 +38,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.changeCustomerSettingsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.changeCustomerSettingsResponse.json.$value)});
             })
@@ -52,7 +53,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getStreetsMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getStreetsResponse.json.$value)});
             })
@@ -67,7 +68,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.uploadAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.uploadAvatarResponse.json.$value)});
             })
@@ -82,7 +83,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.removeAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.removeAvatarResponse.json.$value)});
             })
@@ -97,7 +98,7 @@ export class SettingService {
       this.soap.createClient(response).then((client: Client) => {
         this.client = client;
         this.client.operation(remote_function, data).then(operation => {
-          this.http.post('https://www.usa2georgia.com/shipping_new/public/ws/client.php?wsdl', operation.xml, {responseType:'text' })
+          this.http.post(CONFIG.url, operation.xml, {responseType:'text' })
             .subscribe(response => {
               this.getAvatarMessage.next({ message: JSON.parse(this.client.parseResponseBody(response).Body.getAvatarResponse.json.$value)});
             })
