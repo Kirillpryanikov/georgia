@@ -25,6 +25,7 @@
     "@ionic-native/core": "4.4.0",
     "@ionic-native/fingerprint-aio": "^4.9.2",
     "@ionic-native/globalization": "^4.5.3",
+    "@ionic-native/header-color": "^4.12.2",
     "@ionic-native/in-app-browser": "^4.5.3",
     "@ionic-native/keyboard": "^4.10.1",
     "@ionic-native/native-keyboard": "^4.6.0",
@@ -44,6 +45,7 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-fingerprint-aio": "^1.3.8",
     "cordova-plugin-globalization": "^1.11.0",
+    "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-inappbrowser": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.2.1",
@@ -103,7 +105,8 @@
       },
       "ionic-plugin-keyboard": {},
       "cordova-plugin-fingerprint-aio": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-headercolor": {}
     },
     "platforms": [
       "ios"
